@@ -1,18 +1,41 @@
 {% extends "base.html" %}
+{% block tips %}
+<!-- Tip Content -->
+    <ol id="joyRideTipContent">
+      <li data-id="num-0" data-text="Netxt" class="custom">
+        <h2>Step 1</h2>
+        <p>输入页码，其中页码从1开始，指的是获取的微博返回数据偏移量。</p>
+      </li>
+      <li data-id="num-1" data-text="Next" class="custom">
+        <h2>Step 2</h2>
+        <p>获取数据</p>
+      </li>
+      
+      <li data-id='num-2' date-text='Next'>
+        <h2>Step 3</h2>
+        <p>总微博个数</p>
+      </li>
+      <li data-id='num-3' date-text='Next'>
+        <h2>Step 4</h2>
+        <p>部分数据</p>
+      </li>
+      
+    </ol>
+{% endblock%}
 {% block body%}
 	<form class="well form-inline" action="/weibor" method="POST" >
-  <input type="text" name='page' class="input-small" placeholder="1">
+  <input id='num-0' type="text" name='page' class="input-small" placeholder="1">
   
     <span class="help-inline">输入页码</span>
-  <button type="submit" class="btn">Search</button>
+  <button id='num-1' type="submit" class="btn">获取</button>
 </form>
 <hr/>
 
 
-<div class="alert alert-info">
+<div id='num-2' class="alert alert-info">
   共计：{{count}}条微博数据。
 </div>
-<table class="table table-striped">
+<table id='num-3' class="table table-striped">
   <thead>
     <tr>
     	<th>微博时间</th>
@@ -27,8 +50,6 @@
   </thead>
   <tbody>
   	{% for x in r%}
-
-    <tr>
     	<td>{{x.time}}</td>
       <td>{{x.cat}}</td>
 	<td>{{x.title}}</td>

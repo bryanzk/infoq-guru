@@ -1,42 +1,68 @@
 {% extends "base.html" %}
+{% block tips%}
+<!-- Tip Content -->
+    <ol id="joyRideTipContent">
+      <li data-id="num-0" data-text="Netxt" class="custom">
+        <h2>Step 1</h2>
+        <p>输入开始日期，日期格式为：2012-01-01.</p>
+      </li>
+      <li data-id="num-1" data-text="Next" class="custom">
+        <h2>Step 2</h2>
+        <p>输入截止日期，日期格式为：2012-01-01</p>
+      </li>
+      
+      <li data-id='num-2' date-text='Next'>
+        <h2>Step 3</h2>
+        <p>点击查询</p>
+      </li>
+      <li data-id='num-3' date-text='Next'>
+        <h2>Step 4</h2>
+        <p>运行结果结果总计</p>
+      </li>
+      <li data-id='num-4' date-text='Close'>
+        <h2>Step 5</h2>
+        <p>显示找到的结果</p>
+      </li>
+    </ol>
+{% endblock%}
 {% block body%}
-	<form class="well form-inline" action="/weiboresult" method="POST" >
-  <input type="text" name='begin'class="input-small" placeholder="begin">
-  <input type="text" name='end' class="input-small" placeholder="end">
+  <form class="well form-inline" action="/weiboresult" method="POST" >
+  <input type="text" id='num-0' name='begin'class="input-small" placeholder="begin">
+  <input type="text" id='num-1' name='end' class="input-small" placeholder="end">
     <span class="help-inline">日期格式：2012-12-12</span>
-  <button type="submit" class="btn">Search</button>
+  <button type="submit" id='num-2' class="btn">Search</button>
 </form>
 <hr/>
 
-<div class="alert alert-info">
+<div id='num-3' class="alert alert-info">
   共计：{{count}}条数据。
 </div>
 
-<table class="table table-striped">
+<table id='num=4' class="table table-striped">
   <thead>
     <tr>
-    	<th>微博时间</th>
+      <th>微博时间</th>
       <th>类型</th>
       <th>标题</td>
-      	<th>作者</th>
-      	<th>url</th>
-      	<th>微博</th>
-      	<th>转发</th>
-      	<th>评论</th>
+        <th>作者</th>
+        <th>地址</th>
+        <th>微博</th>
+        <th>转发</th>
+        <th>评论</th>
     </tr>
   </thead>
   <tbody>
-  	{% for x in r%}
+    {% for x in r%}
 
     <tr>
-    	<td>{{x.time}}</td>
+      <td>{{x.time}}</td>
       <td>{{x.cat}}</td>
-	<td>{{x.title}}</td>
-	<td>{{x.athur}}</td>
-	<td>{{x.guid}}</td>
-	<td>{{x.weibo}}</td>
-	<td>{{x.retweet}}</td>
-	<td>{{x.comment}}</td>
+  <td>{{x.title}}</td>
+  <td>{{x.athur}}</td>
+  <td><a href='{{x.url}}' alt="{{x.url}}">查看</a></td>
+      <td><a href='{{x.org_url}}' alt='{{x.org_url}}'>查看</a></td>
+  <td>{{x.retweet}}</td>
+  <td>{{x.comment}}</td>
     </tr>
     {% endfor %}
   </tbody>

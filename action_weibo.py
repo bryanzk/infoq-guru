@@ -42,13 +42,10 @@ class ComebackOauth(MethodView):
 
 class WeiboRefresh(MethodView):
     @login
-    @token
     def get(self):
-        helper=WeiboHelper()
-        helper_data=Helper_Data()
-        res=helper._get_data()
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
+        res=dbSession.query(WeiboM).order_by(desc(WeiboM.time)).limit(6).all()
         count=dbSession.query(func.count(WeiboM.url)).scalar()
         dbSession.close()
         return render_template('weibo_get.html',r=res,count=count)
@@ -67,7 +64,6 @@ class WeiboRefresh(MethodView):
         return redirect('weibor')
 class WeiboResult(MethodView):
     @login
-    @token
     def get(self):
         return render_template('weibo.html',r=[])
     def post(self):

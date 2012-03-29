@@ -7,6 +7,7 @@ from action_static import *
 from action_user import *
 from action_mail import *
 from config import *
+from md5 import md5
 app = Flask(__name__)
 app.debug=True
 app.secret_key='fakdfakjbdfjasdfa&fasdfa'
@@ -31,6 +32,6 @@ app.add_url_rule('/go',view_func=GotoOauth.as_view('newa'))
 app.add_url_rule('/oauth',view_func=ComebackOauth.as_view('neddw'))
 app.add_url_rule('/wa',view_func=ShowAll.as_view('wa'))
 app.add_url_rule('/weiboresult',view_func=WeiboResult.as_view('weiboresult'))
-app.jinja_env.globals.update(session=session)
+app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':
     app.run()

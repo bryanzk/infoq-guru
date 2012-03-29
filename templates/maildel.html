@@ -1,21 +1,47 @@
 {% extends 'base.html' %}
+{% block tips%}
+<!-- Tip Content -->
+    <ol id="joyRideTipContent">
+      <li data-id="num-0" data-text="Netxt" class="custom">
+        <h2>Step 1</h2>
+        <p>输入您的邮件地址</p>
+      </li>
+      <li data-id="num-1" data-text="Next" class="custom">
+        <h2>Step 2</h2>
+        <p>选择订阅的站点</p>
+      </li>
+      
+      <li data-id='num-2' date-text='Next'>
+        <h2>Step 3</h2>
+        <p>点击删除</p>
+      </li>
+      <li data-id='num-3' date-text='Next'>
+        <h2>Step 4</h2>
+        <p>当前订阅列表</p>
+      </li>
+      <li data-id='num-4' date-text='Close'>
+        <h2>Step 5</h2>
+        <p>结果</p>
+      </li>
+    </ol>
+{% endblock%}
 {% block body %}
 <form class="well form-inline" action="maildel" method="POST" >
- <input type="text" name='email'class="input-small" placeholder="输入邮箱">
- <select name="country">
+ <input id='num-0' type="text" name='email'class="input-small" placeholder="输入邮箱">
+ <select id='num-1' name="country">
 <option value="en">英文站</option>
 <option value="ch">中文站</option>
 </select>
     <span class="help-inline">选择站点</span>
-  <button type="submit" class="btn">删除</button>
+  <button id='num-2' type="submit" class="btn">删除</button>
 </form>
-<div class="alert alert-warnning">
+<div  id='num-3' class="alert alert-warnning">
 	已加入的邮件列表：
 {% for x in res%}
 <li>{{x.country}}:{{x.email}}</li>
 {% endfor%}
 	</div>
-<div class="alert alert-info">
+<div id='num-4' class="alert alert-info">
   运行结果：{{r}}
 </div>
 {% endblock %}
