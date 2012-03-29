@@ -6,6 +6,7 @@ from action_editor import *
 from action_static import *
 from action_user import *
 from action_mail import *
+from action_task import *
 from config import *
 from md5 import md5
 app = Flask(__name__)
@@ -13,7 +14,10 @@ app.debug=True
 app.secret_key='fakdfakjbdfjasdfa&fasdfa'
 
 app.add_url_rule('/rss',view_func=RssFetchRefresh.as_view('rss'))
-
+app.add_url_rule('/taskadd',view_func=TaskAddNew.as_view('taskadd'))
+app.add_url_rule('/taskstep',view_func=TaskToStep.as_view('taskstep'))
+app.add_url_rule('/taskstepinfo',view_func=TaskStepInfo.as_view('taskstepinfo'))
+app.add_url_rule('/tasksubmit',view_func=TaskSubmit.as_view('tasksubmit'))
 app.add_url_rule('/rsssearch',view_func=RssNew.as_view('newrss'))
 app.add_url_rule('/rssen',view_func=EnRssRefresh.as_view('rssen'))
 app.add_url_rule('/rssch',view_func=ChRssRefresh.as_view('rssch'))

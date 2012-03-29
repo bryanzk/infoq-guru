@@ -75,4 +75,34 @@ CREATE TABLE `token_list` (
   PRIMARY KEY (`time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin$$
 
+delimiter $$
+
+CREATE TABLE `status_list` (
+  `id` varchar(100) COLLATE utf8_bin NOT NULL,
+  `task_id` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `code` int(11) DEFAULT NULL,
+  `description` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  `begin` datetime DEFAULT NULL,
+  `end` datetime DEFAULT NULL,
+  `contrast` datetime DEFAULT NULL,
+  `editor` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `duty` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin$$
+
+delimiter $$
+
+CREATE TABLE `task_list` (
+  `id` varchar(100) COLLATE utf8_bin NOT NULL,
+  `bigcat` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  `smallcat` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  `title` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `link` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `count` int(11) DEFAULT NULL,
+  `editor` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `duty` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin$$
+
 

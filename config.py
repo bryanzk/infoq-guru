@@ -192,3 +192,48 @@ class WeiboM(Base):
         self.comment=comment
         self.text=text
         self.org_url=org_url
+class TaskList(Base):
+    __tablename__='task_list'
+    id=Column(String(100),primary_key=True)
+    bigcat=Column(String(100))
+    smallcat=Column(String(100))
+    title=Column(String(100))
+    link=Column(String(200))
+    created=Column(DateTime)
+    editor=Column(String(100))
+    duty=Column(String(100))
+    count=Column(Integer)
+    def __init__(self,id,bigcat,smallcat,title,link,created,
+        editor,duty,count):
+        self.id=id
+        self.bigcat=bigcat
+        self.smallcat=smallcat
+        self.title=title
+        self.link=link
+        self.created=created
+        self.editor=editor
+        self.duty=duty
+        self.count=count
+class StatusList(Base):
+    __tablename__='status_list'
+    id=Column(String(100),primary_key=True)
+    status_id=Column(String(100))
+    code=Column(Integer)
+    description=Column(String(200))
+    begin=Column(DateTime)
+    end=Column(DateTime)
+    contrast=Column(DateTime)
+    editor=Column(String(100))
+    duty=Column(String(100))
+    def __init__(self,id,status_id,code,description,begin,end,contrast,editor,duty):
+        self.id=id
+        self.status_id=status_id
+        self.code=code
+        self.description=description
+        self.begin=begin
+        self.end=end
+        self.contrast=contrast
+        self.editor=editor
+        self.duty
+
+
