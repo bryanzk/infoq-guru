@@ -28,6 +28,7 @@ app.add_url_rule('/',view_func=IndexView.as_view('index'))
 app.add_url_rule('/staticrss',view_func=StaticView.as_view('static_view'))
 app.add_url_rule('/about',view_func=AboutView.as_view('aboutview'))
 app.add_url_rule('/weibor',view_func=WeiboRefresh.as_view('nedw'))
+app.add_url_rule('/weibos',view_func=WeiboSend.as_view('weibosend'))
 app.add_url_rule('/go',view_func=GotoOauth.as_view('newa'))
 app.add_url_rule('/oauth',view_func=ComebackOauth.as_view('neddw'))
 app.add_url_rule('/wa',view_func=ShowAll.as_view('wa'))
@@ -35,3 +36,10 @@ app.add_url_rule('/weiboresult',view_func=WeiboResult.as_view('weiboresult'))
 app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':
     app.run()
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+@app.errorhandler(500)
+def interal_error(e):
+	raise
+	return render_template('500.html',msg=str(e)),500

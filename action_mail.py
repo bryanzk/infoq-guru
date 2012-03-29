@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from config import *
 import smtplib
+from helper_data import WeiboHelper
 from email.mime.text import MIMEText
 class MailView(MethodView):
 	def get(self):
@@ -42,7 +43,7 @@ class MailMethod():
 		for x in mails:
 			mail_to+=(x.email+';')
 		msg = MIMEText(content.encode('utf-8'),'html')
-		msg['Subject'] = MAIL_SUBJECT % (date.today(),country)
+		msg['Subject'] =  MAIL_SUBJECT % (begin,_news,_articles,_pres)
 		msg['From'] = MAIL_FROM
 		msg['To'] = mail_to
 		s = smtplib.SMTP()
@@ -50,10 +51,49 @@ class MailMethod():
 		s.login(MAIL_FROM,MAIL_PWD)
 		s.sendmail(MAIL_FROM, mail_to, msg.as_string())
 		s.close()
-		
+	def _send_en(self,country):
+		begin=date.today()-timedelta(days=1)
+		end=date.today()
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		res=dbSession.query(RssInfo).filter(RssInfo.pubdate>=begin).filter(RssInfo.country==country).filter(RssInfo.pubdate<=end).order_by(RssInfo.pubdate).all()
+		content=u'<strong>更新内容</strong><br><br>'
+		_news=0
+		_articles=0
+		_pres=0
+		_minis=0
+		for  x in res:
+			_h=WeiboHelper()
+			if _h._get_cats(x.guid)==u'新闻':
+				_news+=1
+			elif _h._get_cats(x.guid)==u'文章':
+				_articles+=1
+			elif _h._get_cats(x.guid)==u'视频':
+				_pres+=1		
+			_category=""
+			_cc=x.category.split(',')
+			for xx in _cc:
+				if xx in CATEGORY_LIST:
+						_category+=" "+xx
+			content+=u"%s<br>%s <br><a href='%s'>%s</a><br>所属社区：%s<br><br>" % (_h._get_cats(x.guid),x.title,x.guid,x.guid,_category)
+		content+=u"新闻列表：<a href='http://gege.baihui.com/open.do?docid=95416000000003001'>http://gege.baihui.com/open.do?docid=95416000000003001</a><br/>"
+		content+=u"深度内容列表：<a href='http://gege.baihui.com/docview.do?docid=95416000000004001'>http://gege.baihui.com/docview.do?docid=95416000000004001</a> "
+		mails=dbSession.query(MailListInfo).filter(MailListInfo.country==country).all()
+		mail_to=u''
+		for x in mails:
+			mail_to+=(x.email+';')
+		msg = MIMEText(content.encode('utf-8'),'html')
+		msg['Subject'] =  MAIL_SUBJECT % (begin,_news,_articles,_pres)
+		msg['From'] = MAIL_FROM
+		msg['To'] = mail_to
+		s = smtplib.SMTP()
+		s.connect(MAIL_SMTP)
+		s.login(MAIL_FROM,MAIL_PWD)
+		s.sendmail(MAIL_FROM, mail_to, msg.as_string())
+		s.close()		
 	def _en(self):
 
-		self._send('en')
+		self._send_en('en')
 	def _ch(self):
 		self._send('ch')
 class MailDeleteView(MethodView):
@@ -84,9 +124,8 @@ class MailAddView(MethodView):
 		country=request.form['country']
 		id=country+":"+email
 		x=MailListInfo(id=id,email=email,country=country)
-		x=MailListInfo(email=email,country=country)
-                db_session=sessionmaker(bind=DB)
-                dbSession=db_session()
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
 		dbSession.add(x)
 		dbSession.commit()
 		return redirect('mailadd')

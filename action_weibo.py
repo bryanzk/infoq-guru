@@ -62,6 +62,35 @@ class WeiboRefresh(MethodView):
                 dbSession.commit()
         
         return redirect('weibor')
+class WeiboSend(MethodView):
+    def get(self):
+        db_session=sessionmaker(bind=DB)
+        dbSession=db_session()
+        res=dbSession.query(RssNewInfo).filter(RssNewInfo.country=='ch').all()
+        xa=[]
+        for x in res:
+            status=((u"【%s】By %s %s ：%s")%(x.title,'nobody',x.guid,x.description))[0:138]
+            result=client.post.statuses__update(status=status)
+            xa.append(status)
+        
+        return render_template('weibosend.html',res=xa,r='')
+    def post(self):
+        db_session=sessionmaker(bind=DB)
+        dbSession=db_session()
+        res=dbSession.query(RssNewInfo).filter(RssNewInfo.country=='ch').all()
+        client = APIClient(app_key=APP_KEY, app_secret=APP_SECRET, redirect_uri=CALLBACK_URL)
+        to=dbSession.query(TokenListInfo).order_by(desc(TokenListInfo.time)).all()
+        _token = to[0].token
+        _expires_in = to[0].expire
+        client.set_access_token(_token,_expires_in)
+        for x in res:
+            status=((u"【%s】By %s %s ：%s")%(x.title,'nobody',x.guid,x.description))[0:138]
+            result=client.post.statuses__update(status=status)
+            if result.id:
+                dbSession.delete(x)
+                dbSession.commit()        
+        return redirect('weibos')
+
 class WeiboResult(MethodView):
     @login
     def get(self):

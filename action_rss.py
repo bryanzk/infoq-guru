@@ -81,7 +81,7 @@ class RssRefresh():
                 db_session=dbSession()
                 db_session.add(r)
                 _nr=RssNewInfo(title=r.title,description=r.description,
-                    pubdate=r.pubdate,guid=r.guid,country=r.country)
+                    pubdate=r.pubdate,guid=r.guid,country=r.country,category=r.category)
                 db_session.add(_nr)
                 db_session.commit()
 
@@ -92,23 +92,24 @@ class RssRefresh():
     def _get_data(self,url,country):
         res = urllib2.urlopen(url)
         rss = BeautifulSoup((res.read()).decode('utf-8'))
-        self._clear_new_list()
         result=[]
         for x in rss.find_all('item'):
+            #self._add_to_new_list()
+            category=''
+            for _x in x.find_all('category'):
+                category+=_x.string+','
             r=RssInfo(
             title=(x.title.string).encode('utf-8'),
             description=(x.description.string).encode('utf-8'),
             pubdate=datetime.strptime((x.pubdate.string).encode('utf-8'),'%a, %d %b %Y %H:%M:%S  GMT'),
             guid=(x.guid.string).encode('utf-8'),
-            country=country)
+            country=country,category=category)
             result.append(r)
         
         return result
     
                 
-                
-
-        return 
+                 
     '''
         judje if the guid exists in the table 
         if not exists:
@@ -134,9 +135,9 @@ class RssRefresh():
         db_session=dbSession()
         its=db_session.query(RssNewInfo).filter(RssNewInfo.guid!='').all()
         for x in its:
+
             db_session.delete(x)
         db_session.commit()
-
 #for x in rss.find_all('item'):
 #   print  x.title.string
 #   print '--------------'

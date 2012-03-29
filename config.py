@@ -10,6 +10,7 @@ from flask import request,render_template,session,redirect
 from flask.views import MethodView
 from sqlalchemy.orm import sessionmaker
 import re
+from helper_data import *
 import string
 import datetime
 import helper_data
@@ -50,7 +51,9 @@ MAIL_SMTP='smtp.exmail.qq.com'
 MAIL_TO='arthur@infoq.com;hello.shuiyaya@gmail.com'
 MAIL_FROM='notice@magicshui.com'
 MAIL_PWD='shuishui123'
-MAIL_SUBJECT=u"%sinfoq中英文站更新数据--%s"
+MAIL_SUBJECT=u"%s：InfoQ更新--%d篇新闻，%d篇文章，%d篇采访"
+CATEGORY_LIST=['Development','Architecture & Design','Process & Practices','Enterprise Architecture','Operations & Infrastructure']
+CATEGORY_LIST_CN=['']
 def login(f):
     @wraps(f)
     def check(*args, **kwargs):
@@ -133,9 +136,11 @@ class RssInfo(Base):
     description=Column(String(200))
     guid=Column(String(1000))
     country=Column(String(45))
-    def __init__(self,title,pubdate,description,guid,country):
+    category=Column(String(200))
+    def __init__(self,title,pubdate,description,guid,country,category):
         self.title=title
         self.pubdate=pubdate
+        self.category=category
         self.country=country
         self.description=description
         self.guid=guid
@@ -149,13 +154,14 @@ class RssNewInfo(Base):
     description=Column(String(200))
     guid=Column(String(1000))
     country=Column(String(45))
-
-    def __init__(self,title,pubdate,description,guid,country):
+    category=Column(String(200))
+    def __init__(self,title,pubdate,description,guid,country,category):
         self.title=title
         self.pubdate=pubdate
-        self.description=description
+        self.category=category
         self.country=country
-        self.guid=guid  
+        self.description=description
+        self.guid=guid
 class MailListInfo(Base):
     __tablename__='mail_list'
     id=Column(String(100),primary_key=True)
