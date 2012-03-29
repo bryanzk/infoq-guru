@@ -1,0 +1,16 @@
+<html>
+	<head>
+			<title>rss help</title>
+	</head>
+	<body>
+		<table>
+			{% for x in res%}
+			<tr>
+				<td>{{x.pubdate}}</td>
+				<td>{{x.title}}</td>
+				<td><a href="{{x.guid}}">{{x.guid}}</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block body%}
+	<form class="well form-inline" action="/weibor" method="POST" >
+  <input type="text" name='page' class="input-small" placeholder="1">
+  
+    <span class="help-inline">输入页码</span>
+  <button type="submit" class="btn">Search</button>
+</form>
+<hr/>
+
+
+<div class="alert alert-info">
+  共计：{{count}}条微博数据。
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+    	<th>微博时间</th>
+      <th>类型</th>
+      <th>标题</td>
+      	<th>作者</th>
+      	<th>url</th>
+      	<th>微博</th>
+      	<th>转发</th>
+      	<th>评论</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for x in r%}
+
+    <tr>
+    	<td>{{x.time}}</td>
+      <td>{{x.cat}}</td>
+	<td>{{x.title}}</td>
+	<td>{{x.athur}}</td>
+	<td>{{x.url}}</td>
+	<td>{{x.org_url}}</td>
+	<td>{{x.retweet}}</td>
+	<td>{{x.comment}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock%}

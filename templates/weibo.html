@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block body%}
+	<form class="well form-inline" action="/weiboresult" method="POST" >
+  <input type="text" name='begin'class="input-small" placeholder="begin">
+  <input type="text" name='end' class="input-small" placeholder="end">
+    <span class="help-inline">日期格式：2012-12-12</span>
+  <button type="submit" class="btn">Search</button>
+</form>
+<hr/>
+
+<div class="alert alert-info">
+  共计：{{count}}条数据。
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+    	<th>微博时间</th>
+      <th>类型</th>
+      <th>标题</td>
+      	<th>作者</th>
+      	<th>url</th>
+      	<th>微博</th>
+      	<th>转发</th>
+      	<th>评论</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for x in r%}
+
+    <tr>
+    	<td>{{x.time}}</td>
+      <td>{{x.cat}}</td>
+	<td>{{x.title}}</td>
+	<td>{{x.athur}}</td>
+	<td>{{x.guid}}</td>
+	<td>{{x.weibo}}</td>
+	<td>{{x.retweet}}</td>
+	<td>{{x.comment}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock%}

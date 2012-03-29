@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body %}
+<form class="well form-inline" action="rss" method="POST" >
+ <select name="country">
+<option value="en">英文站</option>
+<option value="ch">中文站</option>
+
+</select>
+    <span class="help-inline">选择获取站点</span>
+  <button type="submit" class="btn">获取</button>
+</form>
+<div class="alert alert-info">
+  运行结果：{{r}}
+</div>
+{% endblock %}

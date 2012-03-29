@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block body %}
+<form class="well form-inline" action="mail" method="POST" >
+ <select id='num-0'name="country">
+<option value="en">英文站</option>
+<option value="ch">中文站</option>
+
+</select>
+    <span class="help-inline">选择获取站点</span>
+  <button id='num-1' type="submit" class="btw">获取</button>
+</form>
+<div id='num-4' class="alert alert-info">
+  运行结果：{{r}}
+</div>
+{% endblock %}
+
+{% block tips%}
+<!-- Tip Content -->
+    <ol id="joyRideTipContent">
+      <li data-id="num-0" data-text="Netxt" class="custom">
+        <h2>Step 1</h2>
+        <p>选择你想要的站点</p>
+      </li>
+      <li data-id="num-1" data-text="Next" class="custom">
+        <h2>Step 2</h2>
+        <p>点击发送</p>
+      </li>
+      
+      <li data-id='num-4' date-text='Close'>
+      	<h2>Step 3</h2>
+        <p>运行结果显示在这里，ok表示成功发送到邮箱</p>
+      </li>
+    </ol>
+{% endblock%}

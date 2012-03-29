@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+<form class="well form-inline" action="mailadd" method="POST" >
+ <input type="text" name='email'class="input-small" placeholder="输入邮箱">
+ <select name="country">
+<option value="en">英文站</option>
+<option value="ch">中文站</option>
+</select>
+    <span class="help-inline">选择站点</span>
+  <button type="submit" class="btn">添加</button>
+</form>
+<div class="alert alert-warnning">
+	已加入的邮件列表：
+{% for x in res%}
+<li>{{x.country}}:{{x.email}}</li>
+{% endfor%}
+	</div>
+<div class="alert alert-info">
+  运行结果：{{r}}
+</div>
+{% endblock %}
