@@ -13,6 +13,7 @@ import re
 import string
 import datetime
 import helper_data
+from functools import wraps
 from helper_data import *
 import urllib2
 import json
@@ -49,7 +50,56 @@ MAIL_TO='arthur@infoq.com;hello.shuiyaya@gmail.com'
 MAIL_FROM='notice@magicshui.com'
 MAIL_PWD='shuishui123'
 MAIL_SUBJECT=u"%sinfoq中英文站更新数据--%s"
-
+def login(f):
+    @wraps(f)
+    def check(*args, **kwargs):
+        try:
+                token=session['user']
+                return f(*args, **kwargs)
+        except:
+            return redirect('error?msg="need login"&next=/')
+    return check
+def token(f):
+    @wraps(f)
+    def check(*args, **kwargs):
+        try:
+            try:
+                token=session['token']
+                return f(*args,**kwargs)
+            except:
+                db_session=sessionmaker(bind=DB)
+                dbSession=db_session()
+                res=dbSession.query(TokenListInfo).desc(TokenListInfo.time).first()
+                if res:
+                    session['token']=res[0].token
+                    session['expire']=res[0].expire
+                    return f(*args,**kwargs)
+                else:
+                    return redirect('go')
+        except:
+            return redirect('go')
+    return check
+class UserListInfo(Base):
+    __tablename__='user_list'
+    user=Column(String(100),primary_key=True)
+    pwd=Column(String(45))
+    """docstring for UserListInfo"""
+    def __init__(self, user,pwd):
+        self.user=user
+        self.pwd=pwd
+        
+        
+class TokenListInfo(Base):
+    __tablename__='token_list'
+    time=Column(DateTime,primary_key=True)
+    token=Column(String(200))
+    expire=Column(String(400))
+    level=Column(String(45))
+    def __init__(self,time,token,expire,level):
+        self.time=time
+        self.token=token
+        self.expire=expire
+        self.level=level
 class WeiboR():
     """docstring for WeiboR"""
     time=''

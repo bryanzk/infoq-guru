@@ -50,7 +50,11 @@
               <li><a href="about">About</a></li>
               <li><a id='show-guide' class='label label-info'>帮助</a></li>
             </ul>
-            <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+            {% if not session['user'] %}
+            <p class="navbar-text pull-right"  id='num-login'>Logged in as <a data-toggle='modal' href="#loginModal">User</a></p>
+            {% else %}
+            <p class="navbar-text pull-right"  id='num-login'>Logged in as <a >infoq:{{session['user']}}</a></p>
+            {% endif%}
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -126,8 +130,9 @@
       $("#show-guide").click(function(){
         <!-- fix the error when click help comes two or more guides-->
         $(".joyride-tip-guide").remove();
+        
         $(this).joyride();
-
+       
 
       });
       {% block script %}
@@ -135,6 +140,25 @@
     
     });
     </script>
-
+<div class="modal hide fade" id="loginModal" style="display:none;">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>登录</h3>
+  </div>
+  <div class="modal-body">
+    <form class="well form-inline" action='login' method='post'>
+      <input type="text" name='user' class="input-small" placeholder="Email">
+      <input type="password" name='pwd' class="input-small" placeholder="Password">
+      <label class="checkbox">
+        <input type="checkbox"> Remember me
+      </label>
+      <button type="submit" class="btn">登录</button>
+  </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn">Close</a>
+    <a href="#" class="btn btn-primary">忘记密码？</a>
+  </div>
+</div>
   </body>
 </html>

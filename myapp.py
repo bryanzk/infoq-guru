@@ -4,6 +4,7 @@ from action_rss import *
 from action_weibo import *
 from action_editor import *
 from action_static import *
+from action_user import *
 from action_mail import *
 from config import *
 app = Flask(__name__)
@@ -17,6 +18,8 @@ app.add_url_rule('/rssen',view_func=EnRssRefresh.as_view('rssen'))
 app.add_url_rule('/rssch',view_func=ChRssRefresh.as_view('rssch'))
 app.add_url_rule('/edone',view_func=EditorAbout.as_view('adone'))
 app.add_url_rule('/mail',view_func=MailView.as_view('mail'))
+app.add_url_rule('/login',view_func=UserLogin.as_view('login'))
+app.add_url_rule('/error',view_func=ErrorView.as_view('error'))
 app.add_url_rule('/mailadd',view_func=MailAddView.as_view('mailadd'))
 app.add_url_rule('/maildel',view_func=MailDeleteView.as_view('maildel'))
 app.add_url_rule('/editor',view_func=EditorView.as_view('editor'))
@@ -28,5 +31,6 @@ app.add_url_rule('/go',view_func=GotoOauth.as_view('newa'))
 app.add_url_rule('/oauth',view_func=ComebackOauth.as_view('neddw'))
 app.add_url_rule('/wa',view_func=ShowAll.as_view('wa'))
 app.add_url_rule('/weiboresult',view_func=WeiboResult.as_view('weiboresult'))
+app.jinja_env.globals.update(session=session)
 if __name__=='__main__':
     app.run()

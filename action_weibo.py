@@ -31,15 +31,19 @@ class ComebackOauth(MethodView):
         expires_in = r.expires_in
         session['token']=access_token
         session['expires_in']=expires_in
+        t=TokenListInfo(time=datetime.now(),token=access_token,
+            expire=expires_in,level='infoq')
+        db_session=sessionmaker(bind=DB)
+        dbSession=db_session()
+        dbSession.add(t)
+        dbSession.commit()
         return redirect('weibor')
         
 
 class WeiboRefresh(MethodView):
+    @login
+    @token
     def get(self):
-        try:
-            token=session['token']
-        except:
-            return redirect('go')
         helper=WeiboHelper()
         helper_data=Helper_Data()
         res=helper._get_data()
@@ -62,11 +66,9 @@ class WeiboRefresh(MethodView):
         
         return redirect('weibor')
 class WeiboResult(MethodView):
+    @login
+    @token
     def get(self):
-        try:
-            token=session['token']
-        except:
-            return redirect('go')
         return render_template('weibo.html',r=[])
     def post(self):
         end=datetime.strptime((request.form['end'])+" 23:59:59",'%Y-%m-%d %H:%M:%S')

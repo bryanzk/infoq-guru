@@ -41,16 +41,15 @@ CREATE TABLE `new_list` (
   `country` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`title`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
-
 delimiter $$
 
-CREATE TABLE `token_list` (
-  `time` datetime NOT NULL,
-  `token` varchar(200) COLLATE utf8_bin DEFAULT NULL,
-  `expire` varchar(400) COLLATE utf8_bin DEFAULT NULL,
-  `type` varchar(45) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`time`)
+CREATE TABLE `user_list` (
+  `user` varchar(100) COLLATE utf8_bin NOT NULL,
+  `pwd` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin$$
+
+
 
 delimiter $$
 
@@ -66,4 +65,14 @@ CREATE TABLE `weibo_list` (
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`org_url`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin$$
+delimiter $$
+
+CREATE TABLE `token_list` (
+  `time` datetime NOT NULL,
+  `token` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  `expire` varchar(400) COLLATE utf8_bin DEFAULT NULL,
+  `level` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin$$
+
 

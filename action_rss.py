@@ -20,10 +20,6 @@ from config import *
 
 class RssNew(MethodView):
     def post(self):
-        try:
-            token=session['token']
-        except:
-            return redirect('go')
         begin=datetime.strptime((request.form['begin'])+" 00:00:00",'%Y-%m-%d %H:%M:%S')
         end=datetime.strptime((request.form['end'])+" 23:59:59",'%Y-%m-%d %H:%M:%S')
         country=request.form.get('country')
