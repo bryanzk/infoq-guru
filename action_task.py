@@ -1,29 +1,50 @@
 # -*-coding: utf-8 -*-
 from config import *
 # 添加新的任务
+
+class TaskHelper():
+	# create id for task and status
+	def create_id(self):
+		import md5
+		return (md5.md5(str(datetime.now()))).hexdigest() 
+	def task_init(self,task):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		s=StatusList(id=self.create_id(),
+			task_id=task.id,code=664,description='',
+			begin=datetime.now(),
+			end=begin,
+			contrast='',
+			editor=task.editor,
+			duty=task.duty)
+		dbSession.add(s)
+		dbSession.commit()
 class TaskAddNew(MethodView):
 	def get(self):
-		pass
+		
+		return render_template('task_add.html',msg='')
 	def post(self):
+		helper=TaskHelper()
 		bigcat=request.form['bigcat']
 		smallcat=request.form['smallcat']
 		title=request.form['title']
 		link=request.form['link']
-		created=request.form['created']
 		duty=request.form['duty']
 		editor=request.form['editor']
-		t=TaskList(bigcat=bigcat,
+		t=TaskList(id=helper.create_id(),bigcat=bigcat,
 			smallcat=smallcat,
 			title=title,
 			link=link,
-			created=created,
 			editor=editor,duty=duty,count=0)
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
 		dbSession.add(t)
 		dbSession.commit()
+		helper.task_init(t)
 		return "{'status':'ok'}"
-
+class TaskCanBack(MethodView):
+	def get(self):
+		pass
 '''
 step 0 初始任务：
 	status code: 664
@@ -40,17 +61,21 @@ class TaskToStep(MethodView):
 		'''获取任务code为664,737和780的任务，其editor为空'''
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
-		use_list=dbSession.disc(StatusList.task_id).query(StatusList).filter(StatusList.code<800).filter(StatusList.editor=='').filter(StatusList.end=='').all()
-		return use_list
+		use_list=dbSession.query(StatusList).filter(StatusList.code>=664).filter(StatusList.code<=780).filter(StatusList.end!='').order_by(StatusList.begin).all()
+		
+		return render_template('task_step.html',use_list=use_list)
 	def post(self):
-		status_id=request.form['status_id']
-		code=request.form['code']
+		'''
+		'''
+		helper=TaskHelper()
+		task_id=request.form['task_id']
+		code=STATUS_STEP_LIST[request.form['code']]
 		editor=request.form['editor']
 		duty=request.form['duty']
-		contrast=request.form['contrast']
+		contrast=datetime.strptime(request.form['contrast']+" 00:00:00",'%Y-%m-%d %H:%M:%S')
 		description=''
 		begin=datetime.now()
-		s=StatusList(id,status_id=status_id,
+		s=StatusList(id=helper.create_id(),task_id=task_id,
 			code=code,
 			description=description,
 			begin=begin,
@@ -71,11 +96,12 @@ class TaskStepInfo(MethodView):
 	def get(self):
 		pass
 	def post(self):
-		task_id=request.form['id']
+		task_id=request.form['task_id']
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
-		res=dbSession.query(StatusList).filter(StatusList.task_id==task_id).all()
-		return res
+		res=dbSession.query(TaskList).filter(TaskList.id==task_id).first()
+		
+		return jsonify(msg='ok',res=res)
 
 		
 # 提交任务完成

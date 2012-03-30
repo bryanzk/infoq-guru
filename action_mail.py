@@ -28,6 +28,17 @@ class MailChView(MethodView):
 
 		return render_template('mailresult.html',r='ok')
 class MailMethod():
+	def _send_default(self,to,subject,content):
+		msg=MIMEText(content.encode('utf8'),'html')
+		msg['Subject']=subject
+		msg['to']=to
+		msg['From']=MAIL_FROM
+		s=smtplib.SMTP()
+		s.connect(MAIL_SMTP)
+		s.login(MAIL_FROM,MAIL_PWD)
+		s.sendmail(MAIL_FROM, to, msg.as_string())
+		s.close()
+		return True
 	def _send(self,country):
 		begin=date.today()-timedelta(days=1)
 		end=date.today()

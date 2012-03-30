@@ -7,6 +7,7 @@ from action_static import *
 from action_user import *
 from action_mail import *
 from action_task import *
+from action_check import *
 from config import *
 from md5 import md5
 app = Flask(__name__)
@@ -37,6 +38,10 @@ app.add_url_rule('/go',view_func=GotoOauth.as_view('newa'))
 app.add_url_rule('/oauth',view_func=ComebackOauth.as_view('neddw'))
 app.add_url_rule('/wa',view_func=ShowAll.as_view('wa'))
 app.add_url_rule('/weiboresult',view_func=WeiboResult.as_view('weiboresult'))
+app.add_url_rule('/wpadd',view_func=WPAddView.as_view('wpadd'))
+app.add_url_rule('/wpcheck',view_func=WPCheckView.as_view('wpcheck'))
+app.add_url_rule('/wpmail',view_func=WPSend.as_view('wpmail'))
+
 app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':
     app.run()

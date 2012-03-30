@@ -19,6 +19,7 @@ from helper_data import *
 import urllib2
 import json
 from sqlalchemy.sql.expression import *
+from sqlalchemy import and_, or_
 from bs4 import BeautifulSoup
 from sqlalchemy import Column, Integer, String
 from datetime import *
@@ -26,6 +27,9 @@ from weibo import *
 import logging
 from logging.handlers import SMTPHandler
 import string
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8') 
 SAE_MYSQL_HOST_M = 'w.rdc.sae.sina.com.cn'
 SAE_MYSQL_HOST_S = 'r.rdc.sae.sina.com.cn'
 SAE_MYSQL_PORT = '3307'
@@ -46,7 +50,9 @@ RSS_NOT_SIGN_EN='http://www.infoq.com/rss/rss.action?token=3Pkt2g0ELdPI6FKsXWnlh
 RSS_NOT_SIGN_CH='http://www.infoq.com/cn/rss/rss.action?token=mgnOPySplnVRGBQQHToikUWoAGFEqtDo'
 
 Base = declarative_base()
+WEIBO_MAIL_SUBJECT=u'%s微博热点追踪'
 
+STATUS_STEP_LIST={"664":"737","737":"780","780":"800"}
 MAIL_SMTP='smtp.exmail.qq.com'
 MAIL_TO='arthur@infoq.com;hello.shuiyaya@gmail.com'
 MAIL_FROM='notice@magicshui.com'
@@ -54,18 +60,15 @@ MAIL_PWD='shuishui123'
 MAIL_SUBJECT=u"%s：InfoQ更新--%d篇新闻，%d篇文章，%d篇采访"
 CATEGORY_LIST=['Development','Architecture & Design','Process & Practices','Enterprise Architecture','Operations & Infrastructure']
 CATEGORY_LIST_CN=['']
-def login(f):
-    @wraps(f)
-    def check(*args, **kwargs):
+
+
+def login():
         try:
                 token=session['user']
-                return f(*args, **kwargs)
+                return fa(*args, **kwargs)
         except:
             return redirect('error?msg="need login"&next=/')
-    return check
-def token(f):
-    @wraps(f)
-    def check(*args, **kwargs):
+def token():
         try:
             try:
                 token=session['token']
@@ -73,16 +76,16 @@ def token(f):
             except:
                 db_session=sessionmaker(bind=DB)
                 dbSession=db_session()
-                res=dbSession.query(TokenListInfo).desc(TokenListInfo.time).first()
+                res=dbSession.query(TokenListInfo).order_by(desc(TokenListInfo.time)).all()
                 if res:
                     session['token']=res[0].token
                     session['expire']=res[0].expire
                     return f(*args,**kwargs)
                 else:
-                    return redirect('go')
-        except:
-            return redirect('go')
-    return check
+                    return redirect('go?msg="1"')
+        except :
+            return redirect('go?msg=error')
+
 class UserListInfo(Base):
     __tablename__='user_list'
     user=Column(String(100),primary_key=True)
@@ -199,25 +202,23 @@ class TaskList(Base):
     smallcat=Column(String(100))
     title=Column(String(100))
     link=Column(String(200))
-    created=Column(DateTime)
     editor=Column(String(100))
     duty=Column(String(100))
     count=Column(Integer)
-    def __init__(self,id,bigcat,smallcat,title,link,created,
+    def __init__(self,id,bigcat,smallcat,title,link,
         editor,duty,count):
         self.id=id
         self.bigcat=bigcat
         self.smallcat=smallcat
         self.title=title
         self.link=link
-        self.created=created
         self.editor=editor
         self.duty=duty
         self.count=count
 class StatusList(Base):
     __tablename__='status_list'
     id=Column(String(100),primary_key=True)
-    status_id=Column(String(100))
+    task_id=Column(String(100))
     code=Column(Integer)
     description=Column(String(200))
     begin=Column(DateTime)
@@ -225,9 +226,9 @@ class StatusList(Base):
     contrast=Column(DateTime)
     editor=Column(String(100))
     duty=Column(String(100))
-    def __init__(self,id,status_id,code,description,begin,end,contrast,editor,duty):
+    def __init__(self,id,task_id,code,description,begin,end,contrast,editor,duty):
         self.id=id
-        self.status_id=status_id
+        self.task_id=task_id
         self.code=code
         self.description=description
         self.begin=begin
@@ -235,5 +236,39 @@ class StatusList(Base):
         self.contrast=contrast
         self.editor=editor
         self.duty
-
+class WPList(Base):
+    __tablename__='wp_list'
+    uid=Column(String(100),primary_key=True)
+    name=Column(String(100))
+    screen_name=Column(String(100))
+    cat=Column(String(100))
+    def __init__(self,name,uid,screen_name,cat):
+        self.uid=uid
+        self.name=name
+        self.screen_name=screen_name
+        self.cat=cat
+class WPCheckList(Base):
+    __tablename__='wpcheck_list'
+    time=Column(DateTime)
+    url=Column(String(200),primary_key=True)
+    text=Column(String(200))
+    comment=Column(Integer)
+    retweet=Column(Integer)
+    screen_name=Column(String(100))
+    def __init__(self,time,url,text,comment,retweet,screen_name):
+        self.time=time
+        self.url=url
+        self.text=text
+        self.comment=comment
+        self.retweet=comment
+        self.screen_name=screen_name
+class WPUserList(Base):
+    __tablename__='wpuser_list'
+    email=Column(String(100),primary_key=True)
+    comment=Column(Integer)
+    retweet=Column(Integer)
+    def __init__(self,email,comment,retweet):
+        self.email=email
+        self.comment=comment
+        self.retweet=retweet
 

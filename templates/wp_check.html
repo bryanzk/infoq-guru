@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block tips%}
+{% endblock%}
+{% block body %}
+<form class="well form-inline" action="wpcheck" method="POST" >
+  <button id='num-2' type="submit" class="btn">获取新的数据</button>
+</form>
+<table id='num=4' class="table table-striped">
+  <thead>
+    <tr>
+       <th>评论</th>
+        <th>转发</th>
+        
+      <th>人物</th>
+      <th>微博时间</th>
+      <th>内容</td>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for x in res%}
+
+    <tr>
+        <td>{{x.comment}}</td>
+        <td>{{x.retweet}}</td>
+      <td>{{x.screen_name}}</td>
+      <td>{{x.time}}</td>
+    <td><a href='{{x.url}}' alt="{{x.url}}">{{x.text}}</a></td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div id='num-4' class="alert alert-info">
+  运行结果：{{r}}
+</div>
+{% endblock %}

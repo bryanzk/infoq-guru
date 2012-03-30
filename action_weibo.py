@@ -41,7 +41,6 @@ class ComebackOauth(MethodView):
         
 
 class WeiboRefresh(MethodView):
-    @login
     def get(self):
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
@@ -57,7 +56,7 @@ class WeiboRefresh(MethodView):
         dbSession=db_session()
         res=helper._get_data_with_page(page)
         for x in res:
-            if not helper_data.is_weibo_exists(x.org_url):
+            if helper_data.clear_weibo_exists(x.org_url):
                 dbSession.add(x)
                 dbSession.commit()
         
@@ -92,7 +91,6 @@ class WeiboSend(MethodView):
         return redirect('weibos')
 
 class WeiboResult(MethodView):
-    @login
     def get(self):
         return render_template('weibo.html',r=[])
     def post(self):

@@ -19,6 +19,16 @@ class Helper_Data():
         else:
 
             return False
+    def clear_weibo_exists(self,guid):
+        db_session=sessionmaker(bind=DB)
+        db_session=db_session()
+        x=dbSession.query(WeiboM).filter(WeiboM.org_url==guid).all()
+        if x:
+            dbSession.delete(x[0])
+            dbSession.commit()
+            return True
+        else:
+            return False
 class InfoqHelper():
     def _is_trans(self,url):
         res = urllib2.urlopen(url)

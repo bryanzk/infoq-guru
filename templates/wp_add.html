@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block body %}
+   <form class="form-horizontal" method='post' action='wpadd'>
+        <fieldset>
+          <legend>添加新的用户</legend>
+          <div class="control-group">
+            <label for="input01" class="control-label">真实姓名</label>
+            <div class="controls">
+              <input type="text" id="input01" name='name' >
+              <p class="help-block">输入真实姓名</p>
+            </div>
+          </div>
+          <div class="control-group">
+            <label for="input02" class="control-label">微博名称</label>
+            <div class="controls">
+              <input type="text" id="input02" name='screen_name' >
+              <p class="help-block">输入微博名称</p>
+            </div>
+          </div>
+          <div class="control-group">
+            <label for="input03" class="control-label">账号UID</label>
+            <div class="controls">
+              <input type="text" id="input03" name='uid' >
+              <p class="help-block">输入账号UID</p>
+            </div>
+          </div>
+           <div class="control-group">
+            <label for="input04" class="control-label">领域</label>
+            <div class="controls">
+              <input type="text" id="input04" name='cat' >
+              <p class="help-block">输入账号UID</p>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+      <table id='num=4' class="table table-striped">
+  <thead>
+    <tr>
+       <th>姓名</th>
+        <th>微博名</th>
+        
+      <th>UID</th>
+      <th>领域</th>
+     
+       
+    </tr>
+  </thead>
+  <tbody>
+    {% for x in res%}
+
+    <tr>
+        <td>{{x.name}}</td>
+        <td>{{x.screen_name}}</td>
+      <td>{{x.uid}}</td>
+      <td>{{x.cat}}</td>
+  
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock%}
