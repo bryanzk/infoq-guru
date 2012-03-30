@@ -4,30 +4,40 @@ from action_mail import *
 class WPHelper():
 	def is_uid_exists(self,uid):
 		db_session=sessionmaker(bind=DB)
-		dbSesion=db_session()
-		r=dbSesion.query(WPList).filter(WPList.uid==uid).all()
+		dbSession=db_session()
+		r=dbSeion.query(WPList).filter(WPList.uid==uid).all()
+		
 		if  r:
 			return True
 		else:
 			return False
 	def add_to_database(self,w):
 		db_session=sessionmaker(bind=DB)
-		dbSesion=db_session()
-		r=dbSesion.query(WPCheckList).filter(WPCheckList.url==w.url).first()
+		dbSession=db_session()
+		r=dbSession.query(WPCheckList).filter(WPCheckList.url==w.url).first()
 		if r:
-			dbSesion.delete(r)
-		dbSesion.add(w)
+			dbSession.delete(r)
+		dbSession.add(w)
 		
-		dbSesion.commit()
-
+		dbSession.commit()
+	def add_to_wp(self,w):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		r=dbSession.query(WPList).filter(WPList.uid==w.uid).first()
+		if r:
+			dbSession.delete(r)
+		dbSession.add(w)
+		
+		dbSession.commit()
+		
 
 class WPAddView(MethodView):
 	"""docstring for WPCheckView"""
 	def get(self):
 		db_session=sessionmaker(bind=DB)
-		dbSesion=db_session()
-		res=dbSesion.query(WPList).all()
-		dbSesion.close()
+		dbSession=db_session()
+		res=dbSession.query(WPList).all()
+		
 		return render_template('wp_add.html',res=res)
 	def  post(self):
 		name=request.form['name']
@@ -40,11 +50,11 @@ class WPAddView(MethodView):
 		u.screen_name.encode('utf-8')
 		u.cat.encode('utf-8')
 		db_session=sessionmaker(bind=DB)
-		dbSesion=db_session()
+		dbSession=db_session()
 		helper=WPHelper()
 		if not helper.is_uid_exists(uid):
-			dbSesion.add(u)
-			dbSesion.commit()
+			dbSession.add(u)
+			dbSession.commit()
 
 		return redirect('wpadd')
 
@@ -55,10 +65,10 @@ class WPSend(MethodView):
 		m=MailMethod()
 		content=''
 		db_session=sessionmaker(bind=DB)
-		dbSesion=db_session()
+		dbSession=db_session()
 		begin=date.today()
 		end=date.today()+timedelta(days=1)
-		res=dbSesion.query(WPCheckList).filter(or_(WPCheckList.comment>=30,WPCheckList.retweet>=50)).order_by(desc(WPCheckList.comment)).all()
+		res=dbSession.query(WPCheckList).filter(or_(WPCheckList.comment>=30,WPCheckList.retweet>=50)).order_by(desc(WPCheckList.comment)).all()
 		for x in  res:
 			content+=('作者：%s 评论：%d  转发：%d <br/>内容：<a href="%s">%s</a><br/><br/>'%(x.screen_name,x.comment,x.retweet,x.url,x.text))
 
@@ -75,8 +85,8 @@ class WPUserAdd(MethodView):
 class WPCheckView(MethodView):
 	def get(self):
 		db_session=sessionmaker(bind=DB)
-		dbSesion=db_session()
-		res=dbSesion.query(WPCheckList).order_by(desc(WPCheckList.time)).limit(20)
+		dbSession=db_session()
+		res=dbSession.query(WPCheckList).order_by(desc(WPCheckList.time)).limit(20)
 		return render_template('wp_check.html',res=res)
 	def post(self):
 		client = APIClient(app_key=APP_KEY, app_secret=APP_SECRET, redirect_uri=CALLBACK_URL)
@@ -85,9 +95,9 @@ class WPCheckView(MethodView):
 		print _token,_expires_in
 		client.set_access_token(_token,_expires_in)
 		db_session=sessionmaker(bind=DB)
-		dbSesion=db_session()
+		dbSession=db_session()
 		helper=WPHelper()
-		check_list=dbSesion.query(WPList).all()
+		check_list=dbSession.query(WPList).all()
 		for p in check_list:
 			result=client.get.statuses__user_timeline(feature=0,uid=p.uid,count=200,page=1)
 			for mm in result.statuses:

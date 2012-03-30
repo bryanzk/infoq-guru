@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
 import urllib2
+import requests
+from urllib2 import *
 from modles import *
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import *
@@ -65,7 +67,7 @@ CATEGORY_LIST_CN=['']
 def login():
         try:
                 token=session['user']
-                return fa(*args, **kwargs)
+                return True
         except:
             return redirect('error?msg="need login"&next=/')
 def token():
@@ -80,7 +82,7 @@ def token():
                 if res:
                     session['token']=res[0].token
                     session['expire']=res[0].expire
-                    return f(*args,**kwargs)
+                    return True
                 else:
                     return redirect('go?msg="1"')
         except :

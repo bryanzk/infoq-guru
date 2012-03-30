@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
 from action_rss import *
-from action_weibo import *
+from action_weibo2 import *
 from action_editor import *
 from action_static import *
 from action_user import *
@@ -45,10 +45,11 @@ app.add_url_rule('/wpmail',view_func=WPSend.as_view('wpmail'))
 app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':
     app.run()
+'''
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 @app.errorhandler(500)
 def interal_error(e):
 	raise
-	return render_template('500.html',msg=str(e)),500
+	return render_template('500.html',msg=str(e)),500'''
