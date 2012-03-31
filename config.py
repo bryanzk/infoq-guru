@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
 import urllib2
-import requests
 from urllib2 import *
 from modles import *
 from sqlalchemy.ext.declarative import declarative_base
@@ -32,9 +31,6 @@ import string
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8') 
-SAE_MYSQL_HOST_M = 'w.rdc.sae.sina.com.cn'
-SAE_MYSQL_HOST_S = 'r.rdc.sae.sina.com.cn'
-SAE_MYSQL_PORT = '3307'
 
 APP_KEY = '570026225'
 APP_SECRET = '45ea1cae01eecda0e07a2b88a256d7a2'
@@ -46,12 +42,12 @@ DATABASE_NAME= 'test'
 DATABASE_HOST='127.0.0.1'
 DATABASE_PORT='3306'
 DB = create_engine('mysql://%s:%s@%s:%s/%s'% (DATABASE_USER,DATABASE_PWD,DATABASE_HOST,DATABASE_PORT,DATABASE_NAME),connect_args={'charset':'utf8'},echo=True,pool_recycle=29)
+
 Base = declarative_base()
-RSS_SIGN_HOME='http://www.infoq.com/rss/rss.action?token=v94n6E2kapoNhNXc9EWTYRXoOoLLHX5S'
+#RSS_SIGN_HOME='http://www.infoq.com/rss/rss.action?token=v94n6E2kapoNhNXc9EWTYRXoOoLLHX5S'
 RSS_NOT_SIGN_EN='http://www.infoq.com/rss/rss.action?token=3Pkt2g0ELdPI6FKsXWnlhEytktoyTtAB'
 RSS_NOT_SIGN_CH='http://www.infoq.com/cn/rss/rss.action?token=mgnOPySplnVRGBQQHToikUWoAGFEqtDo'
 
-Base = declarative_base()
 WEIBO_MAIL_SUBJECT=u'%s微博热点追踪'
 
 STATUS_STEP_LIST={"664":"737","737":"780","780":"800"}
