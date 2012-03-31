@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
-
 from config import *
-from helper_data2 import *
+from helper_data import *
 class GotoOauth(MethodView):
     def get(self):
         client  = APIClient(app_key = APP_KEY,app_secret=APP_SECRET,
                     redirect_uri=CALLBACK_URL)
         url = client.get_authorize_url()
         return render_template('gotooauth.html',url=url)
-
 class ComebackOauth(MethodView):
     def get(self):
         code = request.args.get('code')
@@ -17,25 +15,24 @@ class ComebackOauth(MethodView):
         access_token = r.access_token
         expires_in = r.expires_in
         session['token']=access_token
-        session['expires_in']=expires_in
+        session['expire']=expires_in
         t=TokenListInfo(time=datetime.now(),token=access_token,
             expire=expires_in,level='infoq')
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
         dbSession.add(t)
         dbSession.commit()
-        return redirect('weibor')
-        
-
+        return redirect('weibor')     
 class WeiboRefresh(MethodView):
+
     def get(self):
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
         res=dbSession.query(WeiboM).order_by(desc(WeiboM.time)).limit(6).all()
         count=dbSession.query(func.count(WeiboM.url)).scalar()
+        dbSession.close()
         return render_template('weibo_get.html',r=res,count=count)
     def post(self):
-        token()
         page=request.form['page']
         helper=WeiboHelper()
         helper_data=Helper_Data()
@@ -43,7 +40,7 @@ class WeiboRefresh(MethodView):
         dbSession=db_session()
         res=helper._get_data_with_page(page)
         for x in res:
-            if helper_data.clear_weibo_exists(x.org_url):
+            if not helper_data.is_weibo_exists(x.org_url):
                 dbSession.add(x)
                 dbSession.commit()
         
@@ -63,18 +60,19 @@ class WeiboSend(MethodView):
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
         res=dbSession.query(RssNewInfo).filter(RssNewInfo.country=='ch').all()
-        tclient = APIClient(app_key=APP_KEY, app_secret=APP_SECRET, redirect_uri=CALLBACK_URL)
+        client = APIClient(app_key=APP_KEY, app_secret=APP_SECRET, redirect_uri=CALLBACK_URL)
         to=dbSession.query(TokenListInfo).order_by(desc(TokenListInfo.time)).all()
         _token = to[0].token
         _expires_in = to[0].expire
-        tclient.set_access_token(_token,_expires_in)
+        client.set_access_token(_token,_expires_in)
         for x in res:
             status=((u"【%s】By %s %s ：%s")%(x.title,'nobody',x.guid,x.description))[0:138]
-            result=tclient.post.statuses__update(status=status)
+            result=client.post.statuses__update(status=status)
             if result.id:
                 dbSession.delete(x)
                 dbSession.commit()        
         return redirect('weibos')
+
 class WeiboResult(MethodView):
     def get(self):
         return render_template('weibo.html',r=[])
@@ -95,5 +93,7 @@ class ShowAll(MethodView):
         res=dbSession.query(WeiboM).all()
 
         return render_template('test.html',res=res)
+
+
 
         
