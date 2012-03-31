@@ -68,7 +68,17 @@ class WPSend(MethodView):
 		dbSession=db_session()
 		begin=date.today()
 		end=date.today()+timedelta(days=1)
-		res=dbSession.query(WPCheckList).filter(or_(WPCheckList.comment>=30,WPCheckList.retweet>=50)).order_by(desc(WPCheckList.comment)).all()
+		xx=dbSession.query(WPConfig).first()
+		if xx.order=='retweet':
+			if xx.relation=='and':
+				res=dbSession.query(WPCheckList).filter(and_(WPCheckList.comment>=xx.comment,WPCheckList.retweet>=xx.retweet)).order_by(desc(WPCheckList.retweet)).all()
+			else:
+				res=dbSession.query(WPCheckList).filter(or_(WPCheckList.comment>=xx.comment,WPCheckList.retweet>=xx.retweet)).order_by(desc(WPCheckList.retweet)).all()
+		else:
+			if xx.relation=='and':
+				res=dbSession.query(WPCheckList).filter(and_(WPCheckList.comment>=xx.comment,WPCheckList.retweet>=xx.retweet)).order_by(desc(WPCheckList.comment)).all()
+			else:
+				res=dbSession.query(WPCheckList).filter(or_(WPCheckList.comment>=xx.comment,WPCheckList.retweet>=xx.retweet)).order_by(desc(WPCheckList.comment)).all()	
 		for x in  res:
 			content+=('作者：%s 评论：%d  转发：%d <br/>内容：<a href="%s">%s</a><br/><br/>'%(x.screen_name,x.comment,x.retweet,x.url,x.text))
 
@@ -82,6 +92,29 @@ class WPUserAdd(MethodView):
 		comment=request.form['comment']
 		retweet=request.form['retweet']
 		return render_template('')
+
+class WPConfigView(MethodView):
+	def get(self):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		r=dbSession.query(WPConfig).first()
+		dbSession.close()
+		return render_template('wp_config.html',res=r)
+	def post(self):
+		retweet=request.form['retweet']
+		comment=request.form['comment']
+		order=request.form['order']
+		relation=request.form['relation']
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		r=dbSession.query(WPConfig).all()
+		r[0].retweet=retweet
+		r[0].relation=relation
+		r[0].comment=comment
+		r[0].order=order
+		dbSession.commit()
+		dbSession.close()
+		return redirect('wpconfig')
 class WPCheckView(MethodView):
 	def get(self):
 		db_session=sessionmaker(bind=DB)

@@ -269,4 +269,16 @@ class WPUserList(Base):
         self.email=email
         self.comment=comment
         self.retweet=retweet
-
+class WPConfig(Base):
+    __tablename__='wp_config'
+    retweet=Column(Integer,primary_key=True)
+    comment=Column(Integer)
+    order=Column(String(100))
+    relation=Column(String(100))
+    def __init__(self,retweet,comment,order,relation):
+        self.retweet=retweet
+        self.relation=relation
+        self.comment=comment
+        self.order=order
+        
+        

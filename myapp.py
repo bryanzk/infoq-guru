@@ -41,7 +41,7 @@ app.add_url_rule('/weiboresult',view_func=WeiboResult.as_view('weiboresult'))
 app.add_url_rule('/wpadd',view_func=WPAddView.as_view('wpadd'))
 app.add_url_rule('/wpcheck',view_func=WPCheckView.as_view('wpcheck'))
 app.add_url_rule('/wpmail',view_func=WPSend.as_view('wpmail'))
-
+app.add_url_rule('/wpconfig',view_func=WPConfigView.as_view('wpconfig'))
 app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':
     app.run()
