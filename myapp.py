@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
 from action_rss import *
-from action_weibo2 import *
+from action_weibo import *
 from action_editor import *
 from action_static import *
 from action_user import *

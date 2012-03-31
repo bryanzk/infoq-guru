@@ -1,4 +1,18 @@
 # -*- coding: utf-8 -*-
+from bs4 import BeautifulSoup
+import urllib2
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import *
+from sqlalchemy import Column, Integer, String
+from flask import *
+from flask import request,render_template,session,redirect
+from flask.views import MethodView
+from sqlalchemy.orm import sessionmaker
+
+import json
+from bs4 import BeautifulSoup
+from sqlalchemy import Column, Integer, String
+from datetime import *
 from config import *
 from helper_data import *
 class GotoOauth(MethodView):
@@ -7,6 +21,7 @@ class GotoOauth(MethodView):
                     redirect_uri=CALLBACK_URL)
         url = client.get_authorize_url()
         return render_template('gotooauth.html',url=url)
+
 class ComebackOauth(MethodView):
     def get(self):
         code = request.args.get('code')
@@ -15,14 +30,16 @@ class ComebackOauth(MethodView):
         access_token = r.access_token
         expires_in = r.expires_in
         session['token']=access_token
-        session['expire']=expires_in
+        session['expires_in']=expires_in
         t=TokenListInfo(time=datetime.now(),token=access_token,
             expire=expires_in,level='infoq')
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
         dbSession.add(t)
         dbSession.commit()
-        return redirect('weibor')     
+        return redirect('weibor')
+        
+
 class WeiboRefresh(MethodView):
 
     def get(self):
@@ -43,6 +60,7 @@ class WeiboRefresh(MethodView):
             if not helper_data.is_weibo_exists(x.org_url):
                 dbSession.add(x)
                 dbSession.commit()
+                dbSession.close()
         
         return redirect('weibor')
 class WeiboSend(MethodView):
@@ -52,7 +70,7 @@ class WeiboSend(MethodView):
         res=dbSession.query(RssNewInfo).filter(RssNewInfo.country=='ch').all()
         xa=[]
         for x in res:
-            status=((u"【%s】By %s %s ：%s")%(x.title,'nobody',x.guid,x.description))[0:138]
+            status=((u"【%s】By %s %s ：%s")%(x.title,'nobody',x.guid,x.description))[0:238]
             xa.append(status)
         
         return render_template('weibosend.html',res=xa,r='')
@@ -65,13 +83,16 @@ class WeiboSend(MethodView):
         _token = to[0].token
         _expires_in = to[0].expire
         client.set_access_token(_token,_expires_in)
-        for x in res:
-            status=((u"【%s】By %s %s ：%s")%(x.title,'nobody',x.guid,x.description))[0:138]
+        x=res[0]
+        status=((u"【%s】By %s %s ：%s")%(x.title,'nobody',x.guid,x.description))[0:178]
+        try:
             result=client.post.statuses__update(status=status)
             if result.id:
                 dbSession.delete(x)
-                dbSession.commit()        
-        return redirect('weibos')
+                dbSession.commit()
+                return redirect('weibos')
+        except:
+            return redirect('weibos')
 
 class WeiboResult(MethodView):
     def get(self):
