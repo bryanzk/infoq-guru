@@ -10,13 +10,14 @@ class TaskHelper():
 	def task_init(self,task):
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
+		begin=datetime.now()
 		s=StatusList(id=self.create_id(),
 			task_id=task.id,code=664,description='',
 			begin=datetime.now(),
 			end=begin,
 			contrast='',
 			editor=task.editor,
-			duty=task.duty)
+			duty=task.duty,count=0)
 		dbSession.add(s)
 		dbSession.commit()
 class TaskAddNew(MethodView):
@@ -61,13 +62,34 @@ class TaskToStep(MethodView):
 		'''获取任务code为664,737和780的任务，其editor为空'''
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
-		use_list=dbSession.query(StatusList).filter(StatusList.code>=664).filter(StatusList.code<=780).filter(StatusList.end!='').order_by(StatusList.begin).all()
-		
+		'''select max(code),id,task_id,code,begin,end,contrast,editor,duty from status_list
+			group by task_id
+		use_list=dbSession.
+		query(func.max(StatusList.code),StatusList.id,StatusList.task_id,StatusList.code,StatusList.begin,StatusList.end,StatusList.editor,StatusList.duty)\
+		.filter(or_(and_(StatusList.code>=664,StatusList.end==0000-00-00 00:00:00),and_(and_(StatusList.code>660,StatusList.code<800),StatusList.end!='0000-00-00 00:00:00'))))\
+		.group_by(StatusList.task_id).order_by(StatusList.begin).all()
 		return render_template('task_step.html',use_list=use_list)
+		
+		use_664=dbSession.query(func.max(StatusList.code),StatusList.id,StatusList.task_id,StatusList.code,StatusList.begin,StatusList.end,StatusList.editor,StatusList.duty).filter(StatusList.code==664).group_by(StatusList.task_id).order_by(StatusList.begin).all()
+		user_other=dbSession.query(func.max(StatusList.code),StatusList.id,StatusList.task_id,StatusList.code,StatusList.begin,StatusList.end,StatusList.editor,StatusList.duty).filter(StatusList.code>666).filter(StatusList.code<800).filter(StatusList.end).group_by(StatusList.task_id).order_by(StatusList.begin).all()
+		'''
+		use_list=[]
+		use_od=dbSession.query(func.max(StatusList.code),StatusList.id,StatusList.task_id,StatusList.code,StatusList.begin,StatusList.end,StatusList.editor,StatusList.duty).filter(StatusList.code>=664).filter(StatusList.code<800).all()
+		for x in use_od:
+			if x[5]!="0000-00-00 00:00:00":
+				use_list.append(x)
+
+		return render_template('task_step.html',use_list=use_list)
+
+
 	def post(self):
 		'''
 		'''
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+
 		helper=TaskHelper()
+		status_id=request.form['status_id']
 		task_id=request.form['task_id']
 		code=STATUS_STEP_LIST[request.form['code']]
 		editor=request.form['editor']
@@ -75,6 +97,8 @@ class TaskToStep(MethodView):
 		contrast=datetime.strptime(request.form['contrast']+" 00:00:00",'%Y-%m-%d %H:%M:%S')
 		description=''
 		begin=datetime.now()
+		older=dbSession.query(StatusList).filter(StatusList.id==status_id).all()
+		older[0].end=datetime.now()
 		s=StatusList(id=helper.create_id(),task_id=task_id,
 			code=code,
 			description=description,
@@ -82,9 +106,8 @@ class TaskToStep(MethodView):
 			end='',
 			contrast=contrast,
 			editor=editor,
-			duty=duty)
-		db_session=sessionmaker(bind=DB)
-		dbSession=db_session()
+			duty=duty,count=0)
+		
 		dbSession.add(s)
 		dbSession.commit()
 		return "{'status':'ok'}"
@@ -99,21 +122,31 @@ class TaskStepInfo(MethodView):
 		task_id=request.form['task_id']
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
-		res=dbSession.query(TaskList).filter(TaskList.id==task_id).first()
+		res=dbSession.query(TaskList).filter(TaskList.id==task_id).all()
 		
-		return jsonify(msg='ok',res=res)
+		title=res[0].title
+		link=res[0].link
+		duty=res[0].duty
+		return jsonify(msg='ok',title=title,link=link,duty=duty)
 
 		
 # 提交任务完成
 class TaskSubmit(MethodView):
 	def get(self):
-		pass
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		res=dbSession.query(StatusList).filter(or_(StatusList.code>=664,StatusList.code<=780)).filter(StatusList.end=='0000-00-00 00:00:00').all()
+		
+		return render_template('task_submit.html',use_list=res)
+		
 	def post(self):
 		id=request.form['id']
+		count=request.form['count']
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
 		r=dbSession.query(StatusList).filter(StatusList.id==id).first()
 		r.end=datetime.now()
+		r.count=count
 		dbSession.commit()
 		return 'ok'
 

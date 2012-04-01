@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block script %}
+var this_status;
 $("tr").click(function(){
-
+  $('#status-id').val($(this).attr('status'));
+  $("#task-id").val($(this).attr('id'));
+  $("#code").val($(this).attr('code'));
 	$.ajax({
 		type: "post",
 		url: "taskstepinfo",
@@ -10,7 +13,8 @@ $("tr").click(function(){
 			//ShowLoading();
 		},
 		success: function(data, textStatus){
-			alert(data);
+			$("#task-info").html("<p>title:"+data.title+"<br>link:"+data.link+"</p>");
+      $("#input-duty").val(data.duty);
 		},
 		complete: function(XMLHttpRequest, textStatus){
 			//HideLoading();
@@ -24,8 +28,11 @@ $("tr").click(function(){
 {% block body %}
 <form class="form-horizontal" method='post' action='taskstep'>
         <fieldset>
-          <legend>Add New task</legend>
-          <div class="control-group" id='task-info'>
+          <legend>Step task</legend>
+          <input type='hidden' name='status_id' id='status-id' value=''>
+          <input type='hidden' name='task_id'id='task-id' value=''>
+          <input type='hidden' id='code' name='code' value=''>
+          <div class="control-group well" id='task-info'>
           </div>
           <div class="control-group">
             <label for="input05" class="control-label">约定时间</label>
@@ -37,14 +44,14 @@ $("tr").click(function(){
           <div class="control-group">
             <label for="input05" class="control-label">负责编辑</label>
             <div class="controls">
-              <input type="text" id="input05" name='duty' >
+              <input type="text" id="input-duty" name='duty' >
               <p class="help-block">输入文章的标题</p>
             </div>
           </div>
           <div class="control-group">
             <label for="input06" class="control-label">领取人</label>
             <div class="controls">
-              <input type="text" id="input06" name='editor' >
+              <input type="text" id="input-editor" name='editor' >
               <p class="help-block">输入文章的标题</p>
             </div>
           </div>
@@ -53,7 +60,7 @@ $("tr").click(function(){
             <button class="btn">Cancel</button>
           </div>
         </fieldset>
-      </form>>
+      </form>
 <table class='table'>
   <thead>
     <tr>
@@ -64,14 +71,26 @@ $("tr").click(function(){
       <th>领取人</th>
     </tr>
   </thead>
+  <!--
+max_1 0
+id 1
+task_id 2
+code 3
+desc 4
+begin 5
+end 6
+contrast 7
+editor 8
+duty
+-->
   <tbody>
   	{%for x in use_list%}
-    <tr id='{{x.task_id}}'>
-      <td class='status-code'>{{x.code}}</td>
-      <td>{{x.begin}}</td>
-      <td>{{x.end}}</td>
-      <td>{{x.duty}}</td>
-      <td>{{x.editor}}</td>
+    <tr id='{{x[2]}}' status='{{x[1]}}' code='{{x[3]}}'>
+      <td class='status-code'>{{x[3]}}</td>
+      <td >{{x[4]}}</td>
+      <td>{{x[5]}}</td>
+      <td>{{x[7]}}</td>
+      <td>{{x[6]}}</td>
     </tr>
     {% endfor%}
   </tbody>

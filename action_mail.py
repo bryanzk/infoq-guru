@@ -31,8 +31,9 @@ class MailMethod():
 	def _send_default(self,to,subject,content):
 		msg=MIMEText(content.encode('utf8'),'html')
 		msg['Subject']=subject
-		msg['to']=to
+		msg['To']=to
 		msg['From']=MAIL_FROM
+		msg['Nick']=u'InfoQd渡鸦'
 		s=smtplib.SMTP()
 		s.connect(MAIL_SMTP)
 		s.login(MAIL_FROM,MAIL_PWD)

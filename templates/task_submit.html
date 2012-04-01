@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block script %}
+var this_status;
+$("tr").click(function(){
+
+  $("#status-id").val($(this).attr('status'));
+  $("#code").val($(this).attr('code'));
+	$.ajax({
+		type: "post",
+		url: "taskstepinfo",
+		data: 'task_id='+$(this).attr('id'),
+		beforeSend: function(XMLHttpRequest){
+			//ShowLoading();
+		},
+		success: function(data, textStatus){
+			$("#task-info").html("<p>title:"+data.title+"<br>link:"+data.link+"</p>");
+      $("#input-duty").val(data.duty);
+		},
+		complete: function(XMLHttpRequest, textStatus){
+			//HideLoading();
+		},
+		error: function(){
+			//请求出错处理
+		}
+});
+})
+{% endblock%}
+{% block body %}
+<form class="form-horizontal" method='post' action='tasksubmit'>
+        <fieldset>
+          <legend>Step task</legend>
+          <input type='hidden' name='id'id='status-id' value=''>
+          <div class="control-group well" id='task-info'>
+          </div>
+          
+          <div class="control-group">
+            <label for="input06" class="control-label">工作量</label>
+            <div class="controls">
+              <input type="text" id="input-editor" name='count' >
+              <p class="help-block">输入工作量</p>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>code</th>
+      <th>开始时间</th>
+      <th>负责人</th>
+      <th>领取人</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{%for x in use_list%}
+    <tr id='{{x.task_id}}' status='{{x.id}}' code='{{x.code}}'>
+      <td class='status-code'>{{x.code}}</td>
+      <td >{{x.begin}}</td>
+      <td>{{x.duty}}</td>
+      <td>{{x.editor}}</td>
+    </tr>
+    {% endfor%}
+  </tbody>
+</table>
+{% endblock %}

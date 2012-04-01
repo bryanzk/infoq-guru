@@ -50,6 +50,9 @@ RSS_NOT_SIGN_CH='http://www.infoq.com/cn/rss/rss.action?token=mgnOPySplnVRGBQQHT
 
 WEIBO_MAIL_SUBJECT=u'%s微博热点追踪'
 
+WEIBO_MAIL_SUBJECT=u'【%s】InfoQ微博热报线索'
+WEIBO_MAIL_LIST='arthur@infoq.com'
+
 STATUS_STEP_LIST={"664":"737","737":"780","780":"800"}
 MAIL_SMTP='smtp.exmail.qq.com'
 MAIL_TO='arthur@infoq.com;hello.shuiyaya@gmail.com'
@@ -224,8 +227,10 @@ class StatusList(Base):
     contrast=Column(DateTime)
     editor=Column(String(100))
     duty=Column(String(100))
-    def __init__(self,id,task_id,code,description,begin,end,contrast,editor,duty):
+    count=Column(Integer)
+    def __init__(self,id,task_id,code,description,begin,end,contrast,editor,duty,count):
         self.id=id
+        self.count=count
         self.task_id=task_id
         self.code=code
         self.description=description
@@ -233,7 +238,7 @@ class StatusList(Base):
         self.end=end
         self.contrast=contrast
         self.editor=editor
-        self.duty
+        self.duty=duty
 class WPList(Base):
     __tablename__='wp_list'
     uid=Column(String(100),primary_key=True)
@@ -281,4 +286,71 @@ class WPConfig(Base):
         self.comment=comment
         self.order=order
         
-        
+WEIBO_MAIL_CONTENT_BASE1="""
+
+
+<div id="mailContentContainer" style="background:#ECECEC;font-size: 14px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; height: auto; font-family: 'lucida Grande', Verdana; margin-right: 170px; ">
+
+    <title></title>
+<style type="text/css">
+body{background:#ECECEC;font-family:"lucida Grande",Verdana;}
+.invite{width:606px;margin:0 auto;overflow:hidden;}
+.invite, .invite td, .invite th{border-collapse:collapse;padding:0;vertical-align:middle;}
+.invite th{font-weight:bold;font-size:16px;color:white;text-align:left;background:#3B5999;}
+.invite th .mailLogo{margin:0 5px -6px 0; padding:0 0 0 30px;}
+.invite th div{height:65px;overflow:hidden;}
+.invite .borderLeft{width:4px;*width:3px;border-left:1px solid #EBEBEB;border-right:1px solid #C9C9C9;background:#E9E9E9;}
+.invite .borderRight{width:3px;border-left:1px solid #C9C9C9;border-right:1px solid #EBEBEB;background:#E9E9E9;}
+.invite h2{margin:26px 34px 16px;font-size:18px;font-weight:bold;}
+.invite p{color:#313131;display:block;font-size:14px;line-height:150%;padding:1px 34px 21px;margin:0;}
+.invite p.team, .invite p.team a{color:#999999;text-decoration:none;}
+.invite p.team a:hover{color:#999999;text-decoration:underline;}
+.invite a{color:#3B5999}
+</style>
+
+
+<div style="background:#ECECEC;">
+<table class="invite" align="center" bgcolor="#ffffff" border="0" cellspacing="0" cellpadding="0">
+    <tbody><tr>
+        <td colspan="4" class="radius" style="vertical-align:bottom;overflow:hidden;line-height:6px;"><img src="http://exmail.qq.com/zh_CN/htmledition/images/newicon/sysmail/mail_invite_top.png" alt=""></td>
+    </tr>
+    <tr>
+        <td rowspan="2" class="border borderLeft"></td>
+        <th width="416"><img src="http://cdn4.infoq.com/styles/cn/i/logo-infoq.gif" alt="InfoQ的送信人" class="mailLogo">微博热报线索</th>
+        <th width="180"><div><img src="http://exmail.qq.com/zh_CN/htmledition/images/bizmail/top_biz.gif" class="mailBg"></div></th>
+        <td rowspan="2" class="border borderRight"></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            
+            """
+WEIBO_MAIL_CONTENT_BASE2="""
+
+            
+            <p>
+                祝您使用愉快。如果有任何疑惑，欢迎发信至 <a href="mailto:arthur@infoq.com" target="_blank">arthur@infoq.com</a> 获取帮助。
+            </p>
+
+            <p class="team">
+             
+                <span style="background:#ddd;height:1px;width:100%;overflow:hidden;display:block;margin:2px 0;"></span>
+                InfoQ中文站：<a href="http://infoq.com/cn" target="_blank">http://infoq.com/cn</a><br>
+                
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" style="vertical-align:top;line-height:5px;overflow:hidden;"><img src="http://exmail.qq.com/zh_CN/htmledition/images/newicon/sysmail/mail_invite_bottom.png" alt=""></td>
+    </tr>
+</tbody></table>
+</div>
+ </div>
+"""
+WEIBO_MAIL_CONTENT_BLOCK="""
+
+<p>
+                <img src="http://exmail.qq.com/zh_CN/htmledition/images/bizmail/icon_addr.gif" style="vertical-align:middle;margin-right:4px" height="18" width="18px">
+                <strong>%s</strong>   评论%d   转发 %d<br>
+                <span style="margin-left:27px;"><a  style="color:gray;text-decoration:none;font-size:13px;" href='%s'>%s</a></span>
+            </p>
+"""       
