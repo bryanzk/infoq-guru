@@ -32,7 +32,7 @@ class MailMethod():
 		msg=MIMEText(content.encode('utf8'),'html')
 		msg['Subject']=subject
 		msg['To']=to
-		msg['From']=MAIL_FROM
+		msg['From']=u" InfoQ 渡鸦 "
 		msg['Nick']=u'InfoQd渡鸦'
 		s=smtplib.SMTP()
 		s.connect(MAIL_SMTP)
@@ -56,7 +56,7 @@ class MailMethod():
 			mail_to+=(x.email+';')
 		msg = MIMEText(content.encode('utf-8'),'html')
 		msg['Subject'] =  MAIL_SUBJECT % (begin,_news,_articles,_pres)
-		msg['From'] = MAIL_FROM
+		msg['From'] = u"InfoQ 渡鸦<notice@magicshui.com>"
 		msg['To'] = mail_to
 		s = smtplib.SMTP()
 		s.connect(MAIL_SMTP)
@@ -96,7 +96,7 @@ class MailMethod():
 			mail_to+=(x.email+';')
 		msg = MIMEText(content.encode('utf-8'),'html')
 		msg['Subject'] =  MAIL_SUBJECT % (begin,_news,_articles,_pres)
-		msg['From'] = MAIL_FROM
+		msg['From'] =u"InfoQ 渡鸦<notice@magicshui.com>"
 		msg['To'] = mail_to
 		s = smtplib.SMTP()
 		s.connect(MAIL_SMTP)
