@@ -58,7 +58,17 @@ $("tr").click(function(){
   <tbody>
   	{%for x in use_list%}
     <tr id='{{x.task_id}}' status='{{x.id}}' code='{{x.code}}'>
-      <td class='status-code'>{{x.code}}</td>
+      <td class='status-code'>
+{% if x.code==664 %}
+        已创建
+      {% elif x.code==737 %}
+      制作中
+      {% elif x.code==780 %}
+      审核中
+      {% else %}
+      {{x.code}}
+      {% endif %}
+      </td>
       <td >{{x.begin}}</td>
       <td>{{x.duty}}</td>
       <td>{{x.editor}}</td>

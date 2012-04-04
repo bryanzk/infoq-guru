@@ -34,6 +34,7 @@ class WPHelper():
 class WPAddView(MethodView):
 	"""docstring for WPCheckView"""
 	def get(self):
+		login()
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
 		res=dbSession.query(WPList).all()
@@ -60,10 +61,11 @@ class WPAddView(MethodView):
 
 class WPSend(MethodView):
 	def get(self):
-        	token()
+		login()
+		token()
 		return render_template('wp_mail.html')
 	def post(self):
-        	token()
+		token()
 		m=MailMethod()
 		content=''
 		db_session=sessionmaker(bind=DB)
@@ -91,6 +93,7 @@ class WPSend(MethodView):
 		return render_template('wp_mail.html',r='ok')
 class WPConfigView(MethodView):
 	def get(self):
+		login()
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
 		r=dbSession.query(WPConfig).first()
@@ -113,6 +116,7 @@ class WPConfigView(MethodView):
 		return redirect('wpconfig')
 class WPCheckView(MethodView):
 	def get(self):
+		login()
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
 		res=dbSession.query(WPCheckList).order_by(desc(WPCheckList.time)).limit(20)

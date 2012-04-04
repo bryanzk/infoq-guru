@@ -5,6 +5,7 @@ from helper_data import WeiboHelper
 from email.mime.text import MIMEText
 class MailView(MethodView):
 	def get(self):
+		login()
 		return render_template("mailresult.html",r='')
 	def post(self):
 		country=request.form['country']

@@ -51,7 +51,7 @@
               <li><a id='show-guide' class='label label-info'>帮助</a></li>
             </ul>
             
-            <p class="navbar-text pull-right"  id='num-login'>Logged in as <a data-toggle='modal' href="#loginModal">User</a></p>
+            <p class="navbar-text pull-right"  id='num-login'>Logged in as <a data-toggle='modal' href="#loginModal">{{session['user']}}</a></p>
            
           </div><!--/.nav-collapse -->
         </div>
@@ -133,6 +133,8 @@
     <script src="static/js/bootstrap-carousel.js"></script>
     <script src="static/js/bootstrap-typeahead.js"></script>
     <script src="static/js/md5-min.js"></script>
+    <script src="http://code.highcharts.com/stock/highstock.js"></script>
+    <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
 
     <script>
     $(document).ready(function(){

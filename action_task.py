@@ -4,6 +4,15 @@ from config import *
 
 class TaskHelper():
 	# create id for task and status
+	def next_step_exists(self,task_id,code):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		next_code=STATUS_STEP_LIST[str(code)]
+		res=dbSession.query(StatusList).filter(StatusList.task_id==task_id).order_by(desc(StatusList.begin)).all()
+		if str(res[0].code)!=next_code :
+			return False
+		else:
+			return True
 	def create_id(self):
 		import md5
 		return (md5.md5(str(datetime.now()))).hexdigest() 
@@ -22,7 +31,7 @@ class TaskHelper():
 		dbSession.commit()
 class TaskAddNew(MethodView):
 	def get(self):
-		
+		login()
 		return render_template('task_add.html',msg='')
 	def post(self):
 		helper=TaskHelper()
@@ -59,6 +68,7 @@ step 3 排期中：排期
 '''
 class TaskToStep(MethodView):
 	def get(self):
+		login()
 		'''获取任务code为664,737和780的任务，其editor为空'''
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
@@ -74,9 +84,10 @@ class TaskToStep(MethodView):
 		user_other=dbSession.query(func.max(StatusList.code),StatusList.id,StatusList.task_id,StatusList.code,StatusList.begin,StatusList.end,StatusList.editor,StatusList.duty).filter(StatusList.code>666).filter(StatusList.code<800).filter(StatusList.end).group_by(StatusList.task_id).order_by(StatusList.begin).all()
 		'''
 		use_list=[]
+		helper=TaskHelper()
 		use_od=dbSession.query(func.max(StatusList.code),StatusList.id,StatusList.task_id,StatusList.code,StatusList.begin,StatusList.end,StatusList.editor,StatusList.duty).filter(StatusList.code>=664).filter(StatusList.code<800).all()
 		for x in use_od:
-			if x[5]!="0000-00-00 00:00:00":
+			if x[5]!="0000-00-00 00:00:00" and not helper.next_step_exists(x.task_id,x.code):
 				use_list.append(x)
 
 		return render_template('task_step.html',use_list=use_list)
@@ -133,6 +144,7 @@ class TaskStepInfo(MethodView):
 # 提交任务完成
 class TaskSubmit(MethodView):
 	def get(self):
+		login()
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
 		res=dbSession.query(StatusList).filter(or_(StatusList.code>=664,StatusList.code<=780)).filter(StatusList.end=='0000-00-00 00:00:00').all()
@@ -149,7 +161,9 @@ class TaskSubmit(MethodView):
 		r.count=count
 		dbSession.commit()
 		return 'ok'
-
+class TaskHistoryList(MethodView):
+	def get(self):
+		pass
 class TaskSearch(MethodView):
 	def get(self):
 		pass

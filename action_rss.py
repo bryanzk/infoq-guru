@@ -35,6 +35,7 @@ class RssNew(MethodView):
 
         return render_template('rssnew.html',r=rr,count=count)
     def get(self):
+        login()
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
         count=dbSession.query(func.count(RssInfo.guid)).scalar()
@@ -42,6 +43,7 @@ class RssNew(MethodView):
         return render_template('rssnew.html',r=[],count=count)
 class RssFetchRefresh(MethodView):
     def get(self):
+        login()
         return  render_template('result.html',r='')
     def post(self):
         country=request.form['country']

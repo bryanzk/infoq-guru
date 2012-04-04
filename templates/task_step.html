@@ -86,7 +86,17 @@ duty
   <tbody>
   	{%for x in use_list%}
     <tr id='{{x[2]}}' status='{{x[1]}}' code='{{x[3]}}'>
-      <td class='status-code'>{{x[3]}}</td>
+
+      <td class='status-code'>
+        {% if x[3]==664 %}
+        已创建
+      {% elif x[3]==737 %}
+      已领取
+      {% elif x[3]==780 %}
+      已审核
+      {% else %}
+      {{x[3]}}
+      {% endif %}</td>
       <td >{{x[4]}}</td>
       <td>{{x[5]}}</td>
       <td>{{x[7]}}</td>

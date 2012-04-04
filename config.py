@@ -66,9 +66,12 @@ CATEGORY_LIST_CN=['']
 def login():
         try:
                 token=session['user']
-                return True
+                if toke:
+                    return True
+                else:
+                    return redirect('error?msg="need login"&next=/login')
         except:
-            return redirect('error?msg="need login"&next=/')
+            return redirect('error?msg="need login"&next=/login')
 def token():
         try:
             try:

@@ -8,7 +8,9 @@ from action_user import *
 from action_mail import *
 from action_task import *
 from action_check import *
+from action_charts import *
 from config import *
+
 from md5 import md5
 app = Flask(__name__)
 app.debug=True
@@ -25,6 +27,8 @@ app.add_url_rule('/rssch',view_func=ChRssRefresh.as_view('rssch'))
 app.add_url_rule('/edone',view_func=EditorAbout.as_view('adone'))
 app.add_url_rule('/mail',view_func=MailView.as_view('mail'))
 app.add_url_rule('/login',view_func=UserLogin.as_view('login'))
+app.add_url_rule('/logout',view_func=UserLogout.as_view('logut'))
+
 app.add_url_rule('/error',view_func=ErrorView.as_view('error'))
 app.add_url_rule('/mailadd',view_func=MailAddView.as_view('mailadd'))
 app.add_url_rule('/maildel',view_func=MailDeleteView.as_view('maildel'))
@@ -42,6 +46,9 @@ app.add_url_rule('/wpadd',view_func=WPAddView.as_view('wpadd'))
 app.add_url_rule('/wpcheck',view_func=WPCheckView.as_view('wpcheck'))
 app.add_url_rule('/wpmail',view_func=WPSend.as_view('wpmail'))
 app.add_url_rule('/wpconfig',view_func=WPConfigView.as_view('wpconfig'))
+
+app.add_url_rule('/weibochart',view_func=WeiboChart.as_view('WeiboChart'))
+app.add_url_rule('/weibochartc',view_func=WeiboCommentView.as_view('weibocommentview'))
 app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':
     app.run()

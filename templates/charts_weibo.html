@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+{% block body %}
+<div id="container" style="height: 500px"></div>
+{% endblock%}
+{% block script %}
+$(function() {
+    $.getJSON('/weibochartc', function(data) {
+
+        // create the chart
+        chart = new Highcharts.StockChart({
+            chart: {
+                renderTo: 'container',
+                alignTicks: false
+            },
+
+            rangeSelector: {
+                selected: 1
+            },
+
+            title: {
+                text: 'Weibo Comment Count'
+            },
+
+            series: [{
+                type: 'column',
+                name: 'Weibo Count',
+                data: data,
+                dataGrouping: {
+                    units: [[
+                        'week', // unit name
+                        [1] // allowed multiples
+                    ], [
+                        'month',
+                        [1, 2, 3, 4, 6]
+                    ]]
+                }
+            }]
+        });
+    });
+});
+{% endblock%}

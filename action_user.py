@@ -1,7 +1,7 @@
 from config import *
 class UserLogin(MethodView):
 	def  get(self):
-		pass
+		return render_template('user_login.html')
 	def post(self):
 		user=request.form['user']
 		pwd=request.form['pwd']
@@ -12,14 +12,15 @@ class UserLogin(MethodView):
 			session['user']=user
 			return redirect('/')
 		else:
-			return redirect('error?msg="login error"&next=/go')
+			return redirect('error?msg="login error"&next=/login')
 class ErrorView(MethodView):
 	def get(self):
 		msg=request.args.get('msg')
 		next=request.args.get('next')
 		return render_template('error.html',msg=msg,next=next)
 class UserLogout(MethodView):
-	def  get():
-		pass
+	def  get(self):
+		session.clear()
+		return redirect('login')
 	def post():
 		pass
