@@ -3,7 +3,7 @@ from config import *
 from helper_data import *
 class IndexView(MethodView):
     def get(self):
-        login()
+        
         try:
             token=session['token']
         except:
@@ -11,7 +11,7 @@ class IndexView(MethodView):
         return render_template('index.html')
 class StaticView(MethodView):
     def get(self):
-        login()
+        
         try:
             token=session['token']
         except:
