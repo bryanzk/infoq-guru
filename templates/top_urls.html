@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block script %}
+
+{% endblock%}
+{% block body %}
+<form class="form-horizontal" method='post' action='urltop'>
+        <fieldset>
+          <legend>Urls</legend>
+          <div class="control-group">
+            <label for="textarea" class="control-label">Textarea</label>
+            <div class="controls">
+              <textarea rows="3" id="textarea" name='urls' class="input-xlarge" style="width: 308px; height: 94px;"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>link</th>
+      <th>content</th>
+    
+    </tr>
+  </thead>
+ 
+  <tbody>
+    {%for x in res%}
+    <tr >
+
+      <td class='status-code'>
+       {{x.title}}</td>
+      <td >{{x.link}}</td>
+      <td>{{x.content}}</td>
+     
+    </tr>
+    {% endfor%}
+  </tbody>
+</table>
+{% endblock %}

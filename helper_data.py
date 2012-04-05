@@ -93,9 +93,11 @@ class WeiboHelper():
 		elif string.find(text,'/articles')!=-1:
 			return u'文章'
 		elif string.find(text,'/presentations')!=-1:
-			return u'视频'
+			return u'演讲'
 		elif string.find(text,'/minibooks')!=-1:
 			return u'迷你书'
+		elif string.find(text,'/interviews')!=-1:
+			return u'采访'
 		else:
 			return 'x'
 	def _get_http_content(self,rurl):

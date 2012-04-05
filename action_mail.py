@@ -75,20 +75,26 @@ class MailMethod():
 		_articles=0
 		_pres=0
 		_minis=0
+		_inter=0
 		for  x in res:
 			_h=WeiboHelper()
 			if _h._get_cats(x.guid)==u'新闻':
 				_news+=1
 			elif _h._get_cats(x.guid)==u'文章':
 				_articles+=1
-			elif _h._get_cats(x.guid)==u'视频':
-				_pres+=1		
+			elif _h._get_cats(x.guid)==u'演讲':
+				_pres+=1	
+			elif _h._get_cats(x.guid)==u'采访':
+				_inter+=1
+			elif _h._get_cats(x.guid)==u'迷你书':
+				_minis+=1	
 			_category=""
 			_cc=x.category.split(',')
 			for xx in _cc:
 				if xx in CATEGORY_LIST:
 						_category+=" "+xx
-			content+=u"%s<br>%s <br><a href='%s'>%s</a><br>所属社区：%s<br><br>" % (_h._get_cats(x.guid),x.title,x.guid,x.guid,_category)
+			if _h._get_cats(x.guid)!=u'演讲':
+				content+=u"%s<br>%s <br><a href='%s'>%s</a><br>所属社区：%s<br><br>" % (_h._get_cats(x.guid),x.title,x.guid,x.guid,_category)
 		content+=u"新闻列表：<a href='http://gege.baihui.com/open.do?docid=95416000000003001'>http://gege.baihui.com/open.do?docid=95416000000003001</a><br/>"
 		content+=u"深度内容列表：<a href='http://gege.baihui.com/docview.do?docid=95416000000004001'>http://gege.baihui.com/docview.do?docid=95416000000004001</a> "
 		mails=dbSession.query(MailListInfo).filter(MailListInfo.country==country).all()
@@ -96,7 +102,7 @@ class MailMethod():
 		for x in mails:
 			mail_to+=(x.email+';')
 		msg = MIMEText(content.encode('utf-8'),'html')
-		msg['Subject'] =  MAIL_SUBJECT % (begin,_news,_articles,_pres)
+		msg['Subject'] =  MAIL_SUBJECT % (begin,_news,_articles,_inter)
 		msg['From'] =u"InfoQ 渡鸦<notice@magicshui.com>"
 		msg['To'] = mail_to
 		s = smtplib.SMTP()
