@@ -10,6 +10,7 @@ from action_task import *
 from action_check import *
 from action_charts import *
 from action_top import *
+from action_feedback import *
 from config import *
 
 from md5 import md5
@@ -50,7 +51,7 @@ app.add_url_rule('/wpconfig',view_func=WPConfigView.as_view('wpconfig'))
 
 app.add_url_rule('/weibochart',view_func=WeiboChart.as_view('WeiboChart'))
 app.add_url_rule('/weibochartc',view_func=WeiboCommentView.as_view('weibocommentview'))
-
+app.add_url_rule('/feedback',view_func=FeedbackView.as_view('feedbackview'))
 
 app.add_url_rule('/urltop',view_func=TopView.as_view('topviewurl'))
 app.jinja_env.globals.update(md5=md5)

@@ -288,7 +288,16 @@ class WPConfig(Base):
         self.relation=relation
         self.comment=comment
         self.order=order
-        
+
+class FeedBackList(Base):
+    __tablename__='feedback_list'
+    time=Column(DateTime,primary_key=True)
+    content=Column(String(500))
+    title=Column(String(45))
+    def __init__(self,time,title,content):
+          self.time=time
+          self.title=title
+          self.content=content 
 WEIBO_MAIL_CONTENT_BASE1="""
 
 

@@ -49,7 +49,8 @@
               <li class="active"><a href="/">Home</a></li>
               <li><a href="about">About</a></li>
               <li><a id='show-guide' class='label label-info'>帮助</a></li>
-            </ul>
+                            <li><a id='show-feedback' class='label label-important' data-toggle='modal' href="#feedbackModal" class=''>Feedback</a></li>
+                                  </ul>
             
             <p class="navbar-text pull-right"  id='num-login'>Logged in as <a data-toggle='modal' href="#loginModal">{{session['user']}}</a></p>
            
@@ -147,11 +148,32 @@
          $(".collapse").collapse();
 
       });
+
+      
       {% block script %}
       {% endblock%}
     
     });
     </script>
+
+    
+    
+<div class="modal hide fade" id="feedbackModal" style="display:none;">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Feedback</h3>
+  </div>
+  <div class="modal-body">
+
+      <input type="text" id='feedback-title' name='title' class="input-small span5" placeholder="title">
+      <br/>
+      <textarea id='feedback-content' name='content' class='span5'></textarea>
+      <br/>
+      <button  id='feedback-btn' class="btn">提交</button>
+
+  </div>
+</div>
+
 <div class="modal hide fade" id="loginModal" style="display:none;">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
