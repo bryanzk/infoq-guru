@@ -319,6 +319,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "templates/base.html",
+			"settings":
+			{
+				"buffer_size": 7821,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -353,6 +361,8 @@
 	"file_history":
 	[
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/myapp.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/config.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_feedback.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/top_urls.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_task.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_check.py",
@@ -363,7 +373,6 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/mailadd.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_rss.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_mail.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/config.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_static.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_weibo.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base.html",
@@ -535,8 +544,37 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "templates/base.html",
+					"settings":
+					{
+						"buffer_size": 7821,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2388,
+								2388
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
