@@ -1,0 +1,283 @@
+<%@ page contentType="text/html;charset=utf-8" pageEncoding="UTF-8" %>
+<%@ include file="/includes/taglibs.jsp" %><html>
+
+<head>
+<ww:i18n name="messages">
+ <title>
+  <ww:text name="seo.generic.title" />
+ </title>
+ <meta name="keywords" content="<ww:text name="seo.generic.keywords" />"/>
+ <meta name="description" content="<ww:text name="seo.generic.description" />"/>
+</ww:i18n>
+</head>
+
+<body>
+<!-- box start -->
+<div class="box">
+ <h2>关于本站</h2>
+
+ <div class="top-corners"><div></div></div>
+ <div class="box-content">
+ <div class="box-content-2">
+
+  <div class="about-notes">
+   <h3>启动赞助商</h3>
+   <img src="<wwext:link_to value="%{'/styles/i/sponsors/logos_gray.jpg'}" />" usemap="#sponsorsmap_about" alt="" />
+
+   <map name="sponsorsmap_about">
+    <area href="http://www.oracle.com/technology/global/cn/ada/welcome.htm" target="_blank" alt="Oracle" title="Oracle" shape="rect" coords="0,0,120,60" />
+    <area href="http://msdn2.microsoft.com/zh-cn/default.aspx" target="_blank" alt="Microsoft" title="Microsoft" shape="rect" coords="0,60,120,120" />
+   </map>
+
+   <br/><br/>
+
+   <h3>联系我们：</h3> 
+   <a href="" onclick="createEmailAddress(this, 'cn.infoq.com');" name="editors">致信编辑</a><br/>
+   <a href="" onclick="createEmailAddress(this, 'cn.infoq.com');" name="sales">广告合作</a><br/>
+   <a href="" onclick="createEmailAddress(this);" name="china-bugs">Bug 报告</a><br/>
+
+   <br/><br/>
+ <h3>联系我们：</h3> 
+   <a name="editors" onclick="createEmailAddress(this, 'cn.infoq.com');" href="">致信编辑</a><br>
+   <a name="sales" onclick="createEmailAddress(this, 'cn.infoq.com');" href="">广告合作</a><br>
+   <a name="bugs" onclick="createEmailAddress(this, 'cn.infoq.com');" href="">Bug 报告</a><br>
+
+   <br><br>
+      <h3>InfoQ中文站团队</h3>
+<br>
+   <h3>编辑团队</h3>
+            <h4 style="color:darkgreen;">原创编辑团队</h4>
+<p><b>主编：</b>张凯峰</p>
+   <p>
+    池建强<br/>
+    黄玲艳<br/>
+    李明<br />
+    麦天志<br />
+    乔梁<br />
+    熊节<br />
+    张逸<br />
+    赵劼<br />
+   </p>
+
+            <h4 style="color:darkgreen;">翻译编辑团队</h4>
+<p><b>主编：</b>崔康</p>
+   <p>
+鲍央舟<br/>
+晁晓娟<br/>
+陈宇<br/>
+丁雪丰<br/>
+高翌翔<br/>
+郭晓刚<br/>
+郭雪品<br/>
+侯伯薇<br/>
+胡键<br/>
+黄璜<br/>
+黄玲艳<br/>
+金明<br/>
+金毅<br/>
+李永伦<br/>
+马国耀<br/>
+石永超<br/>
+王波<br/>
+王恒涛<br/>
+吴宇<br/>
+杨晨<br/>
+姚九强<br/>
+张龙<br/>
+郑珂<br/>
+朱永光<br/>
+</p>
+
+            <h4 style="color:darkgreen;">荣誉编辑</h4>
+            <p>
+    曹云飞<br/>
+    陈黎夫<br /> 
+    高昂<br />
+    韩锴<br />
+    顾全<br/>
+    贾晓楠<br />  
+    赖翥翔<br/>
+    李剑<br/>
+    刘申<br/>
+    马家宽<br /> 
+    孙涛<br /> 
+ 
+    孙向晖<br /> 
+ 
+    滕振宇<br/>
+    田乐<br /> 
+    王锐<br/>
+
+    肖桦<br/>
+    徐涵<br/>
+    张海龙<br />
+    张善友<br/>
+    张晓庆<br/>
+                </p>
+            <br/>    
+                   
+<h3>运营团队</h3>
+            <p>
+            霍泰稳 - 创始人兼CEO<br />
+            郑柯 - 总编辑<br/>
+   贾国清 - 高级策划编辑<br/>
+   
+   胡伟红 - 内容发布编辑<br/>
+   李楠 - 商务策划编辑<br/>
+   李娜 - 办公室经理<br/>
+   金鑫 - 策划编辑<br/>
+   宋芮莹 - 商务执行助理<br/>
+   司巧蕾 - 在线商务总监<br />    
+   杨蕾蕾 - 市场活动经理<br />
+       </p>
+      <br/>
+
+
+   <h3>InfoQ.com团队</h3>
+<br>
+<h3>开发</h3>
+   <p>Alexandru Popescu<br />
+            Cristian Buta<br/>
+            Vali Nistor<br/>
+   </p>
+   <br/>
+
+   <h3>销售</h3>
+   <p>Roxanne Beverstein</p>
+   <br/>
+
+   <h3>IT</h3>
+   <p>Contegix, Inc.<br />
+   Alexandru Popescu<br/>
+            Cristian Buta
+   </p>
+   <br/>
+
+   <h3>创始人</h3>
+   <p>
+    Floyd Marinescu - CEO及总编<br />
+    Roxanne Beverstein - 销售副总裁<br />
+    Alexandru Popescu - 首席架构师
+   </p>
+   <br/>
+
+   <h3>特别感谢</h3>
+   <p>Ed Roman</p>
+   <br/>
+
+   <h3>媒体合作伙伴</h3>
+   <p><a href="http://jaoo.dk/conference/" target="_blank"><img src="<wwext:link_to value="%{'/styles/i/media/jaoo_2006.gif'}" />" alt="JAOO 2006" title="JAOO 2006" /></a></p>
+   <br/>
+
+   <h3>InfoQ网站的开发基于以下技术</h3>
+   <p>
+            <a href="http://www.jivesoftware.com/" target="_blank"><img src="<wwext:link_to value="%{'/styles/i/jive.gif'}" />" width="73" height="41" /></a>
+   <a href="http://www.eclipse.org/aspectj/" target="_blank"><img src="<wwext:link_to value="%{'/styles/i/techs/aspectj.gif'}" />" height="41" /></a>
+            </p>
+   <p>
+            <a href="http://getahead.ltd.uk/dwr" target="_blank"><img src="<wwext:link_to value="%{'/styles/i/techs/dwr.gif'}" />" /></a>
+   <a href="http://jackrabbit.apache.org" target="_blank"><img src="<wwext:link_to value="%{'/styles/i/techs/jackrabbit.gif'}" />" /></a>
+            </p>    
+   <p><a href="http://www.magnolia.info" target="_blank"><img src="<wwext:link_to value="%{'/styles/i/techs/magnolia.gif'}" />" /></a></p>  
+   <p><a href="http://www.opensymphony.com/webwork/" target="_blank"><img src="<wwext:link_to value="%{'/styles/i/techs/webwork.gif'}" />" /></a></p>      
+  </div>
+
+  <h1>关于InfoQ中文站</h1>
+
+  <p>
+    软件正在改变世界！InfoQ是一个在线新闻/社区网站，旨在通过促进和传播软件开发领域知识与创新的传播，为软件开发者提供帮助。为达到这个目的，InfoQ基于实践者驱动的社区模式建立平台，提供新闻、文章、视频演讲和采访等资讯服务，所有的这一切也都是为了研发团队中那些有创新精神的人群：团队领导者、架构师、项目经理、工程总监和高级软件开发人员等。
+  </p>
+  
+  <p>
+    InfoQ目前在全球有四种语言版本，分别是<a href="http://www.infoq.com/">英文</a>、中文、<a href="http://www.infoq.com/jp/">日文</a>、<a href="http://www.infoq.com/br/">葡文</a>等。
+  </p>
+  
+  <p>
+    另外，InfoQ现在也在伦敦、北京、东京、纽约、圣保罗、杭州等城市举办<a href="http://qconferences.com/">QCon全球软件开发大会</a>。
+  </p>
+
+  <p>InfoQ中文站将和InfoQ全球网站一样，秉承“扎根社区、服务社区、引领社区”的经营理念，与中国技术社区的专家一起，为中国软件企业和个人提供及时、高质量的技术资讯，成为连接中国企业软件技术高端社区与国际主流技术社区的桥梁。</p>
+
+  <h2>InfoQ中文站编辑团队</h2>
+  <p>InfoQ之所有能够有源源不断的高质量的内容产生，其背后的主要推动力是我们乐于分享的<b>编辑</b>，还有鼓励我们继续努力的读者<b>你</b>！InfoQ中文站欢迎读者投递新闻、文章，或者评论现有内容，以多种形式参与内容建设。如果你够勤奋、够踏实、够积极，我们就很乐意请你加入我们的编辑团队，以更稳定的形式为社区做贡献。下面是目前积极参与InfoQ中文站内容创作的各领域专家。</p>
+        <h3>原创编辑团队</h3>
+{% for x in yuanchuang %}
+
+  <div class="bio">
+   <p class="bio-image"><img src="<wwext:link_to value="%{'/styles/i/team/{{x.img}}}'}" />" /></p>
+   <p class="bio-desc"><a onclick="createEmailAddress(this, '{{ x.email}}');" name="{{x.ename}}" href="mailto:{{x.email}}"><b>{{x.name}}</b></a> - 社区：<a href="/cn/dotnet/">{{x.area}}</a></p>
+   <div class="bio-desc">
+    {{x.desc}}<a href="/cn/author/{{x.name}}" class="about_editorLink">http://www.infoq.com/cn/author/{{x.name}}</a>
+   </div>
+  </div>
+<div style="clearer-left"></div>  
+
+{% endfor %}
+
+        <h3>翻译编辑团队</h3>
+        {% for x in fanyi %}
+
+  <div class="bio">
+   <p class="bio-image"><img src="<wwext:link_to value="%{'/styles/i/team/{{x.img}}}'}" />" /></p>
+   <p class="bio-desc"><a onclick="createEmailAddress(this, '{{ x.email}}');" name="{{x.ename}}" href="mailto:{{x.email}}"><b>{{x.name}}</b></a> - 社区：<a href="/cn/dotnet/">{{x.area}}</a></p>
+   <div class="bio-desc">
+    {{x.desc}}<a href="/cn/author/{{x.name}}" class="about_editorLink">http://www.infoq.com/cn/author/{{x.name}}</a>
+   </div>
+  </div>
+<div style="clearer-left"></div>  
+
+{% endfor %}
+                            
+  <h2>InfoQ中文站运营团队（部分）</h2>
+{% for x in yunying %}
+  
+  <div class="bio">
+   <p class="bio-image"><img src="<wwext:link_to value="%{'/styles/i/team/{{x.img}}'}" />" /></p>
+   <p class="bio-desc"><a href="mailto:{{x.email}}}" name="{{x.ename}}}" onclick="createEmailAddress(this, 'infoq.com');"><b>{{x.name}}}</b></a>
+{{x.desc}}
+
+   </p>
+  </div>
+<div style="clearer-left"></div>
+{% endfor%}
+
+
+
+
+  <h2>InfoQ 创始人</h2>
+        
+  <div style="clearer-left"></div>
+
+  <div class="bio">
+   <p class="bio-image"><img src="<wwext:link_to value="%{'/styles/i/team/roxanne.jpg'}" />" /></p>
+   <p class="bio-desc"><a href="" onclick="createEmailAddress(this)" name="roxanne"><b>Roxanne Beverstein</b></a>是 C4Media 的共同创始人和销售副总裁。在2001到2005年间，Roxanne领导TheServerSide的销售团队取得了不菲的成绩。她先前在许多在线高端技术出版公司工作过，包括Jupiter Media、IDG、Ziff-Davis、Scholastic和Cahners Publishing等。</p>
+  </div>
+
+  <div style="clearer-left"></div>
+
+  <div class="bio">
+   <p class="bio-image"><img src="<wwext:link_to value="%{'/styles/i/team/alex.jpg'}" />" /></p>
+   <p class="bio-desc"><a href="" onclick="createEmailAddress(this)" name="alex"><b>Alexandru Popescu</b></a>是 InfoQ.com 的首席架构师和共同创始人。Alexandru发起了多个开源项目，并参与了许多前沿技术的开发（如AOP、测试、脚本语言和Web等）。他是TestNG的共同创始人之一，并且参与Groovy、WebWork和Magnolia等项目的主力开发工作。在AspectWerkz被AspectJ整合之前，Alexandru还是AspectWerkz的三个主力开发人员之一。他的技术Blog是 <a href="http://themindstorms.blogspot.com/" target="_blank">http://themindstorms.blogspot.com/</a>。</p>
+  </div>
+
+  <div style="clearer-left"></div>
+
+  <div class="bio">
+   <p class="bio-image"><img src="<wwext:link_to value="%{'/styles/i/team/floyd.jpg'}" />" /></p>
+   <p class="bio-desc"><a href="" onclick="createEmailAddress(this)" name="floyd"><b>Floyd Marinescu</b></a>是C4Media的总裁和共同创始人，是InfoQ.com的总编。Floyd Marinescu曾创立了TheServerSide.com、TheServerSide.NET和TheServerSide Java专题大会等。在2000年到2005年期间，在Floyd的带领下，TheServerSide.com成为世界上最大的Java社区，曾经一度每月有高达40万的独立用户访问。</p>
+  </div>
+
+  <h2>关于 C4Media（Community<sup>4</sup>Media）</h2>
+
+  <p>
+   C4Media（Community<sup>4</sup> Media）是支撑InfoQ.com运营的媒体公司，秉承“扎根社区、服务社区、引领社区”的理念，致力于推动InfoQ成为世界上使用最广泛和最有影响力的软件开发社区。C4Media 在加拿大、美国、中国、罗马尼亚和巴西设有办事处。
+  </p>
+
+ <div class="box-bottom"></div>
+ </div></div>
+ <div class="bottom-corners"><div></div></div>
+</div>
+<!-- box end -->
+</body>
+
+</html>

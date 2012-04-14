@@ -319,14 +319,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "templates/base.html",
-			"settings":
-			{
-				"buffer_size": 7821,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -336,7 +328,11 @@
 		[
 			[
 				"Package Control: ",
-				"Package Control: Remove Package"
+				"Package Control: Disable Package"
+			],
+			[
+				"Package Control: a",
+				"Package Control: Install Package"
 			],
 			[
 				"Package Control: in",
@@ -360,22 +356,35 @@
 	},
 	"file_history":
 	[
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_weibo.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_mail.py",
+		"/Users/Arthur/Documents/GITReps/wenzi/README.markdown",
+		"/Users/Arthur/Downloads/2维码/名片信息(付实）.txt",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/video_timeline.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_video.py",
+		"/Users/Arthur/Desktop/名片信息(1).txt",
+		"/Users/Arthur/Desktop/工作/工作量和稿费统计/以前的/infoqdb.sql",
+		"/Users/Arthur/Desktop/CMS内容发布.txt",
+		"/Users/Arthur/Desktop/hello.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/hello_test_pylint.py",
+		"/Users/Arthur/Library/Application Support/Sublime Text 2/Packages/Pylinter/Pylinter.sublime-settings",
+		"/Users/Arthur/Desktop/uninstall-mono.sh",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/weibo.py",
+		"/Users/Arthur/Desktop/流程",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_top.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_feedback.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/myapp.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/config.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_feedback.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/top_urls.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_task.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_check.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_top.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/helper_data.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/task_submit.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/task_step.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/mailadd.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_rss.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_mail.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_static.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_weibo.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_user.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/charts_weibo.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/error.html",
@@ -398,7 +407,6 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_task",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/weibosend.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/500.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/weibo.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/weibo_get.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/weibo.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editorone.html",
@@ -486,6 +494,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"in hyp",
+			":",
+			"</pre>",
+			"<pre>",
+			"getattr",
 			"login()",
 			"url",
 			"dbSession.close()",
@@ -529,6 +542,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"：",
 			"",
 			"dbSession",
 			"static",
@@ -544,37 +558,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "templates/base.html",
-					"settings":
-					{
-						"buffer_size": 7821,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2388,
-								2388
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -646,6 +631,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 227.0,
+	"side_bar_width": 342.0,
 	"status_bar_visible": true
 }

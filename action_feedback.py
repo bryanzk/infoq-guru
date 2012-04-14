@@ -1,3 +1,4 @@
+# coding: utf-8
 from config import *
 class FeedbackView(MethodView):
 	def get(self):

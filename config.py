@@ -298,6 +298,52 @@ class FeedBackList(Base):
           self.time=time
           self.title=title
           self.content=content 
+
+
+
+
+class AboutusList(Base):
+    __tablename__='about_list'
+    id=Column(Integer,primary_key=True)
+    name=Column(String(100))
+    ename=Column(String(100))
+    email=Column(String(100))
+    desc=Column(String(1000))
+    minidesc=Column(String(200))
+    area=Column(String(20))
+    team=Column(String(20))
+    img=Column(String(50))
+    pinyin=Column(String(100))
+    def __init__(self,id,name,ename,email,desc,minidesc,area,pinyin,team,img):
+        self.id=id
+        self.name=name
+        self.ename=ename
+        self.email=email
+        self.desc=desc
+        self.minidesc=minidesc
+        self.area=area
+        self.team=team
+        self.img=img
+        self.pinyin=pinyin
+class InfoqList(Base):
+    __tablename__='infoq_list'
+    id=Column(Integer,primary_key=True)
+    name=Column(String(100))
+    ename=Column(String(100))
+    email=Column(String(100))
+    desc=Column(String(500))
+    title=Column(String(100))
+    img=Column(String(100))
+    pinyin=Column(String(100))
+    def __init__(self,id,name,ename,email,desc,title,img,pinyin):
+        self.id=id
+        self.name=name
+        self.ename=ename
+        self.email=email
+        self.pinyin=pinyin
+        self.desc=desc
+        self.title=title
+        self.img=img
 WEIBO_MAIL_CONTENT_BASE1="""
 
 

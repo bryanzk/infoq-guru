@@ -1,3 +1,4 @@
+# coding: utf8
 from config import *
 import requests as httprequest
 class TopHelp():

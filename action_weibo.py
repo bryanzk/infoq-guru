@@ -32,7 +32,7 @@ class ComebackOauth(MethodView):
         access_token = r.access_token
         expires_in = r.expires_in
         session['token']=access_token
-        session['expires_in']=expires_in
+        session['expire']=expires_in
         t=TokenListInfo(time=datetime.now(),token=access_token,
             expire=expires_in,level='infoq')
         db_session=sessionmaker(bind=DB)
