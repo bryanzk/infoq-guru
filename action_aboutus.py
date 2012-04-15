@@ -1,6 +1,9 @@
 # coding: utf-8
 from config import *
 #CONVERT_TO=["运维":"","":""]
+class Labs(MethodView):
+	def get(self):
+		return render_template('lab.html')
 class AboutusEditor(MethodView):
 	def get(self):
 		db_sessin=sessionmaker(bind=DB)
