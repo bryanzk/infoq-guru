@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block body %}
+<div id="timeline-embed"></div>
+
+{% endblock%}
+{% block script%}
+var config = {
+width: "100%",
+height: "100%",
+source: 'http://127.0.0.1:5000/timelinedata'
+}
+{%endblock%}

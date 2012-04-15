@@ -12,6 +12,7 @@ from action_charts import *
 from action_top import *
 from action_feedback import *
 from action_aboutus import *
+from action_timeline import *
 from config import *
 
 from md5 import md5
@@ -55,6 +56,8 @@ app.add_url_rule('/weibochartc',view_func=WeiboCommentView.as_view('weibocomment
 app.add_url_rule('/feedback',view_func=FeedbackView.as_view('feedbackview'))
 app.add_url_rule('/aboutus',view_func=AboutusEditor.as_view('aboutus'))
 
+app.add_url_rule('/timeline',view_func=TimeLine.as_view('timeline'))
+app.add_url_rule('/timelinedata',view_func=TimeLineData.as_view('timelinedata'))
 app.add_url_rule('/urltop',view_func=TopView.as_view('topviewurl'))
 app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':
