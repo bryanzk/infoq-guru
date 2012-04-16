@@ -14,6 +14,7 @@ from action_feedback import *
 from action_aboutus import *
 from action_timeline import *
 from action_mag import *
+from action_expert import *
 from config import *
 
 from md5 import md5
@@ -61,6 +62,10 @@ app.add_url_rule('/timeline',view_func=TimeLine.as_view('timeline'))
 app.add_url_rule('/timelinedata',view_func=TimeLineData.as_view('timelinedata'))
 app.add_url_rule('/urltop',view_func=TopView.as_view('topviewurl'))
 app.add_url_rule('/mag',view_func=MagView.as_view('mag'))
+app.add_url_rule('/eupdate',view_func=ExpertUpdate.as_view('eupdate'))
+app.add_url_rule('/eadd',view_func=ExpertAdd.as_view('eadd'))
+app.add_url_rule('/es',view_func=ExpertSearch.as_view('es'))
+app.add_url_rule('/eshow',view_func=ExpertShow.as_view('eshow'))
 app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':
     app.run()

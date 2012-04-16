@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="visual_search"></div>
+
+
+{% endblock%}
+{% block belowscript%}
+
+  $(document).ready(function() {
+function get_filter(){
+	var _x=[
+      'city', 'address', 'company', 'desc','name'
+    ];
+    return _x;
+}
+
+
+    var visualSearch = VS.init({
+      container : $('.visual_search'),
+      query     : '',
+      callbacks : {
+        search       : function(query, searchCollection) {
+        var mquery='';
+        (for x in searchCollection.models){
+        	mquery+=x.attributes.category+":"+x.attributes.value+"$";
+    };
+        $.ajax({
+        	type:'post',
+        	data:"m-query="+mquery,
+        	url:'es',
+        	success:function(data){
+        		alert(data)
+        }
+
+    });
+    },
+        facetMatches : function(callback) {
+    callback(get_filter());
+  },
+        valueMatches : function(facet, searchTerm, callback) {
+    switch (facet) {
+    case 'city':
+        callback([
+          { value: '1北京', label: '北京' },
+          { value: '保定',   label: '保定' },
+          { value: '武汉',   label: '武汉' }
+        ]);
+        break;
+      case 'filter':
+        callback(['published', 'unpublished', 'draft']);
+        break;
+      case 'access':
+        callback(['public', 'private', 'protected']);
+        break;
+      case 'title':
+        callback([
+          'Pentagon Papers',
+          'CoffeeScript Manual',
+          'Laboratory for Object Oriented Thinking',
+          'A Repository Grows in Brooklyn'
+        ]);
+        break;
+    }
+  }
+      }
+    });
+  });
+
+{% endblock%}

@@ -344,6 +344,66 @@ class InfoqList(Base):
         self.desc=desc
         self.title=title
         self.img=img
+
+'''
+  `id` VARCHAR(30) NOT NULL ,
+  `name` VARCHAR(45) NULL ,
+  `ename` VARCHAR(45) NULL ,
+  `email` VARCHAR(200) NULL ,
+  `address` VARCHAR(200) NULL ,
+  `location` VARCHAR(200) NULL ,
+  `company` VARCHAR(200) NULL ,
+  `phone` VARCHAR(45) NULL ,
+  `im` VARCHAR(45) NULL ,
+  `bank` VARCHAR(100) NULL ,
+  `bio` VARCHAR(200) NULL ,
+  `img` VARCHAR(200) NULL ,
+  `weibo` VARCHAR(200) NULL ,
+  `blog` VARCHAR(200) NULL ,
+  `area` VARCHAR(200) NULL ,
+  `birth` VARCHAR(45) NULL ,
+  `bid` VARCHAR(45) NULL ,
+  PRIMARY KEY (`id`) );
+'''
+class ExpertList(Base):
+    __tablename__="expert_list"
+    id = Column(String(30),primary_key=True)
+    name=Column(String(45))
+    ename=Column(String(45))
+    email=Column(String(200))
+    address=Column(String(200))
+    location=Column(String(200))
+    company=Column(String(200))
+    phone=Column(String(45))
+    im=Column(String(45))
+    bank=Column(String(100))
+    bio=Column(String(500))
+    img=Column(String(200))
+    weibo=Column(String(200))
+    blog=Column(String(200))
+    area=Column(String(200))
+    birth=Column(DateTime)
+    bid=Column(String(45))
+    def __init__(self,id,name,ename,email,address,location,company,phone,im,bank,bio,
+        img,weibo,blog,area,birth,bid):
+        self.id=id
+        self.name=name
+        self.ename=ename
+        self.email=email
+        self.address=address
+        self.location=location
+        self.company=company
+        self.phone=phone
+        self.im=im
+        self.bank=bank
+        self.bio=bio
+        self.img=img
+        self.weibo=weibo
+        self.blog=blog
+        self.area=area
+        self.birth=birth
+        self.bid=bid
+
 WEIBO_MAIL_CONTENT_BASE1="""
 
 
