@@ -4,12 +4,84 @@
 		"selected_items":
 		[
 			[
-				"find",
-				"find"
+				"ad",
+				"add_url_rule"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"com",
+				"commit"
+			],
+			[
+				"ex",
+				"ExpertList"
+			],
+			[
+				"Ex",
+				"ExpertList"
+			],
+			[
+				"quer",
+				"query"
+			],
+			[
+				"in",
+				"input	Tag"
 			],
 			[
 				"get",
-				"getitem"
+				"get_user"
+			],
+			[
+				"q",
+				"query"
+			],
+			[
+				"query",
+				"query_it"
+			],
+			[
+				"Exper",
+				"ExpertList"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"add",
+				"add_user"
+			],
+			[
+				"db",
+				"dbSessin"
+			],
+			[
+				"st",
+				"String"
+			],
+			[
+				"S",
+				"String"
+			],
+			[
+				"pr",
+				"primary_key"
+			],
+			[
+				"col",
+				"Column"
+			],
+			[
+				"id",
+				"id"
+			],
+			[
+				"find",
+				"find"
 			],
 			[
 				"Top",
@@ -22,10 +94,6 @@
 			[
 				"url",
 				"urls"
-			],
-			[
-				"id",
-				"task_id"
 			],
 			[
 				"gro",
@@ -42,14 +110,6 @@
 			[
 				"tas",
 				"TaskHelper"
-			],
-			[
-				"db",
-				"db_session"
-			],
-			[
-				"S",
-				"StatusList"
 			],
 			[
 				"f",
@@ -80,10 +140,6 @@
 				"WEIBO_MAIL_CONTENT_BASE2"
 			],
 			[
-				"re",
-				"relation"
-			],
-			[
 				"WPC",
 				"WPConfig"
 			],
@@ -108,10 +164,6 @@
 				"MethodView"
 			],
 			[
-				"res",
-				"request"
-			],
-			[
 				"comme",
 				"comments_count"
 			],
@@ -124,16 +176,8 @@
 				"WPCheckList"
 			],
 			[
-				"add",
-				"add_to_database"
-			],
-			[
 				"Wp",
 				"WPCheckList"
-			],
-			[
-				"com",
-				"comment"
 			],
 			[
 				"cat",
@@ -158,10 +202,6 @@
 			[
 				"crea",
 				"create_id"
-			],
-			[
-				"ad",
-				"add_url_rule"
 			],
 			[
 				"str",
@@ -232,10 +272,6 @@
 				"thead	Tag"
 			],
 			[
-				"st",
-				"strptime"
-			],
-			[
 				"for",
 				"form"
 			],
@@ -284,10 +320,6 @@
 				"helper_data"
 			],
 			[
-				"ex",
-				"expires_in"
-			],
-			[
 				"In",
 				"Integer"
 			],
@@ -319,6 +351,73 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "templates/base.html",
+			"settings":
+			{
+				"buffer_size": 8903,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config.py",
+			"settings":
+			{
+				"buffer_size": 15153,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "action_expert.py",
+			"settings":
+			{
+				"buffer_size": 3612,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Arthur/Documents/GITReps/infoq-expert/config.py",
+			"settings":
+			{
+				"buffer_size": 1300,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/expert_show.html",
+			"settings":
+			{
+				"buffer_size": 5193,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "action_timeline.py",
+			"settings":
+			{
+				"buffer_size": 939,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<!doctype html>\n<html>\n<head>\n<script type=\"text/javascript\" src=\"http://code.jquery.com/jquery-1.7.1.min.js\"></script>\n<script type=\"text/javascript\" src=\"static/js/turn.min.js\"></script>\n\n<style type=\"text/css\">\nbody{\n	background:#ccc;\n}\n.middle{margin-left:auto;margin-right:auto;test-align:center;}\n#magazine{\n	width:902px;\n	height:650px;\n}\n#magazine .turn-page{\n	background-color:#ccc;\n	background-size:100% 100%;\n}\n</style>\n</head>\n<body>\n<div>\n	<h2 class=\"middle\">架构师4月刊</h2>\n</div>\n<div id=\"magazine\" class='middle'>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.1.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.2.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.3.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.4.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.5.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.6.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.7.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.8.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.9.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.10.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.11.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.12.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.13.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.14.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.15.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.16.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.17.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.18.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.19.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.20.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.21.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.22.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.23.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.24.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.25.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.26.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.27.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.28.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.29.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.30.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.31.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.32.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.33.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.34.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.35.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.36.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.37.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.38.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.39.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.40.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.41.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.42.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.43.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.44.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.45.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.46.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.47.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.48.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.49.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.50.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.51.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.52.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.53.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.54.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.55.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.56.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.57.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.58.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.59.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.60.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.61.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.62.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.63.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.64.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.65.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.66.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.67.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.68.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.69.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.70.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.71.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.72.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.73.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.74.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.75.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.76.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.77.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.78.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.79.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.80.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.81.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.82.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.83.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.84.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.85.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.86.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.87.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.88.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.89.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.90.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.91.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.92.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.93.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.94.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.95.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.96.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.97.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.98.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.99.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.100.jpg);\"></div>\n<div style=\"background-image:url(https://github.com/infoq-china/infoq-online-magazine/raw/master/1204/jgs.101.jpg);\"></div>\n</div>\n\n\n<script type=\"text/javascript\">\n\n	$(window).ready(function() {\n		$('#magazine').turn({\n							display: 'double',\n							acceleration: true,\n							gradients: !$.isTouch,\n							elevation:50,\n							when: {\n								turned: function(e, page) {\n									console.log('Current view: ', $(this).turn('view'));\n								}\n							}\n						});\n	});\n	\n	\n	$(window).bind('keydown', function(e){\n		\n		if (e.keyCode==37)\n			$('#magazine').turn('previous');\n		else if (e.keyCode==39)\n			$('#magazine').turn('next');\n			\n	});\n\n</script>\n\n</body>\n</html>\n",
+			"file": "templates/mag_1204.html",
+			"file_size": 1679,
+			"file_write_time": 1335262970000000,
+			"settings":
+			{
+				"buffer_size": 13487,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Arthur/Desktop/test_mag.py",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -356,6 +455,32 @@
 	},
 	"file_history":
 	[
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/expert_search.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/myapp.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/expert_haha.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/expert_list.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/wp_add.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/expert_add.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/mag_1204.html",
+		"/Users/Arthur/Desktop/with_login.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/lab.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/aboutus.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_timeline.py",
+		"/Users/Arthur/Dropbox/工作/Aboutus/20120416/about.xxx",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_task.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_mag.py",
+		"/Users/Arthur/Downloads/blasten-turn.js-8b0e272/demos/magazine/index.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_aboutus.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/time_index.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/mag_index.html",
+		"/Users/Arthur/Downloads/blasten-turn.js-8b0e272/demos/bible/index.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/timeline-embed.js",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/data/data.json",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/config.py",
+		"/Users/Arthur/Desktop/VeriteCo-Timeline-18e347a/timeline.js",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/action_aboutus.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_weibo.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_mail.py",
 		"/Users/Arthur/Documents/GITReps/wenzi/README.markdown",
@@ -373,11 +498,7 @@
 		"/Users/Arthur/Desktop/流程",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_top.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_feedback.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/myapp.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/config.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/top_urls.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_task.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_check.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/helper_data.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/task_submit.html",
@@ -393,7 +514,6 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/400.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/task_add.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/maildel.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/wp_add.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/wp_config.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/modles.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/help_data.py",
@@ -402,7 +522,6 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/infoq-guru.sublime-workspace",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/wp_mail.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/wp_check.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/_init.sql",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_task",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/weibosend.html",
@@ -463,20 +582,7 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoqhelp/configorg.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoqhelp/templates/show.html",
 		"/Users/Arthur/Desktop/工作/编辑/发布/2012-3-21/summary.txt",
-		"/Users/Arthur/Downloads/lj.html",
-		"/Users/Arthur/Downloads/lj.html.重命名",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoqhelp/myapp2.py",
-		"/Users/Arthur/Desktop/Workbook2.htm",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoqhelp/templates/showorg.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoqhelp/templates/newadd.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-rss/basic info .txt",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoqhelp/build/MySQL-python/setup_posix.py",
-		"/Users/Arthur/Downloads/MySQL-python-1.2.3/setup_posix.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoqhelp/templates/show_flot.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoqhelp/README",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoqhelp/myaction.py",
-		"/Users/Arthur/Documents/no-fear-writting/配置数据/苹果入手以后配置",
-		"/Users/Arthur/Documents/no-fear-writting/writting2.txt"
+		"/Users/Arthur/Downloads/lj.html"
 	],
 	"find":
 	{
@@ -487,6 +593,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static"
 		]
 	},
 	"find_state":
@@ -494,6 +601,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"phone",
+			"李剑",
+			"金毅",
+			"促进软件开发领域知识与创新的传播",
+			"促进和传播软件开发领域的技术和创新",
+			"崔康",
+			"沙晓兰",
+			"崇桦",
+			">",
+			"data/data",
+			"taylor",
+			"spot",
+			"appspot",
 			"in hyp",
 			":",
 			"</pre>",
@@ -558,8 +678,226 @@
 	"groups":
 	[
 		{
+			"selected": 6,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "templates/base.html",
+					"settings":
+					{
+						"buffer_size": 8903,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1144,
+								1144
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "config.py",
+					"settings":
+					{
+						"buffer_size": 15153,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								877,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 402.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "action_expert.py",
+					"settings":
+					{
+						"buffer_size": 3612,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1518,
+								1534
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/Arthur/Documents/GITReps/infoq-expert/config.py",
+					"settings":
+					{
+						"buffer_size": 1300,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 24.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "templates/expert_show.html",
+					"settings":
+					{
+						"buffer_size": 5193,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4031,
+								4031
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "action_timeline.py",
+					"settings":
+					{
+						"buffer_size": 939,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 40.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "templates/mag_1204.html",
+					"settings":
+					{
+						"buffer_size": 13487,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12940,
+								12940
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1519.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/Users/Arthur/Desktop/test_mag.py",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -631,6 +969,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 342.0,
+	"side_bar_width": 174.0,
 	"status_bar_visible": true
 }

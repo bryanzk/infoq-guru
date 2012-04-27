@@ -8,6 +8,8 @@ class ExpertHelper():
 		if uu:
 			dbSessin.delete(uu[0])
 			dbSessin.commit()
+			u.bid=uu[0].bid
+			u.bank=uu[0].bank
 			dbSessin.add(u)
 			dbSessin.commit()
 		else:
@@ -34,6 +36,8 @@ class ExpertHelper():
 			result=dbSessin.query(ExpertList).filter(ExpertList.address.like('%'+query+'%')).all()
 		if cat=='bio':
 			result=dbSessin.query(ExpertList).filter(ExpertList.bio.like('%'+query+'%')).all()
+		if cat=='area':
+			result=dbSessin.query(ExpertList).filter(ExpertList.area.like('%'+query+'%')).all()
 		dbSessin.close()
 		return result
 	def create_id(self):
@@ -45,10 +49,18 @@ class ExpertShow(MethodView):
 		id=request.args.get('id')
 		helper=ExpertHelper()
 		u=helper.get_user(id)
-		return render_template('expert_show.html',u=u)
+		db_session=sessionmaker(bind=DB)
+		dbSessin=db_session()
+		return render_template('expert_show.html',x=u,r='')
+
 class ExpertUpdate(MethodView):
 	def get(self):
-		return render_template('expert_add.html')
+		id=request.args.get('id')
+		helper=ExpertHelper()
+		u=helper.get_user(id)
+		db_session=sessionmaker(bind=DB)
+		dbSessin=db_session()
+		return render_template('expert_update.html',x=u,r='')
 		
 	def post(self):
 		id=request.form['id']
@@ -60,14 +72,14 @@ class ExpertUpdate(MethodView):
 		company=request.form['company']
 		phone=request.form['phone']
 		im=request.form['im']
-		bank=request.form['bank']
+		bank=''
 		bio=request.form['bio']
 		img=request.form['img']
 		weibo=request.form['weibo']
 		blog=request.form['blog']
 		area=request.form['area']
 		birth=datetime.strptime(request.form['birth']+" 00:00:00",'%Y-%m-%d %H:%M:%S')
-		bid=request.form['bid']
+		bid=''
 		helper=ExpertHelper()
 		u=ExpertList(id=id,name=name,
 			ename=ename,email=email,
@@ -81,7 +93,8 @@ class ExpertUpdate(MethodView):
 			blog=blog,
 			area=area,birth=birth,bid=bid)
 		helper.add_user(u)
-		return 'ok'
+		flash('修改成功')
+		return redirect('eshow?id='+id)
 
 class ExpertAdd(MethodView):
 	def get(self):
@@ -117,7 +130,8 @@ class ExpertAdd(MethodView):
 			blog=blog,
 			area=area,birth=birth,bid=bid)
 		helper.add_user(u)
-		return 'ok'
+		flash('修改成功')
+		return redirect('eshow?id='+str(id))
 
 class ExpertSearch(MethodView):
 	def get(self):

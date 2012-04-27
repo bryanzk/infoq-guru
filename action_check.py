@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# 获取每天的微博数据，过滤以后发送给编辑群组
 from config import *
 from action_mail import *
 class WPHelper():

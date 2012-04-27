@@ -1,0 +1,294 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html><head/><body><meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+<title>InfoQ中文站每周精要 - {{jy.time}}</title>
+<style type="text/css"><!--
+hr { margin: 10px 0 0 0;}
+a:hover {color: #008000; text-decoration: underline;}
+--></style>
+<table style="text-align: left; border-collapse: collapse;" width="700" border="0" bordercolor="#111111" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td colspan="2" height="60">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 5px; background-color: #f7f7f7;">
+<div style="padding: 10px 0 0 5px; font-size: 40px;"><a style="text-decoration: none; color: black;" href="http://www.infoq.com"><span style="color: #2c70b8;">Info</span><span style="color: darkgreen;">Q</span>中文站</a> <small><small>每周精要</small></small></div>
+</div>
+</td>
+</tr>
+<tr>
+<td bordercolor="#111111" style="vertical-align: top; padding: 0 10px 0 10px;">
+<h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">感谢您订阅每周精要第{{jy.count}}期，本期内容截止于{{jy.cdate}}</h2>
+<a style="text-decoration: none; color: black;" href="#development"><font color="#008000"><strong>语言&开发</strong></font></a>，<a style="text-decoration: none; color: black;" href="#architecture-design"><font color="#008000"><strong>架构&设计</strong></font></a>，<a style="text-decoration: none; color: black;" href="#process-practices"><font color="#008000"><strong>过程&实践</strong></font></a>，<a style="text-decoration: none; color: black;" href="#operations-infrastructure"><font color="#008000"><strong>运维&基础架构</strong></font></a>，<a style="text-decoration: none; color: black;" href="#enterprise-architect"><font color="#008000"><strong>企业架构</strong></font></a> <span style="font-family: arial; font-size: 12px;"> 
+<hr color="#dddddd" size="1" />
+<h1 style="padding: 0px; font-family: Arial; font-size: 12pt; color: black; line-height: 10pt; margin-bottom: 5px;"><a style="text-decoration: none; color: black;" href="http://www.infoq.com/cn/articles/upyun-storage">又拍云帮你解决存储+CDN大问题</a></h1>
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">丁香园CTO冯大辉这样评价又拍云："图片优化是web前端优化最关键的一环，又拍云存储服务让网站以较小的成本解决这一关键的性能问题，缩减页面加载时间，提升转化率，而且还方便易用，这项服务值得推荐。"<a style="text-decoration: none; color: darkgreen;" href="https://www.upyun.com/?md=infoq_newsletter"><u>点击申请免费试用</u>！</a></p>
+<hr color="#dddddd" size="1" />
+<a name="development"></a>
+<h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">来自语言&开发专区的最新内容<br /> <a style="font-size: 10pt; text-decoration: none; color: darkgreen;" href="http://www.infoq.com/development/">http://www.infoq.com/cn/development/</a></h2>
+ 
+{% for x in jy.content.yuyan %}
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td colspan="2">
+<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
+</td>
+<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
+
+{% endfor %}
+
+
+<div style="padding: 10px 15px; background-color: #f2f2f2; clear: both;">
+<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">上周最热门的语言&开发新闻</h3>
+{% for x in jy.news.yuyan %}
+<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">
+<a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h3>
+
+{% endfor %}
+
+</div>
+
+<hr color="#dddddd" size="1" />
+<a name="architecture-design"></a>
+<h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">来自架构&设计专区的最新内容<br /> <a style="font-size: 10pt; text-decoration: none; color: darkgreen;" href="http://www.infoq.com/architecture-design/">http://www.infoq.com/cn/architecture-design/</a></h2>
+ 
+{% for x in jy.content.jiagou %}
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td colspan="2">
+<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
+</td>
+<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+{% endfor %}
+
+<div style="clear: both; height: 10px;"><!-- --></div>
+<div style="padding: 10px 15px; background-color: #f2f2f2;">
+<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">上周最热门的架构&设计新闻</h3>
+
+{% for x in jy.news.jiagou %}
+<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">
+<a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h3>
+
+{% endfor %}
+
+
+</div>
+
+<hr color="#dddddd" size="1" />
+<a name="process-practices"></a>
+<h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">来自过程&实践专区的最新内容<br /> <a style="font-size: 10pt; text-decoration: none; color: darkgreen;" href="http://www.infoq.com/process-practices/">http://www.infoq.com/cn/process-practices/</a></h2>
+
+{% for x in jy.content.guocheng %}
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td colspan="2">
+<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
+</td>
+<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+{% endfor %}
+
+
+
+<div style="clear: both; height: 10px;"><!-- --></div>
+<div style="padding: 10px 15px; background-color: #f2f2f2; clear: both;">
+<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">上周最热门的过程&实践新闻</h3>
+{% for x in jy.news.guocheng %}
+<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">
+<a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h3>
+
+{% endfor %}
+</div></div>
+
+
+
+<hr color="#dddddd" size="1" />
+<a name="operations-infrastructure"></a>
+<h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">来自运维&基础架构专区的最新内容<br /> <a style="font-size: 10pt; text-decoration: none; color: darkgreen;" href="http://www.infoq.com/operations-infrastructure/">http://www.infoq.com/cn/operations-infrastructure/</a></h2>
+{% for x in jy.content.yunwei %}
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td colspan="2">
+<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
+</td>
+<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+{% endfor %}
+
+<div style="clear: both; height: 10px;"><!-- --></div>
+<div style="padding: 10px 15px; background-color: #f2f2f2; clear: both;">
+<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">上周最热门的运维&基础架构新闻</h3>
+
+
+{% for x in jy.news.yunwei %}
+<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">
+<a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h3>
+
+{% endfor %}
+
+</div></div>
+
+<hr color="#dddddd" size="1" />
+<a name="enterprise-architect"></a>
+<h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">来自企业架构专区的最新内容<br /> <a style="font-size: 10pt; text-decoration: none; color: darkgreen;" href="http://www.infoq.com/enterprise-architect/">http://www.infoq.com/cn/enterprise-architect/</a></h2>
+
+{% for x in jy.content.qiye %}
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td colspan="2">
+<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
+</td>
+<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+{% endfor %}
+
+<div style="clear: both; height: 10px;"><!-- --></div>
+<div style="padding: 10px 15px; background-color: #f2f2f2; clear: both;">
+<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">上周最热门的企业架构新闻</h3>
+
+{% for x in jy.news.qiye %}
+<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">
+<a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h3>
+
+{% endfor %}
+</div>
+</div>
+
+<hr color="#dddddd" size="1" />
+
+ <a name="FeaturedTopics"></a></span></td>
+<td bordercolor="#111111" style="border-left: 1px solid #dddddd; padding-left: 10px; padding-right: 10px; width: 180px;" valign="top"><br /> 
+<table style="font-family: Arial; font-size: 10pt; border-right: 2px solid #dddddd; border-bottom: 2px solid #dddddd; margin-bottom: 20px;" width="100%" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="background-color: #dce6f6; color: black; font-size: 12px; margin: 0; padding: 3px 5px;"><strong>最新技术文档下载</strong></td>
+</tr>
+<tr>
+<td style="font-size: 8pt; font-family: Arial;" bgcolor="#f7f7f7">
+<a style="text-decoration: none; color: black;" href="http://www.infoq.com/cn/minibooks/architect-apr-10-2012">迷你书：架构师（4月刊）</td>
+</tr>
+
+<tr>
+<td style="font-size: 8pt; font-family: Arial;" bgcolor="#f7f7f7">
+<a style="text-decoration: none; color: black;" href="http://www.infoq.com/cn/presentations/xzh-58-distributed-storage-architecture-practice">58同城在分布式存储方面的架构实践</td>
+</tr>
+
+<tr>
+<td style="font-size: 8pt; font-family: Arial;" bgcolor="#f7f7f7">
+<a style="text-decoration: none; color: black;" href="http://www.infoq.com/cn/presentations/yd-hypertable-goes-realtime-baidu">Hypertable Goes Realtime at Baidu</td>
+</tr>
+
+
+</tbody>
+</table>
+
+<div style="color: #024c7f; border-right: 2px solid #dddddd; width: 170px; font-family: Arial; font-size: 12px; margin-bottom: 20px; padding: 5px;">
+<span style="font-weight: bold;">
+<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; line-height: 13pt;" align="center">赞助商信息</h3>
+</span>
+
+
+<p style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; line-height: 13pt;" align="center"><a href="http://www.microsoft.com/click/services/Redirect2.ashx?CR_CC=200093350"><img src="http://www.infoq.com/resource/articles/mvvm-revelation/zh/resources/VS11_50.jpg"  border="0"></a></p>
+<p><a style="text-decoration: none; color: darkgreen;" href="http://www.microsoft.com/click/services/Redirect2.ashx?CR_CC=200093350"><u><strong>Visual Studio 11 beta已提供下载</strong></u></a></p>
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">微软现已提供Visual Studio 11 Beta和.NET Framework 4.5 Beta下载，其宣称将为跨部门协作提供更好的支持，且更加快速和便捷。Visual Studio 11适用于个人和各种开发团队，实现了团队成员间的无缝协作，让开发人员或产品设计师更加专注和高效，使开发优秀应用成为可能，<a style="text-decoration: none; color: darkgreen;" href="http://www.microsoft.com/click/services/Redirect2.ashx?CR_CC=200093350"><u>点击下载</u>！</a></p>
+
+<p><a style="text-decoration: none; color: darkgreen;" href="http://www.infoq.com/cn/news/2012/03/survey-report"><u><strong>InfoQ中文站2011-2012读者深度调查结果出炉</strong></u></a></p>
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">2011年，InfoQ中文站有很多变化，12月，我们发起了2011-2012年度的读者深度调查，通过这个调查，我们进一步了解了我们的读者，了解了大家的需求，这让我们可以提供更好的线上内容和线下活动，让读者能够从InfoQ中文站获得越来越多的价值。经过整理，我们现在把调查结果公布出来，让大家看到InfoQ的读者在技术方面的偏好，同时希望帮助大家更加深入了解中国的技术和技术人群的关注点和发展趋势。<a style="text-decoration: none; color: darkgreen;" href="http://www.infoq.com/cn/news/2012/03/survey-report"><u>点击进入下载</u>！</a></p>
+<p><b>下周精选活动推荐：</b>
+<br><a style="text-decoration: none; color: darkgreen;" href="http://gmic.greatwallclub.com/cn"><u>全球移动互联网大会</u></a><br>
+<br><a  style="text-decoration: none; color: darkgreen;"href="http://www.infoq.com/cn/chinaitevents.jsp"><u><b>更多活动</b></u></a></p>
+
+
+
+
+</div>
+<br />
+</td>
+</tr>
+</tbody>
+</table>
+
+<hr color="#e0e0e0" />
+<table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tbody>
+<tr>
+<td><font face="arial,verdana" size="2">InfoQ中文站每周二针对会员发送每周内容精要邮件，如果您不希望再次收到，请点击以下链接：<a href="http://%%unsubscribelink%%/">取消订阅</a>。</font></td>
+</tr>
+<tr>
+<td><font face="arial,verdana" size="2">别人转发给你的邮件？<a href="http://www.infoq.com/cn/reginit.action">现在注册获取你自己的InfoQ每周精要邮件吧。</a> </font></td>
+</tr>
+
+</tbody>
+</table>
+<hr color="#e0e0e0" /></body></html>

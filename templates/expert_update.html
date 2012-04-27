@@ -1,22 +1,19 @@
 {% extends 'base.html' %}
-
-{% block script%}
-$("#addtable").validate();
-{%endblock%}
 {% block body %}
-   <form  id='addtable'class="form-horizontal" method='post' action='eadd'>
+   <form class="form-horizontal" method='post' action='eupdate'>
         <fieldset>
           <legend>添加新的专家</legend>
           <table>
             <tr>
+                <input type='hidden' name='id' value='{{x.id}}'>
               <td>
                    <div class="control-group">
             <label for="input01" class="control-label">姓名</label>
             <div class="controls">
              <div class="input-prepend">
-              <span class="add-on"><i class="icon-user"></i></span><input name='name' class='required' type="text" id="inputIcon" class="span2">
+              <span class="add-on"><i class="icon-user"></i></span><input name='name' type="text" id="inputIcon" value='{{x.name}}' class="span2">
             </div>
-              <p class="help-block ">输入专家姓名</p>
+              <p class="help-block">输入专家姓名</p>
             </div>
               </td>
               <td>
@@ -24,7 +21,7 @@ $("#addtable").validate();
             <label for="input01" class="control-label">英文名</label>
             <div class="controls">
              <div class="input-prepend">
-              <span class="add-on"><i class="icon-user"></i></span><input name='ename'  type="text" id="inputIcon" class="span2">
+              <span class="add-on"><i class="icon-user"></i></span><input name='ename'  type="text" id="inputIcon" value='{{x.ename}}'class="span2">
             </div>
               <p class="help-block">输入专家英文名</p>
             </div>
@@ -37,7 +34,7 @@ $("#addtable").validate();
             <label for="input01" class="control-label">邮箱</label>
             <div class="controls">
               <div class="input-prepend">
-              <span class="add-on"><i class="icon-envelope"></i></span><input name='email' type="text" id="inputIcon" class="span2">
+              <span class="add-on"><i class="icon-envelope"></i></span><input name='email' type="text" id="inputIcon" value='{{x.email}}' class="span2">
             </div>
               <p class="help-block">输入专家邮箱</p>
             </div>
@@ -47,7 +44,7 @@ $("#addtable").validate();
             <label for="input01" class="control-label">手机号</label>
             <div class="controls">
              <div class="input-prepend">
-              <span class="add-on"><i class="icon-envelope"></i></span><input name='phone' type="text" id="inputIcon" class="span2">
+              <span class="add-on"><i class="icon-envelope"></i></span><input name='phone' type="text" id="inputIcon" value='{{x.phone}}' class="span2">
             </div>
               <p class="help-block">输入手机号</p>
             </div>
@@ -61,7 +58,7 @@ $("#addtable").validate();
             <label for="input01" class="control-label">领域</label>
             <div class="controls">
              <div class="input-prepend">
-              <span class="add-on"><i class="icon-adjust"></i></span><input type="text" name='area' id="inputIcon" class="span2">
+              <span class="add-on"><i class="icon-adjust"></i></span><input type="text" name='area' id="inputIcon" value='{{x.area}}' class="span2">
               <p class="help-block">输入领域</p>
             </div>
           </div>
@@ -73,7 +70,7 @@ $("#addtable").validate();
             <label for="input01" class="control-label">城市</label>
             <div class="controls">
 <div class="input-prepend">
-              <span class="add-on"><i class="icon-globe"></i></span><input type="text" name='location' id="inputIcon" class="span2">
+              <span class="add-on"><i class="icon-globe"></i></span><input type="text" value='{{x.location}}' name='location' id="inputIcon" class="span2">
             </div>              <p class="help-block">输入所在城市</p>
             </div>
           </div>
@@ -83,14 +80,14 @@ $("#addtable").validate();
                 <td><div class="control-group">
             <label for="input01" class="control-label">公司</label>
             <div class="controls">
-              <input type="text" id="input01" name='company' >
+              <input type="text" id="input01" value='{{x.company}}' name='company' >
               <p class="help-block">输入所在公司名</p>
             </div>
           </div></td>
                 <td><div class="control-group">
             <label for="input01" class="control-label">IM</label>
             <div class="controls">
-              <input type="text" id="input01"  value='0'  name='im' >
+              <input type="text" id="input01"  value='{{x.im}}'  name='im' >
               <p class="help-block">输入IM</p>
             </div>
           </div></td>
@@ -101,30 +98,23 @@ $("#addtable").validate();
 
 
 <div class="control-group">
-            <label for="input01" class="control-label">银行账户</label>
-            <div class="controls">
-              <input type="text" class='span4' id="input01" value='0'  name='bank' >
-              <p class="help-block">输入银行账户</p>
-            </div>
-          </div>
-<div class="control-group">
             <label for="input01" class="control-label">个人简介</label>
             <div class="controls">
-              <textarea type="text" id="input01" class='span4' value='0' name='bio' ></textarea>
+              <textarea type="text" id="input01" class='span4'value='{{x.bio}}'name='bio' >{{x.bio}}</textarea>
               <p class="help-block"></p>
             </div>
           </div>
 <div class="control-group">
             <label for="input01" class="control-label">图像地址</label>
             <div class="controls">
-              <input type="text" id="input01" value='0'  name='img' >
+              <input type="text" id="input01" value='{{x.img}}'  name='img' >
               <p class="help-block">输入专家的头像地址</p>
             </div>
           </div>
 <div class="control-group">
             <label for="input01" class="control-label">微博地址</label>
             <div class="controls">
-              <input type="text" id="input01" value='0'  name='weibo' >
+              <input type="text" id="input01" value='{{x.weibo}}'  name='weibo' >
               <p class="help-block">输入微博地址</p>
             </div>
           </div>
@@ -133,14 +123,14 @@ $("#addtable").validate();
             <label for="input01" class="control-label">地址</label>
             <div class="controls">
 <div class="input-prepend">
-              <span class="add-on"><i class="icon-globe"></i></span><input type="text" value='0'  name='address' id="inputIcon" class="span2">
+              <span class="add-on"><i class="icon-globe"></i></span><input type="text" value='{{x.address}}'  name='address' id="inputIcon" class="span2">
             </div>              <p class="help-block">输入地址</p>
             </div>
           </div>
           <div class="control-group">
             <label for="input01" class="control-label">博客</label>
             <div class="controls">
-              <input type="text" id="input01" value='0' name='blog' >
+              <input type="text" id="input01" value='{{x.blog}}' name='blog' >
               <p class="help-block">输入博客</p>
             </div>
           </div>
@@ -148,24 +138,17 @@ $("#addtable").validate();
             <label for="input01" class="control-label">生日</label>
             <div class="controls">
              <div class="input-prepend">
-              <span class="add-on"><i class="icon-calendar"></i></span><input value='2012-01-01'  type="text" name='birth' id="inputIcon" class="span2">
+              <span class="add-on"><i class="icon-calendar"></i></span><input value='{{x.birth}}'  type="text" name='birth' id="inputIcon" class="span2">
             </div>        
               <p class="help-block">输入生日,格式为2012-01-01</p>
             </div>
           </div>
-<div class="control-group">
-            <label for="input01" class="control-label">身份证号</label>
-            <div class="controls">
-              <input type="text" id="input01" value='0'  name='bid' >
-              <p class="help-block">输入身份证号</p>
-            </div>
-          </div>
+
 
 
          
           <div class="form-actions">
             <button class="btn btn-primary" type="submit">Submit</button>
-            <button class="btn">Cancel</button>
           </div>
         </fieldset>
       </form>

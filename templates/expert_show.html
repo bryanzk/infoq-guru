@@ -1,129 +1,44 @@
 {% extends 'base.html' %}
+
 {% block body %}
-   <form class="form-horizontal" method='post' action='eupdate'>
-        <fieldset>
-          <legend>添加新的专家</legend>
-          <input type='hidden' name='id' value='{{u.id}}'> 
-          <div class="control-group">
-            <label for="input01" class="control-label">姓名</label>
-            <div class="controls">
-              <input type="text" id="input01" value='{{u.name}}' name='name' >
-              <p class="help-block">输入专家姓名</p>
-            </div>
-          </div>
-<div class="control-group">
-            <label for="input01" class="control-label">英文名</label>
-            <div class="controls">
-              <input type="text" value='{{u.ename}}' id="input01" name='ename' >
-              <p class="help-block">输入专家英文名</p>
-            </div>
-          </div>
-<div class="control-group">
-            <label for="input01" class="control-label">邮箱</label>
-            <div class="controls">
-              <input type="text" value='{{u.email}}' id="input01" name='email' >
-              <p class="help-block">输入专家邮箱</p>
-            </div>
-          </div>
-          <div class="control-group">
-            <label for="input01" value='{{u.phone}}' class="control-label">手机号</label>
-            <div class="controls">
-              <input type="text" id="input01" name='phone' >
-              <p class="help-block">输入手机号</p>
-            </div>
-          </div>
-<div class="control-group">
-            <label for="input01" class="control-label">地址</label>
-            <div class="controls">
-              <input type="text"  value='{{u.adress}}' id="input01" name='address' >
-              <p class="help-block">输入地址</p>
-            </div>
-          </div>
-<div class="control-group">
-            <label for="input01" class="control-label">城市</label>
-            <div class="controls">
-              <input type="text" value='{{u.location}}'  id="input01" name='location' >
-              <p class="help-block">输入所在城市</p>
-            </div>
-          </div>
-<div class="control-group">
-            <label for="input01" class="control-label">公司</label>
-            <div class="controls">
-              <input type="text" value='{{u.company}}'  id="input01" name='company' >
-              <p class="help-block">输入所在公司名</p>
-            </div>
-          </div>
-<div class="control-group">
-            <label for="input01" class="control-label">IM</label>
-            <div class="controls">
-              <input type="text"  value='{{u.im}}' id="input01" name='im' >
-              <p class="help-block">输入IM</p>
-            </div>
-          </div>
-<div class="control-group">
-            <label for="input01" class="control-label">银行账户</label>
-            <div class="controls">
-              <input type="text" value='{{u.bank}}'  id="input01" name='bank' >
-              <p class="help-block">输入银行账户</p>
-            </div>
-          </div>
-<div class="control-group">
-            <label for="input01" class="control-label">个人简介</label>
-            <div class="controls">
-              <textarea type="text" value='{{u.bio}}'  id="input01" name='bio' ></textarea>
-              <p class="help-block"></p>
-            </div>
-          </div>
-<div class="control-group">
-            <label for="input01" class="control-label">图像地址</label>
-            <div class="controls">
-              <input type="text"  value='{{u.img}}' id="input01" name='img' >
-              <p class="help-block">输入专家的头像地址</p>
-            </div>
-          </div>
-<div class="control-group">
-            <label for="input01" class="control-label">微博地址</label>
-            <div class="controls">
-              <input type="text" value='{{u.weibo}}'  id="input01" name='weibo' >
-              <p class="help-block">输入微博地址</p>
-            </div>
-          </div>
-<div class="control-group">
-            <label for="input01" class="control-label">领域</label>
-            <div class="controls">
-              <input type="text" value='{{u.area}}'  id="input01" name='area' >
-              <p class="help-block">输入领域</p>
-            </div>
-          </div>
-          <div class="control-group">
-            <label for="input01" class="control-label">博客</label>
-            <div class="controls">
-              <input type="text"  value='{{u.blog}}' id="input01" name='blog' >
-              <p class="help-block">输入博客</p>
-            </div>
-          </div>
-<div class="control-group">
-            <label for="input01" class="control-label">生日</label>
-            <div class="controls">
-              <input type="text"  value='{{u.birth}}' id="input01" name='birth' >
-              <p class="help-block">输入生日</p>
-            </div>
-          </div>
-<div class="control-group">
-            <label for="input01" class="control-label">身份证号</label>
-            <div class="controls">
-              <input type="text"  value='{{u.bid}}' id="input01" name='bid' >
-              <p class="help-block">输入身份证号</p>
-            </div>
-          </div>
-
-
-         
-          <div class="form-actions">
-            <button class="btn btn-primary" type="submit">Submit</button>
-            <button class="btn">Cancel</button>
-          </div>
-        </fieldset>
-      </form>
-     
+<div class="row-fluid">
+  <div class="">
+    <div class="well">
+        <table  width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody><tr>
+                <td width="73px" valign="top" align="center"><img width="73px" border="0" align="default"  src="{{x.img}}"><div class="sep10"></div><strong class="online"></strong></td>
+                <td width="10"></td>
+                <td width="auto" valign="top" align="left">
+                    <div class="fr">            
+                    
+                    </div>
+                    <h1 style="margin-bottom: 5px;">{{x.name}}</h1>
+                    <span class="icon-envelope "></span>公司：{{x.company}}<br/>
+                    <span class="icon-home"></span>领域：{{x.area}}
+                    <br/>
+                    <span class="icon-home"></span>邮箱：{{x.email}}
+                    <br/>
+                    <span class="icon-home"></span>电话：{{x.phone}}
+                  
+                </td>
+            </tr>
+        </tbody></table>
+    <hr/>
+    
+ 
+       
+        <img align="absmiddle" src="http://www.sinaimg.cn/blog/developer/wiki/16x16.png">&nbsp;<a target="_blank" href="{{x.weibo}}">新浪微博</a><div class="sep5"></div>
+        <img align="absmiddle" src="http://www.v2ex.com/static/img/mobileme.png">&nbsp;<a target="_blank" href="http://shui.us">http://shui.us</a><div class="sep5"></div>
+        <img align="absmiddle" src="http://www.v2ex.com/static/img/location.png">&nbsp;<a target="_blank" href="http://www.google.com/maps?q={{x.location}}">{{x.location}}</a><div class="sep5"></div>
+        
+        <hr/>
+        {{x.bio}}
+    </div>
+    
+   
+        
+    
+</div>
+  </div>
+   <p><a href="eupdate?id={{x.id}}" class="btn btn-primary">此信息有问题</a> <a href="mailto:arthur@infoq.com?subject=我想获取专家：{{x.name}} 的详细（包括银行账号、手机联系方式）" class="btn">获取详细信息</a></p>
 {% endblock%}

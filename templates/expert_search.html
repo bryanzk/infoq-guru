@@ -6,6 +6,8 @@
                 <option value='city'>城市</option>
                 <option value='address'>地址</option>
                 <option value='bio'>简介</option>
+                                <option value='area'>领域</option>
+
               </select>
         <input type="text" name='query'class="input-medium search-query">
         <button type="submit" class="btn">Search</button>
@@ -14,11 +16,10 @@
   <thead>
     <tr>
        <th>姓名</th>
-        <th>简介</th>
-        
+       
       <th>邮箱</th>
       <th>微博</th>
-     
+     <th>操作</th>
        
     </tr>
   </thead>
@@ -27,9 +28,10 @@
 
     <tr>
         <td><a href="/eshow?id={{x.id}}">{{x.name}}</a></td>
-        <td>{{x.desc}}</td>
+      
       <td>{{x.email}}</td>
       <td>{{x.weibo}}</td>
+      <td><span class='icon-user'></span><a  href="eshow?id={{x.id}}">查看</a>|<span class='icon-user'></span><a   href="eupdate?id={{x.id}}">修改</a></td>
   
     </tr>
     {% endfor %}
