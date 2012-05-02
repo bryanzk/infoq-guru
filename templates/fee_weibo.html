@@ -24,6 +24,32 @@
   document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
 })()
 </script>
+
+<!--网易微博-->
+<script type="text/javascript" charset="utf-8">
+(function() {
+function showKeyShare(){
+var param=[],ustr=[];
+param[0] = 'key=TXW3fifmpWyl528q';  //转发来源
+param[1] = 'url=' + {{x.guid}};  //当前页网址
+param[2] = 'togImg=true';  //默认显示转发图片(可选，删除true为不显示)
+param[3] = 'images='+{{x.img}};  //images为传过来的图片地址，多个图片地址用","隔开；若为空会自动抓取转发页面图片
+url = 'http://api.t.163.com/share?';
+url += param.join("&");
+ustr[0] = 'height=330,width=550,top=' + (screen.height - 280) / 2 ;
+ustr[1] = 'left=' + (screen.width - 550) / 2 ;
+ustr[2] = 'toolbar=no, menubar=no, scrollbars=no,';
+ustr[2] += 'resizable=yes,location=no, status=no';
+var s=ustr.join(',');
+window.open(url,'newwindow',s);
+};
+window.showKeyShare=showKeyShare;
+})();
+</script>
+<a style="display:block;width:64px;height:64px;background-image:url(http://static.t.126.net/frontend/open/image/sprites/key_v111213.png);background-position:0px -112px;background-repeat:no-repeat;" href="javascript:;" onclick="showKeyShare()" > </a> 
+
+<!--腾讯微博 -->
+
 <table width="227" cellspacing="0" cellpadding="0" border="0" style="border-collapse:
  collapse;table-layout:fixed;width:227pt">
  <colgroup><col width="136" style="mso-width-source:userset;mso-width-alt:5802;width:136pt">

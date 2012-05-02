@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block body %}
-<form class="well form-search" action='flist' method='post' >
+<form class="well form-search" action='user/search' method='post' >
 	 begin:<input type="text" name='begin'class="input-medium search-query">--end:
         <input type="text" name='end'class="input-medium search-query">
-        <button type="submit" class="btn">Search</button>
+        <button type="submit" class="btn">搜索</button>
       </form>
   <table id='num=4' class="table table-striped">
   <thead>

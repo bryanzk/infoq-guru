@@ -69,6 +69,8 @@ app.add_url_rule('/eadd',view_func=ExpertAdd.as_view('eadd'))
 app.add_url_rule('/es',view_func=ExpertSearch.as_view('es'))
 app.add_url_rule('/eshow',view_func=ExpertShow.as_view('eshow'))
 app.add_url_rule('/jingyao',view_func=JingyaoOut.as_view('jingyao'))
+app.add_url_rule('/jyi',view_func=JingyaoInput.as_view('jingyaoi'))
+app.add_url_rule('/jya',view_func=JingyaoAds.as_view('jingyaoi'))
 
 app.add_url_rule('/fimport',view_func=ImportDataToArticles.as_view('fimport'))
 app.add_url_rule('/flist',view_func=FeeArticleList.as_view('flist'))
