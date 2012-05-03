@@ -2,7 +2,7 @@
 {% block body %}
    <form class="form-horizontal" method='post' action='jyi'>
         <fieldset>
-          <legend>Add New task</legend>
+          <legend>Add New</legend>
           <div class="control-group">
             
             <div class="control-group">
@@ -15,10 +15,10 @@
             <label for="input01" class="control-label">类型</label>
             <div class="controls">
               <select id='num-1' name="cat">
-<option value="head">head</option>
-<option value="down">down</option>
-<option value='event'>event</option>
-<option value='spon'>event</option>
+<option value="head">头条</option>
+<option value="down">最新文档下载</option>
+<option value='event'>下周活动</option>
+<option value='spon'>赞助商信息</option>
 
 </select>
               <p class="help-block">类型</p>
@@ -37,18 +37,18 @@
             <label for="input04" class="control-label">标题链接</label>
             <div class="controls">
               <input type="text" id="input04" name='head_url' >
-              <p class="help-block">输入链接</p>
+              <p class="help-block">输入标题指向的链接</p>
             </div>
           </div>
           <div class="control-group">
             <label for="input05" class="control-label">内容</label>
             <div class="controls">
-              <input type="text" id="input05" name='content' >
-              <p class="help-block">输入内容的html格式</p>
+              <textarea  name='content' ></textarea>
+              <p class="help-block">输入内容的html格式<br/>示例：</p>
             </div>
           </div>
           <div class="control-group">
-            <label for="input06" class="control-label">图像</label>
+            <label for="input06" class="control-label">图像地址</label>
             <div class="controls">
               <input type="text" id="input06" name='img' >
               <p class="help-block">输入图像的地址</p>

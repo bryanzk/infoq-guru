@@ -1,6 +1,6 @@
 <!-- saved from url=(0022)http://internet.e-mail -->
 <html><head/><body><meta content="text/html; charset=UTF-8" http-equiv="content-type" />
-<title>InfoQ中文站每周精要 - {{jy.time}}</title>
+<title>InfoQ中文站每周精要 - ‘’</title>
 <style type="text/css"><!--
 hr { margin: 10px 0 0 0;}
 a:hover {color: #008000; text-decoration: underline;}
@@ -16,216 +16,16 @@ a:hover {color: #008000; text-decoration: underline;}
 </tr>
 <tr>
 <td bordercolor="#111111" style="vertical-align: top; padding: 0 10px 0 10px;">
-<h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">感谢您订阅每周精要第{{jy.count}}期，本期内容截止于{{jy.cdate}}</h2>
+<h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">感谢您订阅每周精要第期，本期内容截止于</h2>
 <a style="text-decoration: none; color: black;" href="#development"><font color="#008000"><strong>语言&开发</strong></font></a>，<a style="text-decoration: none; color: black;" href="#architecture-design"><font color="#008000"><strong>架构&设计</strong></font></a>，<a style="text-decoration: none; color: black;" href="#process-practices"><font color="#008000"><strong>过程&实践</strong></font></a>，<a style="text-decoration: none; color: black;" href="#operations-infrastructure"><font color="#008000"><strong>运维&基础架构</strong></font></a>，<a style="text-decoration: none; color: black;" href="#enterprise-architect"><font color="#008000"><strong>企业架构</strong></font></a> <span style="font-family: arial; font-size: 12px;"> 
 <hr color="#dddddd" size="1" />
+
 {% for x in jy_head %}
-<h1 style="padding: 0px; font-family: Arial; font-size: 12pt; color: black; line-height: 10pt; margin-bottom: 5px;"><a style="text-decoration: none; color: black;" href="{{x.head_url}}}">{{x.title}}}</a></h1>
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.content}}}</p>
+<h1 style="padding: 0px; font-family: Arial; font-size: 12pt; color: black; line-height: 10pt; margin-bottom: 5px;"><a style="text-decoration: none; color: black;" href="{{x.head_url}}}">{{x.title}}</a></h1>
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.content|safe}}</p>
 {% endfor %}
 <hr color="#dddddd" size="1" />
-<a name="development"></a>
-<h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">来自语言&开发专区的最新内容<br /> <a style="font-size: 10pt; text-decoration: none; color: darkgreen;" href="http://www.infoq.com/development/">http://www.infoq.com/cn/development/</a></h2>
- 
-{% for x in jy.content.yuyan %}
 
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-<tbody>
-<tr>
-<td colspan="2">
-<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
-</td>
-</tr>
-<tr>
-<td valign="top">
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
-</td>
-<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-
-
-
-{% endfor %}
-
-
-<div style="padding: 10px 15px; background-color: #f2f2f2; clear: both;">
-<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">上周最热门的语言&开发新闻</h3>
-{% for x in jy.news.yuyan %}
-<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">
-<a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h3>
-
-{% endfor %}
-
-</div>
-
-<hr color="#dddddd" size="1" />
-<a name="architecture-design"></a>
-<h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">来自架构&设计专区的最新内容<br /> <a style="font-size: 10pt; text-decoration: none; color: darkgreen;" href="http://www.infoq.com/architecture-design/">http://www.infoq.com/cn/architecture-design/</a></h2>
- 
-{% for x in jy.content.jiagou %}
-
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-<tbody>
-<tr>
-<td colspan="2">
-<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
-</td>
-</tr>
-<tr>
-<td valign="top">
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
-</td>
-<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-
-{% endfor %}
-
-<div style="clear: both; height: 10px;"><!-- --></div>
-<div style="padding: 10px 15px; background-color: #f2f2f2;">
-<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">上周最热门的架构&设计新闻</h3>
-
-{% for x in jy.news.jiagou %}
-<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">
-<a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h3>
-
-{% endfor %}
-
-
-</div>
-
-<hr color="#dddddd" size="1" />
-<a name="process-practices"></a>
-<h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">来自过程&实践专区的最新内容<br /> <a style="font-size: 10pt; text-decoration: none; color: darkgreen;" href="http://www.infoq.com/process-practices/">http://www.infoq.com/cn/process-practices/</a></h2>
-
-{% for x in jy.content.guocheng %}
-
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-<tbody>
-<tr>
-<td colspan="2">
-<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
-</td>
-</tr>
-<tr>
-<td valign="top">
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
-</td>
-<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-
-{% endfor %}
-
-
-
-<div style="clear: both; height: 10px;"><!-- --></div>
-<div style="padding: 10px 15px; background-color: #f2f2f2; clear: both;">
-<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">上周最热门的过程&实践新闻</h3>
-{% for x in jy.news.guocheng %}
-<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">
-<a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h3>
-
-{% endfor %}
-</div></div>
-
-
-
-<hr color="#dddddd" size="1" />
-<a name="operations-infrastructure"></a>
-<h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">来自运维&基础架构专区的最新内容<br /> <a style="font-size: 10pt; text-decoration: none; color: darkgreen;" href="http://www.infoq.com/operations-infrastructure/">http://www.infoq.com/cn/operations-infrastructure/</a></h2>
-{% for x in jy.content.yunwei %}
-
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-<tbody>
-<tr>
-<td colspan="2">
-<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
-</td>
-</tr>
-<tr>
-<td valign="top">
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
-</td>
-<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-
-{% endfor %}
-
-<div style="clear: both; height: 10px;"><!-- --></div>
-<div style="padding: 10px 15px; background-color: #f2f2f2; clear: both;">
-<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">上周最热门的运维&基础架构新闻</h3>
-
-
-{% for x in jy.news.yunwei %}
-<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">
-<a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h3>
-
-{% endfor %}
-
-</div></div>
-
-<hr color="#dddddd" size="1" />
-<a name="enterprise-architect"></a>
-<h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">来自企业架构专区的最新内容<br /> <a style="font-size: 10pt; text-decoration: none; color: darkgreen;" href="http://www.infoq.com/enterprise-architect/">http://www.infoq.com/cn/enterprise-architect/</a></h2>
-
-{% for x in jy.content.qiye %}
-
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-<tbody>
-<tr>
-<td colspan="2">
-<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
-</td>
-</tr>
-<tr>
-<td valign="top">
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
-</td>
-<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-
-{% endfor %}
-
-<div style="clear: both; height: 10px;"><!-- --></div>
-<div style="padding: 10px 15px; background-color: #f2f2f2; clear: both;">
-<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">上周最热门的企业架构新闻</h3>
-
-{% for x in jy.news.qiye %}
-<h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; margin: 2px 0;">
-<a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h3>
-
-{% endfor %}
-</div>
-</div>
 
 <hr color="#dddddd" size="1" />
 
@@ -254,10 +54,13 @@ a:hover {color: #008000; text-decoration: underline;}
 </span>
 {% for x in jy_spon %}
 
-<p style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; line-height: 13pt;" align="center"><a href="{{x.img_url}}"><img src="{{x.img}}"  border="0"></a></p>
+<p style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; line-height: 13pt;" align="center">
+	｛% if x.img_url %｝
+	<a href="{{x.img_url}}"><img src="{{x.img}}"  border="0"></a>
+	{% endif %}</p>
 <p><a style="text-decoration: none; color: darkgreen;" href="{{x.head_url}}"><u><strong>{{x.title}}</strong></u></a></p>
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.content}}</p>
-{%endfor%}
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.content|safe}}</p>
+{% endfor %}
 
 <p><b>下周精选活动推荐：</b>
 	{%for x in jy_event%}

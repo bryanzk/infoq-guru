@@ -24,25 +24,7 @@ class Jingyao(object):
 	def __init__(self):
 		pass
 
-class JingyaoList(Base):
-	__tablename__='jingyao_list'
-	count=Column(String(10))
-	id=Column(String(20),primary_key=True)
-	img=Column(String(100))
-	content=Column(String(1000))
-	title=Column(String(30))
-	head_url=Column(String(100))
-	img_url=Column(String(100))
-	cat=Column(String(10))
-	def  __init__(self,count,content,title,head_url,cat,img_url='',img=''):
-		self.count=count
-		self.id=str(datetime.now())
-		self.content=content
-		self.title=title
-		self.head_url=head_url
-		self.img_url=img_url
-		self.cat=cat
-		self.img=img
+
 		
 class JingyaoInput(MethodView):
 	def get(self):
@@ -60,7 +42,8 @@ class JingyaoInput(MethodView):
 		dbSession=db_session()
 		dbSession.add(j)
 		dbSession.commit()
-		return 'ok'
+		flash('添加成功，<a href="jya?count=%s">预览</a>'%count)
+		return redirect('jyi')
 class JingyaoAds(MethodView):
 	def get(self):
 		db_session=sessionmaker(bind=DB)
@@ -70,18 +53,21 @@ class JingyaoAds(MethodView):
 		jy_down=dbSession.query(JingyaoList).filter(JingyaoList.count==count).filter(JingyaoList.cat=='down').all()
 		jy_event=dbSession.query(JingyaoList).filter(JingyaoList.count==count).filter(JingyaoList.cat=='event').all()
 		jy_spon=dbSession.query(JingyaoList).filter(JingyaoList.count==count).filter(JingyaoList.cat=='spon').all()
-		return render_template('jingyao_ads.html',jy_head=jy_head,jy_event=jy_event,jy_down=jy_down,jy_spon=jy_spon)
+		return render_template('jingyao_ads.html',jy_head=jy_head,jy_event=jy_event,jy_down=jy_down,jy_spon=jy_spon,count=count)
 class JingyaoOut(MethodView):
 	def get(self):
+		return render_template('jingyao_hello.html')
+	def post(self):
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
-		today=datetime.datetime(2012, 4, 24, 23, 59)
+		today=datetime.strptime((request.form['end'])+" 23:59:59",'%Y-%m-%d %H:%M:%S')
+		count=request.form['count']
+		#today=datetime.datetime(2012, 4, 24, 23, 59)
 		last=today-timedelta(days=7)
 		jy=Jingyao()
-		jy.count=123
+		jy.count=count
 		jy.cdate=''
 		jy.date=''
-		jy.content=dbSession.query(RssInfo).filter(or_(or_(RssInfo.guid.like(u'%articles%'),RssInfo.guid.like('%interview%')),RssInfo.guid.like(u'presentations%'))).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).all()
 
 		jy.content.yuyan=dbSession.query(RssInfo).filter(or_(or_(RssInfo.guid.like(u'%articles%'),RssInfo.guid.like('%interview%')),RssInfo.guid.like(u'presentations%'))).filter(RssInfo.category.like(u'%语言 & 开发%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
 		jy.content.jiagou=dbSession.query(RssInfo).filter(or_(or_(RssInfo.guid.like(u'%articles%'),RssInfo.guid.like('%interview%')),RssInfo.guid.like(u'presentations%'))).filter(RssInfo.category.like(u'%架构 & 设计%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)

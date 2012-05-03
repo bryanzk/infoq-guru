@@ -126,7 +126,7 @@ box-shadow:0px 0px 0px rgba(0, 0, 0, 0.25) !important;
   {% if messages %}
     <ul class=flashes>
     {% for message in messages %}
-      <li>{{ message }}</li>
+      <li>{{ message |safe}}</li>
     {% endfor %}
     </ul>
   {% endif %}

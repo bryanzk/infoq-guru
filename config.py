@@ -403,7 +403,25 @@ class ExpertList(Base):
         self.area=area
         self.birth=birth
         self.bid=bid
-
+class JingyaoList(Base):
+    __tablename__='jingyao_list'
+    count=Column(String(10))
+    id=Column(String(20),primary_key=True)
+    img=Column(String(100))
+    content=Column(String(1000))
+    title=Column(String(30))
+    head_url=Column(String(100))
+    img_url=Column(String(100))
+    cat=Column(String(10))
+    def  __init__(self,count,content,title,head_url,cat,img_url='',img=''):
+        self.count=count
+        self.id=str(datetime.now())
+        self.content=content
+        self.title=title
+        self.head_url=head_url
+        self.img_url=img_url
+        self.cat=cat
+        self.img=img
 WEIBO_MAIL_CONTENT_BASE1="""
 
 
