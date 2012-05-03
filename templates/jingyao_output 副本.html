@@ -19,14 +19,8 @@ a:hover {color: #008000; text-decoration: underline;}
 <h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">感谢您订阅每周精要第{{jy.count}}期，本期内容截止于{{jy.cdate}}</h2>
 <a style="text-decoration: none; color: black;" href="#development"><font color="#008000"><strong>语言&开发</strong></font></a>，<a style="text-decoration: none; color: black;" href="#architecture-design"><font color="#008000"><strong>架构&设计</strong></font></a>，<a style="text-decoration: none; color: black;" href="#process-practices"><font color="#008000"><strong>过程&实践</strong></font></a>，<a style="text-decoration: none; color: black;" href="#operations-infrastructure"><font color="#008000"><strong>运维&基础架构</strong></font></a>，<a style="text-decoration: none; color: black;" href="#enterprise-architect"><font color="#008000"><strong>企业架构</strong></font></a> <span style="font-family: arial; font-size: 12px;"> 
 <hr color="#dddddd" size="1" />
-
-
-{% for x in jy_head %}
-<h1 style="padding: 0px; font-family: Arial; font-size: 12pt; color: black; line-height: 10pt; margin-bottom: 5px;"><a style="text-decoration: none; color: black;" href="{{x.head_url}}}">{{x.title}}</a></h1>
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.content|safe}}</p>
-{% endfor %}
-
-
+<h1 style="padding: 0px; font-family: Arial; font-size: 12pt; color: black; line-height: 10pt; margin-bottom: 5px;"><a style="text-decoration: none; color: black;" href="http://www.infoq.com/cn/articles/upyun-storage">又拍云帮你解决存储+CDN大问题</a></h1>
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">丁香园CTO冯大辉这样评价又拍云："图片优化是web前端优化最关键的一环，又拍云存储服务让网站以较小的成本解决这一关键的性能问题，缩减页面加载时间，提升转化率，而且还方便易用，这项服务值得推荐。"<a style="text-decoration: none; color: darkgreen;" href="https://www.upyun.com/?md=infoq_newsletter"><u>点击申请免费试用</u>！</a></p>
 <hr color="#dddddd" size="1" />
 <a name="development"></a>
 <h2 style="font-size: 12pt; font-family: Arial; color: #646464; margin-bottom: 10px;">来自语言&开发专区的最新内容<br /> <a style="font-size: 10pt; text-decoration: none; color: darkgreen;" href="http://www.infoq.com/development/">http://www.infoq.com/cn/development/</a></h2>
@@ -240,14 +234,20 @@ a:hover {color: #008000; text-decoration: underline;}
 <tr>
 <td style="background-color: #dce6f6; color: black; font-size: 12px; margin: 0; padding: 3px 5px;"><strong>最新技术文档下载</strong></td>
 </tr>
-
-
-{% for x in jy_down %}
 <tr>
 <td style="font-size: 8pt; font-family: Arial;" bgcolor="#f7f7f7">
-<a style="text-decoration: none; color: black;" href="{{x.head_url}}">{{x.title}}</td>
+<a style="text-decoration: none; color: black;" href="http://www.infoq.com/cn/minibooks/architect-apr-10-2012">迷你书：架构师（4月刊）</td>
 </tr>
-{% endfor %}
+
+<tr>
+<td style="font-size: 8pt; font-family: Arial;" bgcolor="#f7f7f7">
+<a style="text-decoration: none; color: black;" href="http://www.infoq.com/cn/presentations/xzh-58-distributed-storage-architecture-practice">58同城在分布式存储方面的架构实践</td>
+</tr>
+
+<tr>
+<td style="font-size: 8pt; font-family: Arial;" bgcolor="#f7f7f7">
+<a style="text-decoration: none; color: black;" href="http://www.infoq.com/cn/presentations/yd-hypertable-goes-realtime-baidu">Hypertable Goes Realtime at Baidu</td>
+</tr>
 
 
 </tbody>
@@ -259,25 +259,15 @@ a:hover {color: #008000; text-decoration: underline;}
 </span>
 
 
-{% for x in jy_spon %}
+<p style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; line-height: 13pt;" align="center"><a href="http://www.microsoft.com/click/services/Redirect2.ashx?CR_CC=200093350"><img src="http://www.infoq.com/resource/articles/mvvm-revelation/zh/resources/VS11_50.jpg"  border="0"></a></p>
+<p><a style="text-decoration: none; color: darkgreen;" href="http://www.microsoft.com/click/services/Redirect2.ashx?CR_CC=200093350"><u><strong>Visual Studio 11 beta已提供下载</strong></u></a></p>
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">微软现已提供Visual Studio 11 Beta和.NET Framework 4.5 Beta下载，其宣称将为跨部门协作提供更好的支持，且更加快速和便捷。Visual Studio 11适用于个人和各种开发团队，实现了团队成员间的无缝协作，让开发人员或产品设计师更加专注和高效，使开发优秀应用成为可能，<a style="text-decoration: none; color: darkgreen;" href="http://www.microsoft.com/click/services/Redirect2.ashx?CR_CC=200093350"><u>点击下载</u>！</a></p>
 
-<p style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; line-height: 13pt;" align="center">
-｛% if x.img_url %｝
-	<a href="{{x.img_url}}"><img src="{{x.img}}"  border="0"></a>
-	{% endif %}</p>
-
-<p><a style="text-decoration: none; color: darkgreen;" href="{{x.head_url}}"><u><strong>{{x.title}}</strong></u></a></p>
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.content|safe}}</p>
-{% endfor %}
-
-
+<p><a style="text-decoration: none; color: darkgreen;" href="http://www.infoq.com/cn/news/2012/03/survey-report"><u><strong>InfoQ中文站2011-2012读者深度调查结果出炉</strong></u></a></p>
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">2011年，InfoQ中文站有很多变化，12月，我们发起了2011-2012年度的读者深度调查，通过这个调查，我们进一步了解了我们的读者，了解了大家的需求，这让我们可以提供更好的线上内容和线下活动，让读者能够从InfoQ中文站获得越来越多的价值。经过整理，我们现在把调查结果公布出来，让大家看到InfoQ的读者在技术方面的偏好，同时希望帮助大家更加深入了解中国的技术和技术人群的关注点和发展趋势。<a style="text-decoration: none; color: darkgreen;" href="http://www.infoq.com/cn/news/2012/03/survey-report"><u>点击进入下载</u>！</a></p>
 <p><b>下周精选活动推荐：</b>
-
-{%for x in jy_event%}
-<br><a style="text-decoration: none; color: darkgreen;" href="{{x.head_url}}"><u>{{x.title}}</u></a><br>
-{%endfor%}
-
-</p>
+<br><a style="text-decoration: none; color: darkgreen;" href="http://gmic.greatwallclub.com/cn"><u>全球移动互联网大会</u></a><br>
+<br><a  style="text-decoration: none; color: darkgreen;"href="http://www.infoq.com/cn/chinaitevents.jsp"><u><b>更多活动</b></u></a></p>
 
 
 

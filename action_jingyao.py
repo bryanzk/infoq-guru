@@ -83,4 +83,12 @@ class JingyaoOut(MethodView):
 		jy.news.qiye=dbSession.query(RssInfo).filter(RssInfo.guid.like(u'%news%')).filter(RssInfo.category.like(u'%企业架构%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
 
 
-		return render_template('jingyao_output.html',jy=jy)
+
+
+		jy_head=dbSession.query(JingyaoList).filter(JingyaoList.count==count).filter(JingyaoList.cat=='head').all()
+		jy_down=dbSession.query(JingyaoList).filter(JingyaoList.count==count).filter(JingyaoList.cat=='down').all()
+		jy_event=dbSession.query(JingyaoList).filter(JingyaoList.count==count).filter(JingyaoList.cat=='event').all()
+		jy_spon=dbSession.query(JingyaoList).filter(JingyaoList.count==count).filter(JingyaoList.cat=='spon').all()
+		
+
+		return render_template('jingyao_output.html',jy=jy,jy_head=jy_head,jy_down=jy_down,jy_event=jy_event,jy_spon=jy_spon)
