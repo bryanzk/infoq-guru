@@ -17,6 +17,7 @@ from action_mag import *
 from action_expert import *
 from action_jingyao import *
 from action_fee import *
+from action_clue import *
 from config import *
 
 from md5 import md5
@@ -77,6 +78,8 @@ app.add_url_rule('/flist',view_func=FeeArticleList.as_view('flist'))
 app.add_url_rule('/fshow',view_func=ShowArticleData.as_view('fshow'))
 app.add_url_rule('/fweibo',view_func=FeeArticleWeibo.as_view('fweibo'))
 
+app.add_url_rule('/trellosend',view_func=TrelloSend.as_view('trellosend'))
+app.add_url_rule('/trello',view_func=TrelloTest.as_view('trelo'))
 app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':
     app.run()
