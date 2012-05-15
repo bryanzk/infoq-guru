@@ -259,7 +259,8 @@ class Card(LazyTrello, Closable):
     checkItemStates = Field()
     desc = Field()
     labels = Field()
-
+    due=Field()
+    id=Field()
     board = ObjectField('idBoard', 'Board')
     list = ObjectField('idList', 'List')
 

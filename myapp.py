@@ -78,8 +78,12 @@ app.add_url_rule('/flist',view_func=FeeArticleList.as_view('flist'))
 app.add_url_rule('/fshow',view_func=ShowArticleData.as_view('fshow'))
 app.add_url_rule('/fweibo',view_func=FeeArticleWeibo.as_view('fweibo'))
 
+app.add_url_rule('/trellotougao',view_func=TrelloTougao.as_view('tougao'))
 app.add_url_rule('/trellosend',view_func=TrelloSend.as_view('trellosend'))
 app.add_url_rule('/trello',view_func=TrelloTest.as_view('trelo'))
+app.add_url_rule('/trellodone',view_func=TrelloDone.as_view('trelodone'))
+
+
 app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':
     app.run()
