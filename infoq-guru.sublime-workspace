@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"cap",
+				"cap_id"
+			],
+			[
+				"cat",
+				"captcha_id"
+			],
+			[
+				"post",
+				"post_data"
+			],
+			[
+				"down",
+				"down_load_songs"
+			],
+			[
 				"para",
 				"params3"
 			],
@@ -284,10 +300,6 @@
 				"WPCheckList"
 			],
 			[
-				"cat",
-				"cat"
-			],
-			[
 				"MAIL_S",
 				"MAIL_SMTP"
 			],
@@ -455,53 +467,17 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "action_mail.py",
-			"settings":
-			{
-				"buffer_size": 4966,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config.py",
-			"settings":
-			{
-				"buffer_size": 15757,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "action_clue.py",
-			"settings":
-			{
-				"buffer_size": 2415,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "trollop/lib.py",
-			"settings":
-			{
-				"buffer_size": 9273,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/clue_add.html",
-			"settings":
-			{
-				"buffer_size": 522,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 267.0,
+		"height": 387.0,
 		"selected_items":
 		[
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
 			[
 				"Package Control: ",
 				"Package Control: Disable Package"
@@ -532,8 +508,17 @@
 	},
 	"file_history":
 	[
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_fm.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_rss.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/myapp.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/clue_add.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/trollop/lib.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/douban_login.html",
+		"/Users/Arthur/Desktop/test2.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/config.py",
+		"/Users/Arthur/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_mail.py",
+		"/Users/Arthur/Downloads/516563876@qq.com - 转发：我弄的 能用不？ 2/kaoqin_edit.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_clue.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/trollop/__init__.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_jingyao.py",
@@ -547,14 +532,12 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base.html",
 		"/Users/Arthur/Desktop/caifang.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/jingyao_input.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/config.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/test.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/fee_articles.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/fee_ashow.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_fee.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/fee_weibo.html",
 		"/Users/Arthur/Documents/i-like-u/index.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_mail.py",
 		"/Users/Arthur/Dropbox/工作/发布/制作中/视频-百度尤雨溪/introduction.txt",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/share_content.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/hello_test_pylint.py",
@@ -611,7 +594,6 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/task_submit.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/task_step.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/mailadd.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_rss.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_static.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_user.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/charts_weibo.html",
@@ -653,13 +635,7 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-rss/action_mail.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-rss/config.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-rss/action_rss.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-rss/templates/editorone.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-rss/templates/editor.html",
-		"/Users/Arthur/Desktop/zurb-joyride-c25baa9/jquery.joyride-1.0.3.js",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-rss/templates/result.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-rss/templates/rssnew.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-rss/myapp.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-rss/static/js/bootstrap-tooltip.js"
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-rss/templates/editorone.html"
 	],
 	"find":
 	{
@@ -678,6 +654,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"config",
+			"down_load_songs",
 			"cache",
 			"Use this area to offer a short teaser of your email's content. Text here will show in the preview area of some email clients. ",
 			"oauth",
@@ -793,147 +771,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "action_mail.py",
-					"settings":
-					{
-						"buffer_size": 4966,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								825,
-								825
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "config.py",
-					"settings":
-					{
-						"buffer_size": 15757,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2400,
-								2102
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 709.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "action_clue.py",
-					"settings":
-					{
-						"buffer_size": 2415,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								986,
-								986
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 70.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "trollop/lib.py",
-					"settings":
-					{
-						"buffer_size": 9273,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								103,
-								103
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 268.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "templates/clue_add.html",
-					"settings":
-					{
-						"buffer_size": 522,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								369,
-								369
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

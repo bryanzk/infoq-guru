@@ -106,6 +106,7 @@ class RssRefresh():
             pubdate=datetime.strptime((x.pubdate.string).encode('utf-8'),'%a, %d %b %Y %H:%M:%S  GMT'),
             guid=(x.guid.string).encode('utf-8'),
             country=country,category=category)
+            
             result.append(r)
         
         return result
