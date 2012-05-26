@@ -18,10 +18,12 @@ class TrelloTest(MethodView):
 		mail_end="""
 
 		"""
+
 		for x in lists:
 			i=0
 			if x.name!='Done' and x.name!='Doing' :
 				hello+='<h2>%s</h2>'%x.name
+				x.cards.reverse()
 				for y in x.cards:
 					if not y.labels :
 						i+=1
