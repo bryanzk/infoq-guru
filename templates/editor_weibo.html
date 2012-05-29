@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="row-fluid">
+   
+ <form  id='addtable'class="form-horizontal" method='post' action='editorweibo'>
+        <fieldset>
+          <legend>添加新的编辑微博</legend>
+          <table>
+            <tr>
+              <td>
+                   <div class="control-group">
+            <label for="input01" class="control-label">姓名</label>
+            <div class="controls">
+             <div class="input-prepend">
+              <span class="add-on"><i class="icon-user"></i></span><input name='name' class='required' type="text" id="inputIcon" class="span2">
+            </div>
+              <p class="help-block ">输入编辑姓名</p>
+            </div>
+              </td>
+              <td>
+          <div class="control-group">
+            <label for="input01" class="control-label">微博名</label>
+            <div class="controls">
+             <div class="input-prepend">
+              <span class="add-on"><i class="icon-user"></i></span><input name='wname'  type="text" id="inputIcon" class="span2">
+            </div>
+              <p class="help-block">输入微博名</p>
+            </div>
+          </div>
+              </td>
+            </tr>
+
+
+         
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+
+    <div class="span8 well">
+        <table class="table table-striped">
+      <thead>
+    <tr>
+      <th>name</th>
+  <th>wname</th>
+        </tr>
+        </thead>
+    {% for x in ress%}
+    <tr>
+  <td>{{x.name}}</td>
+  <td>{{x.wname}}</td>
+  
+        </tr>
+        {% endfor%}
+        </table>
+    </div>
+  </div>
+{% endblock%}

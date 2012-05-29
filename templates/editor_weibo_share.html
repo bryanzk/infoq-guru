@@ -1,0 +1,77 @@
+<div class="buttons">
+...
+
+
+<script type="text/javascript" charset="utf-8">
+(function(){
+  var _w = 142 , _h = 66;
+  var param = {
+    url:'{{guid}}',
+    type:'4',
+    count:'1', /**是否显示分享数，1显示(可选)*/
+    appkey:'', /**您申请的应用appkey,显示分享来源(可选)*/
+    title:'【{{title}}】By {{author}} {{guid}} ：{{content}}', /**分享的文字内容(可选，默认为所在页面的title)*/
+    pic:'{{img}}', /**分享图片的路径(可选)*/
+    ralateUid:'', /**关联用户的UID，分享微博会@该用户(可选)*/
+	language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+    rnd:new Date().valueOf()
+  }
+  var temp = [];
+  for( var p in param ){
+    temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+  }
+  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+})()
+</script>
+
+<a href="javascript:void(0)" onclick="postToWb();return false;" style="height:32px;font-size:18px;line-height:32px;">
+	<img src="http://v.t.qq.com/share/images/s/weiboicon32.png" align="absmiddle" border="0" alt="转播到腾讯微博" /> 
+</a>
+
+<script type="text/javascript">
+	function postToWb(){ //腾讯微博
+		var _url = "{{guid}}";
+		var _assname = encodeURI("groovyq");//你注册的帐号，不是昵称
+		var _appkey = encodeURI('');//你从腾讯获得的appkey "801082003"
+		var _pic = encodeURI("{{img}}");//（例如：var _pic='图片url1|图片url2|图片url3....）
+		var _t = "";//标题和描述信息
+		var metainfo = document.getElementsByTagName("meta");
+		for(var metai = 0;metai < metainfo.length;metai++){
+			if((new RegExp('description','gi')).test(metainfo[metai].getAttribute("name"))){
+				_t = metainfo[metai].attributes["content"].value;
+			}
+		}
+		_t =  "【{{title}}】By {{author}} {{guid}}：{{content}}";//请在这里添加你自定义的分享内容
+
+		_t = encodeURI(_t);
+
+		var _u = 'http://share.v.t.qq.com/index.php?c=share&a=index&appkey='+_appkey+'&pic='+_pic+'&assname='+_assname+'&title='+_t;
+		window.open( _u,'', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
+	}
+</script>
+	
+<script type="text/javascript" charset="utf-8">
+	(function() {
+		function show163Window(){ //网易微博
+			var _t =  "【${cnContentsInstance?.type=='新闻'?'':cnContentsInstance?.type+'：'}${cnContentsInstance?.title}】By ${cnContentsInstance.author} ${cnContentsInstance?.link}：${cnContentsInstance?.description}";//请在这里添加你自定义的分享内容
+		
+			var param = [],ustr = [];
+			param[0] = 'link=' + encodeURIComponent('www.infoq.com/cn');  //link为网站域名
+			param[1] = 'source=InfoQ中文站';  //source为网站名称
+			param[2] = 'info=' + encodeURIComponent(_t) ;  //info为转发的文字内容(可选，默认为页面title)
+			param[3] = 'images='+encodeURI("${cnContentsInstance?.imgUrl}");  //images为传过来的图片地址，多个图片地址用","隔开；若为空会自动抓取转发页面图片
+			param[4] = 'togImg=true';//默认显示转发图片(可选，删除true为不显示)
+			var url = 'http://t.163.com/article/user/checkLogin.do?';
+			url += param.join("&");
+			ustr[0] = 'height=430,width=650,top=' + (screen.height - 280) / 2 ;
+			ustr[1] = 'left=' + (screen.width - 550) / 2 ;
+			ustr[2] = 'toolbar=no, menubar=no, scrollbars=no,';
+			ustr[2] += 'resizable=yes,location=no, status=no';
+			var s = ustr.join(',');
+			window.open(url,'newwindow',s);
+			};
+			window.show163Window=show163Window;
+		})();
+	</script>
+<a style="display:block;width:32px;height:32px;background-image:url(http://static.t.126.net/frontend/open/image/sprites/key_v111213.png);background-position:0px -177px;background-repeat:no-repeat;" href="javascript:;" onclick="show163Window()" > </a> 
+</div>

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block body %}
+<form class="well form-inline" action="editorshow" method="POST" >
+	<p><a href="{{res.guid}}">{{res.guid}}</a></p>
+ <input id='num-0'type="hidden" name='guid'value="{{res.guid}}">
+ <hr/>
+ <input id='num-0'type="text" value="{{res.img}}" name='img'class="span6" placeholder="输入图像地址">
+ <hr/>
+ <input id='num-0'type="text" value="{{res.fname}}"name='fname'class="span6" placeholder="输入作者">
+ <hr/>
+ <input id='num-0'type="text" value="{{res.fcount}}"name='fcount'class="span6" placeholder="工作量">
+ <hr/>
+ <input id='num-0'type="text" value="{{res.fcomment}}"name='fcomment'class="span6" placeholder="输入类型">
+ <hr/>
+ <input id='num-0'type="text" value="{{res.sname}}"name='sname'class="span6" placeholder="输入审计人（策划人）">
+ <hr/>
+ <input id='num-0'type="text" value="{{res.scount}}"name='scount'class="span6" placeholder="输入工作量">
+ <hr/>
+ <input id='num-0'type="text" value="{{res.scomment}}"name='scomment'class="span6" placeholder="输入说明">
+ <hr/>
+
+  <button id='num-2' type="submit" class="btn">确认</button>
+</form>
+{% endblock%}

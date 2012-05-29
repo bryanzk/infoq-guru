@@ -422,6 +422,37 @@ class JingyaoList(Base):
         self.img_url=img_url
         self.cat=cat
         self.img=img
+
+class EditorWeiboList(Base):
+    __tablename__='editorweibo_list'
+    name=Column(String(100),primary_key=True)
+    wname=Column(String(45))
+    wid=Column(String(45))
+    def __init__(self,name,wname,wid):
+        self.name=name
+        self.wname=wname
+        self.wid=wid
+
+class EditorCountWeiboList(Base):
+    __tablename__='editorcount_list'
+    guid=Column(String(100),primary_key=True)
+    fname=Column(String(100))
+    fcount=Column(Integer)
+    fcomment=Column(String(100))
+    sname=Column(String(100))
+    scount=Column(Integer)
+    scomment=Column(String(100))
+    img=Column(String(200))
+    def __init__(self,guid,fname,fcount,fcomment,sname,scount,scomment,img):
+        self.guid=guid
+        self.fname=fname
+        self.fcount=fcount
+        self.fcomment=fcomment
+        self.sname=sname
+        self.scount=scount
+        self.scomment=scomment
+        self.img=img
+
 WEIBO_MAIL_CONTENT_BASE1="""
 
 

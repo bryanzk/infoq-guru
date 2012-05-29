@@ -84,6 +84,11 @@ app.add_url_rule('/trellosend',view_func=TrelloSend.as_view('trellosend'))
 app.add_url_rule('/trello',view_func=TrelloTest.as_view('trelo'))
 app.add_url_rule('/trellodone',view_func=TrelloDone.as_view('trelodone'))
 
+app.add_url_rule('/editorweibo',view_func=EditorWeibo.as_view('editorweibo'))
+app.add_url_rule('/editorcountall',view_func=EditorCountListAll.as_view('editorcountall'))
+app.add_url_rule('/editorshow',view_func=EditorCountShow.as_view('editorshow'))
+app.add_url_rule('/editorshare',view_func=RssWeiboShare.as_view('ediotrweiboshare'))
+
 app.add_url_rule('/fm',view_func=DoubanView.as_view('fm'))
 app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block body %}
+<table id='num=4' class="table table-striped">
+  <thead>
+    <tr>
+       <th>pubdate</th>
+       
+      <th>title</th>
+     <th>go</th>
+ 	<th>share</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for x in res%}
+
+    <tr>
+        <td>{{x.pubdate}}</a></td>
+      
+      <td>{{x.title}}</td>
+      <td>{{x.c1author}}</td>
+      <td><a href="editorshow?guid={{x.guid}}">change</a></td>
+      <td><a href="editorshare?guid={{x.guid}}">weibo</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+    <ul class="pager">
+    <li class="previous">
+    <a href="editorcountall?page={{pre}}">&larr; Older</a>
+    </li>
+    <li class="next">
+    <a href="editorcountall?page={{next}}">Newer &rarr;</a>
+    </li>
+    </ul>
+{% endblock%}
