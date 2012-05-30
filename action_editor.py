@@ -122,8 +122,14 @@ class RssWeiboShare(MethodView):
 			author=_weibo[0].wname
 		else:
 			author=_img.sname
-		content=_rss.description
+		content=_rss.description.replace(" ","")
 		img=_img.img
 		ctype=helper._get_cats(guid)
 		return render_template('editor_weibo_share.html',ctype=ctype,title=title,guid=guid,content=content,author=author,img=img)
+class EditorHistoryAll(MethodView):
+	def get(self):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		editors=dbSession.query(EditorWeiboList).all()
+		return render_template()
 
