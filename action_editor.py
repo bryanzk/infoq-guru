@@ -61,7 +61,7 @@ class EditorCountShow(MethodView):
 		if result:
 			res=result[0]
 		else:
-			u=EditorCountWeiboList(guid=guid,fname='',fcount=0,fcomment='',sname='',scount=0,scomment='',img='')
+			u=EditorCountWeiboList(guid=guid,fname='',fcount=0,fcomment='',sname='',scount=0,scomment='',img='',tname='',tcount=0,tcomment='')
 			dbSession.add(u)
 			dbSession.commit()
 			res=u
@@ -74,6 +74,9 @@ class EditorCountShow(MethodView):
 		sname=request.form['sname']
 		scount=request.form['scount']
 		scomment=request.form['scomment']
+		tname=request.form['tname']
+		tcount=request.form['tcount']
+		tcomment=request.form['tcomment']
 		img=request.form['img']
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
@@ -85,6 +88,9 @@ class EditorCountShow(MethodView):
 		u[0].scount=scount
 		u[0].scomment=scomment
 		u[0].img=img
+		u[0].tname=tname
+		u[0].tcount=tcount
+		u[0].tcomment=tcomment
 		dbSession.commit()
 		return redirect('editorcountall')
 # show the editors weibo and add new editor's weibo 

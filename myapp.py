@@ -19,6 +19,10 @@ from action_jingyao import *
 from action_fee import *
 from action_clue import *
 from action_fm import *
+from action_count import *
+from action_clear import *
+from action_editor2 import *
+
 from config import *
 
 from md5 import md5
@@ -64,7 +68,7 @@ app.add_url_rule('/aboutus',view_func=AboutusEditor.as_view('aboutus'))
 app.add_url_rule('/lab',view_func=Labs.as_view('labs'))
 app.add_url_rule('/timeline',view_func=TimeLine.as_view('timeline'))
 app.add_url_rule('/timelinedata',view_func=TimeLineData.as_view('timelinedata'))
-app.add_url_rule('/urltop',view_func=TopView.as_view('topviewurl'))
+app.add_url_rule('/urltop',view_func=TopView2.as_view('topviewurl'))
 app.add_url_rule('/mag',view_func=MagView.as_view('mag'))
 app.add_url_rule('/eupdate',view_func=ExpertUpdate.as_view('eupdate'))
 app.add_url_rule('/eadd',view_func=ExpertAdd.as_view('eadd'))
@@ -88,6 +92,24 @@ app.add_url_rule('/editorweibo',view_func=EditorWeibo.as_view('editorweibo'))
 app.add_url_rule('/editorcountall',view_func=EditorCountListAll.as_view('editorcountall'))
 app.add_url_rule('/editorshow',view_func=EditorCountShow.as_view('editorshow'))
 app.add_url_rule('/editorshare',view_func=RssWeiboShare.as_view('ediotrweiboshare'))
+
+
+app.add_url_rule('/editorcountall2',view_func=EditorCountListAll.as_view('editorcountall2'))
+app.add_url_rule('/editorshow2',view_func=EditorCountShow2.as_view('editorshow2'))
+app.add_url_rule('/editorshare2',view_func=RssWeiboShare2.as_view('ediotrweiboshare2'))
+app.add_url_rule('/_convert',view_func=ConvertToNew.as_view('convettonew'))
+
+
+
+app.add_url_rule('/staticweek',view_func=StaticWeekContent.as_view('staticweek'))
+app.add_url_rule('/staticeditor',view_func=StaticEditorContents.as_view('staticeditor'))
+
+
+app.add_url_rule('/countall',view_func=CountContents.as_view('countcontents'))
+
+
+
+app.add_url_rule('/clear',view_func=ClearIt.as_view('clear'))
 
 app.add_url_rule('/fm',view_func=DoubanView.as_view('fm'))
 app.jinja_env.globals.update(md5=md5)

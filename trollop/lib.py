@@ -227,7 +227,6 @@ class Action(LazyTrello):
     date = DateField()
     creator = ObjectField('idMemberCreator', 'Member')
 
-
 class Board(LazyTrello, Closable):
 
     _prefix = '/boards/'
@@ -261,8 +260,11 @@ class Card(LazyTrello, Closable):
     labels = Field()
     due=Field()
     id=Field()
+    action_fields=Field()
     board = ObjectField('idBoard', 'Board')
     list = ObjectField('idList', 'List')
+
+    actions = ObjectField('createCard','Action')
 
     members = ListField('idMembers', 'Member')
 

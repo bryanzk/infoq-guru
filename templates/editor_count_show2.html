@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block body %}
+<form class="well form-inline" action="editorshow2" method="POST" >
+	<p><a href="{{res.guid}}">{{res.guid}}</a></p>
+ <input id='num-0'type="hidden" name='guid'value="{{res.guid}}">
+  <input id='num-0'type="hidden" name='id'value="{{res.id}}">
+  <input id='num-0'type="hidden" name='version'value="{{res.version}}">
+
+ <hr/>
+ <input id='num-0'type="text" value="{{res.img}}" name='img'class="span6" placeholder="输入图像地址">
+ <hr/>
+ <input id='num-0'type="text" value="{{res.name}}"name='name'class="span6" placeholder="输入作者">
+ <hr/>
+ <input id='num-0'type="text" value="{{res.count}}"name='count'class="span6" placeholder="工作量">
+ <hr/>
+<select name='comment'>
+	{% for x in work %}
+		{% if x==res.comment %}
+  <option value="{{x}}" selected >{{x}}</option>
+  {% endif%}
+    <option value="{{x}}" >{{x}}</option>
+
+  {% endfor%}
+</select>  
+
+  <button id='num-2' type="submit" class="btn">确认</button>
+</form>
+{% endblock%}

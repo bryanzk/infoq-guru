@@ -18,15 +18,19 @@ class TrelloTest(MethodView):
 		mail_end="""
 
 		"""
+		##today=datetime.today()
+		##older=today-datetime.timedelta(5)
 
 		for x in lists:
 			i=0
 			if x.name!='Done' and x.name!='Doing' :
 				hello+='<h2>%s</h2>'%x.name
 				x.cards.reverse()
+
 				for y in x.cards:
 					if not y.labels :
 						i+=1
+						raise
 						hello+='%d: <a href="trellodone?id=%s&cat=%s">%s</a> desc: %s<br/>'%(i,y.id,x.name,y.name,y.desc)
 					
 
@@ -78,6 +82,8 @@ class TrelloSend(MethodView):
 		mail_end="""
 
 		"""
+		##today=datetime.today()
+		#older=today-datetime.timedelta(5)
 		for x in lists:
 			i=0
 			if x.name!='Done' and x.name!='Doing' and len(x.cards)>0:

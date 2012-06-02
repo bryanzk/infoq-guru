@@ -6,9 +6,7 @@
        <th>pubdate</th>
        
       <th>title</th>
-     <th>原创</th>
-     <th>审计</th>
-     <th>策划</th>
+     <th>go</th>
  	<th>share</th>
     </tr>
   </thead>
@@ -20,10 +18,8 @@
       
       <td>{{x.title}}</td>
       <td>{{x.c1author}}</td>
-      <td><a href="editorshow2?guid={{x.guid}}&version=1">原创</a></td>
-       <td><a href="editorshow2?guid={{x.guid}}&version=2">审校</a></td>
-        <td><a href="editorshow2?guid={{x.guid}}&version=3">策划</a></td>
-      <td><a href="editorshare2?guid={{x.guid}}">weibo</a></td>
+      <td><a href="editorshow?guid={{x.guid}}">change</a></td>
+      <td><a href="editorshare?guid={{x.guid}}">weibo</a></td>
     </tr>
     {% endfor %}
   </tbody>

@@ -442,8 +442,11 @@ class EditorCountWeiboList(Base):
     sname=Column(String(100))
     scount=Column(Integer)
     scomment=Column(String(100))
+    tname=Column(String(100))
+    tcount=Column(Integer)
+    tcomment=Column(String(100))
     img=Column(String(200))
-    def __init__(self,guid,fname,fcount,fcomment,sname,scount,scomment,img):
+    def __init__(self,guid,fname,fcount,fcomment,sname,scount,scomment='',img='',tname='',tcount=0,tcomment=''):
         self.guid=guid
         self.fname=fname
         self.fcount=fcount
@@ -452,6 +455,9 @@ class EditorCountWeiboList(Base):
         self.scount=scount
         self.scomment=scomment
         self.img=img
+        self.tname=tname
+        self.tcount=tcount
+        self.tcomment=tcomment
 
 WEIBO_MAIL_CONTENT_BASE1="""
 
