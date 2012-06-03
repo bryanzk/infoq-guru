@@ -3,27 +3,10 @@ import config
 from helper_data import *
 from config import *
 import md5
-WorkComments_1=['文章翻译','文章原创','视频演讲','新闻原创','专家专栏','视频采访','迷你书','新闻翻译']
+WorkComments_1=['文章翻译','文章原创','视频演讲','新闻原创','专家专栏','视频采访','迷你书','新闻翻译','新闻原创']
 WorkComments_2=['新闻翻译审校','新闻原创审校','文章原创审校','迷你书审校','文章翻译审校']
 WorkComments_3=['虚拟采访策划','提供新闻线索','专家专栏策划','采访策划','迷你书策划','文章策划']
 Convert_list={'翻译审校':'文章翻译审校',"新闻审评":"新闻翻译审校",'原创新闻审评':'希望嫩原创审校','原创新闻':'新闻原创','文章审校':'文章原创审校'}
-class EditorCount2List(Base):
-	__tablename__='editorcount2_list'
-	id=Column(String(20),primary_key=True)
-	guid=Column(String(100))
-	version=Column(Integer)
-	name=Column(String(1))
-	count=Column(Integer)
-	comment=Column(String(100))
-	img=Column(String(200))
-	def __init__(self,version,guid='',name='',comment='',img='',count=0):
-		self.id=md5.new(str(datetime.now())).hexdigest()
-		self.guid=guid
-		self.version=version
-		self.name=name
-		self.count=count
-		self.comment=comment
-		self.img=img
 
 class EditorCountShow2(MethodView):
 	def get(self):
@@ -131,10 +114,14 @@ def _convert_to_version(worktype):
 	else:
 		return 3
 def _convert_to_comment(url,worktype):
-	if worktype==u'翻译' and url.find('cn/news')>0:
-		return '文章翻译'
-	elif worktype==u'翻译' and url.find('cn/news')>0:
+	if worktype==u'翻译' and url.find('news')>0:
 		return '新闻翻译'
+	elif worktype==u'翻译' and url.find('articles')>0:
+		return '文章翻译'
+	elif worktype==u'翻译' and url.find('minibooks')>0:
+		return '迷你书翻译'
+	elif worktype==u'翻译' and url.find('interviews')>0:
+		return '视频翻译'
 	elif worktype in Convert_list:
 		return Convert_list[worktype]
 	return worktype

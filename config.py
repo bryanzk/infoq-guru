@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
+import md5
 import urllib2
 from urllib2 import *
 from modles import *
@@ -458,6 +459,23 @@ class EditorCountWeiboList(Base):
         self.tname=tname
         self.tcount=tcount
         self.tcomment=tcomment
+class EditorCount2List(Base):
+    __tablename__='editorcount2_list'
+    id=Column(String(20),primary_key=True)
+    guid=Column(String(100))
+    version=Column(Integer)
+    name=Column(String(1))
+    count=Column(Integer)
+    comment=Column(String(100))
+    img=Column(String(200))
+    def __init__(self,version,guid='',name='',comment='',img='',count=0):
+        self.id=md5.new(str(datetime.now())).hexdigest()
+        self.guid=guid
+        self.version=version
+        self.name=name
+        self.count=count
+        self.comment=comment
+        self.img=img
 
 WEIBO_MAIL_CONTENT_BASE1="""
 

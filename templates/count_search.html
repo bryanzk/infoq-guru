@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block body %}
+<form class="well form-inline" action="countsearch" method="POST" >
+ <input id='num-0'type="text"  name='begin'class="span6" placeholder="end">
+ <hr/>
+ <input id='num-0'type="text"  name='end'class="span6" placeholder="end">
+ <hr/>
+
+  <button id='num-2' type="submit" class="btn">确认</button>
+</form>
+
+<table id='num=4' class="table table-striped">
+  <thead>
+    <tr>
+       <th>pubdate</th>
+       
+      <th>title</th>
+     <th>author</th>
+ 	<th>type</th>
+ 	<th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for x in res%}
+    <tr>
+        <td>{{x.RssInfo.pubdate}}</a></td>
+      
+      <td>{{x.RssInfo.title}}</td>
+      <td>{{x.EditorCount2List.name}}</td>
+      <td>{{x.EditorCount2List.comment}}</td>
+      <td>{{x.EditorCount2List.count}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock%}
