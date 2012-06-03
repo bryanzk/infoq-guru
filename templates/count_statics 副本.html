@@ -1,63 +1,16 @@
 {% extends "base.html" %}
 {%block script%}
-    
-   
-
-show_trends(800,400,"http://infoqhelp.sinaapp.com/countweek", "#trends");
-
-    
-  $('#myTab a').click(function (e) {
+     $('#myTab a').click(function (e) {
     e.preventDefault();
     $(this).tab('show');
-    });   
-    
-
+    })
 {% endblock%}
 {% block body %}
-   <style type="text/css">
-
-path.line {
-  fill: none;
-  stroke: #666;
-  stroke-width: 1.5px;
-}
-
-path.area {
-  fill: lightblue;
-}
-
-.axis {
-  shape-rendering: crispEdges;
-}
-
-.x.axis line {
-  stroke: #fff;
-}
-
-.x.axis .minor {
-  stroke-opacity: .5;
-}
-
-.x.axis path {
-  display: none;
-}
-
-.y.axis line, .y.axis path {
-  fill: none;
-  stroke: #000;
-}
-
-    </style>
-    <script type="text/javascript">
-
-
-    </script>
-<ul class="nav nav-pills" id="myTab">
+<ul class="nav nav-tabs" id="myTab">
   <li class="active"><a href="#week">本周</a></li>
- 
+  <li><a href="#lweek">上周</a></li>
   <li><a href="#month">本月</a></li>
-    <li ><a href="#trends">内容走势</a></li>
- 
+  <li><a href="#lmonth">上月</a></li>
 </ul>
 
 <div class="tab-content">
@@ -66,8 +19,8 @@ path.area {
         <thead>
           <tr>
             <th>类别</th>
-            <th>本周</th>
-            <th>上周</th>
+            <th>数量</th>
+            <th>同比</th>
           </tr>
         </thead>
         <tbody>
@@ -78,9 +31,6 @@ path.area {
             <td>
              {{wl}}
             </td>
-             <td>
-             {{lwl}}
-            </td>
          
           </tr>
           <tr>
@@ -89,6 +39,71 @@ path.area {
             </td>
             <td>
              {{wn}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-warning">文章</span>
+            </td>
+            <td>
+             {{wa}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-important">演讲</span>
+            </td>
+            <td>
+             {{wp}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-info">采访</span>
+            </td>
+            <td>
+             {{wi}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-inverse">迷你书</span>
+            </td>
+            <td>
+             {{wm}}
+            </td>
+           
+          </tr>
+          
+         
+        </tbody>
+      </table>
+	</div>
+  <div class="tab-pane" id="lweek">  
+		<table class="table table-bordered table-striped">
+   <thead>
+          <tr>
+            <th>类别</th>
+            <th>数量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="badge">总量</span>
+            </td>
+            <td>
+             {{lwl}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-success">新闻</span>
             </td>
             <td>
              {{lwn}}
@@ -100,9 +115,6 @@ path.area {
               <span class="badge badge-warning">文章</span>
             </td>
             <td>
-             {{wa}}
-            </td>
-            <td>
              {{lwa}}
             </td>
            
@@ -110,9 +122,6 @@ path.area {
           <tr>
             <td>
               <span class="badge badge-important">演讲</span>
-            </td>
-            <td>
-             {{wp}}
             </td>
             <td>
              {{lwp}}
@@ -124,9 +133,6 @@ path.area {
               <span class="badge badge-info">采访</span>
             </td>
             <td>
-             {{wi}}
-            </td>
-            <td>
              {{lwi}}
             </td>
            
@@ -134,9 +140,6 @@ path.area {
           <tr>
             <td>
               <span class="badge badge-inverse">迷你书</span>
-            </td>
-            <td>
-             {{wm}}
             </td>
             <td>
              {{lwm}}
@@ -147,16 +150,15 @@ path.area {
          
         </tbody>
       </table>
-	</div>
 
+	</div>
   <div class="tab-pane" id="month">
 
 <table class="table table-bordered table-striped">
    <thead>
           <tr>
             <th>类别</th>
-            <th>本月</th>
-            <th>上月</th>
+            <th>数量</th>
           </tr>
         </thead>
         <tbody>
@@ -166,6 +168,71 @@ path.area {
             </td>
             <td>
              {{ml}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-success">新闻</span>
+            </td>
+            <td>
+             {{mn}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-warning">文章</span>
+            </td>
+            <td>
+             {{ma}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-important">演讲</span>
+            </td>
+            <td>
+             {{mp}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-info">采访</span>
+            </td>
+            <td>
+             {{mi}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-inverse">迷你书</span>
+            </td>
+            <td>
+             {{mm}}
+            </td>
+           
+          </tr>
+          
+         
+        </tbody>
+      </table>
+</div>
+  <div class="tab-pane" id="lmonth">
+<table class="table table-bordered table-striped">
+   <thead>
+          <tr>
+            <th>类别</th>
+            <th>数量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="badge">总量</span>
             </td>
             <td>
              {{lml}}
@@ -177,9 +244,6 @@ path.area {
               <span class="badge badge-success">新闻</span>
             </td>
             <td>
-             {{mn}}
-            </td>
-             <td>
              {{lmn}}
             </td>
            
@@ -187,9 +251,6 @@ path.area {
           <tr>
             <td>
               <span class="badge badge-warning">文章</span>
-            </td>
-            <td>
-             {{ma}}
             </td>
             <td>
              {{lma}}
@@ -201,9 +262,6 @@ path.area {
               <span class="badge badge-important">演讲</span>
             </td>
             <td>
-             {{mp}}
-            </td>
-            <td>
              {{lmp}}
             </td>
            
@@ -211,9 +269,6 @@ path.area {
           <tr>
             <td>
               <span class="badge badge-info">采访</span>
-            </td>
-            <td>
-             {{mi}}
             </td>
             <td>
              {{lmi}}
@@ -225,21 +280,14 @@ path.area {
               <span class="badge badge-inverse">迷你书</span>
             </td>
             <td>
-             {{mm}}
-            </td>
-           <td>
              {{lmm}}
             </td>
            
           </tr>
           
-         
         </tbody>
       </table>
-</div>
-    <div class="tab-pane " id="trends">
-    
-</div>
+ </div>
 </div>
 
 <!--

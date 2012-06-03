@@ -27,14 +27,14 @@ class CountAuthor(MethodView):
 		aus=dbSession.query(func.distinct(EditorCount2List.name)).all()
 		
 		results=dbSession.query(RssInfo,EditorCount2List).filter(RssInfo.guid==EditorCount2List.guid).filter(EditorCount2List.name==request.args.get('author')).order_by(desc(RssInfo.pubdate)).all()
-		return render_template('count_author.html',aus=aus,res=results)
+		return render_template('count_author.html',aus=aus,res=results,author=request.args.get('author'))
 	def post(self):
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
 		helper=Date_Helper()
 		aus=dbSession.query(func.distinct(EditorCount2List.name)).all()
 		results=dbSession.query(RssInfo,EditorCount2List).filter(RssInfo.guid==EditorCount2List.guid).filter(EditorCount2List.name==request.form['author']).order_by(desc(RssInfo.pubdate)).all()
-		return render_template('count_author.html',aus=aus,res=results)
+		return render_template('count_author.html',aus=aus,res=results,author=request.form['author'])
 		
 
 
@@ -79,8 +79,6 @@ class CountStatics(MethodView):
 			lml=lcount_month_all,lmn=lcount_month_news,lma=lcount_month_article,lmi=lcount_month_interview,lmp=lcount_month_presentation,lmm=lcount_month_minibooks
 			)
 
-
-
 class CountContents(MethodView):
 	def get(self):
 		db_session=sessionmaker(bind=DB)
@@ -103,10 +101,27 @@ class CountEditors(MethodView):
 class CountWeek2(MethodView):
 	def get(self):
 		return render_template('count_week.html')
+class CountWall(MethodView):
+	def get(self):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()	
+		authors=dbSession.query(func.distinct(EditorCount2List.name)).all()
+		return render_template('count_wall.html',res=authors)
+
+
+class CountWeekAuthor(MethodView):
+	def get(self):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		author=request.args.get('author')
+		results=dbSession.query(RssInfo.pubdate,func.count(RssInfo.pubdate)).filter(RssInfo.guid==EditorCount2List.guid).filter(EditorCount2List.name==author).group_by(func.week(RssInfo.pubdate)).filter(RssInfo.country=='ch').all()
+		results2=','.join('{"date":"%s","price":"%d"}'%((str(x[0])[0:10]).replace('-',' '),x[1]) for x in results)
+		return "["+results2+"]"
+
 class CountWeek(MethodView):
 	def get(self):
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
-		results=dbSession.query(RssInfo.pubdate,func.count(RssInfo.pubdate)).group_by(func.week(RssInfo.pubdate)).all()
-		results2=','.join('[date:"%s",price:%d]'%(x[0],x[1]) for x in results)
-		return "{'data':"+results2+"}"
+		results=dbSession.query(RssInfo.pubdate,func.count(RssInfo.pubdate)).group_by(func.week(RssInfo.pubdate)).filter(RssInfo.country=='ch').all()
+		results2=','.join('{"date":"%s","price":"%d"}'%((str(x[0])[0:10]).replace('-',' '),x[1]) for x in results)
+		return "["+results2+"]"

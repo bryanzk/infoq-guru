@@ -109,7 +109,8 @@ app.add_url_rule('/countall',view_func=CountContents.as_view('countcontents'))
 app.add_url_rule('/countsearch',view_func=CountSearch.as_view('countsearch'))
 app.add_url_rule('/countauthor',view_func=CountAuthor.as_view('countauthor'))
 app.add_url_rule('/countstatics',view_func=CountStatics.as_view('countstatics'))
-
+app.add_url_rule('/countauthortrends',view_func=CountWeekAuthor.as_view('countweekauthor'))
+app.add_url_rule('/countwall',view_func=CountWall.as_view('countwall'))
 
 app.add_url_rule('/countweek',view_func=CountWeek.as_view('countweek'))
 app.add_url_rule('/countweek2',view_func=CountWeek2.as_view('countweek2'))
