@@ -42,21 +42,42 @@ class CountStatics(MethodView):
 	def get(self):
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
-		count_week_all=dbSession.query(func.count(RssInfo.guid)).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())).scalar()
+		count_week_all=dbSession.query(func.count(RssInfo.guid)).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())).filter(RssInfo.country=='ch').scalar()
 		count_week_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/news%')).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())).scalar()
 		count_week_article=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/articles%')).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())).scalar()
+		count_week_interview=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/interviews%')).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())).scalar()
+		count_week_presentation=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/presentation%')).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())).scalar()
+		count_week_minibooks=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/minibook%')).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())).scalar()
 
-		count_month_all=dbSession.query(func.count(RssInfo.guid)).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()
+
+		lcount_week_all=dbSession.query(func.count(RssInfo.guid)).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())-1).filter(RssInfo.country=='ch').scalar()
+		lcount_week_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/news%')).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())-1).scalar()
+		lcount_week_article=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/articles%')).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())-1).scalar()
+		lcount_week_interview=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/interviews%')).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())-1).scalar()
+		lcount_week_presentation=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/pres%')).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())-1).scalar()
+		lcount_week_minibooks=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/minibook%')).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())-1).scalar()
+
+		count_month_all=dbSession.query(func.count(RssInfo.guid)).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).filter(RssInfo.country=='ch').scalar()
 		count_month_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/news%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()
 		count_month_article=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/articles%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()
-                month_al=dbSession.query(RssInfo).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).all())
+		count_month_interview=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/interviews%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()
+		count_month_presentation=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/pres%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()
+		count_month_minibooks=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/minibook%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()
 
-		return render_template('count_statics.html',wl=count_week_all,wn=count_week_news,wa=count_week_article,
-			ml=count_month_all,mn=count_month_news,ma=count_month_article,month_al=month_al)
 
-                        
-                        
-                      
+		lcount_month_all=dbSession.query(func.count(RssInfo.guid)).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())-1).filter(RssInfo.country=='ch').scalar()
+		lcount_month_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/news%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())-1).scalar()
+		lcount_month_article=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/articles%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())-1).scalar()
+		lcount_month_interview=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/interviews%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())-1).scalar()
+		lcount_month_presentation=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/pre%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())-1).scalar()
+		lcount_month_minibooks=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/minibook%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())-1).scalar()
+		
+		return render_template('count_statics.html',
+			wl=count_week_all,wn=count_week_news,wa=count_week_article,wi=count_week_interview,wp=count_week_presentation,wm=count_week_minibooks,
+			ml=count_month_all,mn=count_month_news,ma=count_month_article,mi=count_month_interview,mp=count_month_presentation,mm=count_month_minibooks,
+			lwl=lcount_week_all,lwn=lcount_week_news,lwa=lcount_week_article,lwi=lcount_week_interview,lwp=lcount_week_presentation,lwm=lcount_week_minibooks,
+			lml=lcount_month_all,lmn=lcount_month_news,lma=lcount_month_article,lmi=lcount_month_interview,lmp=lcount_month_presentation,lmm=lcount_month_minibooks
+			)
 
 
 
