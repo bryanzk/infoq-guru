@@ -12,8 +12,54 @@ class CountSearch(MethodView):
 		dbSession=db_session()
 		helper=Date_Helper()
 		begin,end=helper._get_begin_end()
+
 		results=dbSession.query(RssInfo,EditorCount2List).filter(RssInfo.guid==EditorCount2List.guid).filter(RssInfo.pubdate>begin).filter(RssInfo.pubdate<end).order_by(desc(RssInfo.pubdate)).all()
-		return render_template('count_search.html',res=results)
+		count=0
+		for x in results:
+			count+=1
+		return render_template('count_search.html',res=results,count=count)
+
+class CountAuthor(MethodView):
+	def get(self):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		helper=Date_Helper()
+		aus=dbSession.query(func.distinct(EditorCount2List.name)).all()
+		
+		results=dbSession.query(RssInfo,EditorCount2List).filter(RssInfo.guid==EditorCount2List.guid).filter(EditorCount2List.name==request.args.get('author')).order_by(desc(RssInfo.pubdate)).all()
+		return render_template('count_author.html',aus=aus,res=results)
+	def post(self):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		helper=Date_Helper()
+		aus=dbSession.query(func.distinct(EditorCount2List.name)).all()
+		results=dbSession.query(RssInfo,EditorCount2List).filter(RssInfo.guid==EditorCount2List.guid).filter(EditorCount2List.name==request.form['author']).order_by(desc(RssInfo.pubdate)).all()
+		return render_template('count_author.html',aus=aus,res=results)
+		
+
+
+class CountStatics(MethodView):
+	def get(self):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		count_week_all=dbSession.query(func.count(RssInfo.guid)).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())).scalar()
+		count_week_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/news%')).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())).scalar()
+		count_week_article=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/articles%')).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())).scalar()
+
+		count_month_all=dbSession.query(func.count(RssInfo.guid)).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()
+		count_month_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/news%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()
+		count_month_article=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/articles%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()
+                month_al=dbSession.query(RssInfo).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).all())
+
+		return render_template('count_statics.html',wl=count_week_all,wn=count_week_news,wa=count_week_article,
+			ml=count_month_all,mn=count_month_news,ma=count_month_article,month_al=month_al)
+
+                        
+                        
+                      
+
+
+
 class CountContents(MethodView):
 	def get(self):
 		db_session=sessionmaker(bind=DB)

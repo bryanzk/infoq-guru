@@ -1,32 +1,31 @@
 {% extends "base.html" %}
 {% block body %}
 <form class="well form-inline" action="countsearch" method="POST" >
- <input id='num-0'type="text"  name='begin'class="span6" placeholder="end">
+ <input id='num-0'type="text"  name='begin'class="span6" placeholder="开始时间，格式：2012-04-01">
  <hr/>
- <input id='num-0'type="text"  name='end'class="span6" placeholder="end">
+ <input id='num-0'type="text"  name='end'class="span6" placeholder="结束时间，格式：2012-05-01">
  <hr/>
 
   <button id='num-2' type="submit" class="btn">确认</button>
 </form>
-
-<table id='num=4' class="table table-striped">
+<div class='well'>共有{{count}}条数据</div>
+<table id='num=4' class="table table-striped sortable">
   <thead>
     <tr>
-       <th>pubdate</th>
-       
-      <th>title</th>
-     <th>author</th>
- 	<th>type</th>
- 	<th>count</th>
+       <th>时间</th>
+      <th>标题</th>
+     <th>作者</th>
+ 	<th>类型</th>
+ 	<th>工作量</th>
     </tr>
   </thead>
   <tbody>
     {% for x in res%}
     <tr>
-        <td>{{x.RssInfo.pubdate}}</a></td>
+        <td>{{x.RssInfo.pubdate}}</td>
       
-      <td>{{x.RssInfo.title}}</td>
-      <td>{{x.EditorCount2List.name}}</td>
+      <td><a href="{{x.RssInfo.guid}}">{{x.RssInfo.title}}</a></td>
+      <td><a href="countauthor?author={{x.EditorCount2List.name}}">{{x.EditorCount2List.name}}</a></td>
       <td>{{x.EditorCount2List.comment}}</td>
       <td>{{x.EditorCount2List.count}}</td>
     </tr>
