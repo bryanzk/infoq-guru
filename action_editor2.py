@@ -136,3 +136,16 @@ class ConvertToNew(MethodView):
 
 		dbSession.commit()
 		return true
+class ConvertToNew2(MethodView):
+	def get(self):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		results=dbSession.query(func.distinct(CnContents.link)).filter(CnContents.pub_date<='2012-03-24').all()
+		for y in results:
+			x=dbSession.query(CnContents).filter(CnContents.link==y[0]).first()
+			u=RssInfo(title=x.title,guid=x.link,description=x.description,pubdate=x.pub_date,country='ch',category=x.community)
+			if not dbSession.query(RssInfo).all():
+				dbSession.add(u)
+			
+		dbSession.commit()
+		return 'ok'

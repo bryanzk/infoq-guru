@@ -98,7 +98,7 @@ app.add_url_rule('/editorcountall2',view_func=EditorCountListAll.as_view('editor
 app.add_url_rule('/editorshow2',view_func=EditorCountShow2.as_view('editorshow2'))
 app.add_url_rule('/editorshare2',view_func=RssWeiboShare2.as_view('ediotrweiboshare2'))
 app.add_url_rule('/_convert',view_func=ConvertToNew.as_view('convettonew'))
-
+app.add_url_rule('/_2convert',view_func=ConvertToNew2.as_view('convert2view'))
 
 
 app.add_url_rule('/staticweek',view_func=StaticWeekContent.as_view('staticweek'))
