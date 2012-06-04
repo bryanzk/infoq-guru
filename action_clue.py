@@ -7,6 +7,8 @@ TrelloConn = TrelloConnection("47285d38ecf695f600ddabd7978a7355","02a2c4c83e0e47
 Labels={u"\u8bed\u8a00":"green",u"\u67b6\u6784 ":"yellow",u"\u8fc7\u7a0b":"orange",u"\u8fd0\u7ef4":"red",u"企业架构":"purple","Done":"blue"}
 
 
+
+					
 class TrelloTest(MethodView):
 	def get(self):
 		board=TrelloConn.get_board("4fa88ccdb6aaa61c484ac7cf")

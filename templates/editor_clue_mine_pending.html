@@ -1,0 +1,23 @@
+{% extends 'base_e.html'%}
+{% block body %}
+
+<table id='num=4' class="table sortable table-striped">
+  <thead>
+    <tr>
+       <th>创建时间</th>
+       
+      <th>类别</th>
+     <th>标题</th>
+     <th>交付审校</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for x in res%}
+    <tr>
+        <td>{{x.createddate}}</td>
+        <td>{{x.cat}}</td>
+        <td>{{x.title}}</td>
+        <td><a href='editor_clue_mine_pending_done?id={{x.id}}'>交付</a></td>
+</tr>      {%endfor%}
+</table>
+{% endblock%}

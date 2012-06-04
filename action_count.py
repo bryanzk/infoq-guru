@@ -5,6 +5,7 @@ import helper_data
 from helper_data import *
 #WorkComments_1={'文章翻译':,'文章原创','视频演讲','新闻原创','专家专栏','视频采访','迷你书','新闻翻译','新闻翻译审校','新闻原创审校','文章原创审校','迷你书审校','文章翻译审校','虚拟采访策划','提供新闻线索','专家专栏策划','采访策划','迷你书策划','文章策划']
 class CountSearch(MethodView):
+	@login()
 	def get(self):
 		return render_template('count_search.html',res='')
 	def post(self):

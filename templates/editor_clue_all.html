@@ -1,0 +1,24 @@
+{% extends 'base_e.html'%}
+{% block body %}
+
+<table id='num=4' class="table sortable table-striped">
+  <thead>
+    <tr>
+       <th>创建时间</th>
+       
+      <th>类别</th>
+     <th>标题</th>
+     <th>认领</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for x in res%}
+
+    <tr>
+        <td>{{x.createddate}}</td>
+        <td>{{x.cat}}</td>
+        <td>{{x.title}}</td>
+        <td><a href='editor_clue_pick?id={{x.id}}'>认领</a></td>
+</tr>      {%endfor%}
+</table>
+{% endblock%}

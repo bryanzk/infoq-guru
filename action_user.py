@@ -1,6 +1,7 @@
 from config import *
 class UserLogin(MethodView):
 	def  get(self):
+		session['next']=request.args.get('next')
 		return render_template('user_login.html')
 	def post(self):
 		user=request.form['user']
@@ -9,8 +10,9 @@ class UserLogin(MethodView):
 		dbSession=db_session()
 		res=dbSession.query(UserListInfo).filter(UserListInfo.user==user).filter(UserListInfo.pwd==pwd).all()
 		if res:
-			session['user']=user
-			return redirect('/')
+			session['user']=res[0]
+			flash('login ok')
+			return redirect(session['next'])
 		else:
 			return redirect('error?msg="login error"&next=/login')
 class ErrorView(MethodView):

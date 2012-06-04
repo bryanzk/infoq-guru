@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 import md5
 import urllib2
+import flask
 from urllib2 import *
 from modles import *
 from sqlalchemy.ext.declarative import declarative_base
@@ -30,6 +31,9 @@ import logging
 from logging.handlers import SMTPHandler
 import string
 import sys
+from flask import g, request, redirect, url_for
+
+
 reload(sys)
 sys.setdefaultencoding('utf8') 
 
@@ -64,20 +68,24 @@ CATEGORY_LIST=['Development','Architecture & Design','Process & Practices','Ente
 CATEGORY_LIST_CN=['']
 
 
-def login():
-        try:
-                token=session['user']
-                if toke:
-                    return True
-                else:
-                    return redirect('error?msg="need login"&next=/login')
-        except:
-            return redirect('error?msg="need login"&next=/login')
+def login(wtype='admin'):
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+                if 'user'  not in session:
+                    return redirect(url_for('login', next=request.url))
+                if session['user'].wtype!=wtype:
+                    flash('auth not enough!')
+                return f(*args, **kwargs)
+        return decorated_function
+    return decorator
+
+
 def token():
         try:
             try:
                 token=session['token']
-                return f(*args,**kwargs)
+                return True
             except:
                 db_session=sessionmaker(bind=DB)
                 dbSession=db_session()
@@ -91,14 +99,17 @@ def token():
         except :
             return redirect('go?msg=error')
 
+
 class UserListInfo(Base):
     __tablename__='user_list'
     user=Column(String(100),primary_key=True)
     pwd=Column(String(45))
+    wtype=Column(String(45))
     """docstring for UserListInfo"""
-    def __init__(self, user,pwd):
+    def __init__(self, user,pwd,wtype):
         self.user=user
         self.pwd=pwd
+        self.wtype=wtype
         
         
 class TokenListInfo(Base):
@@ -476,6 +487,27 @@ class EditorCount2List(Base):
         self.count=count
         self.comment=comment
         self.img=img
+class ClueList(Base):
+    __tablename__='clue_list'
+    id=Column(String(50),primary_key=True)
+    createddate=Column(DateTime)
+    chief_editor=Column(String(100))
+    duty_editor=Column(String(100))
+    staus=Column(String(100))
+    duedate=Column(DateTime)
+    title=Column(String(800))
+    cat=Column(String(20))
+    description=Column(String(500))
+    def __init__(self,id,cat,title,description,chief_editor='',duty_editor='',duedate='',staus='fresh'):
+        self.createddate=datetime.today()
+        self.id=id
+        self.cat=cat
+        self.chief_editor=chief_editor
+        self.duty_editor=duty_editor
+        self.title=title
+        self.description=description
+        self.staus=staus
+        self.duedate=duedate
 
 WEIBO_MAIL_CONTENT_BASE1="""
 

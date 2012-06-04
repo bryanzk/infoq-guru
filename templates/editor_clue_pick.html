@@ -1,0 +1,15 @@
+{% extends 'base_e.html'%}
+{% block body %}
+
+<form class="well form-inline" action="editor_clue_pick" method="POST" >
+ 
+ <input id='num-0'type="text" name='duedate'class="input-small" placeholder="完成时间">
+ <input id='num-0'type="hidden" name='id' value='{{res.id}}'>
+ <input id='num-0'type="hidden" name='chief_editor' value='test'>
+ <input id='num-0'type="hidden" name='cat' value="{{res.cat}}">
+
+    <span class="help-inline">完成时间2012-05-01</span>
+  <button id='num-2' type="submit" class="btn">添加</button>
+</form>
+
+{% endblock%}

@@ -23,13 +23,14 @@ from action_count import *
 from action_clear import *
 from action_editor2 import *
 
+from action_editor_clue import *
+
 from config import *
 
 from md5 import md5
 app = Flask(__name__)
 app.debug=True
 app.secret_key='fakdfakjbdfjasdfa&fasdfa'
-
 app.add_url_rule('/rss',view_func=RssFetchRefresh.as_view('rss'))
 app.add_url_rule('/taskadd',view_func=TaskAddNew.as_view('taskadd'))
 app.add_url_rule('/taskstep',view_func=TaskToStep.as_view('taskstep'))
@@ -115,6 +116,15 @@ app.add_url_rule('/countwall',view_func=CountWall.as_view('countwall'))
 app.add_url_rule('/countweek',view_func=CountWeek.as_view('countweek'))
 app.add_url_rule('/countweek2',view_func=CountWeek2.as_view('countweek2'))
 app.add_url_rule('/clear',view_func=ClearIt.as_view('clear'))
+
+
+app.add_url_rule('/editor_clue_get',view_func=Editor_Clue_Get.as_view('editorclueget'))
+app.add_url_rule('/editor_clue_all',view_func=Editor_Clue_All.as_view('editorclueall'))
+app.add_url_rule('/editor_clue_pick',view_func=Editor_Clue_Pick.as_view('editorcluepick'))
+app.add_url_rule('/editor_clue_mine_pending',view_func=Editor_Clue_Mine_Pending.as_view('editorclueminepending'))
+app.add_url_rule('/editor_clue_mine_pending_done',view_func=Editor_Clue_Mine_Pending_Done.as_view('minependingdone'))
+app.add_url_rule('/editor_clue_mine_done',view_func=Editor_Clue_Mine_Done.as_view('Editor_Clue_Mine_Done'))
+
 
 app.add_url_rule('/fm',view_func=DoubanView.as_view('fm'))
 app.jinja_env.globals.update(md5=md5)
