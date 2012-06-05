@@ -111,7 +111,7 @@ class UserListInfo(Base):
         self.pwd=pwd
         self.wtype=wtype
         
-        
+        D
 class TokenListInfo(Base):
     __tablename__='token_list'
     time=Column(DateTime,primary_key=True)

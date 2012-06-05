@@ -6,7 +6,7 @@ from action_editor import *
 from action_static import *
 from action_user import *
 from action_mail import *
-from action_task import *
+from action_task import 
 from action_check import *
 from action_charts import *
 from action_top import *
@@ -101,9 +101,6 @@ app.add_url_rule('/editorshare2',view_func=RssWeiboShare2.as_view('ediotrweibosh
 app.add_url_rule('/_convert',view_func=ConvertToNew.as_view('convettonew'))
 app.add_url_rule('/_2convert',view_func=ConvertToNew2.as_view('convert2view'))
 
-
-app.add_url_rule('/staticweek',view_func=StaticWeekContent.as_view('staticweek'))
-app.add_url_rule('/staticeditor',view_func=StaticEditorContents.as_view('staticeditor'))
 
 
 app.add_url_rule('/countall',view_func=CountContents.as_view('countcontents'))

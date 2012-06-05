@@ -52,7 +52,7 @@ class StaticView(MethodView):
         count=len(rr)
 
         return render_template('static_rss.html',r=rr,count=count)
-class StaticWeekContentsJson(MethodView):
+'''class StaticWeekContentsJson(MethodView):
     def get(self):
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
@@ -80,4 +80,4 @@ class StaticEditorContents(MethodView):
         results_f=dbSession.query(EditorCountWeiboList,RssInfo).filter(EditorCountWeiboList.fname==editor).order_by(desc(RssInfo.pubdate)).all()
         # 获取审校的
         results_s=dbSession.query(EditorCountWeiboList,RssInfo).filter(RssInfo.guid==EditorCountWeiboList.guid).filter(EditorCountWeiboList.sname==editor).order_by(desc(RssInfo.pubdate)).all()
-        raise
+        raise'''
