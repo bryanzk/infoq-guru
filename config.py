@@ -133,6 +133,8 @@ class WeiboR():
     comment=0
     athur=''
     cat=''
+    smallcat=''
+    maincat=''
 class MInfo():
     text = ''
     r=''
@@ -156,13 +158,20 @@ class RssInfo(Base):
     guid=Column(String(1000))
     country=Column(String(45))
     category=Column(String(200))
-    def __init__(self,title,pubdate,description,guid,country,category):
+    small_cat=Column(String(100))
+    author=Column(String(100))
+    main_cat=Column(String(100))
+    def __init__(self,title,pubdate,description,guid,country,category,small_cat='',author='',main_cat=''):
         self.title=title
         self.pubdate=pubdate
         self.category=category
         self.country=country
         self.description=description
         self.guid=guid
+        self.small_cat=small_cat
+        self.author=author
+        self.main_cat=main_cat
+
 '''
     this class is for mapping to mysql table: new_list
 '''
@@ -174,13 +183,18 @@ class RssNewInfo(Base):
     guid=Column(String(1000))
     country=Column(String(45))
     category=Column(String(200))
-    def __init__(self,title,pubdate,description,guid,country,category):
+    small_cat=Column(String(100))
+    author=Column(String(100))
+    def __init__(self,title,pubdate,description,guid,country,category,small_cat='',author=''):
         self.title=title
         self.pubdate=pubdate
         self.category=category
         self.country=country
         self.description=description
         self.guid=guid
+        self.small_cat=small_cat
+        self.author=author
+
 class MailListInfo(Base):
     __tablename__='mail_list'
     id=Column(String(100),primary_key=True)

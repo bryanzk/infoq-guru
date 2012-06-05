@@ -16,6 +16,7 @@
       <th>标题</th>
      <th>作者</th>
  	<th>类型</th>
+  <th>类别</th>
  	<th>工作量</th>
     </tr>
   </thead>
@@ -27,6 +28,7 @@
       <td><a href="{{x.RssInfo.guid}}">{{x.RssInfo.title}}</a></td>
       <td><a href="countauthor?author={{x.EditorCount2List.name}}">{{x.EditorCount2List.name}}</a></td>
       <td>{{x.EditorCount2List.comment}}</td>
+      <td>{{x.RssInfo.small_cat}}</td>
       <td>{{x.EditorCount2List.count}}</td>
     </tr>
     {% endfor %}

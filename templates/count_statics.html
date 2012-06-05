@@ -14,60 +14,31 @@ show_trends(800,400,"http://infoqhelp.sinaapp.com/countweek", "#trends");
 
 {% endblock%}
 {% block body %}
-   <style type="text/css">
 
-path.line {
-  fill: none;
-  stroke: #666;
-  stroke-width: 1.5px;
-}
-
-path.area {
-  fill: lightblue;
-}
-
-.axis {
-  shape-rendering: crispEdges;
-}
-
-.x.axis line {
-  stroke: #fff;
-}
-
-.x.axis .minor {
-  stroke-opacity: .5;
-}
-
-.x.axis path {
-  display: none;
-}
-
-.y.axis line, .y.axis path {
-  fill: none;
-  stroke: #000;
-}
-
-    </style>
     <script type="text/javascript">
 
 
     </script>
 <ul class="nav nav-pills" id="myTab">
   <li class="active"><a href="#week">本周</a></li>
- 
-  <li><a href="#month">本月</a></li>
+     <li><a href="#lweek">上周</a></li>
+  <li><a href="#month">本/上月</a></li>
+
     <li ><a href="#trends">内容走势</a></li>
  
 </ul>
 
 <div class="tab-content">
   <div class="tab-pane active" id="week">
-		<table class="table table-bordered table-striped">
+  <div class='well'>
+    {{begin}}至{{end}}
+   </div>
+    <table class="table table-bordered table-striped">
         <thead>
           <tr>
             <th>类别</th>
             <th>本周</th>
-            <th>上周</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -78,9 +49,7 @@ path.area {
             <td>
              {{wl}}
             </td>
-             <td>
-             {{lwl}}
-            </td>
+            
          
           </tr>
           <tr>
@@ -90,9 +59,7 @@ path.area {
             <td>
              {{wn}}
             </td>
-            <td>
-             {{lwn}}
-            </td>
+           
            
           </tr>
           <tr>
@@ -102,9 +69,7 @@ path.area {
             <td>
              {{wa}}
             </td>
-            <td>
-             {{lwa}}
-            </td>
+           
            
           </tr>
           <tr>
@@ -114,9 +79,7 @@ path.area {
             <td>
              {{wp}}
             </td>
-            <td>
-             {{lwp}}
-            </td>
+           
            
           </tr>
           <tr>
@@ -125,9 +88,6 @@ path.area {
             </td>
             <td>
              {{wi}}
-            </td>
-            <td>
-             {{lwi}}
             </td>
            
           </tr>
@@ -138,6 +98,85 @@ path.area {
             <td>
              {{wm}}
             </td>
+           
+           
+          </tr>
+          
+         
+        </tbody>
+      </table>
+  </div>
+
+
+
+<div class="tab-pane " id="lweek">
+  <div class='well'>
+    {{lbegin}}至{{lend}}
+   </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>类别</th>
+           
+            <th>上周</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="badge">总量</span>
+            </td>
+           
+             <td>
+             {{lwl}}
+            </td>
+         
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-success">新闻</span>
+            </td>
+          
+            <td>
+             {{lwn}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-warning">文章</span>
+            </td>
+           
+            <td>
+             {{lwa}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-important">演讲</span>
+            </td>
+           
+            <td>
+             {{lwp}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-info">采访</span>
+            </td>
+           
+            <td>
+             {{lwi}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-inverse">迷你书</span>
+            </td>
+            
             <td>
              {{lwm}}
             </td>
@@ -147,7 +186,7 @@ path.area {
          
         </tbody>
       </table>
-	</div>
+  </div>
 
   <div class="tab-pane" id="month">
 

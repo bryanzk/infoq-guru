@@ -17,7 +17,25 @@ from datetime import timedelta
 from config import *
 #res = urllib2.urlopen('http://www.infoq.com/rss/rss.action?token=v94n6E2kapoNhNXc9EWTYRXoOoLLHX5S')
 #rss = BeautifulSoup(res.read())
-
+class RssSetMainCatAll(MethodView):
+    def get(self):
+        db_session=sessionmaker(bind=DB)
+        dbSession=db_session()
+        results=dbSession.query(RssInfo).filter(RssInfo.country=='ch').filter(RssInfo.main_cat== None).order_by(RssInfo.pubdate).limit(30)
+        return render_template('rss_set_maincat_all.html',res=results)
+class RssSetMainCat(MethodView):
+    def get(self):
+        db_session=sessionmaker(bind=DB)
+        dbSession=db_session()
+        results=dbSession.query(RssInfo).filter(RssInfo.guid==request.args.get('guid')).all()
+        return render_template('rss_set_maincat.html',res=results[0])
+    def post(self):
+        db_session=sessionmaker(bind=DB)
+        dbSession=db_session()
+        results=dbSession.query(RssInfo).filter(RssInfo.guid==request.form['guid']).first()
+        results.main_cat=request.form['main_cat']
+        dbSession.commit()
+        return redirect('/setmaincatall')
 class RssNew(MethodView):
     def post(self):
         begin=datetime.strptime((request.form['begin'])+" 00:00:00",'%Y-%m-%d %H:%M:%S')
@@ -82,7 +100,7 @@ class RssRefresh():
                 dbSession=sessionmaker(bind=DB)
                 db_session=dbSession()
                 db_session.add(r)
-                _nr=RssNewInfo(title=r.title,description=r.description,
+                _nr=RssNewInfo(title=r.title,description=r.description,small_cat=r.small_cat,author=r.author,
                     pubdate=r.pubdate,guid=r.guid,country=r.country,category=r.category)
                 db_session.add(_nr)
                 db_session.commit()
@@ -105,12 +123,18 @@ class RssRefresh():
             description=(x.description.string).encode('utf-8'),
             pubdate=datetime.strptime((x.pubdate.string).encode('utf-8'),'%a, %d %b %Y %H:%M:%S  GMT'),
             guid=(x.guid.string).encode('utf-8'),
-            country=country,category=category)
+            country=country,category=category,author=x.find('dc:creator').string,
+            small_cat=self._get_smallcat(x.find('dc:creator').string))
             
             result.append(r)
         
         return result
-    
+    def _get_smallcat(self,author):
+        _key=re.findall('[a-zA-Z]',author)
+        if _key:
+            return u'翻译'
+        else:
+            return u'原创'
                 
                  
     '''
@@ -125,11 +149,11 @@ class RssRefresh():
         db_session=dbSession()
         it=db_session.query(RssInfo).filter(RssInfo.guid==guid).all()
         if it:
-
-            return True
-        else:
-
-            return False
+            if it[0].main_cat!='':
+                return True
+        db_session.delete(it[0])
+        db_session.commit()
+        return False
     '''
         clear the new_list table before the new data is merged into it
     '''

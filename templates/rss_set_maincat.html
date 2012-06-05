@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<p><a href='{{res.guid}}' target='_blank'>{{res.title}}</a></p>
+<hr/><p>所属专题：{{res.category}}</p>
+<form class="well form-inline" action="setmaincat" method="POST" >
+	<input type="hidden" value='{{res.guid}}' name='guid'/>
+ <select name='main_cat'>
+ 	<option value='语言 & 开发'>语言&开发</opion>
+ 	<option value='架构 & 设计'>架构&设计</opion>
+ 	<option value='过程 & 实践'>过程&实践</opion>
+ 	<option value='运维 & 基础架构'>运维&基础架构</opion>
+ 	<option value='企业架构'>企业架构</opion>
+
+ </select>
+  <button id='num-2' type="submit" class="btn">添加</button>
+</form>
+{% endblock %}

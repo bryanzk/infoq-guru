@@ -31,6 +31,8 @@ class StaticView(MethodView):
             w.time=x.pubdate
             w.title=x.title
             w.guid=x.guid
+            w.smallcat=x.small_cat
+            w.maincat=x.main_cat
             _x=dbSession.query(WeiboM).filter(WeiboM.org_url==x.guid).all()
             if _x:
                 w.weibo=_x[0].url
@@ -38,6 +40,7 @@ class StaticView(MethodView):
                 w.cat=_x[0].cat
                 w.comment=_x[0].comment
                 w.retweet=_x[0].retweet
+
             else:
                 w.weibo='none'
                 w.athur='none'

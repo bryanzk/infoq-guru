@@ -126,6 +126,9 @@ app.add_url_rule('/editor_clue_mine_pending_done',view_func=Editor_Clue_Mine_Pen
 app.add_url_rule('/editor_clue_mine_done',view_func=Editor_Clue_Mine_Done.as_view('Editor_Clue_Mine_Done'))
 
 
+app.add_url_rule('/setmaincatall',view_func=RssSetMainCatAll.as_view('setmaincatall'))
+app.add_url_rule('/setmaincat',view_func=RssSetMainCat.as_view('setmaincat'))
+
 app.add_url_rule('/fm',view_func=DoubanView.as_view('fm'))
 app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':
