@@ -13,7 +13,6 @@ from action_top import *
 from action_feedback import *
 from action_aboutus import *
 from action_timeline import *
-from action_mag import *
 from action_expert import *
 from action_jingyao import *
 from action_fee import *

@@ -186,7 +186,4 @@ class RssRefresh():
 
             db_session.delete(x)
         db_session.commit()
-#for x in rss.find_all('item'):
-#   print  x.title.string
-#   print '--------------'
-#print rss.channel.item.title.string
+
