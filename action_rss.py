@@ -17,6 +17,13 @@ from datetime import timedelta
 from config import *
 #res = urllib2.urlopen('http://www.infoq.com/rss/rss.action?token=v94n6E2kapoNhNXc9EWTYRXoOoLLHX5S')
 #rss = BeautifulSoup(res.read())
+class RssChangeMainCatAll(MethodView):
+    def get(self):
+        db_session=sessionmaker(bind=DB)
+        dbSession=db_session()
+        results=dbSession.query(RssInfo).filter(RssInfo.country=='ch').filter(and_(RssInfo.main_cat!= None,RssInfo.main_cat!='')).order_by(RssInfo.pubdate).limit(30)
+        
+        return render_template('rss_change_maincat_all.html',res=results)
 class RssSetMainCatAll(MethodView):
     def get(self):
         db_session=sessionmaker(bind=DB)

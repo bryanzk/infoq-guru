@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block belowscript %}
+function save_set_maincat(guid,id){
+var request = $.ajax({
+  url: "setmaincat",
+  type: "POST",
+  data: 'guid='+guid+'&main_cat='+$('.main_cat-'+id+' option:selected').val(),
+});
+
+request.done(function(msg) {
+alert('ok');
+});
+
+request.fail(function(jqXHR, textStatus) {
+  alert( "Request failed: " + textStatus );
+});
+};
+{% endblock%}
+{% block script %}
+
+
+
+{% endblock%}
+
+{% block body %}
+
+<table id='num=4' class="table table-striped sortable">
+  <thead>
+    <tr>
+       <th>时间</th>
+      <th>标题</th>
+  <th>类别</th>
+  <th>参考</th>
+  <th>设置社区</th>
+ 	<th>设置</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for x in res%}
+    <tr class='guid' id='guid-{{x.guid.replace(':','').replace('/','').replace('.','')}}'>
+        <td>{{x.pubdate}}</td>
+      
+      <td><a href="{{x.guid}}">{{x.title}}</a></td>
+      <td>{{x.small_cat}}</td>
+            <td>{{x.category}}</td>
+
+      <td><select class='main_cat-{{x.guid.replace(':','').replace('/','').replace('.','')}}' name='main_cat'>
+  <option value='语言 & 开发' {% if x.main_cat=='语言 & 开发'%} selected{% endif%}>语言&开发</opion>
+  <option value='架构 & 设计' {% if x.main_cat=='架构 & 设计'%} selected{% endif%}>架构&设计</opion>
+  <option value='过程 & 实践' {% if x.main_cat=='过程 & 实践'%} selected{% endif%}>过程&实践</opion>
+  <option value='运维 & 基础架构' {% if x.main_cat=='运维 & 基础架构'%} selected{% endif%}>运维&基础架构</opion>
+  <option value='企业架构' {% if x.main_cat=='企业架构'%} selected{% endif%}>企业架构</opion>
+
+ </select></td>
+      <td><a href='javascript:save_set_maincat("{{x.guid}}","{{x.guid.replace(':','').replace('/','').replace('.','')}}");'>设置</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock%}

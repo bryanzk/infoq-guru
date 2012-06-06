@@ -124,6 +124,7 @@ app.add_url_rule('/editor_clue_mine_done',view_func=Editor_Clue_Mine_Done.as_vie
 
 
 app.add_url_rule('/setmaincatall',view_func=RssSetMainCatAll.as_view('setmaincatall'))
+app.add_url_rule('/changemaincatall',view_func=RssChangeMainCatAll.as_view('setchangemaincatall'))
 app.add_url_rule('/setmaincat',view_func=RssSetMainCat.as_view('setmaincat'))
 
 app.add_url_rule('/fm',view_func=DoubanView.as_view('fm'))
