@@ -18,9 +18,7 @@ from action_expert import *
 from action_jingyao import *
 from action_fee import *
 from action_clue import *
-from action_fm import *
 from action_count import *
-from action_clear import *
 from action_editor2 import *
 
 from action_editor_clue import *
@@ -112,7 +110,6 @@ app.add_url_rule('/countwall',view_func=CountWall.as_view('countwall'))
 
 app.add_url_rule('/countweek',view_func=CountWeek.as_view('countweek'))
 app.add_url_rule('/countweek2',view_func=CountWeek2.as_view('countweek2'))
-app.add_url_rule('/clear',view_func=ClearIt.as_view('clear'))
 
 
 app.add_url_rule('/editor_clue_get',view_func=Editor_Clue_Get.as_view('editorclueget'))
