@@ -58,11 +58,8 @@ class CountStatics(MethodView):
 		begin,end=week_begin_end()
 		count_week_all=dbSession.query(func.count(RssInfo.guid)).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).filter(RssInfo.country=='ch').scalar()
 		
-		count_week=dbSession.query(func.count(RssInfo.guid)).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end))
-		count_week_news=count_week.filter(RssInfo.guid.like('%cn/news%')).
-
-
-		#count_week_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/news%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()
+		
+		count_week_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/news%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()
 		count_week_article=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/articles%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()
 		count_week_interview=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/interviews%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()
 		count_week_presentation=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/presentation%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()

@@ -6,7 +6,7 @@ from action_editor import *
 from action_static import *
 from action_user import *
 from action_mail import *
-from action_task import 
+from action_task import *
 from action_check import *
 from action_charts import *
 from action_top import *

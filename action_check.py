@@ -123,10 +123,10 @@ class WPCheckView(MethodView):
 		res=dbSession.query(WPCheckList).order_by(desc(WPCheckList.time)).limit(20)
 		return render_template('wp_check.html',res=res)
 	def post(self):
-        	db_session=sessionmaker(bind=DB)
+		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
-                res=dbSession.query(TokenListInfo).order_by(desc(TokenListInfo.time)).all()
-                
+		res=dbSession.query(TokenListInfo).order_by(desc(TokenListInfo.time)).all()
+
 		client = APIClient(app_key=APP_KEY, app_secret=APP_SECRET, redirect_uri=CALLBACK_URL)
 		_token = res[0].token
 		_expires_in = res[0].expire

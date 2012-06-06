@@ -21,21 +21,35 @@ class RssSetMainCatAll(MethodView):
     def get(self):
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
-        results=dbSession.query(RssInfo).filter(RssInfo.country=='ch').filter(RssInfo.main_cat== None).order_by(RssInfo.pubdate).limit(30)
+        results=dbSession.query(RssInfo).filter(RssInfo.country=='ch').filter(or_(RssInfo.main_cat== None,RssInfo.main_cat=='')).order_by(RssInfo.pubdate).limit(30)
+        
         return render_template('rss_set_maincat_all.html',res=results)
 class RssSetMainCat(MethodView):
     def get(self):
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
         results=dbSession.query(RssInfo).filter(RssInfo.guid==request.args.get('guid')).all()
+        
         return render_template('rss_set_maincat.html',res=results[0])
     def post(self):
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
         results=dbSession.query(RssInfo).filter(RssInfo.guid==request.form['guid']).first()
-        results.main_cat=request.form['main_cat']
+        CATS={'语言 ':"语言 & 开发",'架构 ':'架构 & 设计','过程 ':"过程 & 实践","运维 ":'运维 & 基础架构',"企业架构":"企业架构"}
+        if request.form['main_cat']=='语言 ':
+            results.main_cat='语言　＆　开发'
+        elif request.form['main_cat']=='架构 ':
+            results.main_cat='架构 &　设计'
+        elif request.form['main_cat']=='过程 ':
+            results.main_cat='过程 & 实践'
+        elif request.form['main_cat']=='运维 ':
+            results.main_cat='运维 & 基础架构'
+        elif request.form['main_cat']=='企业架构':
+            results.main_cat='企业架构'
+
+        
         dbSession.commit()
-        return redirect('/setmaincatall')
+        return 'ok'
 class RssNew(MethodView):
     def post(self):
         begin=datetime.strptime((request.form['begin'])+" 00:00:00",'%Y-%m-%d %H:%M:%S')
