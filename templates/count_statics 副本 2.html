@@ -3,7 +3,7 @@
     
    
 
-//show_trends(800,400,"http://infoqhelp.sinaapp.com/countweek", "#trends");
+show_trends(800,400,"http://infoqhelp.sinaapp.com/countweek", "#trends");
 
     
   $('#myTab a').click(function (e) {
@@ -11,31 +11,6 @@
     $(this).tab('show');
     });   
     
-    $('.data-it').each(function(e){
-    
-    var main_cat=$(this).attr('data-main');
-    var cat=$(this).attr('data-cat');
-   var small_cat=$(this).attr('data-small');
-
-    var it=$(this);
-    it.text('loading...');
-    var request = $.ajax({
-      url: "countstatics2",
-      type: "POST",
-      data: 'cat='+cat+'&main_cat='+main_cat+'&small_cat='+small_cat
-        });
-    request.done(function(msg) {
-          it.text(msg);
-
-        });
-
-      request.fail(function(jqXHR, textStatus) {
-          it.text('error');
-      });
-
-    });
-
-
 
 {% endblock%}
 {% block body %}
@@ -62,98 +37,71 @@
         <thead>
           <tr>
             <th>类别</th>
-            <th>语言 & 开发</th>
-            <th>架构 & </th>
-            <th>过程 & 实践</th>
-            <th>运维 & 基础架构</th>
-            <th>企业架构</th>
-
+            <th>本周</th>
+            
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              <span class="badge">新闻原创</span>
+              <span class="badge">总量</span>
             </td>
             <td>
-             <p class='data-it' data-main='语言 & 开发' data-small='原创'data-cat='news'></p>
+             {{wl}}
+            </td>
+            
+         
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-success">新闻</span>
             </td>
             <td>
-             <p class='data-it' data-main='架构 & 设计' data-small='原创' data-cat='news'></p>
+             {{wn}}
+            </td>
+           
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-warning">文章</span>
             </td>
             <td>
-             <p class='data-it' data-main='过程 & 实践' data-small='原创' data-cat='news'></p>
+             {{wa}}
+            </td>
+           
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-important">演讲</span>
             </td>
             <td>
-             <p class='data-it' data-main='运维 & 基础架构' data-small='原创'data-cat='news'></p>
+             {{wp}}
+            </td>
+           
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-info">采访</span>
             </td>
             <td>
-             <p class='data-it' data-main='企业架构' data-small='原创' data-cat='news'></p>
-            </td> 
+             {{wi}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-inverse">迷你书</span>
+            </td>
+            <td>
+             {{wm}}
+            </td>
+           
+           
           </tr>
           
-
-<tr>
-            <td>
-              <span class="badge">新闻翻译</span>
-            </td>
-            <td>
-             <p class='data-it' data-main='语言 & 开发' data-small='翻译'data-cat='news'></p>
-            </td>
-            <td>
-             <p class='data-it' data-main='架构 & 设计' data-small='翻译' data-cat='news'></p>
-            </td>
-            <td>
-             <p class='data-it' data-main='过程 & 实践' data-small='翻译' data-cat='news'></p>
-            </td>
-            <td>
-             <p class='data-it' data-main='运维 & 基础架构' data-small='翻译'data-cat='news'></p>
-            </td>
-            <td>
-             <p class='data-it' data-main='企业架构' data-small='翻译' data-cat='news'></p>
-            </td> 
-          </tr>
-          <tr>
-            <td>
-              <span class="badge">文章原创</span>
-            </td>
-            <td>
-             <p class='data-it' data-main='语言 & 开发' data-small='原创'data-cat='article'></p>
-            </td>
-            <td>
-             <p class='data-it' data-main='架构 & 设计' data-small='原创' data-cat='article'></p>
-            </td>
-            <td>
-             <p class='data-it' data-main='过程 & 实践' data-small='原创' data-cat='article'></p>
-            </td>
-            <td>
-             <p class='data-it' data-main='运维 & 基础架构' data-small='原创'data-cat='article'></p>
-            </td>
-            <td>
-             <p class='data-it' data-main='企业架构' data-small='原创' data-cat='article'></p>
-            </td> 
-          </tr>
-          <tr>
-            <td>
-              <span class="badge">文章翻译</span>
-            </td>
-            <td>
-             <p class='data-it' data-main='语言 & 开发' data-small='翻译'data-cat='article'></p>
-            </td>
-            <td>
-             <p class='data-it' data-main='架构 & 设计' data-small='翻译' data-cat='article'></p>
-            </td>
-            <td>
-             <p class='data-it' data-main='过程 & 实践' data-small='翻译' data-cat='article'></p>
-            </td>
-            <td>
-             <p class='data-it' data-main='运维 & 基础架构' data-small='翻译'data-cat='article'></p>
-            </td>
-            <td>
-             <p class='data-it' data-main='企业架构' data-small='翻译' data-cat='article'></p>
-            </td> 
-          </tr>
-
          
         </tbody>
       </table>

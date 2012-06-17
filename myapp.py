@@ -67,7 +67,6 @@ app.add_url_rule('/lab',view_func=Labs.as_view('labs'))
 app.add_url_rule('/timeline',view_func=TimeLine.as_view('timeline'))
 app.add_url_rule('/timelinedata',view_func=TimeLineData.as_view('timelinedata'))
 app.add_url_rule('/urltop',view_func=TopView2.as_view('topviewurl'))
-app.add_url_rule('/mag',view_func=MagView.as_view('mag'))
 app.add_url_rule('/eupdate',view_func=ExpertUpdate.as_view('eupdate'))
 app.add_url_rule('/eadd',view_func=ExpertAdd.as_view('eadd'))
 app.add_url_rule('/es',view_func=ExpertSearch.as_view('es'))
@@ -106,6 +105,7 @@ app.add_url_rule('/countauthor',view_func=CountAuthor.as_view('countauthor'))
 app.add_url_rule('/countstatics',view_func=CountStatics.as_view('countstatics'))
 app.add_url_rule('/countauthortrends',view_func=CountWeekAuthor.as_view('countweekauthor'))
 app.add_url_rule('/countwall',view_func=CountWall.as_view('countwall'))
+app.add_url_rule('/countstatics2',view_func=CountStatics2.as_view('countstatics2'))
 
 app.add_url_rule('/countweek',view_func=CountWeek.as_view('countweek'))
 app.add_url_rule('/countweek2',view_func=CountWeek2.as_view('countweek2'))
@@ -123,7 +123,8 @@ app.add_url_rule('/setmaincatall',view_func=RssSetMainCatAll.as_view('setmaincat
 app.add_url_rule('/changemaincatall',view_func=RssChangeMainCatAll.as_view('setchangemaincatall'))
 app.add_url_rule('/setmaincat',view_func=RssSetMainCat.as_view('setmaincat'))
 
-app.add_url_rule('/fm',view_func=DoubanView.as_view('fm'))
+
+
 app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':
     app.run()

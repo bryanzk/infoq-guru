@@ -50,7 +50,23 @@ def week_begin_end():
 		end=begin+timedelta(days=7)
 		return begin,end
 
+class CountStatics2(MethodView):
+	def get(self):
+		cat=request.form['cat']
+		main_cat=request.form['main_cat']
+		return get_count_of_cat_week(cat,main_cat)
+	def post(self):
+		cat=request.form['cat']
+		main_cat=request.form['main_cat']
+		small_cat=request.form['small_cat']
+		return get_count_of_cat_week(cat,small_cat,main_cat)
 
+def get_count_of_cat_week(cat,small_cat,main_cat):
+	db_session=sessionmaker(bind=DB)
+	dbSession=db_session()
+	begin,end=week_begin_end()
+	count_week_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.main_cat.like(main_cat)).filter(RssInfo.small_cat.like(small_cat)).filter(RssInfo.guid.like('%cn/'+cat+'%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()
+	return str(count_week_news)
 class CountStatics(MethodView):
 	def get(self):
 		db_session=sessionmaker(bind=DB)
@@ -64,6 +80,7 @@ class CountStatics(MethodView):
 		count_week_interview=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/interviews%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()
 		count_week_presentation=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/presentation%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()
 		count_week_minibooks=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/minibook%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()
+
 
 		lbegin=begin-timedelta(days=7)
 		lend=end-timedelta(days=7)
