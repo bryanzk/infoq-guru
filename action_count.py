@@ -3,7 +3,7 @@ import config
 from config import *
 import helper_data
 from helper_data import *
-#WorkComments_1={'文章翻译':,'文章原创','视频演讲','新闻原创','专家专栏','视频采访','迷你书','新闻翻译','新闻翻译审校','新闻原创审校','文章原创审校','迷你书审校','文章翻译审校','虚拟采访策划','提供新闻线索','专家专栏策划','采访策划','迷你书策划','文章策划']
+#WorkComments_1={'文章翻译':0.08,'文章原创':0.15,'视频演讲':0,'新闻原创':0.2,'专家专栏':0.15,'视频采访':0,'迷你书':0.15,'新闻翻译':0.8,'新闻翻译审校':0.080,'新闻原创审校':0.03,'文章原创审校':0.06,'迷你书审校':0.3,'文章翻译审校':0.04,'虚拟采访策划':300,'提供新闻线索':0,'专家专栏策划':0.120,'采访策划':0.300,'迷你书策划':0.3,'文章策划':120｝
 class CountSearch(MethodView):
 	def get(self):
 		return render_template('count_search.html',res='')
@@ -65,7 +65,7 @@ def get_count_of_cat_week(cat,small_cat,main_cat):
 	db_session=sessionmaker(bind=DB)
 	dbSession=db_session()
 	begin,end=week_begin_end()
-	count_week_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.main_cat.like(main_cat)).filter(RssInfo.small_cat.like(small_cat)).filter(RssInfo.guid.like('%cn/'+cat+'%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()
+	count_week_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.main_cat.like(main_cat)).filter(RssInfo.small_cat.like(small_cat)).filter(RssInfo.guid.op('%cn/'+cat+'%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()
 	return str(count_week_news)
 class CountStatics(MethodView):
 	def get(self):

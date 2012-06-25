@@ -45,4 +45,4 @@ class NotifyNumber(MethodView):
 		dbSession=db_session()
 		notifys=dbSession.query(NotifyMessage).filter(desc(NotifyMessage.time)).filter(NotifyMessage.status==0).scalar()
 		return str(notifys)
-	
+

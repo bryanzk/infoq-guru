@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"Not",
+				"NotifyMessage"
+			],
+			[
+				"get",
+				"get_count_of_cat_week"
+			],
+			[
 				"res",
 				"results"
 			],
@@ -198,10 +206,6 @@
 			[
 				"Tre",
 				"TrelloConn"
-			],
-			[
-				"get",
-				"get_board"
 			],
 			[
 				"Trel",
@@ -510,15 +514,54 @@
 			[
 				"th",
 				"thead	Tag"
-			],
-			[
-				"for",
-				"form"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"contents": "# coding: utf-8\nimport config\nfrom config import *\nimport helper_data\nfrom helper_data import *\n#WorkComments_1={'文章翻译':,'文章原创','视频演讲','新闻原创','专家专栏','视频采访','迷你书','新闻翻译','新闻翻译审校','新闻原创审校','文章原创审校','迷你书审校','文章翻译审校','虚拟采访策划','提供新闻线索','专家专栏策划','采访策划','迷你书策划','文章策划']\nclass CountSearch(MethodView):\n	def get(self):\n		return render_template('count_search.html',res='')\n	def post(self):\n		db_session=sessionmaker(bind=DB)\n		dbSession=db_session()\n		helper=Date_Helper()\n		begin,end=helper._get_begin_end()\n\n		results=dbSession.query(RssInfo,EditorCount2List).filter(RssInfo.guid==EditorCount2List.guid).filter(RssInfo.pubdate>begin).filter(RssInfo.pubdate<end).order_by(desc(RssInfo.pubdate)).all()\n		count=0\n		for x in results:\n			count+=1\n		return render_template('count_search.html',res=results,count=count)\n\nclass CountAuthor(MethodView):\n	def get(self):\n		db_session=sessionmaker(bind=DB)\n		dbSession=db_session()\n		helper=Date_Helper()\n		aus=dbSession.query(func.distinct(EditorCount2List.name)).all()\n		\n		results=dbSession.query(RssInfo,EditorCount2List).filter(RssInfo.guid==EditorCount2List.guid).filter(EditorCount2List.name==request.args.get('author')).order_by(desc(RssInfo.pubdate)).all()\n		return render_template('count_author.html',aus=aus,res=results,author=request.args.get('author'))\n	def post(self):\n		db_session=sessionmaker(bind=DB)\n		dbSession=db_session()\n		helper=Date_Helper()\n		aus=dbSession.query(func.distinct(EditorCount2List.name)).all()\n		results=dbSession.query(RssInfo,EditorCount2List).filter(RssInfo.guid==EditorCount2List.guid).filter(EditorCount2List.name==request.form['author']).order_by(desc(RssInfo.pubdate)).all()\n		return render_template('count_author.html',aus=aus,res=results,author=request.form['author'])\n		\n\n\ndef week_begin_end():\n	now=date.today()\n	now_int=date.today().weekday()\n	if now_int<4:\n		begin=date.today()-timedelta(days=(now_int+3))\n		end=begin+timedelta(days=7)\n		return begin,end\n	else:\n		begin=date.today()-timedelta(days=(now_int-4))\n		end=begin+timedelta(days=7)\n		return begin,end\n\nclass CountStatics2(MethodView):\n	def get(self):\n		cat=request.form['cat']\n		main_cat=request.form['main_cat']\n		return get_count_of_cat_week(cat,main_cat)\n	def post(self):\n		cat=request.form['cat']\n		main_cat=request.form['main_cat']\n		small_cat=request.form['small_cat']\n		return get_count_of_cat_week(cat,small_cat,main_cat)\n\ndef get_count_of_cat_week(cat,small_cat,main_cat):\n	db_session=sessionmaker(bind=DB)\n	dbSession=db_session()\n	begin,end=week_begin_end()\n	count_week_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.main_cat.like(main_cat)).filter(RssInfo.small_cat.like(small_cat)).filter(RssInfo.guid.op('%cn/'+cat+'%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()\n	return str(count_week_news)\nclass CountStatics(MethodView):\n	def get(self):\n		db_session=sessionmaker(bind=DB)\n		dbSession=db_session()\n		begin,end=week_begin_end()\n		count_week_all=dbSession.query(func.count(RssInfo.guid)).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).filter(RssInfo.country=='ch').scalar()\n		\n		\n		count_week_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/news%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()\n		count_week_article=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/articles%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()\n		count_week_interview=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/interviews%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()\n		count_week_presentation=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/presentation%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()\n		count_week_minibooks=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/minibook%')).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).scalar()\n\n\n		lbegin=begin-timedelta(days=7)\n		lend=end-timedelta(days=7)\n\n		lcount_week_all=dbSession.query(func.count(RssInfo.guid)).filter(and_(RssInfo.pubdate>=lbegin,RssInfo.pubdate<lend)).filter(RssInfo.country=='ch').scalar()\n		lcount_week_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/news%')).filter(and_(RssInfo.pubdate>=lbegin,RssInfo.pubdate<lend)).scalar()\n		lcount_week_article=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/articles%')).filter(and_(RssInfo.pubdate>=lbegin,RssInfo.pubdate<lend)).scalar()\n		lcount_week_interview=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/interviews%')).filter(and_(RssInfo.pubdate>=lbegin,RssInfo.pubdate<lend)).scalar()\n		lcount_week_presentation=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/pres%')).filter(and_(RssInfo.pubdate>=lbegin,RssInfo.pubdate<lend)).scalar()\n		lcount_week_minibooks=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/minibook%')).filter(and_(RssInfo.pubdate>=lbegin,RssInfo.pubdate<lend)).scalar()\n\n		count_month_all=dbSession.query(func.count(RssInfo.guid)).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).filter(RssInfo.country=='ch').scalar()\n		count_month_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/news%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()\n		count_month_article=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/articles%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()\n		count_month_interview=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/interviews%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()\n		count_month_presentation=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/pres%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()\n		count_month_minibooks=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/minibook%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).scalar()\n\n\n		lcount_month_all=dbSession.query(func.count(RssInfo.guid)).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())-1).filter(RssInfo.country=='ch').scalar()\n		lcount_month_news=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/news%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())-1).scalar()\n		lcount_month_article=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/articles%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())-1).scalar()\n		lcount_month_interview=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/interviews%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())-1).scalar()\n		lcount_month_presentation=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/pre%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())-1).scalar()\n		lcount_month_minibooks=dbSession.query(func.count(RssInfo.guid)).filter(RssInfo.guid.like('%cn/minibook%')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())-1).scalar()\n		\n		return render_template('count_statics.html',\n			wl=count_week_all,wn=count_week_news,wa=count_week_article,wi=count_week_interview,wp=count_week_presentation,wm=count_week_minibooks,\n			ml=count_month_all,mn=count_month_news,ma=count_month_article,mi=count_month_interview,mp=count_month_presentation,mm=count_month_minibooks,\n			lwl=lcount_week_all,lwn=lcount_week_news,lwa=lcount_week_article,lwi=lcount_week_interview,lwp=lcount_week_presentation,lwm=lcount_week_minibooks,\n			lml=lcount_month_all,lmn=lcount_month_news,lma=lcount_month_article,lmi=lcount_month_interview,lmp=lcount_month_presentation,lmm=lcount_month_minibooks\n			,begin=begin,end=end-timedelta(days=1),lbegin=lbegin,lend=lend-timedelta(days=1))\n\nclass CountContents(MethodView):\n	def get(self):\n		db_session=sessionmaker(bind=DB)\n		dbSession=db_session()\n		_results=dbSession.query(RssInfo).filter(RssInfo.country=='ch').all()\n		_results_week=dbSession.query(RssInfo).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())).all()\n		_results_month=dbSession.query(RssInfo).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).all()		\n		\n		_results_week_news=dbSession.query(RssInfo).filter(RssInfo.guid.like('%cn/news')).filter(func.week(RssInfo.pubdate)==func.week(datetime.today())).all()\n		_results_month_news=dbSession.query(RssInfo).filter(RssInfo.guid.like('%cn/news')).filter(func.month(RssInfo.pubdate)==func.month(datetime.today())).all()		\n		raise\n	def post(self):\n		pass\nclass CountHelper():\n	def convert_to_detail_count(self,all):\n		pass\nclass CountEditors(MethodView):\n	def get(self):\n		pass\nclass CountWeek2(MethodView):\n	def get(self):\n		return render_template('count_week.html')\nclass CountWall(MethodView):\n	def get(self):\n		db_session=sessionmaker(bind=DB)\n		dbSession=db_session()	\n		authors=dbSession.query(func.distinct(EditorCount2List.name)).order_by(func.count(EditorCount2List.guid)).group_by(EditorCount2List.name).all()\n		authors.reverse()\n                return render_template('count_wall.html',res=authors)\nclass CountWeekAuthor(MethodView):\n	def get(self):\n		db_session=sessionmaker(bind=DB)\n		dbSession=db_session()\n		author=request.args.get('author')\n		results=dbSession.query(RssInfo.pubdate,func.count(RssInfo.pubdate)).order_by(RssInfo.pubdate).filter(RssInfo.guid==EditorCount2List.guid).filter(EditorCount2List.name==author).group_by(func.week(RssInfo.pubdate)).filter(RssInfo.country=='ch').all()\n		results2=','.join('{\"date\":\"%s\",\"price\":\"%d\"}'%((str(x[0])[0:10]).replace('-',' '),x[1]) for x in results)\n		return \"[\"+results2+\"]\"\n\nclass CountWeek(MethodView):\n	def get(self):\n		db_session=sessionmaker(bind=DB)\n		dbSession=db_session()\n		results=dbSession.query(RssInfo.pubdate,func.count(RssInfo.pubdate)).order_by(RssInfo.pubdate).group_by(func.week(RssInfo.pubdate)).filter(RssInfo.country=='ch').all()\n		results2=','.join('{\"date\":\"%s\",\"price\":\"%d\"}'%((str(x[0])[0:10]).replace('-',' '),x[1]) for x in results)\n		return \"[\"+results2+\"]\"",
+			"file": "action_count.py",
+			"file_size": 10380,
+			"file_write_time": 1339443299000000,
+			"settings":
+			{
+				"buffer_size": 10196,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "CREATE TABLE `all_rss` (\n  `guid` varchar(200) COLLATE utf8_bin NOT NULL DEFAULT '',\n  `title` varchar(100) COLLATE utf8_bin NOT NULL,\n  `description` varchar(1000) COLLATE utf8_bin DEFAULT NULL,\n  `pubdate` datetime DEFAULT NULL,\n  `country` varchar(45) COLLATE utf8_bin DEFAULT NULL,\n  `category` varchar(100) COLLATE utf8_bin DEFAULT NULL,\n  `small_cat` varchar(45) COLLATE utf8_bin DEFAULT NULL,\n  `author` varchar(45) COLLATE utf8_bin DEFAULT NULL,\n  `main_cat` varchar(45) COLLATE utf8_bin DEFAULT NULL,\n  PRIMARY KEY (`guid`)\n) ;\n/*\n* \n*/",
+			"settings":
+			{
+				"buffer_size": 545,
+				"line_ending": "Unix",
+				"name": "CREATE TABLE `all_rss` ("
+			}
+		},
+		{
+			"contents": "# coding: utf-8\nimport config\nfrom config import *\ndef _me():\n	return session['user']\ndef _all_users():\n	pass\nclass NotifyMessage(Base):\n	__tablename__='notify_list'\n	id=Column(String(100),primary_key=True)\n	title=Column(String(100))\n	content=Column(String(200))\n	status=Column(Integer)\n	name=Column(String(100))\n	time=Column(DateTime)\n	def __init__(title,content,name):\n		self.id=id_gen()\n		self.title=title\n		self.content=content\n		self.status=0\n		self.name=name\n		self.time=datetime.now()\ndef notify(to,content,title):\n	db_session=sessionmaker(bind=DB)\n	dbSession=db_session()\n	all_to=to.split(',')\n	for x in all_to:\n		n=NotifyMessage(title=title,content=content,name=x)\n		dbSession.add(n)\n		dbSession.commit()\n	return True\nclass NotifyCenter(MethodView):\n	def get(self):\n		me=_me()\n		db_session=sessionmaker(bind=DB)\n		dbSession=db_session()\n		notifys=dbSession.query(NotifyMessage).filter(desc(NotifyMessage.time)).all()\n		return render_template('notify_center.html',res=notifys)\n	def post(self):\n		pass\nclass NotifyNumber(MethodView):\n	def get(self):\n		me=_me()\n		db_session=sessionmaker(bind=DB)\n		dbSession=db_session()\n		notifys=dbSession.query(NotifyMessage).filter(desc(NotifyMessage.time)).filter(NotifyMessage.status==0).scalar()\n		return str(notifys)\n\n",
+			"file": "action_notify.py",
+			"file_size": 1267,
+			"file_write_time": 1339692938000000,
+			"settings":
+			{
+				"buffer_size": 1266,
+				"line_ending": "Unix",
+				"name": "# coding: utf-8"
+			}
+		},
+		{
+			"contents": "#coding: utf-8\nimport config\nfrom config import *\nclass ContentTranslateArticlePick(MethodView):\n	def get(self):\n		pass\n	def post(self):\n		pass\nclass ContentTranslateNewsPick(MethodView):\n	def get(self):\n		pass\n	def post(self):\n		pass\nclass ContentCluePick(MethodView):\n	def get(self):\n		pass\n	def post(self):\n		pass\n		",
+			"file": "action_content.py",
+			"file_size": 316,
+			"file_write_time": 1339693220000000,
+			"settings":
+			{
+				"buffer_size": 319,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -568,7 +611,13 @@
 	},
 	"file_history":
 	[
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_statics.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/myapp.py",
+		"/Users/Arthur/Desktop/article.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_rss.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_weibo.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_top.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_aboutus.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_task.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_expert.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor2.py",
@@ -579,7 +628,6 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_count.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_change_maincat_all.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_set_maincat_all.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_rss.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_count_all.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_charts.py",
 		"/Users/Arthur/Library/Application Support/Sublime Text 2/Packages/Alignment/Default (OSX).sublime-keymap",
@@ -587,7 +635,6 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_static.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/config.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_count_show.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_statics.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_search.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_set_maincat.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base.html",
@@ -610,10 +657,8 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/d3.min.js",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_count_show2.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/worktype",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_weibo.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/clear_html.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_clear.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_top.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/trollop/lib.py",
 		"/Users/Arthur/Desktop/hello.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_weibo_share.html",
@@ -649,7 +694,6 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/400.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/expert_search.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/expert_add.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_aboutus.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_share.py",
 		"/Users/Arthur/Dropbox/工作/Aboutus/20120416/about.xxx",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/expert_update.html",
@@ -694,8 +738,7 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/user_login.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/task_add.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/maildel.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/wp_config.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/modles.py"
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/wp_config.html"
 	],
 	"find":
 	{
@@ -714,6 +757,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"1 Comment",
+			"1 Com",
 			"StaticWeekContent",
 			"StaticWeekContentsJson",
 			"onfig.RssInfo",
@@ -836,8 +881,119 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "action_count.py",
+					"settings":
+					{
+						"buffer_size": 10196,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2090,
+								2090
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 619.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"settings":
+					{
+						"buffer_size": 545,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								545,
+								545
+							]
+						],
+						"settings":
+						{
+							"auto_name": "CREATE TABLE `all_rss` (",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "action_notify.py",
+					"settings":
+					{
+						"buffer_size": 1266,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1265,
+								1265
+							]
+						],
+						"settings":
+						{
+							"auto_name": "# coding: utf-8",
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "action_content.py",
+					"settings":
+					{
+						"buffer_size": 319,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								143,
+								143
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

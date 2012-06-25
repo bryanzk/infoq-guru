@@ -123,6 +123,7 @@ class TokenListInfo(Base):
         self.token=token
         self.expire=expire
         self.level=level
+#不是数据库文件，没事
 class WeiboR():
     """docstring for WeiboR"""
     time=''
@@ -204,6 +205,7 @@ class MailListInfo(Base):
         self.email=email
         self.id=id
         self.country=country
+#微博数据
 class WeiboM(Base):
     __tablename__='weibo_list'
     title=Column(String(100))
@@ -522,7 +524,58 @@ class ClueList(Base):
         self.description=description
         self.staus=staus
         self.duedate=duedate
+Clue_Pre="""<div marginwidth="0" marginheight="0" style="min-width:600px;margin:0 auto;padding:39px;font-family:'Helvetica Neue',Helvetica,Arial,Sans-serif;font-size:13px;line-height:22px;background-color:#f5f5f5"><div class="adM">
+    </div><table width="552" cellspacing="0" cellpadding="0" border="0" style="border:1px solid #dedede;border-bottom:2px solid #dedede;margin:0 auto;background-color:#ffffff">
+    <tbody>
+        
+        <tr>
+            <td align="center" style="padding:30px 25px 30px">
+                <div style="font-size:13px">
+                    <a target="_blank" href="http://zhi.hu/BAAC?m=edm.37.19039590023205" style="float:left;color:#bbb;text-decoration:none;border:none;outline:none">InfoQ</a>                  
+                    <span style="float:right;color:#bbb">%s</span>
+                    <div style="font-size:25px;text-indent:3px">%s</div>
+                </div>
+            </td>
+        </tr>
+                    <tr>
+            <td style="padding:0 25px 25px">
+                
+        """
+Clue_Body="""<div style="margin-bottom:10px;border-bottom:1px dotted #dedede">
+                    <div style="margin-bottom:3px">
+                        <a target="_blank" href="%s" style="font-size:14px;line-height:22px;text-decoration:none;color:#259;border:none;outline:none">%s</a>
+                    </div>
+                    <div style="margin-bottom:3px;font-size:13px;line-height:22px">
+                        <span style="float:right;color:#bbb">%s</span>
+                        
+                        <span style="color:#bbb">%s:%s</span>
+                    </div>
+                    <div style="margin-bottom:10px">
+                        <span style="word-break:break-all;word-wrap:break-word;font-size:11px;line-height:22px;text-decoration:none;color:#333;display:block">%s</span>
+                    </div>
+                </div>
+"""
+Clue_End2="""       
+                            </td>
+        </tr>
+            </tbody>
+</table>
+<div style="text-align:center;padding-top:10px;margin:0 auto;width:500px;color:#aaa;font-size:12px;line-height:20px">由 <a target="_blank" style="text-decoration:none;border:none;outline:none;color:#aaa!important" href="mailto:arthur@infoq.com">Arthur维护，意见或者建议请反馈给他！</a><br>InfoQ &copy; 2012<img width="0" height="0"><div class="yj6qo"></div><div class="adL">
+</div></div><div class="adL">
 
+</div></div>"""
+Clue_End="""<div style="display:block;"><a target="_blank" href="http://gege.baihui.com/open.do?docid=95416000000003001" style="margin-left:40px;display:inline-block;padding:7px 15px;background-color:#d44b38;color:#fff;font-size:13px;font-weight:bold;border-radius:2px;border:solid 1px #c43b28;white-space:nowrap;text-decoration:none">新闻</a>
+<a target="_blank" href="http://gege.baihui.com/docview.do?docid=95416000000004001" style="margin-right:40px;float:right;display:inline-block;padding:7px 15px;background-color:lightblue;color:#fff;font-size:13px;font-weight:bold;border-radius:2px;border:solid 1px lightblue;white-space:nowrap;text-decoration:none">文章</a><div style="float:right;color:#bbb;font-size:13px">
+                    </div><div style="margin-top:10px;margin-bottom:10px;border-bottom:1px dotted #dedede"><p style="float:right;color:#333;font-size:11px;">Raven</p></div>
+                                                
+                            </td>
+        </tr>
+            </tbody>
+</table>
+<div style="text-align:center;padding-top:10px;margin:0 auto;width:500px;color:#aaa;font-size:12px;line-height:20px">由 <a target="_blank" style="text-decoration:none;border:none;outline:none;color:#aaa!important" href="mailto:arthur@infoq.com">Arthur维护，意见或者建议请反馈给他！</a><br>InfoQ &copy; 2012<img width="0" height="0"><div class="yj6qo"></div><div class="adL">
+</div></div><div class="adL">
+
+</div></div>"""
 WEIBO_MAIL_CONTENT_BASE1="""
 
 

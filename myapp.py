@@ -8,7 +8,6 @@ from action_user import *
 from action_mail import *
 from action_task import *
 from action_check import *
-from action_charts import *
 from action_top import *
 from action_feedback import *
 from action_aboutus import *
@@ -19,7 +18,7 @@ from action_fee import *
 from action_clue import *
 from action_count import *
 from action_editor2 import *
-
+from action_countweibo import *
 from action_editor_clue import *
 
 from config import *
@@ -59,8 +58,7 @@ app.add_url_rule('/wpcheck',view_func=WPCheckView.as_view('wpcheck'))
 app.add_url_rule('/wpmail',view_func=WPSend.as_view('wpmail'))
 app.add_url_rule('/wpconfig',view_func=WPConfigView.as_view('wpconfig'))
 
-app.add_url_rule('/weibochart',view_func=WeiboChart.as_view('WeiboChart'))
-app.add_url_rule('/weibochartc',view_func=WeiboCommentView.as_view('weibocommentview'))
+
 app.add_url_rule('/feedback',view_func=FeedbackView.as_view('feedbackview'))
 app.add_url_rule('/aboutus',view_func=AboutusEditor.as_view('aboutus'))
 app.add_url_rule('/lab',view_func=Labs.as_view('labs'))
@@ -80,7 +78,6 @@ app.add_url_rule('/flist',view_func=FeeArticleList.as_view('flist'))
 app.add_url_rule('/fshow',view_func=ShowArticleData.as_view('fshow'))
 app.add_url_rule('/fweibo',view_func=FeeArticleWeibo.as_view('fweibo'))
 
-app.add_url_rule('/trellotougao',view_func=TrelloTougao.as_view('tougao'))
 app.add_url_rule('/trellosend',view_func=TrelloSend.as_view('trellosend'))
 app.add_url_rule('/trello',view_func=TrelloTest.as_view('trelo'))
 app.add_url_rule('/trellodone',view_func=TrelloDone.as_view('trelodone'))
@@ -123,7 +120,8 @@ app.add_url_rule('/setmaincatall',view_func=RssSetMainCatAll.as_view('setmaincat
 app.add_url_rule('/changemaincatall',view_func=RssChangeMainCatAll.as_view('setchangemaincatall'))
 app.add_url_rule('/setmaincat',view_func=RssSetMainCat.as_view('setmaincat'))
 
-
+app.add_url_rule('/countweibo',view_func=CountWeibo_Convert.as_view('countweibo'))
+app.add_url_rule('/countweiboget',view_func=CountWeibo_Get.as_view('countweiboget'))
 
 app.jinja_env.globals.update(md5=md5)
 if __name__=='__main__':

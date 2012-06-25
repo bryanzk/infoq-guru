@@ -16,3 +16,4 @@ class ContentCluePick(MethodView):
 		pass
 	def post(self):
 		pass
+		

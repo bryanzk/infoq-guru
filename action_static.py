@@ -52,32 +52,3 @@ class StaticView(MethodView):
         count=len(rr)
 
         return render_template('static_rss.html',r=rr,count=count)
-'''class StaticWeekContentsJson(MethodView):
-    def get(self):
-        db_session=sessionmaker(bind=DB)
-        dbSession=db_session()
-        week=request.args.get('week')
-        #results=dbSession.query(func.week(RssInfo.pubdate),func.count(RssInfo.guid)).group_by(func.week(RssInfo.pubdate)).all()
-        results=dbSession.query(RssInfo).filter(func.week(RssInfo.pubdate)==week).all()
-        raise
-        return results
-class StaticWeekContent(MethodView):
-    def get(self):
-        db_session=sessionmaker(bind=DB)
-        dbSession=db_session()
-        results=dbSession.query(func.week(RssInfo.pubdate),func.count(RssInfo.guid)).group_by(func.week(RssInfo.pubdate)).all()
-        #results=dbSession.query(RssInfo).filter(func.week(RssInfo.pubdate)==13).all()
-        raise
-        #output the [week_number,week_contents_count]
-        return results
-class StaticEditorContents(MethodView):
-    def get(self):
-        editor=request.args.get('editor')
-        # 获取编辑的贡献信息
-        db_session=sessionmaker(bind=DB)
-        dbSession=db_session()
-        # 获取发布的
-        results_f=dbSession.query(EditorCountWeiboList,RssInfo).filter(EditorCountWeiboList.fname==editor).order_by(desc(RssInfo.pubdate)).all()
-        # 获取审校的
-        results_s=dbSession.query(EditorCountWeiboList,RssInfo).filter(RssInfo.guid==EditorCountWeiboList.guid).filter(EditorCountWeiboList.sname==editor).order_by(desc(RssInfo.pubdate)).all()
-        raise'''
