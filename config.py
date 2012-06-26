@@ -33,7 +33,6 @@ import string
 import sys
 from flask import g, request, redirect, url_for
 
-
 reload(sys)
 sys.setdefaultencoding('utf8') 
 
@@ -74,12 +73,78 @@ CATEGORY_LIST=['Development','Architecture & Design','Process & Practices','Ente
 CATEGORY_LIST_CN=['']
 
 
+def _notify(cat):
+    db_session=sessionmaker(bind=DB)
+    dbSession=db_session()
+    to_=[]
+    _li=cat.split(',')
+    for x in _li:
+        its=dbSession.query(UserListInfo.user).filter(or_(UserListInfo.cat==x,UserListInfo.user==x)).all()
+        for y in its:
+            to_.append(y)
+
+    return to_
+
+
+class NotificationList(Base):
+    __tablename__='notification_list'
+    id=Column(String(100),primary_key=True)
+    content=Column(String(100))
+    hey=Column(String(200))
+    status=Column(Integer)
+    to=Column(String(100))
+    pubdate=Column(DateTime)
+    def __init__(self,hey,content,to):
+        self.id=gen_id()
+        self.hey=hey
+        self.content=content
+        self.status=0
+        self.to=to
+        self.pubdate=datetime.now()
+def notify(content='',hey='',to='admin'):
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+                if hey=='':
+                    hey=session['user'].user
+                db_session=sessionmaker(bind=DB)
+                dbSession=db_session()
+                _all=_notify(to)
+                for x in _all:
+                    n=NotificationList(hey=hey,to=x[0],content=content)
+                    dbSession.add(n)
+                    dbSession.commit()
+                return f(*args, **kwargs)
+        return decorated_function
+    return decorator
+def notify_m(content='',hey='',to='admin'):
+                if hey=='':
+                    hey=session['user'].user
+                db_session=sessionmaker(bind=DB)
+                dbSession=db_session()
+                _all=_notify(to)
+                for x in _all:
+                    n=NotificationList(hey=hey,to=x[0],content=content)
+                    dbSession.add(n)
+                    dbSession.commit()
+
+
+def gen_id():
+    import md5
+    return (md5.md5(str(datetime.now()))).hexdigest() 
+def get_user():
+    return session['user'] or redirect('login')
+
 def login(wtype='admin'):
     def decorator(f):
         @wraps(f)
         def decorated_function(*args, **kwargs):
                 if 'user'  not in session:
                     return redirect(url_for('login', next=request.url))
+                else:
+                    user=session['user']
+                    if user.cat not in  wtype.split(','):
+                        return redirect(url_for('error',next=request.url))
                 return f(*args, **kwargs)
         return decorated_function
     return decorator
@@ -108,9 +173,11 @@ class UserListInfo(Base):
     __tablename__='user_list'
     user=Column(String(100),primary_key=True)
     pwd=Column(String(45))
+    cat=Column(String(100))
     """docstring for UserListInfo"""
-    def __init__(self, user,pwd):
+    def __init__(self, user,pwd,cat):
         self.user=user
+        self.cat=cat
         self.pwd=pwd
         
             

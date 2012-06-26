@@ -1,5 +1,7 @@
+#coding: utf-8
 from config import *
 class UserLogin(MethodView):
+
 	def  get(self):
 		session['next']=request.args.get('next')
 		return render_template('user_login.html')
@@ -13,7 +15,9 @@ class UserLogin(MethodView):
 			g.user=res[0]
 			session['user']=res[0]
 			flash('login ok')
-			return redirect(session['next'])
+			check_list={'admin':'go',"core":"core-index",'gof':'gof-index','editor':'editor-index'}
+			notify_m(hey='',content='登陆系统')
+			return redirect(session['next'] or check_list[g.user.cat])
 		else:
 			return redirect('error?msg="login error"&next=/login')
 class ErrorView(MethodView):

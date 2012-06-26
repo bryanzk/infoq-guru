@@ -11,6 +11,8 @@
     <!-- Le styles -->
  
     <link href="static/css/datepicker.css" rel="stylesheet">
+
+    <link href="static/css/humane.css" rel="stylesheet">
      <link href="static/css/bootstrap.css" rel="stylesheet">
        <style type="text/css">
 
@@ -92,7 +94,7 @@ path.area {
 
             </ul>
             
-            <p class="navbar-text pull-right"  id='num-login'>Logged in as <a data-toggle='modal' href="#loginModal">User</a></p>
+            <p class="navbar-text pull-right"  id='num-login'>Logged in as <a href="#">{{session['user'].user}}</a></p>
            
           
           </div><!--/.nav-collapse -->
@@ -106,35 +108,9 @@ path.area {
 
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header"><h4><i   class="icon-home icon-black"></i>微博数据</h4></li>
-              <li ><a id='num-go' href="go">认证授权</a></li>
-              <li><a  id='num-weibor' href="weibor">获取微博数据</a></li>
-              <li><a id='num-weiboresult' href="weiboresult">时间段内数据</a></li>
-              <li><a id='num-weiboresult' href="weibos">发送更新内容为微博（alpha）</a></li>
-              
-                <li class='nav-header'><h4><i  class="icon-star icon-black"></i>微博热点监控</h4></li>
-              <li><a id='num-taskadd' href="wpadd">添加人物</a></li>
-              <li><a id='num-statstep' href="wpcheck">获取数据</a></li>
-              <li><a id='num-wpconfig' href='wpconfig'>参数设置</a><li>
-              <li><a id='num-taskstep2' href='wpmail'>发送邮件</a><li>
-              
-              <li class="nav-header"><h4><i  class="icon-tags icon-black"></i>站点数据</h4></li>
-              <li><a id='num-rss' href="rss">获取中英文站数据</a></li>
-                <li><a id='num-mailadd' href="mailadd">添加邮件接收地址</a></li>
-              <li><a id='num-maildel' href="maildel">删除邮件接收地址</a></li>
-            <li><a id='num-mail' href="mail">发送昨日更新列表邮件</a></li>
-              <li><a id='num-rsssearch' href="rsssearch">RSS数据查询</a></li>
-
- <li class='nav-header'><h4><i  class="icon-home icon-black"></i>OD</h4></li>
-              <li><a id='num-taskadd' href="od">Arthur's OD</a></li>
-
-
- <li class='nav-header'><h4><i  class="icon-star icon-black"></i>内容管理</h4></li>
-              <li><a id='num-taskadd' href="setmaincatall">设置领域</a></li>
-                <li><a href="changemaincatall">查看并修改</a></li>
-                            
-                            
-
+                
+ <li class='nav-header'><h4><i  class="icon-star icon-black"></i>翻译新闻</h4></li>
+              <li><a id='num-taskadd' href="beannewspick">领取新闻</a></li>
  <li class='nav-header'><h4><i  class="icon-star icon-black"></i>工作量</h4></li>
               <li><a id='num-taskadd' href="editorcountall">工作量录入以及分享</a></li>
                             <li><a id='num-taskadd' href="contentdashboard">概览</a></li>
@@ -143,24 +119,6 @@ path.area {
                             <li><a id='num-taskadd' href="countauthor">编辑工作量查询</a></li>
               <li><a id='num-statstep' href="editorweibo">作者微博</a></li>
 
-              <li class='nav-header'><h4><i  class="icon-star icon-black"></i>统计</h4></li>
-              <li><a id='num-staticrss' href="staticrss">文章深度内容微博</a></li>
-               <li class='nav-header'><h4><i  class="icon-home icon-black"></i>架构师</h4></li>
-              <li><a id='num-staticrss' href="urltop">url转为可读数据</a></li>
-                            <li><a id='num-staticrss' href="search">In-Site Search</a></li>
-                         
-                         
-   <li class="nav-header"><h4><i  class="icon-user  icon-black"></i>专家信息管理</h4></li>
-              <li><a id='num-rss' href="eadd">添加</a></li>
-                <li><a id='num-mailadd' href="es">信息搜索</a></li>
-
-<li class='nav-header'><h4><i  class="icon-home icon-black"></i>新闻线索</h4></li>
-              <li><a id='num-staticrss' href="trellosend">发送测试邮件</a></li>
-              
-       <li class='nav-header'><h4><i  class="icon-home icon-black"></i>每周精要</h4></li>
-              <li><a id='num-staticrss' href="jyi">添加广告等链接</a></li>
-
-              <li><a id='num-staticrss' href="jingyao">生成</a></li>
                          
                          
 <!--              <li><a id='num-staticrss' href="urltop">url转为可读数据</a></li>
@@ -223,11 +181,16 @@ path.area {
     <script src="static/js/bootstrap-typehead.js"></script>
   <script src="static/js/bootstrap-datepicker.js"></script>
     <script src="static/js/bootstrap-dropdown.js"></script>
+    <script src="static/js/humane.js"></script>
+
+    <script src="static/js/bootstrap-collapse.js"></script>
               <script src="static/js/sortable.js"></script>
                   <script src="static/js/timeline.js"></script>
     <script src="static/js/timeline-embed.js"></script>
     <script>
     $(document).ready(function(){
+      waitForMsg();
+
       $("#joyRideTipContent").hide();
       $("#show-guide").click(function(){
         <!-- fix the error when click help comes two or more guides-->

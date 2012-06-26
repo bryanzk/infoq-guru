@@ -1,3 +1,34 @@
+function waitForMsg(){
+        /* This requests the url "msgsrv.php"
+        When it complete (or errors)*/
+        $.ajax({
+            type: "GET",
+            url: "notifyget",
+            async: true, /* If set to non-async, browser shows page as "Loading.."*/
+            cache: false,
+            timeout:50000, /* Timeout in ms */
+            success: function(data){ /* called when request to barge.php completes */
+              if(data!=''){
+                humane.log(data);
+              }
+                setTimeout(
+                    'waitForMsg()', /* Request next message */
+                    5000 /* ..after 1 seconds */
+                );
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+
+              humane.clickToClose = true // default: false
+                humane.log('error');
+                setTimeout(
+                    'waitForMsg()', /* Try again after.. */
+                    "15000"); /* milliseconds (15seconds) */
+            }
+        });
+    };
+
+
+
 function show_trends(width,height,url,select){   
     var m = [30, 30, 30, 30],
     w = width - m[1] - m[3],

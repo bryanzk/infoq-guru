@@ -1,0 +1,28 @@
+{% extends 'base_editor.html'%}
+{% block body %}
+
+ <div class="accordion-group" style="margin-top:10px;">
+        
+    <div class="accordion-heading">
+                <div href="#{{x.BeanList.id}}" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle">
+                  <h3>{{x.RssInfo.title}}</h3>
+                  
+                  
+                </div>
+               
+                
+                
+              </div>
+              <div class="accordion-body collapse" id="{{x.BeanList.id}}" style="margin:10px;">
+                 <small>{{x.RssInfo.category}}</small>
+                <a class="btn" href="pickabean?id={{x.BeanList.id}}">领取</a>
+                <div class="accordion-inner " style="background-color: #F7F7F9;">
+                  {{x.RssInfo.description|safe}}
+
+                </div>
+              </div>
+    </div>
+ 
+              
+	
+{% endblock %}
