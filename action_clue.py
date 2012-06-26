@@ -67,8 +67,8 @@ class TrelloSend(MethodView):
 		board=TrelloConn.get_board("4fa88ccdb6aaa61c484ac7cf")
 		lists=board.lists
 		hello=""
-		mail_pre=(Clue_Pre%("",'Clue Mail'))
-
+		mail_pre=(Clue_Pre%(str(date.today()),'原创新闻线索'))
+		hello+=mail_pre
 		
 		for x in lists:
 			i=0
@@ -92,8 +92,8 @@ class TrelloSend(MethodView):
 		board=TrelloConn.get_board("4fa88ccdb6aaa61c484ac7cf")
 		lists=board.lists
 		hello=""
-		mail_pre=(Clue_Pre%("",'Clue Mail'))
-
+		mail_pre=(Clue_Pre%(str(date.today()),'原创新闻线索'))
+		hello+=mail_pre
 		
 		for x in lists:
 			i=0
@@ -111,5 +111,5 @@ class TrelloSend(MethodView):
                                                 break
 		hello+=Clue_End2
 		mail=MailMethod()
-		mail._send_default(to='arthur@infoq.com',subject="InfoQ新闻线索：%s"%str(datetime.today())[0:10],content=hello)
+		mail._send_default(to='arthur@infoq.com;infoq-china-editorial@googlegroups.com',subject="InfoQ新闻线索：%s"%str(datetime.today())[0:10],content=hello)
 		return 'ok'

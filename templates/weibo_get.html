@@ -23,7 +23,7 @@
     </ol>
 {% endblock%}
 {% block body%}
-	<form class="well form-inline" action="/weibor" method="POST" >
+	<form class="well form-inline" action="weibor" method="POST" >
   <input id='num-0' type="text" name='page' class="input-small" placeholder="1">
   
     <span class="help-inline">输入页码</span>
@@ -35,7 +35,7 @@
 <div id='num-2' class="alert alert-info">
   共计：{{count}}条微博数据。
 </div>
-<table id='num-3' class="table table-striped">
+<table id='num-3' class="table sortable table-striped">
   <thead>
     <tr>
     	<th>微博时间</th>
@@ -54,8 +54,8 @@
       <td>{{x.cat}}</td>
 	<td>{{x.title}}</td>
 	<td>{{x.athur}}</td>
-	<td>{{x.url}}</td>
 	<td>{{x.org_url}}</td>
+	<td>{{x.url}}</td>
 	<td>{{x.retweet}}</td>
 	<td>{{x.comment}}</td>
     </tr>

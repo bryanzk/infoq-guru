@@ -1,49 +1,46 @@
 {% extends 'base.html' %}
 {% block tips%}
 <!-- Tip Content -->
-    <ol id="joyRideTipContent">
-      <li data-id="num-0" data-text="Netxt" class="custom">
-        <h2>Step 1</h2>
-        <p>输入您的邮件地址</p>
-      </li>
-      <li data-id="num-1" data-text="Next" class="custom">
-        <h2>Step 2</h2>
-        <p>选择需要订阅的站点</p>
-      </li>
+        <ol id="joyRideTipContent">
       
-      <li data-id='num-2' date-text='Next'>
-        <h2>Step 3</h2>
-        <p>点击添加</p>
+      <li data-id='num-0' date-text='Next'>
+        <h2>评论数量</h2>
+        <p>输入过滤条件，评论的数量。</p>
       </li>
-      <li data-id='num-3' date-text='Next'>
-        <h2>Step 4</h2>
-        <p>当前订阅列表</p>
+      <li data-id='num-0-1' date-text='Next'>
+        <h2>转发数量</h2>
+        <p>输入过滤条件，转发的数量。</p>
       </li>
-      <li data-id='num-4' date-text='Close'>
-        <h2>Step 5</h2>
-        <p>运行结果结果总计</p>
+      <li data-id='num-1' date-text='Close'>
+        <h2>条件关系</h2>
+        <p>或者&并且</p>
+      </li>
+      <li data-id='numm-1' date-text='Close'>
+        <h2>排序依据</h2>
+        <p></p>
       </li>
     </ol>
 {% endblock%}
 {% block body %}
 <form class="well form-inline" action="wpconfig" method="POST" >
- <input id='num-0'type="text" name='comment'class="input-small" placeholder="输入评论">
-  <input id='num-0'type="text" name='retweet'class="input-small" placeholder="输入转发">
-
- <select id='numm-1' name="order">
-<option value="retweet">转发</option>
-<option value="comment">评论</option>
-</select>
- <select id='numm-1' name="relation">
+<input id='num-0'type="text" name='comment'class="input-small" placeholder="输入评论最低值">
+ <select id='num-1' name="relation">
 <option value="and">且</option>
 <option value="or">或</option>
 </select>
-    <span class="help-inline">选择排序依据</span>
-  <button id='num-2' type="submit" class="btn">确认</button>
+<input id='num-0-1'type="text" name='retweet'class="input-small" placeholder="输入转发最低值">
+ 排序依据<select id='numm-1' name="order">
+<option value="retweet">转发</option>
+<option value="comment">评论</option>
+</select>
+ 
+    <span id='num-2' class="help-inline"></span>
+  <button type="submit" class="btn">确认</button>
 </form>
 <div id='num3' class="alert alert-warnning">
-	当前设置：
-转发：{{res.retweet}}----评论: {{res.comment}}----排序依据：{{res.order}}
+  当前设置：<br/>
+  转发：{{res.retweet}}<br/>
+  评论: {{res.comment}}<br/>排序依据：{{res.order}}<br/>条件关系：{{res.relation}}
 	</div>
 <div id='num-4' class="alert alert-info">
   运行结果：{{r}}

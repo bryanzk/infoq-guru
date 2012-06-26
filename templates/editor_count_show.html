@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block body %}
 <form class="well form-inline" action="editorshow" method="POST" >
-	<p><a href="{{res.guid}}">{{res.guid}}</a></p>
+	<p><a href="{{res.guid}}" target="_blank">{{res.guid}}</a></p>
  <input id='num-0'type="hidden" name='guid'value="{{res.guid}}">
  <hr/>
  <input id='num-0'type="text" value="{{res.img}}" name='img'class="span6" placeholder="输入图像地址">

@@ -27,7 +27,7 @@ class TimeLineData(MethodView):
 			count+=1
 		for x in li:
 			i+=1
-			xx+=(da % (((str(x.pubdate))[0:10]).replace('-',',')+""+((str(x.pubdate))[11:13]),x.title.replace("?",""),x.guid,x.description[0:80]))
+			xx+=(da % (((str(x.pubdate))[0:10]).replace('-',','),x.title.replace("?",""),x.guid,x.description[0:80]))
 			if i!=count:
 				xx+=','
 
@@ -36,10 +36,10 @@ class TimeLineData(MethodView):
 		return """{
     "timeline":
     {
-        "headline":"数据Timeline",
+        "headline":"InfoQ内容发布时间轴--beta",
         "type":"default",
-		"startDate":"2012,3,26 11:30",
-		"text":"数据展示时间线。",
+		"startDate":"2012",
+		"text":"通过时间轴直接明了的展示InfoQ的内容发布情况。",
         "date": [
             """+xx+"""
         ]

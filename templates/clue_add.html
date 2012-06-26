@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_not.html' %}
 
 {% block body %}
 <form class="well form-inline" action="trellodone" method="POST" >
@@ -7,7 +7,7 @@
  <input id='num-0'type="hidden" name='id' value='{{id}}'>
  <input id='num-0'type="hidden" name='cat' value="{{cat}}">
 
-    <span class="help-inline">完成时间2012-05-01</span>
-  <button id='num-2' type="submit" class="btn">添加</button>
+    <span class="help-inline">时间格式：2012-05-01</span>
+  <button id='num-2' type="submit" class="btn">认领</button>
 </form>
 {% endblock %}

@@ -3,7 +3,7 @@
 <!-- Tip Content -->
     <ol id="joyRideTipContent">
       
-      <li data-id="num-1" data-text="Next" class="custom">
+      <li data-id="num-2" data-text="Next" class="custom">
         <h2>Step 1</h2>
         <p>点击发送</p>
       </li>
@@ -24,13 +24,14 @@
     <span class="help-inline">点击发送</span>
   <button id='num-2' type="submit" class="btn">发送</button>
 </form>
+<div id='num-4' class="alert alert-info">
+  运行结果：{{r}}
+</div>
 <div id='num-3' class="alert alert-warnning">
 	发送列表：
 {% for x in res%}
 <li>{{x}}</li>
 {% endfor%}
 	</div>
-<div id='num-4' class="alert alert-info">
-  运行结果：{{r}}
-</div>
+
 {% endblock %}

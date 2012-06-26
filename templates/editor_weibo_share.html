@@ -10,7 +10,7 @@
     type:'4',
     count:'1', /**是否显示分享数，1显示(可选)*/
     appkey:'', /**您申请的应用appkey,显示分享来源(可选)*/
-    title:'【{{title}}】By {{author}} {{guid}} ：{{content}}', /**分享的文字内容(可选，默认为所在页面的title)*/
+    title:'【{{title}}】By {{author}} ：{{content}}', /**分享的文字内容(可选，默认为所在页面的title)*/
     pic:'{{img}}', /**分享图片的路径(可选)*/
     ralateUid:'', /**关联用户的UID，分享微博会@该用户(可选)*/
 	language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
@@ -41,7 +41,7 @@
 				_t = metainfo[metai].attributes["content"].value;
 			}
 		}
-		_t =  "【{{title}}】By {{author}} {{guid}}：{{content}}";//请在这里添加你自定义的分享内容
+		_t =  "【{{title}}】By {{author2}} {{guid}}：{{content}}";//请在这里添加你自定义的分享内容
 
 		_t = encodeURI(_t);
 
@@ -53,13 +53,13 @@
 <script type="text/javascript" charset="utf-8">
 	(function() {
 		function show163Window(){ //网易微博
-			var _t =  "【${cnContentsInstance?.type=='新闻'?'':cnContentsInstance?.type+'：'}${cnContentsInstance?.title}】By ${cnContentsInstance.author} ${cnContentsInstance?.link}：${cnContentsInstance?.description}";//请在这里添加你自定义的分享内容
+			var _t =  "【{{title}}】By {{author2}} {{guid}}：{{content}}";//请在这里添加你自定义的分享内容
 		
 			var param = [],ustr = [];
 			param[0] = 'link=' + encodeURIComponent('www.infoq.com/cn');  //link为网站域名
 			param[1] = 'source=InfoQ中文站';  //source为网站名称
 			param[2] = 'info=' + encodeURIComponent(_t) ;  //info为转发的文字内容(可选，默认为页面title)
-			param[3] = 'images='+encodeURI("${cnContentsInstance?.imgUrl}");  //images为传过来的图片地址，多个图片地址用","隔开；若为空会自动抓取转发页面图片
+                  param[3] = 'images='+encodeURI("{{img}}");  //images为传过来的图片地址，多个图片地址用","隔开；若为空会自动抓取转发页面图片
 			param[4] = 'togImg=true';//默认显示转发图片(可选，删除true为不显示)
 			var url = 'http://t.163.com/article/user/checkLogin.do?';
 			url += param.join("&");

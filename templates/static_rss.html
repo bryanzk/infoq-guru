@@ -27,8 +27,8 @@
 {% endblock%}
 {% block body%}
 	<form class="well form-inline" action="/staticrss" method="POST" >
-  <input id='num-0' type="text" name='begin'class="input-small" placeholder="begin">
-  <input id='num-1' type="text" name='end' class="input-small" placeholder="end">
+  <input id='num-0' type="text"class='date-picker'   data-date="2012-02-21"name='begin'class="input-small date-picker" placeholder="begin">
+  <input id='num-1' type="text"class='date-picker'   data-date="2012-02-21"name='end' class="input-small date-picker" placeholder="end">
     <span class="help-inline">日期格式：2012-12-12</span>
   <button id='num-2' type="submit" class="btn">查询</button>
 </form>
@@ -64,7 +64,7 @@
 	<td>{{x.title}}</td>
 	<td>{{x.athur}}</td>
 	<td>{{x.guid}}</td>
-	<td>{{x.weibo}}</td>
+      <td><a href='{{x.weibo}}'>查看</a></td>
 	<td>{{x.retweet}}</td>
 	<td>{{x.comment}}</td>
     </tr>

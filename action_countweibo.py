@@ -1,32 +1,7 @@
 # coding: utf-8
 import config 
 from config import *
-try:
-    import json
-except ImportError:
-    import simplejson as json
-import time
-import urllib
-import urllib2
-import logging
 
-def _obj_hook(pairs):
-    '''
-    convert json object to python object.
-    '''
-    o = JsonObject()
-    for k, v in pairs.iteritems():
-        o[str(k)] = v
-    return o
-class JsonObject(dict):
-    '''
-    general json object that can bind any fields but also act as a dict.
-    '''
-    def __getattr__(self, attr):
-        return self[attr]
-
-    def __setattr__(self, attr, value):
-        self[attr] = value
 class CountWeibo_List(Base):
 	__tablename__='count_weibo_list'
 	guid=Column(String(200),primary_key=True)
@@ -78,32 +53,3 @@ class CountWeibo_Get(MethodView):
 			x.count_comment=count_comment
 			dbSession.commit()
 		return 'ok'
-		'''
-		urls="&url_short=".join(x.short_url for x in results)
-		new_urls='https://api.weibo.com/2/short_url/clicks.json?source=570026225&url_short='+urls
-		data_all_clicks=urllib2.urlopen(new_urls)
-
-		all_clicks = json.loads(data.read(), object_hook=_obj_hook)
-		#all_clicks=client.get.short_url__clicks(url_short=urls)
-		#all_count_share=client.get.short_url__share__counts(url_short=urls,source=APP_KEY)
-		#all_count_comment=client.get.short_url__comment__counts(url_short=urls,source=APP_KEY)
-		y=''
-		for x in all_clicks.urls:
-			y=dbSession.query(CountWeibo_List).filter(CountWeibo_List.guid==x.url_long).first()
-			y.click=x.clicks
-			dbSession.commit()
-		for x in all_count_comment.urls:
-			y=dbSession.query(CountWeibo_List).filter(CountWeibo_List.guid==x.url_long).first()
-			y.count_comment=x.comment_counts
-			dbSession.commit()
-		for x in all_count_share.urls:
-			y=dbSession.query(CountWeibo_List).filter(CountWeibo_List.guid==x.url_long).first()
-			y.count_share=x.share_counts
-			dbSession.commit()'''
-
-
-
-
-
-
-

@@ -8,11 +8,11 @@
 	{% for x in res %}
 <script>
 $(document).ready(function(){
-show_trends(400,150,"http://infoqhelp.sinaapp.com/countweekauthor?author={{x[0]}}", "#trends-{{x[0]}}");});
+show_trends2(260,120,"http://infoqhelp.sinaapp.com/countweekauthor?author={{x[0]}}", "#trends-{{x[0]}}");});
 </script>
-  <li class="span3" id='trends-{{x[0]}}'>
+  <li class="span3 " id='trends-{{x[0]}}'>
     
-      {{x[0]}}的工作数据
+    <div class='well'><h4><a href='countauthor?author={{x[0]}}' target='_blank'>{{x[0]}}</a>的工作趋势图</h4></div>
       <hr/>
 
     

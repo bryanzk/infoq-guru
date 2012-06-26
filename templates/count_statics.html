@@ -3,15 +3,9 @@
     
    
 
-//show_trends(800,400,"http://infoqhelp.sinaapp.com/countweek", "#trends");
+show_trends(900,400,"http://infoqhelp.sinaapp.com/countweek", "#trends");
 
-    
-  $('#myTab a').click(function (e) {
-    e.preventDefault();
-    $(this).tab('show');
-    });   
-    
-    $('.data-it').each(function(e){
+      $('.data-it').each(function(e){
     
     var main_cat=$(this).attr('data-main');
     var cat=$(this).attr('data-cat');
@@ -24,6 +18,7 @@
       type: "POST",
       data: 'cat='+cat+'&main_cat='+main_cat+'&small_cat='+small_cat
         });
+
     request.done(function(msg) {
           it.text(msg);
 
@@ -34,8 +29,38 @@
       });
 
     });
+//next one
+    
+          $('.data-lat-week').each(function(e){
+    
 
+    var cat=$(this).attr('data-cat');
+   var small_cat=$(this).attr('data-small');
 
+    var it=$(this);
+    it.text('loading...');
+    var request = $.ajax({
+      url: "countstatics2lastweek",
+      type: "POST",
+      data: 'cat='+cat+'&small_cat='+small_cat
+        });
+
+    request.done(function(msg) {
+          it.text(msg);
+
+        });
+
+      request.fail(function(jqXHR, textStatus) {
+          it.text('error');
+      });
+
+    });
+    
+  $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    });   
+    
 
 {% endblock%}
 {% block body %}
@@ -45,38 +70,46 @@
 
     </script>
 <ul class="nav nav-pills" id="myTab">
-  <li class="active"><a href="#week">本周</a></li>
-     <li><a href="#lweek">上周</a></li>
-  <li><a href="#month">本/上月</a></li>
+  <li class="active"><a href="#nweek">本周详细<br/><small>Details of This Week</small></a></li>
+  <li ><a href="#week">本周简单<br/><small>Summary of This Week</small></a></li>
+     <li><a href="#lweek">上周<br/><small>Summary of Last Week</small></a></li>
+  <li><a href="#month">本/上月<br/><small>This/Last Month</small></a></li>
 
-    <li ><a href="#trends">内容走势</a></li>
+    <li ><a href="#trends">内容走势<br/><small>Content Trend</small></a></li>
+    
  
 </ul>
 
 <div class="tab-content">
-  <div class="tab-pane active" id="week">
-  <div class='well'>
-    {{begin}}至{{end}}
-   </div>
+
+  <div class="tab-pane active" id="nweek">
+
+   <div class='well'>
+              
+     <h5>总计 Total:  {{begin}}至{{end}}</h5>
+                <hr/>
+                <p>文章<small>Articles</small>：{{wa}}，新闻<small>News</small>：{{wn}}，采访<small>Interview</small>：{{wi}}，视频<small>Presentation</small>：{{wp}}，迷你书<small>Mini-books</small>：{{wm}}</p>
+              </div>
     <table class="table table-bordered table-striped">
         <thead>
           <tr>
-            <th>类别</th>
-            <th>语言 & 开发</th>
-            <th>架构 & </th>
-            <th>过程 & 实践</th>
-            <th>运维 & 基础架构</th>
-            <th>企业架构</th>
+            <th>类别<br/><small>Cateogry</small></th>
+            <th>语言 & 开发<br/><small>Development</small></th>
+            <th>架构 & 设计<br/>Architecture </th>
+              <th>过程 & 实践<br/>Process</th>
+                <th>运维 & 基础架构<br/>Operations </th>
+                  <th>企业架构<br/>EA</th>
+                  <th>汇总<br/>Total</th>
 
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              <span class="badge">新闻原创</span>
+              <span class="">新闻原创<br/><small>Local News</small></span>
             </td>
             <td>
-             <p class='data-it' data-main='语言 & 开发' data-small='原创'data-cat='news'></p>
+             <p class='data-it'  data-main="语言 & 开发" data-small='原创'data-cat='news'></p>
             </td>
             <td>
              <p class='data-it' data-main='架构 & 设计' data-small='原创' data-cat='news'></p>
@@ -90,15 +123,18 @@
             <td>
              <p class='data-it' data-main='企业架构' data-small='原创' data-cat='news'></p>
             </td> 
+            <td>
+             <p class='data-it' data-main='' data-small='原创' data-cat='news'></p>
+            </td> 
           </tr>
           
 
 <tr>
             <td>
-              <span class="badge">新闻翻译</span>
+              <span class="">新闻翻译<br/>Translated News</span>
             </td>
             <td>
-             <p class='data-it' data-main='语言 & 开发' data-small='翻译'data-cat='news'></p>
+             <p class='data-it' data-main="语言 & 开发" data-small='翻译' data-cat='news'></p>
             </td>
             <td>
              <p class='data-it' data-main='架构 & 设计' data-small='翻译' data-cat='news'></p>
@@ -107,18 +143,21 @@
              <p class='data-it' data-main='过程 & 实践' data-small='翻译' data-cat='news'></p>
             </td>
             <td>
-             <p class='data-it' data-main='运维 & 基础架构' data-small='翻译'data-cat='news'></p>
+             <p class='data-it' data-main='运维 & 基础架构' data-small='翻译' data-cat='news'></p>
             </td>
             <td>
              <p class='data-it' data-main='企业架构' data-small='翻译' data-cat='news'></p>
             </td> 
+            <td>
+             <p class='data-it' data-main='' data-small='翻译' data-cat='news'></p>
+            </td> 
           </tr>
           <tr>
             <td>
-              <span class="badge">文章原创</span>
+              <span class="">文章原创<br/>Local Articles</span>
             </td>
             <td>
-             <p class='data-it' data-main='语言 & 开发' data-small='原创'data-cat='article'></p>
+             <p class='data-it' data-main='语言 & 开发' data-small='原创' data-cat='article'></p>
             </td>
             <td>
              <p class='data-it' data-main='架构 & 设计' data-small='原创' data-cat='article'></p>
@@ -127,18 +166,21 @@
              <p class='data-it' data-main='过程 & 实践' data-small='原创' data-cat='article'></p>
             </td>
             <td>
-             <p class='data-it' data-main='运维 & 基础架构' data-small='原创'data-cat='article'></p>
+             <p class='data-it' data-main='运维 & 基础架构' data-small='原创' data-cat='article'></p>
             </td>
             <td>
              <p class='data-it' data-main='企业架构' data-small='原创' data-cat='article'></p>
             </td> 
+              <td>
+             <p class='data-it' data-main='' data-small='原创' data-cat='article'></p>
+            </td> 
           </tr>
           <tr>
             <td>
-              <span class="badge">文章翻译</span>
+              <span class="">文章翻译<br/>Translated Article</span>
             </td>
             <td>
-             <p class='data-it' data-main='语言 & 开发' data-small='翻译'data-cat='article'></p>
+             <p class='data-it' data-main='语言 & 开发' data-small='翻译' data-cat='article'></p>
             </td>
             <td>
              <p class='data-it' data-main='架构 & 设计' data-small='翻译' data-cat='article'></p>
@@ -147,13 +189,129 @@
              <p class='data-it' data-main='过程 & 实践' data-small='翻译' data-cat='article'></p>
             </td>
             <td>
-             <p class='data-it' data-main='运维 & 基础架构' data-small='翻译'data-cat='article'></p>
+             <p class='data-it' data-main='运维 & 基础架构' data-small='翻译' data-cat='article'></p>
             </td>
             <td>
              <p class='data-it' data-main='企业架构' data-small='翻译' data-cat='article'></p>
             </td> 
+              <td>
+             <p class='data-it' data-main='' data-small='翻译' data-cat='article'></p>
+            </td> 
+          </tr>
+          
+          
+          <tr>
+            <td>
+              <span class="">总计<br/>Sum</span>
+            </td>
+            <td>
+             <p class='data-it' data-main='语言 & 开发' data-small='' data-cat='[na]'></p>
+            </td>
+            <td>
+             <p class='data-it' data-main='架构 & 设计' data-small='' data-cat='[na]'></p>
+            </td>
+            <td>
+             <p class='data-it' data-main='过程 & 实践' data-small='' data-cat='[na]'></p>
+            </td>
+            <td>
+             <p class='data-it' data-main='运维 & 基础架构' data-small='' data-cat='[na]'></p>
+            </td>
+            <td>
+             <p class='data-it' data-main='企业架构' data-small='' data-cat='[na]'></p>
+            </td> 
+            <td>
+             <p class='data-it' data-main='' data-small='' data-cat='[na]'></p>
+            </td> 
           </tr>
 
+         
+        </tbody>
+      </table>
+            <p>  看板：
+<a href="https://trello.com/board/-/4f683a785671eb2e3b08325b"> 深度内容 </a>
+<a href="https://trello.com/board/-/4f28107222d6c95911fc5fc0"> 原创内容 </a>
+<a href="https://trello.com/board/-/4f687a1b5b5ccf1b76022c38"> 翻译 </a>
+<a href="https://trello.com/board/-/4f9f95576ded3bc71b28bef4"> 专栏 </a>
+              </p>
+  </div>
+
+
+
+
+  <div class="tab-pane " id="week">
+  <div class='well'>
+    {{begin}}至{{end}}
+   </div>
+   
+    <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>类别 <br> Cateogry </th>
+            <th>本周 <br> This Week</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="badge">总量 Total</span>
+            </td>
+            <td>
+             {{wl}}
+            </td>
+            
+         
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-success">新闻 News</span>
+            </td>
+            <td>
+             {{wn}}
+            </td>
+           
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-warning">文章 Articles</span>
+            </td>
+            <td>
+             {{wa}}
+            </td>
+           
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-important">演讲 Presentations</span>
+            </td>
+            <td>
+             {{wp}}
+            </td>
+           
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-info">采访 Interviews</span>
+            </td>
+            <td>
+             {{wi}}
+            </td>
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="badge badge-inverse">迷你书 Minibooks</span>
+            </td>
+            <td>
+             {{wm}}
+            </td>
+           
+           
+          </tr>
+          
          
         </tbody>
       </table>
@@ -165,73 +323,112 @@
   <div class='well'>
     {{lbegin}}至{{lend}}
    </div>
+     
     <table class="table table-bordered table-striped">
         <thead>
           <tr>
-            <th>类别</th>
-           
-            <th>上周</th>
+            <th>类别 <br> Cateogry </th>
+            <th>上周 <br> Last Week</th>
+            <th>原创<br>Local</th>
+            <th>翻译<br>Translated</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              <span class="badge">总量</span>
+              <span class="badge">总量 Total</span>
             </td>
-           
-             <td>
+            <td>
              {{lwl}}
             </td>
+             <td>
+               <p class='data-lat-week' data-small='原创' data-cat=''></p>
+            </td>
+              <td>
+               <p class='data-lat-week' data-small='翻译' data-cat=''></p>
+            </td>
+            
          
           </tr>
           <tr>
             <td>
-              <span class="badge badge-success">新闻</span>
+              <span class="badge badge-success">新闻 News</span>
             </td>
-          
             <td>
              {{lwn}}
             </td>
+           <td>
+               <p class='data-lat-week' data-small='原创' data-cat='news'></p>
+            </td>
+             <td>
+               <p class='data-lat-week' data-small='翻译' data-cat='news'></p>
+            </td>
+            
            
           </tr>
           <tr>
             <td>
-              <span class="badge badge-warning">文章</span>
+              <span class="badge badge-warning">文章 Articles</span>
             </td>
-           
             <td>
              {{lwa}}
             </td>
+             <td>
+               <p class='data-lat-week' data-small='原创' data-cat='article'></p>
+            </td>
+             <td>
+               <p class='data-lat-week' data-small='翻译' data-cat='article'></p>
+            </td>
+            
+           
            
           </tr>
           <tr>
             <td>
-              <span class="badge badge-important">演讲</span>
+              <span class="badge badge-important">演讲 Presentations</span>
             </td>
-           
             <td>
              {{lwp}}
             </td>
+            <td>
+               <p class='data-lat-week' data-small='原创' data-cat='presentation'></p>
+            </td>
+             <td>
+               <p class='data-lat-week' data-small='翻译' data-cat='presentation'></p>
+            </td>
+            
            
           </tr>
           <tr>
             <td>
-              <span class="badge badge-info">采访</span>
+              <span class="badge badge-info">采访 Interviews</span>
             </td>
-           
             <td>
              {{lwi}}
             </td>
-           
+            <td>
+               <p class='data-lat-week' data-small='原创' data-cat='inter'></p>
+            </td>
+             <td>
+               <p class='data-lat-week' data-small='翻译' data-cat='inter'></p>
+            </td>
+            
+            
           </tr>
           <tr>
             <td>
-              <span class="badge badge-inverse">迷你书</span>
+              <span class="badge badge-inverse">迷你书 Minibooks</span>
             </td>
-            
             <td>
              {{lwm}}
             </td>
+            <td>
+               <p class='data-lat-week' data-small='原创' data-cat='mini'></p>
+            </td>
+             <td>
+               <p class='data-lat-week' data-small='翻译' data-cat='mini'></p>
+            </td>
+            
            
           </tr>
           
@@ -245,15 +442,15 @@
 <table class="table table-bordered table-striped">
    <thead>
           <tr>
-            <th>类别</th>
-            <th>本月</th>
-            <th>上月</th>
+            <th>类别 Category</th>
+            <th>本月 This Month</th>
+            <th>上月 Last Month</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              <span class="badge">总量</span>
+              <span class="badge">总量 Total</span>
             </td>
             <td>
              {{ml}}
@@ -265,7 +462,7 @@
           </tr>
           <tr>
             <td>
-              <span class="badge badge-success">新闻</span>
+              <span class="badge badge-success">新闻 News</span>
             </td>
             <td>
              {{mn}}
@@ -277,7 +474,7 @@
           </tr>
           <tr>
             <td>
-              <span class="badge badge-warning">文章</span>
+              <span class="badge badge-warning">文章 Article</span>
             </td>
             <td>
              {{ma}}
@@ -289,7 +486,7 @@
           </tr>
           <tr>
             <td>
-              <span class="badge badge-important">演讲</span>
+              <span class="badge badge-important">演讲 Presentation</span>
             </td>
             <td>
              {{mp}}
@@ -301,7 +498,7 @@
           </tr>
           <tr>
             <td>
-              <span class="badge badge-info">采访</span>
+              <span class="badge badge-info">采访 Interview</span>
             </td>
             <td>
              {{mi}}
@@ -313,7 +510,7 @@
           </tr>
           <tr>
             <td>
-              <span class="badge badge-inverse">迷你书</span>
+              <span class="badge badge-inverse">迷你书 Minibooks</span>
             </td>
             <td>
              {{mm}}

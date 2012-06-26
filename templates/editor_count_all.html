@@ -19,21 +19,20 @@
         <td>{{x.pubdate}}</a></td>
       
       <td>{{x.title}}</td>
-      <td>{{x.c1author}}</td>
-      <td><a href="editorshow2?guid={{x.guid}}&version=1">原创</a></td>
+ <td><a href="editorshow2?guid={{x.guid}}&version=1">原创</a></td>
        <td><a href="editorshow2?guid={{x.guid}}&version=2">审校</a></td>
         <td><a href="editorshow2?guid={{x.guid}}&version=3">策划</a></td>
-      <td><a href="editorshare2?guid={{x.guid}}">weibo</a></td>
+      <td><a href="editorshare?guid={{x.guid}}" target="_blank">weibo</a></td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
     <ul class="pager">
     <li class="previous">
-    <a href="editorcountall?page={{pre}}">&larr; Older</a>
+    <a href="editorcountall?page={{pre}}">&larr; 新的</a>
     </li>
     <li class="next">
-    <a href="editorcountall?page={{next}}">Newer &rarr;</a>
+    <a href="editorcountall?page={{next}}">以前的 &rarr;</a>
     </li>
     </ul>
 {% endblock%}

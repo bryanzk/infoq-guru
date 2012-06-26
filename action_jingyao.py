@@ -69,20 +69,22 @@ class JingyaoOut(MethodView):
 		jy.cdate=''
 		jy.date=''
 
-		jy.content.yuyan=dbSession.query(RssInfo).filter(or_(or_(RssInfo.guid.like(u'%articles%'),RssInfo.guid.like('%interview%')),RssInfo.guid.like(u'presentations%'))).filter(RssInfo.category.like(u'%语言 & 开发%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
-		jy.content.jiagou=dbSession.query(RssInfo).filter(or_(or_(RssInfo.guid.like(u'%articles%'),RssInfo.guid.like('%interview%')),RssInfo.guid.like(u'presentations%'))).filter(RssInfo.category.like(u'%架构 & 设计%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
-		jy.content.guocheng=dbSession.query(RssInfo).filter(or_(or_(RssInfo.guid.like(u'%articles%'),RssInfo.guid.like('%interview%')),RssInfo.guid.like(u'presentations%'))).filter(RssInfo.category.like(u'%过程 & 实践%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
-		jy.content.yunwei=dbSession.query(RssInfo).filter(or_(or_(RssInfo.guid.like(u'%articles%'),RssInfo.guid.like('%interview%')),RssInfo.guid.like(u'presentations%'))).filter(RssInfo.category.like(u'%运维 & 基础架构%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
-		jy.content.qiye=dbSession.query(RssInfo).filter(or_(or_(RssInfo.guid.like(u'%articles%'),RssInfo.guid.like('%interview%')),RssInfo.guid.like(u'presentations%'))).filter(RssInfo.category.like(u'%企业架构%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
+		jy.content.yuyan=dbSession.query(RssInfo,EditorCount2List).filter(EditorCount2List.version==1).filter(RssInfo.guid==EditorCount2List.guid).filter(or_(or_(RssInfo.guid.like(u'%articles%'),RssInfo.guid.like('%interview%')),RssInfo.guid.like(u'%presentations%'))).filter(RssInfo.category.like(u'%语言 & 开发%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
+		jy.content.jiagou=dbSession.query(RssInfo,EditorCount2List).filter(EditorCount2List.version==1).filter(RssInfo.guid==EditorCount2List.guid).filter(or_(or_(RssInfo.guid.like(u'%articles%'),RssInfo.guid.like('%interview%')),RssInfo.guid.like(u'%presentations%'))).filter(RssInfo.category.like(u'%架构 & 设计%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
+		jy.content.guocheng=dbSession.query(RssInfo,EditorCount2List).filter(EditorCount2List.version==1).filter(RssInfo.guid==EditorCount2List.guid).filter(or_(or_(RssInfo.guid.like(u'%articles%'),RssInfo.guid.like('%interview%')),RssInfo.guid.like(u'%presentations%'))).filter(RssInfo.category.like(u'%过程 & 实践%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
+		jy.content.yunwei=dbSession.query(RssInfo,EditorCount2List).filter(EditorCount2List.version==1).filter(RssInfo.guid==EditorCount2List.guid).filter(or_(or_(RssInfo.guid.like(u'%articles%'),RssInfo.guid.like('%interview%')),RssInfo.guid.like(u'%presentations%'))).filter(RssInfo.category.like(u'%运维 & 基础架构%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
+		jy.content.qiye=dbSession.query(RssInfo,EditorCount2List).filter(EditorCount2List.version==1).filter(RssInfo.guid==EditorCount2List.guid).filter(or_(or_(RssInfo.guid.like(u'%articles%'),RssInfo.guid.like('%interview%')),RssInfo.guid.like(u'%presentations%'))).filter(RssInfo.category.like(u'%企业架构%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
+		
+                for x in jy.content.yuyan:
+                	x.img=dbSession.query(EditorCount2List).filter(EditorCount2List.guid==RssInfo.guid).first().img
+                        
+		jy.news.yuyan=dbSession.query(RssInfo).filter(RssInfo.guid.like(u'%news%')).filter(RssInfo.category.like(u'%语言 & 开发%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(21)
+		jy.news.jiagou=dbSession.query(RssInfo).filter(RssInfo.guid.like(u'%news%')).filter(RssInfo.category.like(u'%架构 & 设计%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(10)
+		jy.news.guocheng=dbSession.query(RssInfo).filter(RssInfo.guid.like(u'%news%')).filter(RssInfo.category.like(u'%过程 & 实践%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(10)
+		jy.news.yunwei=dbSession.query(RssInfo).filter(RssInfo.guid.like(u'%news%')).filter(RssInfo.category.like(u'%运维 & 基础架构%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(10)
+		jy.news.qiye=dbSession.query(RssInfo).filter(RssInfo.guid.like(u'%news%')).filter(RssInfo.category.like(u'%企业架构%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(10)
 
-
-		jy.news.yuyan=dbSession.query(RssInfo).filter(RssInfo.guid.like(u'%news%')).filter(RssInfo.category.like(u'%语言 & 开发%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
-		jy.news.jiagou=dbSession.query(RssInfo).filter(RssInfo.guid.like(u'%news%')).filter(RssInfo.category.like(u'%架构 & 设计%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
-		jy.news.guocheng=dbSession.query(RssInfo).filter(RssInfo.guid.like(u'%news%')).filter(RssInfo.category.like(u'%过程 & 实践%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
-		jy.news.yunwei=dbSession.query(RssInfo).filter(RssInfo.guid.like(u'%news%')).filter(RssInfo.category.like(u'%运维 & 基础架构%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
-		jy.news.qiye=dbSession.query(RssInfo).filter(RssInfo.guid.like(u'%news%')).filter(RssInfo.category.like(u'%企业架构%')).filter(and_(RssInfo.pubdate>=last,RssInfo.pubdate<=today)).limit(5)
-
-
+		
 
 
 		jy_head=dbSession.query(JingyaoList).filter(JingyaoList.count==count).filter(JingyaoList.cat=='head').all()

@@ -63,16 +63,17 @@ class RssWeiboShare2(MethodView):
 		_img=dbSession.query(EditorCount2List).filter(EditorCount2List.version==1).filter(EditorCount2List.guid==guid).first()
 		_weibo=dbSession.query(EditorWeiboList).filter(EditorWeiboList.name==_img.name).all()
 		
-		title=_rss.title
+		title=_rss.title.replace(' ','')
 		author=""
 		if _weibo:
 			author=_weibo[0].wname
 		else:
 			author=_img.name
-		content=_rss.description.replace(" ","")
+		content=_rss.description.replace(" ","").replace('\r','').replace('\n','')
 		img=_img.img
 		ctype=helper._get_cats(guid)
-		return render_template('editor_weibo_share.html',ctype=ctype,title=title,guid=guid,content=content,author=author,img=img)
+                author2=_img.name
+		return render_template('editor_weibo_share.html',ctype=ctype,title=title,guid=guid,content=content,author=author,img=img,author2=author2)
 
 # the data type for 
 class CnContents(Base):
@@ -144,7 +145,7 @@ class ConvertToNew2(MethodView):
 		for y in results:
 			x=dbSession.query(CnContents).filter(CnContents.link==y[0]).first()
 			u=RssInfo(title=x.title,guid=x.link,description=x.description,pubdate=x.pub_date,country='ch',category=x.community)
-			if not dbSession.query(RssInfo).all():
+			if not dbSession.query(RssInfo).filter(RssInfo.guid==u.guid).all():
 				dbSession.add(u)
 			
 		dbSession.commit()

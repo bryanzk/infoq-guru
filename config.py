@@ -49,21 +49,27 @@ DATABASE_PORT='3306'
 DB = create_engine('mysql://%s:%s@%s:%s/%s'% (DATABASE_USER,DATABASE_PWD,DATABASE_HOST,DATABASE_PORT,DATABASE_NAME),connect_args={'charset':'utf8'},echo=True,pool_recycle=3,pool_size=0)
 
 Base = declarative_base()
-#RSS_SIGN_HOME='http://www.infoq.com/rss/rss.action?token=v94n6E2kapoNhNXc9EWTYRXoOoLLHX5S'
+
+RSS_SIGN_HOME='http://www.infoq.com/rss/rss.action?token=3Pkt2g0ELdPI6FKsXWnlhEytktoyTtAB'
 RSS_NOT_SIGN_EN='http://www.infoq.com/rss/rss.action?token=3Pkt2g0ELdPI6FKsXWnlhEytktoyTtAB'
 RSS_NOT_SIGN_CH='http://www.infoq.com/cn/rss/rss.action?token=mgnOPySplnVRGBQQHToikUWoAGFEqtDo'
 
-WEIBO_MAIL_SUBJECT=u'%s微博热点追踪'
+Base = declarative_base()
 
 WEIBO_MAIL_SUBJECT=u'【%s】InfoQ微博热报线索'
-WEIBO_MAIL_LIST='arthur@infoq.com'
+WEIBO_MAIL_LIST='arthur@infoq.com;frank.jia@infoq.com;kevin@infoq.com;core-editors@googlegroups.com'
 
-STATUS_STEP_LIST={"664":"737","737":"780","780":"800"}
+SMILE_MAIL_SUBJECT=''
+SMILE_MAIL_LIST=''
+
+RSS_EN_MAIL_SUBJECT=''
+RSS_CH_MAIL_SUBJECT=''
 MAIL_SMTP='smtp.exmail.qq.com'
-MAIL_TO='arthur@infoq.com;hello.shuiyaya@gmail.com'
-MAIL_FROM=u'notice@magicshui.com'
+MAIL_TO='arthur@infoq.com;'
+MAIL_FROM='notice@magicshui.com'
 MAIL_PWD='shuishui123'
 MAIL_SUBJECT=u"%s：InfoQ更新--%d篇新闻，%d篇文章，%d篇采访"
+
 CATEGORY_LIST=['Development','Architecture & Design','Process & Practices','Enterprise Architecture','Operations & Infrastructure']
 CATEGORY_LIST_CN=['']
 
@@ -74,11 +80,10 @@ def login(wtype='admin'):
         def decorated_function(*args, **kwargs):
                 if 'user'  not in session:
                     return redirect(url_for('login', next=request.url))
-                if session['user'].wtype!=wtype:
-                    flash('auth not enough!')
                 return f(*args, **kwargs)
         return decorated_function
     return decorator
+
 
 
 def token():
@@ -99,19 +104,16 @@ def token():
         except :
             return redirect('go?msg=error')
 
-
 class UserListInfo(Base):
     __tablename__='user_list'
     user=Column(String(100),primary_key=True)
     pwd=Column(String(45))
-    wtype=Column(String(45))
     """docstring for UserListInfo"""
-    def __init__(self, user,pwd,wtype):
+    def __init__(self, user,pwd):
         self.user=user
         self.pwd=pwd
-        self.wtype=wtype
         
-        D
+            
 class TokenListInfo(Base):
     __tablename__='token_list'
     time=Column(DateTime,primary_key=True)
@@ -123,7 +125,6 @@ class TokenListInfo(Base):
         self.token=token
         self.expire=expire
         self.level=level
-#不是数据库文件，没事
 class WeiboR():
     """docstring for WeiboR"""
     time=''
@@ -195,7 +196,7 @@ class RssNewInfo(Base):
         self.guid=guid
         self.small_cat=small_cat
         self.author=author
-
+        
 class MailListInfo(Base):
     __tablename__='mail_list'
     id=Column(String(100),primary_key=True)
@@ -205,7 +206,6 @@ class MailListInfo(Base):
         self.email=email
         self.id=id
         self.country=country
-#微博数据
 class WeiboM(Base):
     __tablename__='weibo_list'
     title=Column(String(100))
@@ -227,49 +227,6 @@ class WeiboM(Base):
         self.comment=comment
         self.text=text
         self.org_url=org_url
-class TaskList(Base):
-    __tablename__='task_list'
-    id=Column(String(100),primary_key=True)
-    bigcat=Column(String(100))
-    smallcat=Column(String(100))
-    title=Column(String(100))
-    link=Column(String(200))
-    editor=Column(String(100))
-    duty=Column(String(100))
-    count=Column(Integer)
-    def __init__(self,id,bigcat,smallcat,title,link,
-        editor,duty,count):
-        self.id=id
-        self.bigcat=bigcat
-        self.smallcat=smallcat
-        self.title=title
-        self.link=link
-        self.editor=editor
-        self.duty=duty
-        self.count=count
-class StatusList(Base):
-    __tablename__='status_list'
-    id=Column(String(100),primary_key=True)
-    task_id=Column(String(100))
-    code=Column(Integer)
-    description=Column(String(200))
-    begin=Column(DateTime)
-    end=Column(DateTime)
-    contrast=Column(DateTime)
-    editor=Column(String(100))
-    duty=Column(String(100))
-    count=Column(Integer)
-    def __init__(self,id,task_id,code,description,begin,end,contrast,editor,duty,count):
-        self.id=id
-        self.count=count
-        self.task_id=task_id
-        self.code=code
-        self.description=description
-        self.begin=begin
-        self.end=end
-        self.contrast=contrast
-        self.editor=editor
-        self.duty=duty
 class WPList(Base):
     __tablename__='wp_list'
     uid=Column(String(100),primary_key=True)
@@ -294,17 +251,8 @@ class WPCheckList(Base):
         self.url=url
         self.text=text
         self.comment=comment
-        self.retweet=comment
-        self.screen_name=screen_name
-class WPUserList(Base):
-    __tablename__='wpuser_list'
-    email=Column(String(100),primary_key=True)
-    comment=Column(Integer)
-    retweet=Column(Integer)
-    def __init__(self,email,comment,retweet):
-        self.email=email
-        self.comment=comment
         self.retweet=retweet
+        self.screen_name=screen_name
 class WPConfig(Base):
     __tablename__='wp_config'
     retweet=Column(Integer,primary_key=True)
@@ -316,7 +264,7 @@ class WPConfig(Base):
         self.relation=relation
         self.comment=comment
         self.order=order
-
+        
 class FeedBackList(Base):
     __tablename__='feedback_list'
     time=Column(DateTime,primary_key=True)
@@ -326,73 +274,8 @@ class FeedBackList(Base):
           self.time=time
           self.title=title
           self.content=content 
-
-
-
-
-class AboutusList(Base):
-    __tablename__='about_list'
-    id=Column(Integer,primary_key=True)
-    name=Column(String(100))
-    ename=Column(String(100))
-    email=Column(String(100))
-    desc=Column(String(1000))
-    minidesc=Column(String(200))
-    area=Column(String(20))
-    team=Column(String(20))
-    img=Column(String(50))
-    pinyin=Column(String(100))
-    def __init__(self,id,name,ename,email,desc,minidesc,area,pinyin,team,img):
-        self.id=id
-        self.name=name
-        self.ename=ename
-        self.email=email
-        self.desc=desc
-        self.minidesc=minidesc
-        self.area=area
-        self.team=team
-        self.img=img
-        self.pinyin=pinyin
-class InfoqList(Base):
-    __tablename__='infoq_list'
-    id=Column(Integer,primary_key=True)
-    name=Column(String(100))
-    ename=Column(String(100))
-    email=Column(String(100))
-    desc=Column(String(500))
-    title=Column(String(100))
-    img=Column(String(100))
-    pinyin=Column(String(100))
-    def __init__(self,id,name,ename,email,desc,title,img,pinyin):
-        self.id=id
-        self.name=name
-        self.ename=ename
-        self.email=email
-        self.pinyin=pinyin
-        self.desc=desc
-        self.title=title
-        self.img=img
-
-'''
-  `id` VARCHAR(30) NOT NULL ,
-  `name` VARCHAR(45) NULL ,
-  `ename` VARCHAR(45) NULL ,
-  `email` VARCHAR(200) NULL ,
-  `address` VARCHAR(200) NULL ,
-  `location` VARCHAR(200) NULL ,
-  `company` VARCHAR(200) NULL ,
-  `phone` VARCHAR(45) NULL ,
-  `im` VARCHAR(45) NULL ,
-  `bank` VARCHAR(100) NULL ,
-  `bio` VARCHAR(200) NULL ,
-  `img` VARCHAR(200) NULL ,
-  `weibo` VARCHAR(200) NULL ,
-  `blog` VARCHAR(200) NULL ,
-  `area` VARCHAR(200) NULL ,
-  `birth` VARCHAR(45) NULL ,
-  `bid` VARCHAR(45) NULL ,
-  PRIMARY KEY (`id`) );
-'''
+          
+          
 class ExpertList(Base):
     __tablename__="expert_list"
     id = Column(String(30),primary_key=True)
@@ -431,6 +314,7 @@ class ExpertList(Base):
         self.area=area
         self.birth=birth
         self.bid=bid
+
 class JingyaoList(Base):
     __tablename__='jingyao_list'
     count=Column(String(10))
@@ -450,7 +334,7 @@ class JingyaoList(Base):
         self.img_url=img_url
         self.cat=cat
         self.img=img
-
+                
 class EditorWeiboList(Base):
     __tablename__='editorweibo_list'
     name=Column(String(100),primary_key=True)
@@ -470,11 +354,8 @@ class EditorCountWeiboList(Base):
     sname=Column(String(100))
     scount=Column(Integer)
     scomment=Column(String(100))
-    tname=Column(String(100))
-    tcount=Column(Integer)
-    tcomment=Column(String(100))
     img=Column(String(200))
-    def __init__(self,guid,fname,fcount,fcomment,sname,scount,scomment='',img='',tname='',tcount=0,tcomment=''):
+    def __init__(self,guid,fname,fcount,fcomment,sname,scount,scomment,img):
         self.guid=guid
         self.fname=fname
         self.fcount=fcount
@@ -483,9 +364,6 @@ class EditorCountWeiboList(Base):
         self.scount=scount
         self.scomment=scomment
         self.img=img
-        self.tname=tname
-        self.tcount=tcount
-        self.tcomment=tcomment
 class EditorCount2List(Base):
     __tablename__='editorcount2_list'
     id=Column(String(20),primary_key=True)
@@ -503,28 +381,13 @@ class EditorCount2List(Base):
         self.count=count
         self.comment=comment
         self.img=img
-class ClueList(Base):
-    __tablename__='clue_list'
-    id=Column(String(50),primary_key=True)
-    createddate=Column(DateTime)
-    chief_editor=Column(String(100))
-    duty_editor=Column(String(100))
-    staus=Column(String(100))
-    duedate=Column(DateTime)
-    title=Column(String(800))
-    cat=Column(String(20))
-    description=Column(String(500))
-    def __init__(self,id,cat,title,description,chief_editor='',duty_editor='',duedate='',staus='fresh'):
-        self.createddate=datetime.today()
-        self.id=id
-        self.cat=cat
-        self.chief_editor=chief_editor
-        self.duty_editor=duty_editor
-        self.title=title
-        self.description=description
-        self.staus=staus
-        self.duedate=duedate
-Clue_Pre="""<div marginwidth="0" marginheight="0" style="min-width:600px;margin:0 auto;padding:39px;font-family:'Helvetica Neue',Helvetica,Arial,Sans-serif;font-size:13px;line-height:22px;background-color:#f5f5f5"><div class="adM">
+Clue_Pre="""
+    <html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </head>
+    <body>
+<div marginwidth="0" marginheight="0" style="min-width:600px;margin:0 auto;padding:39px;font-family:'Helvetica Neue',Helvetica,Arial,Sans-serif;font-size:13px;line-height:22px;background-color:#f5f5f5"><div class="adM">
     </div><table width="552" cellspacing="0" cellpadding="0" border="0" style="border:1px solid #dedede;border-bottom:2px solid #dedede;margin:0 auto;background-color:#ffffff">
     <tbody>
         
@@ -548,7 +411,7 @@ Clue_Body="""<div style="margin-bottom:10px;border-bottom:1px dotted #dedede">
                     <div style="margin-bottom:3px;font-size:13px;line-height:22px">
                         <span style="float:right;color:#bbb">%s</span>
                         
-                        <span style="color:#bbb">%s:%s</span>
+                        <span style="color:#bbb">%s  %s</span>
                     </div>
                     <div style="margin-bottom:10px">
                         <span style="word-break:break-all;word-wrap:break-word;font-size:11px;line-height:22px;text-decoration:none;color:#333;display:block">%s</span>
@@ -563,7 +426,7 @@ Clue_End2="""
 <div style="text-align:center;padding-top:10px;margin:0 auto;width:500px;color:#aaa;font-size:12px;line-height:20px">由 <a target="_blank" style="text-decoration:none;border:none;outline:none;color:#aaa!important" href="mailto:arthur@infoq.com">Arthur维护，意见或者建议请反馈给他！</a><br>InfoQ &copy; 2012<img width="0" height="0"><div class="yj6qo"></div><div class="adL">
 </div></div><div class="adL">
 
-</div></div>"""
+</div></div></body>"""
 Clue_End="""<div style="display:block;"><a target="_blank" href="http://gege.baihui.com/open.do?docid=95416000000003001" style="margin-left:40px;display:inline-block;padding:7px 15px;background-color:#d44b38;color:#fff;font-size:13px;font-weight:bold;border-radius:2px;border:solid 1px #c43b28;white-space:nowrap;text-decoration:none">新闻</a>
 <a target="_blank" href="http://gege.baihui.com/docview.do?docid=95416000000004001" style="margin-right:40px;float:right;display:inline-block;padding:7px 15px;background-color:lightblue;color:#fff;font-size:13px;font-weight:bold;border-radius:2px;border:solid 1px lightblue;white-space:nowrap;text-decoration:none">文章</a><div style="float:right;color:#bbb;font-size:13px">
                     </div><div style="margin-top:10px;margin-bottom:10px;border-bottom:1px dotted #dedede"><p style="float:right;color:#333;font-size:11px;">Raven</p></div>
@@ -575,7 +438,7 @@ Clue_End="""<div style="display:block;"><a target="_blank" href="http://gege.bai
 <div style="text-align:center;padding-top:10px;margin:0 auto;width:500px;color:#aaa;font-size:12px;line-height:20px">由 <a target="_blank" style="text-decoration:none;border:none;outline:none;color:#aaa!important" href="mailto:arthur@infoq.com">Arthur维护，意见或者建议请反馈给他！</a><br>InfoQ &copy; 2012<img width="0" height="0"><div class="yj6qo"></div><div class="adL">
 </div></div><div class="adL">
 
-</div></div>"""
+</div></div></body>"""
 WEIBO_MAIL_CONTENT_BASE1="""
 
 

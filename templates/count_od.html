@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <script type="text/javascript">
+
+
+    </script>
+<ul class="nav nav-pills" id="myTab">
+  <li class="active"><a href="#nweek">Arthur's OD<br/><small>OD Page</small></a></li>
+
+ 
+</ul>
+
+<div class="tab-content">
+
+  
+
+  <div class="tab-pane active" id="nweek">
+  <div class='well'>
+    {{b2}}至{{e2}}
+   </div>
+   
+    <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>类别<br> Cateogry </th>
+            <th>N.O. </th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="">Translated N.O. /Translated N.O. of Current Week / News N.O. in English Site</span>
+            </td>
+            <td>
+              {{t_no}}/{{t_no_current}}/{{n_no_en}}
+            </td>
+            
+         
+          </tr>
+          <tr>
+            <td>
+              <span class="">Translated Articles Number / Articles in English Site</span>
+            </td>
+            <td>
+              {{t_a}}/ {{a_en}}
+            </td>
+           
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="">Translated Interview Videos Number / Videos in English Site</span>
+            </td>
+            <td>
+              {{t_i}}/ {{v_en}}
+            </td>
+           
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="">Original News	</span>
+            </td>
+            <td>
+             {{o_n}}
+            </td>
+           
+           
+          </tr>
+          <tr>
+            <td>
+              <span class="">Original Articles</span>
+            </td>
+            <td>
+             {{o_a}}
+            </td>
+           
+          </tr>
+        
+          
+         
+        </tbody>
+      </table>
+  </div>
+
+
+
+
+
+</div>
+
+{% endblock%}

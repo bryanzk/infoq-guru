@@ -3,13 +3,11 @@ from config import *
 from helper_data import *
 class IndexView(MethodView):
     def get(self):
-        
         try:
             token=session['token']
         except:
             return redirect('go')
         return render_template('index.html')
-
 class StaticView(MethodView):
     def get(self):
         

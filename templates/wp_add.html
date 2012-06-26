@@ -1,8 +1,25 @@
 {% extends 'base.html' %}
+{%block tips%}
+ <ol id="joyRideTipContent">
+      
+      <li data-id='num-2' date-text='Next'>
+        <h2>填写数据</h2>
+        <p>按要求填写数据，默认大家添加的是正确数据，没有加入数据校验功能。</p>
+      </li>
+      <li data-id='input03' date-text='Next'>
+        <h2>填写UID</h2>
+        <p>获取UID的方法是：点开此人的微博页面，找到一条状态，点击状态发布时间，将打开一个状态单独的页面，其中地址栏链接，例如http://weibo.com/1577826897/ychTxClmP，中间的数字即为uid</p>
+      </li>
+      <li data-id='num-4' date-text='Close'>
+        <h2>账号列表</h2>
+        <p>已添加的账号。</p>
+      </li>
+    </ol>
+{% endblock %}
 {% block body %}
-   <form class="form-horizontal" method='post' action='wpadd'>
+   <form class="form-horizontal"  id='num-2' method='post' action='wpadd'>
         <fieldset>
-          <legend>添加新的用户</legend>
+          <legend>添加新的关注对象</legend>
           <div class="control-group">
             <label for="input01" class="control-label">真实姓名</label>
             <div class="controls">
@@ -20,7 +37,7 @@
           <div class="control-group">
             <label for="input03" class="control-label">账号UID</label>
             <div class="controls">
-              <input type="text" id="input03" name='uid' >
+              <input type="text" id="input03" placeholder='必须填写数字，例如1577826897' name='uid' >
               <p class="help-block">输入账号UID</p>
             </div>
           </div>
@@ -28,7 +45,7 @@
             <label for="input04" class="control-label">领域</label>
             <div class="controls">
               <input type="text" id="input04" name='cat' >
-              <p class="help-block">输入账号UID</p>
+              <p class="help-block">输入关注的领域</p>
             </div>
           </div>
           <div class="form-actions">
@@ -37,7 +54,7 @@
           </div>
         </fieldset>
       </form>
-      <table id='num=4' class="table table-striped">
+      <table id='num-4' class="table table-striped">
   <thead>
     <tr>
        <th>姓名</th>
@@ -55,7 +72,7 @@
     <tr>
         <td>{{x.name}}</td>
         <td>{{x.screen_name}}</td>
-      <td>{{x.uid}}</td>
+      <td><a href="http://weibo.com/{{x.uid}}">{{x.uid}}</a></td>
       <td>{{x.cat}}</td>
   
     </tr>

@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
-{% block belowscript %}
+
+{% block script %}
+
+
+
+{% endblock%}
+
+{% block body %}
+<script>
 function save_set_maincat(guid,id){
 var request = $.ajax({
   url: "setmaincat",
@@ -9,6 +17,9 @@ var request = $.ajax({
 });
 
 request.done(function(msg) {
+$('.alertvalue').text(msg);
+$('.alert2').show();
+
 $('#guid-'+id).remove();
 });
 
@@ -16,14 +27,9 @@ request.fail(function(jqXHR, textStatus) {
   alert( "Request failed: " + textStatus );
 });
 };
-{% endblock%}
-{% block script %}
+</script>
 
 
-
-{% endblock%}
-
-{% block body %}
 
 <table id='num=4' class="table table-striped sortable">
   <thead>

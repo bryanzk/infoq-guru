@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
-{% block belowscript %}
+
+
+{% block body %}
+<script>
 function save_set_maincat(guid,id){
 var request = $.ajax({
   url: "setmaincat",
@@ -16,15 +19,13 @@ request.fail(function(jqXHR, textStatus) {
   alert( "Request failed: " + textStatus );
 });
 };
-{% endblock%}
-{% block script %}
-
-
-
-{% endblock%}
-
-{% block body %}
-
+</script>
+<div class="well">
+<form class="form-horizontal"  id='num-2' method='post' action='changemaincatall'>
+	<input type="text" placeholder='input the link' class='span7' name='url'>
+  <button id='num-1' type="submit" class="btn">Search</button>
+  </form>
+</div>
 <table id='num=4' class="table table-striped sortable">
   <thead>
     <tr>

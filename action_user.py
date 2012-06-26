@@ -10,6 +10,7 @@ class UserLogin(MethodView):
 		dbSession=db_session()
 		res=dbSession.query(UserListInfo).filter(UserListInfo.user==user).filter(UserListInfo.pwd==pwd).all()
 		if res:
+			g.user=res[0]
 			session['user']=res[0]
 			flash('login ok')
 			return redirect(session['next'])
