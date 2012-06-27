@@ -1,10 +1,14 @@
-# -*- coding: utf-8 -*-
+#coding: utf-8
+import os
 from bs4 import BeautifulSoup
-import md5
+if  'SERVER_SOFTWARE' in os.environ:
+    from sae.mail import send_mail
+    from sae.mail import EmailMessage
+    import sae.const
+
 import urllib2
-import flask
-from urllib2 import *
-from modles import *
+from bs4 import BeautifulSoup
+import urllib2
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import *
 from sqlalchemy import Column, Integer, String
@@ -12,42 +16,84 @@ from flask import *
 from flask import request,render_template,session,redirect
 from flask.views import MethodView
 from sqlalchemy.orm import sessionmaker
+import md5
+import json
+from bs4 import BeautifulSoup
+from sqlalchemy import Column, Integer, String
+from datetime import *
+from datetime import timedelta
+import requests as httprequest
+
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import *
+from sqlalchemy import Column, Integer, String
+from flask import *
+from flask import request,render_template,session,redirect,flash
+from flask.views import MethodView
+from sqlalchemy.orm import sessionmaker
 import re
-from helper_data import *
 import string
+
+from sqlalchemy.sql.expression import *
 import datetime
-import helper_data
-from functools import wraps
-from helper_data import *
+
 import urllib2
 import json
-from sqlalchemy.sql.expression import *
-from sqlalchemy import and_, or_
+from functools import wraps
 from bs4 import BeautifulSoup
 from sqlalchemy import Column, Integer, String
 from datetime import *
 from weibo import *
 import logging
-from sqlalchemy.pool import NullPool 
-
 from logging.handlers import SMTPHandler
 import string
 import sys
-from flask import g, request, redirect, url_for
+from sqlalchemy.pool import NullPool 
 
 reload(sys)
 sys.setdefaultencoding('utf8') 
 
-APP_KEY = '570026225'
-APP_SECRET = '45ea1cae01eecda0e07a2b88a256d7a2'
-CALLBACK_URL = 'http://127.0.0.1:5000/oauth'
+if 'SERVER_SOFTWARE' in os.environ:
 
-DATABASE_USER = 'root'
-DATABASE_PWD =''
-DATABASE_NAME= 'test'
-DATABASE_HOST='127.0.0.1'
-DATABASE_PORT='3306'
-DB = create_engine('mysql://%s:%s@%s:%s/%s'% (DATABASE_USER,DATABASE_PWD,DATABASE_HOST,DATABASE_PORT,DATABASE_NAME),connect_args={'charset':'utf8'},echo=True,poolclass=NullPool)
+    SAE_MYSQL_HOST_M = 'w.rdc.sae.sina.com.cn'
+    SAE_MYSQL_HOST_S = 'r.rdc.sae.sina.com.cn'
+    SAE_MYSQL_PORT = '3307'
+
+    APP_KEY = '1770272819'
+    APP_SECRET = '3f043a8adfb74c6ef2f47d64305c80ec'
+    CALLBACK_URL = 'http://infoqhelp.sinaapp.com/oauth'
+
+    mysql_db = 'app_%s' % 'infoqhelp'
+    mysql_user = APP_KEY
+    mysql_pass = APP_SECRET
+    '''sae.const.MYSQL_DB
+    sae.const.MYSQL_USER
+    sae.const.MYSQL_PASS
+    sae.const.MYSQL_HOST
+    sae.const.MYSQL_PORT   #请根据框架要求自行转换为int
+    sae.const.MYSQL_HOST_S
+    '''
+    DATABASE_USER = sae.const.MYSQL_USER
+    DATABASE_PWD =sae.const.MYSQL_PASS
+    DATABASE_NAME= sae.const.MYSQL_DB
+    DATABASE_HOST=sae.const.MYSQL_HOST
+    DATABASE_PORT=sae.const.MYSQL_PORT
+    DB = create_engine('mysql://%s:%s@%s:%s/%s'% (DATABASE_USER,DATABASE_PWD,DATABASE_HOST,DATABASE_PORT,DATABASE_NAME),connect_args={'charset':'utf8'},echo=False,poolclass=NullPool)
+    Base = declarative_base()
+    RSS_SIGN_HOME='http://www.infoq.com/rss/rss.action?token=v94n6E2kapoNhNXc9EWTYRXoOoLLHX5S'
+    RSS_NOT_SIGN_EN='http://www.infoq.com/rss/rss.action?token=3Pkt2g0ELdPI6FKsXWnlhEytktoyTtAB'
+    RSS_NOT_SIGN_CH='http://www.infoq.com/cn/rss/rss.action?token=mgnOPySplnVRGBQQHToikUWoAGFEqtDo'
+else:
+    APP_KEY = '570026225'
+    APP_SECRET = '45ea1cae01eecda0e07a2b88a256d7a2'
+    CALLBACK_URL = 'http://127.0.0.1:5000/oauth'
+
+    DATABASE_USER = 'root'
+    DATABASE_PWD =''
+    DATABASE_NAME= 'test'
+    DATABASE_HOST='127.0.0.1'
+    DATABASE_PORT='3306'
+    DB = create_engine('mysql://%s:%s@%s:%s/%s'% (DATABASE_USER,DATABASE_PWD,DATABASE_HOST,DATABASE_PORT,DATABASE_NAME),connect_args={'charset':'utf8'},echo=True,poolclass=NullPool)
 
 Base = declarative_base()
 
@@ -135,6 +181,7 @@ def gen_id():
     import md5
     return (md5.md5(str(datetime.now()))).hexdigest() 
 def md5(id):
+    import md5
     return (md5.md5(id)).hexdigest()
 
 def get_user():

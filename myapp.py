@@ -39,7 +39,6 @@ app.add_url_rule('/mail',view_func=MailView.as_view('mail'))
 app.add_url_rule('/mailen',view_func=MailEnView.as_view('mailen'))
 app.add_url_rule('/mailch',view_func=MailChView.as_view('maailch'))
 
-
 app.add_url_rule('/login',view_func=UserLogin.as_view('login'))
 app.add_url_rule('/error',view_func=ErrorView.as_view('error'))
 

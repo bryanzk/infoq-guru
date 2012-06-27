@@ -1,17 +1,6 @@
 #coding: utf-8
 import config 
 from config import *
-class Convet_Beans(MethodView):
-	def get(self):
-		db_session=sessionmaker(bind=DB)
-		dbSession=db_session()
-		results=dbSession.query(RssInfo).order_by(desc(RssInfo.pubdate)).filter(RssInfo.country=='en').limit(20)
-		for x in results:
-			if not dbSession.query(BeanList).filter(BeanList.org_guid==x.guid).all():
-				b=BeanList(org_guid=x.guid,pubdate=x.pubdate)
-				dbSession.add(b)
-				dbSession.commit()
-		return 'ok'
 class BeanList(Base):
 	__tablename__='bean_list'
 	id=Column(String(45),primary_key=True)
@@ -33,6 +22,18 @@ class BeanList(Base):
 		self.jack=jack
 		self.count=count
 		self.status=status
+class Convet_Beans(MethodView):
+	def get(self):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		results=dbSession.query(RssInfo).order_by(desc(RssInfo.pubdate)).filter(RssInfo.country=='en').limit(20)
+		for x in results:
+			if not dbSession.query(BeanList).filter(BeanList.org_guid==x.guid).all():
+				b=BeanList(org_guid=x.guid,pubdate=x.pubdate)
+				dbSession.add(b)
+				dbSession.commit()
+		return 'ok'
+
 class AllBeansToPick(MethodView):
 	@login(wtype='admin,core,editor,gof')
 	def get(self):
