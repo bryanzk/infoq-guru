@@ -62,15 +62,45 @@ class PickABean(MethodView):
 		result=dbSession.query(BeanList,RssInfo).filter(RssInfo.guid==BeanList.org_guid).filter(BeanList.id==id).filter(BeanList.status!=1).first()
 		return render_template('beans_pick_one.html',x=result)
 	def post(self):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
 		id=request.form['id']
 		duedate=request.form['due']
-		jack=get_user().name
-		one_bean=dbSession.query(BeanList).filter(BeanList.status==0).first()
+		jack=get_user().user
+		one_bean=dbSession.query(BeanList).filter(BeanList.id==id).filter(BeanList.status==0).first()
 		if one_bean:
 			one_bean.jack=jack
 			one_bean.duedate=duedate
-			one_bean.status=2
-			return 'ok'
+			one_bean.status=1
+			dbSession.commit()
 
+			notify(content='领取新闻')
+			return 'ok'
+class DoneABean(MethodView):
+	def get(self):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		id=request.args.get('id')
+		result=dbSession.query(BeanList,RssInfo).filter(RssInfo.guid==BeanList.org_guid).filter(BeanList.id==id).filter(BeanList.status!=1).first()
+		return render_template('beans_done_one.html',x=result)
+	def post(self):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		id=request.form['id']
+		count=request.form['count']
+		final_guid=request.form['final']
+		jack=get_user().user
+		one_bean=dbSession.query(BeanList).filter(BeanList.id==id).filter(BeanList.status==1).first()
+		if one_bean:
+			one_bean.final_guid=final_guid
+			one_bean.status=2
+			one_bean.count=count
+			dbSession.commit()
+
+			notify(content='完成新闻')
+			return 'ok'
+class GOF(MethodView):
+	def get(self):
+		pass
 
 

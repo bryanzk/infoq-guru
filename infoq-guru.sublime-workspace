@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"fina",
+				"final_guid"
+			],
+			[
+				"fin",
+				"final_guid"
+			],
+			[
+				"res",
+				"results"
+			],
+			[
+				"bea",
+				"BeanList"
+			],
+			[
+				"or",
+				"org_guid"
+			],
+			[
+				"B",
+				"BeanList"
+			],
+			[
+				"st",
+				"status"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
 				"lo",
 				"loadfile"
 			],
@@ -74,10 +106,6 @@
 			[
 				"get",
 				"get_count_of_cat_week"
-			],
-			[
-				"res",
-				"results"
 			],
 			[
 				"db",
@@ -380,10 +408,6 @@
 				"ExpertList"
 			],
 			[
-				"st",
-				"String"
-			],
-			[
 				"S",
 				"String"
 			],
@@ -490,30 +514,6 @@
 			[
 				"task_i",
 				"task_init"
-			],
-			[
-				"crea",
-				"create_id"
-			],
-			[
-				"str",
-				"String"
-			],
-			[
-				"sesion",
-				"sessionmaker"
-			],
-			[
-				"act",
-				"action_rss"
-			],
-			[
-				"user",
-				"user"
-			],
-			[
-				"USer",
-				"UserListInfo"
 			]
 		]
 	},
@@ -523,89 +523,63 @@
 			"file": "myapp.py",
 			"settings":
 			{
-				"buffer_size": 6877,
+				"buffer_size": 6612,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "action_static.py",
+			"file": "templates/base_editor.html",
 			"settings":
 			{
-				"buffer_size": 1620,
+				"buffer_size": 8792,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "action_countweibo.py",
+			"file": "templates/base.html",
 			"settings":
 			{
-				"buffer_size": 3575,
+				"buffer_size": 11299,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "helper_data.py",
+			"file": "templates/beans_pick_one.html",
 			"settings":
 			{
-				"buffer_size": 3256,
+				"buffer_size": 452,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "_ok_dont_update_it.py",
+			"file": "action_bean.py",
 			"settings":
 			{
-				"buffer_size": 369,
+				"buffer_size": 3838,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/Arthur/Documents/Test/a.txt",
+			"file": "templates/beans_news_to_pick.html",
 			"settings":
 			{
-				"buffer_size": 44,
-				"line_ending": "Unix",
-				"name": "的首发的"
-			}
-		},
-		{
-			"file": "weibo.py",
-			"settings":
-			{
-				"buffer_size": 6831,
+				"buffer_size": 2978,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "action_clue.py",
+			"file": "static/css/humane.css",
 			"settings":
 			{
-				"buffer_size": 5460,
+				"buffer_size": 20756,
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/Arthur/Dropbox/工作/每周精要/nl20120625.html",
-			"settings":
-			{
-				"buffer_size": 27915,
-				"line_ending": "Unix",
-				"name": "<!-- saved from url=(0022)http://internet.e-mail -"
 			}
 		},
 		{
 			"file": "config.py",
 			"settings":
 			{
-				"buffer_size": 22644,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "action_aboutus.py",
-			"settings":
-			{
-				"buffer_size": 709,
+				"buffer_size": 20637,
 				"line_ending": "Unix"
 			}
 		}
@@ -658,24 +632,55 @@
 	},
 	"file_history":
 	[
-		"/Users/Arthur/Desktop/he.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/config.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_user.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/show_trends.js",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_notify.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_index.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/beans_news_to_pick.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/beans_pick_one.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_bean.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/css/humane.css",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base_e.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/humane.js",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base_editor.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/bootstrap-collapse.js",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/user_login.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_index.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/sortable.js",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base_not.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_countweibo.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_index_editor.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/bean_news_pick.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/backbone_pickbean_news.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_backbone_rss.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_statics.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_statics 副本 2.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_statics_mail.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_author.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_od.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_aboutus.py",
+		"/Users/Arthur/Dropbox/工作/每周精要/nl20120625.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_clue.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/weibo.py",
+		"/Users/Arthur/Documents/Test/a.txt",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/_ok_dont_update_it.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/helper_data.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_static.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/myapp.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/_init.sql",
+		"/Users/Arthur/Desktop/he.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_content.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor2.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_clue.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_count.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_statics.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/myapp.py",
 		"/Users/Arthur/Desktop/article.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_rss.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_weibo.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_top.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_aboutus.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_task.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_expert.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/helper_data.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_mail.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_check.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_change_maincat_all.html",
@@ -684,23 +689,18 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_charts.py",
 		"/Users/Arthur/Library/Application Support/Sublime Text 2/Packages/Alignment/Default (OSX).sublime-keymap",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/static_rss.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_static.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_count_show.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_search.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_set_maincat.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor_clue.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_mine_done.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_review.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_mine_pending.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_pick.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_user.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_all.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base_e.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_security.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor_translate.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_week.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_author.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_wall.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/d3.time.js",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/d3.format.js",
@@ -723,7 +723,6 @@
 		"/Users/Arthur/Downloads/516563876@qq.com - 转发：我弄的 能用不？ 2/kaoqin_edit.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/trollop/__init__.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_jingyao.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/weibo.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/trello/__init__.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/mytrello/__init__.py",
 		"/Users/Arthur/Dropbox/工作/每周精要/每周精要20120508-242.html",
@@ -760,32 +759,7 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/wp_add.html",
 		"/Users/Arthur/Desktop/with_login.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/lab.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/aboutus.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_mag.py",
-		"/Users/Arthur/Downloads/blasten-turn.js-8b0e272/demos/magazine/index.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/mag_index.html",
-		"/Users/Arthur/Downloads/blasten-turn.js-8b0e272/demos/bible/index.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/timeline-embed.js",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/data/data.json",
-		"/Users/Arthur/Desktop/VeriteCo-Timeline-18e347a/timeline.js",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/action_aboutus.py",
-		"/Users/Arthur/Documents/GITReps/wenzi/README.markdown",
-		"/Users/Arthur/Downloads/2维码/名片信息(付实）.txt",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/video_timeline.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_video.py",
-		"/Users/Arthur/Desktop/名片信息(1).txt",
-		"/Users/Arthur/Desktop/工作/工作量和稿费统计/以前的/infoqdb.sql",
-		"/Users/Arthur/Desktop/CMS内容发布.txt",
-		"/Users/Arthur/Library/Application Support/Sublime Text 2/Packages/Pylinter/Pylinter.sublime-settings",
-		"/Users/Arthur/Desktop/uninstall-mono.sh",
-		"/Users/Arthur/Desktop/流程",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_feedback.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/top_urls.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/task_submit.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/task_step.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/charts_weibo.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/error.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/user_login.html"
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/aboutus.html"
 	],
 	"find":
 	{
@@ -805,6 +779,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"UserList",
+			"id_gen",
+			"id_getn",
+			"gen_id",
+			"krygen",
 			"_obj_hook",
 			"JsonObject",
 			"WebiboHelper",
@@ -936,6 +915,7 @@
 	"groups":
 	[
 		{
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -943,15 +923,15 @@
 					"file": "myapp.py",
 					"settings":
 					{
-						"buffer_size": 6877,
+						"buffer_size": 6612,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3870,
-								3870
+								34,
+								34
 							]
 						],
 						"settings":
@@ -966,79 +946,81 @@
 				},
 				{
 					"buffer": 1,
-					"file": "action_static.py",
+					"file": "templates/base_editor.html",
 					"settings":
 					{
-						"buffer_size": 1620,
+						"buffer_size": 8792,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								272,
-								272
+								6445,
+								6465
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2819.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "action_countweibo.py",
+					"file": "templates/base.html",
 					"settings":
 					{
-						"buffer_size": 3575,
+						"buffer_size": 11299,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								590,
-								590
+								1220,
+								1220
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 621.0,
+						"translation.y": 645.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "helper_data.py",
+					"file": "templates/beans_pick_one.html",
 					"settings":
 					{
-						"buffer_size": 3256,
+						"buffer_size": 452,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2961,
-								2961
+								420,
+								420
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1048,18 +1030,18 @@
 				},
 				{
 					"buffer": 4,
-					"file": "_ok_dont_update_it.py",
+					"file": "action_bean.py",
 					"settings":
 					{
-						"buffer_size": 369,
+						"buffer_size": 3838,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								295,
-								295
+								3828,
+								3828
 							]
 						],
 						"settings":
@@ -1068,31 +1050,32 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 882.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "/Users/Arthur/Documents/Test/a.txt",
+					"file": "templates/beans_news_to_pick.html",
 					"settings":
 					{
-						"buffer_size": 44,
+						"buffer_size": 2978,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								59,
+								69
 							]
 						],
 						"settings":
 						{
-							"auto_name": "的首发的",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1102,100 +1085,46 @@
 				},
 				{
 					"buffer": 6,
-					"file": "weibo.py",
+					"file": "static/css/humane.css",
 					"settings":
 					{
-						"buffer_size": 6831,
+						"buffer_size": 20756,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1123,
-								884
+								6983,
+								6983
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1688.0,
+						"translation.y": 2776.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 7,
-					"file": "action_clue.py",
-					"settings":
-					{
-						"buffer_size": 5460,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5460,
-								5460
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1083.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "/Users/Arthur/Dropbox/工作/每周精要/nl20120625.html",
-					"settings":
-					{
-						"buffer_size": 27915,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								27607,
-								27607
-							]
-						],
-						"settings":
-						{
-							"auto_name": "<!-- saved from url=(0022)http://internet.e-mail -",
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 11142.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
 					"file": "config.py",
 					"settings":
 					{
-						"buffer_size": 22644,
+						"buffer_size": 20637,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								19357,
-								19357
+								830,
+								830
 							]
 						],
 						"settings":
@@ -1204,35 +1133,8 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 129.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "action_aboutus.py",
-					"settings":
-					{
-						"buffer_size": 709,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								707,
-								707
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 181.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1271,6 +1173,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
 	"replace":
 	{
 		"height": 64.0

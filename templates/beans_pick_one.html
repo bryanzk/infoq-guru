@@ -1,28 +1,15 @@
 {% extends 'base_editor.html'%}
 {% block body %}
+<form class="well" method='post' action='pickabean'>
+    <label>{{x.RssInfo.title}}</label>
+    
+    <span class="help-block">{{x.RssInfo.description|safe}}</span>
+    <input type="hidden" name='id' value='{{x.BeanList.id}}'> 
+        <input type="text" name='due' value='' placeholder='格式：2012-02-02'> 
 
- <div class="accordion-group" style="margin-top:10px;">
-        
-    <div class="accordion-heading">
-                <div href="#{{x.BeanList.id}}" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle">
-                  <h3>{{x.RssInfo.title}}</h3>
-                  
-                  
-                </div>
-               
-                
-                
-              </div>
-              <div class="accordion-body collapse" id="{{x.BeanList.id}}" style="margin:10px;">
-                 <small>{{x.RssInfo.category}}</small>
-                <a class="btn" href="pickabean?id={{x.BeanList.id}}">领取</a>
-                <div class="accordion-inner " style="background-color: #F7F7F9;">
-                  {{x.RssInfo.description|safe}}
+    <button type="submit" class="btn">Submit</button>
+    </form>
 
-                </div>
-              </div>
-    </div>
- 
               
 	
 {% endblock %}

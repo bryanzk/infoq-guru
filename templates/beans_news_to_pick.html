@@ -1,9 +1,50 @@
 {% extends 'base_editor.html'%}
 {% block body %}
 
-<div id="accordion2" class="accordion">
-	{% for x in res%}
-            <div class="accordion-group" style="margin-top:10px;">
+<div id="accordion2" class="accordion  ">
+	<div class="header"><div style="float: left; display: inline-block; margin-right: 10px; margin-bottom: 10px;"></div><div class="fr f12"><span class="snow">主题总数</span> <strong class="gray">474</strong> <span class="snow">&nbsp;•&nbsp;</span> <a href="/favorite/node/90?t=1293961871">收藏这个节点</a></div><a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> Pick a news
+    
+    <div class="sep10"></div>
+    <span class="f12 gray">这里讨论各种 Python 语言编程话题，也包括 Django，Tornado 等框架的讨论。</span>
+    
+    
+    <div class="sep10"></div>
+    <input type="button" onclick="location.href = '/new/python';" value="创建新主题" class="super normal button">
+    
+    </div>
+  {% for x in res%}
+  <div class="cell">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+              <tr>
+                <td width="48" valign="top" align="center"><img border="0" align="default" auto="" src="http://cdn.v2ex.com/static/img/avatar_normal.png"></td>
+                <td width="10"></td>
+                <td width="auto" href="#{{x.BeanList.id}}" valign="middle" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle"><span class="item_title">{{x.RssInfo.title}}</span>
+                <div class="sep5"></div>
+                <span class="small "><strong>About:</strong> &nbsp;•&nbsp; {{x.RssInfo.pubdate}} &nbsp;•&nbsp; {{x.RssInfo.category}}</span>
+                </td>
+                <td width="50" valign="middle" align="right">
+                    
+                    <a class=" btn" href="pickabean?id={{x.BeanList.id}}">Pick</a>
+                    
+                </td>
+            </tr>
+           
+            <tr >
+              <td>
+              </td>
+              <td></td>
+<td>
+              <div class="accordion-body  collapse" id="{{x.BeanList.id}}" >
+                
+                  {{x.RssInfo.description|safe}}
+
+                </div>
+              </td>
+            </tr>
+        </tbody></table>
+    </div>
+            <!--<div class="accordion-group" style="margin-top:10px;">
         
     <div class="accordion-heading">
                 <div href="#{{x.BeanList.id}}" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle">
@@ -25,7 +66,7 @@
               </div>
     </div>
  
-              
+              -->
        
          {% endfor %}
           </div>

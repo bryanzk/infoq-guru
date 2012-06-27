@@ -28,6 +28,8 @@ from sqlalchemy import Column, Integer, String
 from datetime import *
 from weibo import *
 import logging
+from sqlalchemy.pool import NullPool 
+
 from logging.handlers import SMTPHandler
 import string
 import sys
@@ -45,7 +47,7 @@ DATABASE_PWD =''
 DATABASE_NAME= 'test'
 DATABASE_HOST='127.0.0.1'
 DATABASE_PORT='3306'
-DB = create_engine('mysql://%s:%s@%s:%s/%s'% (DATABASE_USER,DATABASE_PWD,DATABASE_HOST,DATABASE_PORT,DATABASE_NAME),connect_args={'charset':'utf8'},echo=True,pool_recycle=3,pool_size=0)
+DB = create_engine('mysql://%s:%s@%s:%s/%s'% (DATABASE_USER,DATABASE_PWD,DATABASE_HOST,DATABASE_PORT,DATABASE_NAME),connect_args={'charset':'utf8'},echo=True,poolclass=NullPool)
 
 Base = declarative_base()
 
