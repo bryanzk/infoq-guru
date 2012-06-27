@@ -1,0 +1,115 @@
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
+{% block blewscript %}
+<script>
+function pickOneModal(id){
+  var source   = $("#pickbean-template").html();
+  var template = Handlebars.compile(source);
+  var context = {id: id};
+ var html    = template(context);
+  $('body').append(html);
+  $('#pickModal-'+id).modal('show');
+
+
+};
+function pickDone(id){
+var request = $.ajax({
+  url: "doneabean",
+  type: "POST",
+  data: 'id='+id+'&guid='+$('#guid-'+id).val()+'&count='+$('#count-'+id).val(),
+});
+
+request.done(function(msg) {
+if(msg=='ok'){
+  $('#cell-'+id).remove();
+  humane.log('ok');
+
+};
+
+$('#pickModal-'+id).modal('toggle').remove();
+
+
+});
+
+request.fail(function(jqXHR, textStatus) {
+ humane.log('error');
+});
+};
+</script>
+{% endblock %}
+
+{% block body %}
+{% raw %}
+<script id="pickbean-template" type="text/x-handlebars-template">
+
+<div class="modal hide" id="pickModal-{{id}}">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>完成新闻</h3>
+    </div>
+    <div class="modal-body">
+    <p> 
+      <input type="hidden" id='id-{{id}}' value='{{id}}'> 
+        <input type="text" id='guid-{{id}}' value='' placeholder='格式：http://www.infoq.com/cn/xxx'>  <input type="text" id='count-{{id}}' value='' placeholder='工作量：字数'>  </p>
+    </div>
+    <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a href="javascript:pickDone('{{id}}');" class="btn btn-primary">完成</a>
+    </div>
+    </div>
+</script>
+
+
+{% endraw%}
+
+
+<div id="accordion2" class="accordion well ">
+	<div class="header"><div style="float: left; display: inline-block; margin-right: 10px; margin-bottom: 10px;"></div><div class="fr f12"><span class="snow"></span> <strong class="gray">Raven</strong> <span class="snow">&nbsp;•&nbsp;</span> <a href=""></a></div><a href="/">GOF</a> <span class="chevron">&nbsp;›&nbsp;</span>领取36小时未发布
+    <div class="sep10"></div>
+    <span class="f12 gray">点击Done，填写新闻地址，必须按照格式、字数，完成新闻。</span>
+    
+    
+    <div class="sep10"></div>
+    
+    </div>
+  {% for x in res%}
+  <div class="cell" id='cell-{{id}}'>
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+              <tr>
+                <td width="48" valign="top" align="center"><img border="0" align="default" auto="" src="static/img/news.png"></td>
+                <td width="10"></td>
+                <td width="auto" href="#{{x.BeanList.id}}" valign="middle" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle"><span class="item_title">【{{x.BeanList.jack}}】{{x.RssInfo.title}}</span>
+                <div class="sep5"></div>
+                <span class="small "><span class="label">发布时间：</span>{{x.RssInfo.pubdate}}<span class="label label-warning">领取时间  </span>{{x.BeanList.pickdate}}<span class="label label-success">承诺时间</span><hr/>领域： {{x.RssInfo.category}}</span>
+                </td>
+                <td width="150" valign="middle" style="padding-bottom:30px;"align="right">
+                    <div class="btn-group">
+                      <a class="btn" href='mailto:{{x.BeanList.jack}}'>联系领取人</a>
+                   </div>
+                    
+                    
+                </td>
+            </tr>
+           
+            <tr >
+              <td>
+              </td>
+              <td></td>
+<td>
+              <div class="accordion-body  collapse" id="{{x.BeanList.id}}" >
+                
+                  {{x.RssInfo.description|safe}}
+                  
+
+                </div>
+              </td>
+            </tr>
+        </tbody></table>
+    </div>
+          
+       
+         {% endfor %}
+          </div>
+{% endblock %}

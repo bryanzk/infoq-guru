@@ -1,4 +1,6 @@
-{% extends 'base.html' %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
 {% block body %}
    <form class="form-horizontal" method='post' action='jyi'>
         <fieldset>
@@ -29,35 +31,35 @@
           <div class="control-group">
             <label for="input03" class="control-label">标题</label>
             <div class="controls">
-              <input type="text" id="input03" name='title' >
+              <input type="text" id="input03" class='span5'name='title' >
               <p class="help-block">输入标题</p>
             </div>
           </div>
           <div class="control-group">
             <label for="input04" class="control-label">标题链接</label>
             <div class="controls">
-              <input type="text" id="input04" name='head_url' >
+              <input type="text" id="input04" class='span5' name='head_url' >
               <p class="help-block">输入标题指向的链接</p>
             </div>
           </div>
           <div class="control-group">
             <label for="input05" class="control-label">内容</label>
             <div class="controls">
-              <textarea  name='content' ></textarea>
-              <p class="help-block">输入内容的html格式<br/>示例：</p>
+              <textarea  name='content' class='span5'></textarea>
+              <p class="help-block">输入内容的html格式<br/>其中，a的链接为&lt;a style="text-decoration: none; color: darkgreen;" &gt; &lt;/a&gt; </p>
             </div>
           </div>
           <div class="control-group">
             <label for="input06" class="control-label">图像地址</label>
             <div class="controls">
-              <input type="text" id="input06" name='img' >
+              <input type="text" id="input06" class='span5'name='img' >
               <p class="help-block">输入图像的地址</p>
             </div>
           </div>
           <div class="control-group">
             <label for="input06" class="control-label">图像跳转链接</label>
             <div class="controls">
-              <input type="text" id="input06" name='img_url' >
+              <input type="text" id="input06" class='span5'name='img_url' >
               <p class="help-block">输入图像跳转的地址</p>
             </div>
           </div>

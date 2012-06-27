@@ -23,7 +23,7 @@ a:hover {color: #008000; text-decoration: underline;}
 
 {% for x in jy_head %}
 <h1 style="padding: 0px; font-family: Arial; font-size: 12pt; color: black; line-height: 10pt; margin-bottom: 5px;"><a style="text-decoration: none; color: black;" href="{{x.head_url}}}">{{x.title}}</a></h1>
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.content|safe}}</p>
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.content | safe}}</p>
 {% endfor %}
 
 
@@ -37,14 +37,14 @@ a:hover {color: #008000; text-decoration: underline;}
 <tbody>
 <tr>
 <td colspan="2">
-<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
+<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.RssInfo.guid}}">{{x.RssInfo.title}}</a></h1>
 </td>
 </tr>
 <tr>
 <td valign="top">
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.RssInfo.description}}</p>
 </td>
-<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
+<td><a href="{{x.EditorCount2List.guid}}"><img style="border: 0px solid; float: right; " src="{{x.EditorCount2List.img}}" align="right" /></a></td>
 </tr>
 <tr>
 <td>&nbsp;</td>
@@ -78,14 +78,14 @@ a:hover {color: #008000; text-decoration: underline;}
 <tbody>
 <tr>
 <td colspan="2">
-<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
+<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.RssInfo.guid}}">{{x.RssInfo.title}}</a></h1>
 </td>
 </tr>
 <tr>
 <td valign="top">
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.RssInfo.description}}</p>
 </td>
-<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
+<td><a href="{{x.EditorCount2List.guid}}"><img style="border: 0px solid; float: right; " src="{{x.EditorCount2List.img}}" align="right" /></a></td>
 </tr>
 <tr>
 <td>&nbsp;</td>
@@ -119,14 +119,14 @@ a:hover {color: #008000; text-decoration: underline;}
 <tbody>
 <tr>
 <td colspan="2">
-<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
+<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.RssInfo.guid}}">{{x.RssInfo.title}}</a></h1>
 </td>
 </tr>
 <tr>
 <td valign="top">
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.RssInfo.description}}</p>
 </td>
-<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
+<td><a href="{{x.EditorCount2List.guid}}"><img style="border: 0px solid; float: right; " src="{{x.EditorCount2List.img}}" align="right" /></a></td>
 </tr>
 <tr>
 <td>&nbsp;</td>
@@ -160,14 +160,14 @@ a:hover {color: #008000; text-decoration: underline;}
 <tbody>
 <tr>
 <td colspan="2">
-<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
+<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.RssInfo.guid}}">{{x.RssInfo.title}}</a></h1>
 </td>
 </tr>
 <tr>
 <td valign="top">
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.RssInfo.description}}</p>
 </td>
-<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
+<td><a href="{{x.EditorCount2List.guid}}"><img style="border: 0px solid; float: right; " src="{{x.EditorCount2List.img}}" align="right" /></a></td>
 </tr>
 <tr>
 <td>&nbsp;</td>
@@ -201,14 +201,14 @@ a:hover {color: #008000; text-decoration: underline;}
 <tbody>
 <tr>
 <td colspan="2">
-<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.guid}}">{{x.title}}</a></h1>
+<h1 style="font-family: Arial; font-size: 12pt; color: black; line-height: 15pt; margin-bottom: 5px; padding: 0px;"><a style="text-decoration: none; color: black;" href="{{x.RssInfo.guid}}">{{x.RssInfo.title}}</a></h1>
 </td>
 </tr>
 <tr>
 <td valign="top">
-<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.description}}</p>
+<p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.RssInfo.description}}</p>
 </td>
-<td><a href="{{x.guid}}"><img style="border: 0px solid; float: right; " src="{{x.img}}" align="right" /></a></td>
+<td><a href="{{x.EditorCount2List.guid}}"><img style="border: 0px solid; float: right; " src="{{x.EditorCount2List.img}}" align="right" /></a></td>
 </tr>
 <tr>
 <td>&nbsp;</td>
@@ -253,7 +253,7 @@ a:hover {color: #008000; text-decoration: underline;}
 </tbody>
 </table>
 
-<div style="color: #024c7f; border-right: 2px solid #dddddd; width: 170px; font-family: Arial; font-size: 12px; margin-bottom: 20px; padding: 5px;">
+<div style="color: #024c7f; border: 2px dashed gray; width: 170px; font-family: Arial; font-size: 12px; margin-bottom: 20px; padding: 5px;"> 
 <span style="font-weight: bold;">
 <h3 style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; line-height: 13pt;" align="center">赞助商信息</h3>
 </span>
@@ -262,27 +262,41 @@ a:hover {color: #008000; text-decoration: underline;}
 {% for x in jy_spon %}
 
 <p style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; line-height: 13pt;" align="center">
-｛% if x.img_url %｝
+
 	<a href="{{x.img_url}}"><img src="{{x.img}}"  border="0"></a>
-	{% endif %}</p>
+
 
 <p><a style="text-decoration: none; color: darkgreen;" href="{{x.head_url}}"><u><strong>{{x.title}}</strong></u></a></p>
 <p style="font-family: Arial; font-size: 10pt; margin: 0 0 10px 0;">{{x.content|safe}}</p>
 {% endfor %}
 
 
-<p><b>下周精选活动推荐：</b>
 
-{%for x in jy_event%}
-<br><a style="text-decoration: none; color: darkgreen;" href="{{x.head_url}}"><u>{{x.title}}</u></a><br>
-{%endfor%}
-
-</p>
 
 
 
 
 </div>
+<table width="174" border="0" cellpadding="0" cellspacing="0" bordercolor="lightblue" style="border-left: 2px dashed  lightblue; border-top: 2px dashed  lightblue; border-right: 2px dashed lightblue; border-bottom: 2px dashed lightblue; font-family: Arial; font-size: 12px;">
+<tbody>
+<tr>
+<td>
+<h3 align="center" style="font-family: Arial; font-size: 10pt; font-weight: bold; color: #646464; line-height: 13pt; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 5px;">近期社区活动推荐：</h3>
+</td>
+</tr>
+  {% for x in jy_event %}
+<tr>
+<td>
+  <p style="margin-left: 10px; margin-right: 10px; margin-bottom: 10px;"><a href="{{x.head_url}}" style="text-decoration: none; color: darkgreen;">{{x.title}}<u>
+	
+	
+</u></a></p>
+</td>
+</tr>
+  {%endfor%}
+
+</tbody>
+</table>
 <br />
 </td>
 </tr>

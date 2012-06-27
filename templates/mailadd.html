@@ -1,4 +1,6 @@
-{% extends 'base.html' %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
 {% block tips%}
 <!-- Tip Content -->
     <ol id="joyRideTipContent">
@@ -28,7 +30,7 @@
 {% block body %}
 <form class="well form-inline" action="mailadd" method="POST" >
  <input id='num-0'type="text" name='email'class="input-small" placeholder="输入邮箱">
- <select id='numm-1' name="country">
+ <select id='num-1' name="country">
 <option value="en">英文站</option>
 <option value="ch">中文站</option>
 </select>

@@ -1,0 +1,61 @@
+<<script type="text/javascript">
+	var AppView=Backbone.View.extend({
+		el: $("#beans"),
+
+		beanNewsTemplate:_.template($('#beanNewsTemplate').html()),
+
+		events:{
+			"keypress #one-bean":"expandBean"
+
+		},
+
+		initialize:function(){
+
+		},
+
+
+
+
+
+	});
+
+	var BeanList=Backbone.Collection.extend({
+
+		model: BeanNews,
+
+		url: '/beannews',
+
+		done:function(){
+			return this.filter(function(bean){
+				bean.get('done');
+			});
+
+		},
+
+		remaining:function(){
+			return this.without.apply(this,this.done());
+		},
+
+		nextOrder:function(){
+			return True;
+		},
+
+		comparator:function(bean){
+			return bean.get('order');
+		}
+
+	});
+
+
+	var BeanNews=Backbone.Model.extend({
+		idAttribute:'_guid',
+
+		defaults:function(){
+			return {
+				pubdate:BeanList.nextPubdate(),
+				
+			}
+		},
+	});
+</script>
+

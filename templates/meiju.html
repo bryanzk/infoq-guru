@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block tips%}
+
+{% endblock%}
+{% block body %}
+<form class="well form-inline" action="meiju" method="POST" >
+ <input id='num-0'type="text" name='date'class="input-small" placeholder="输入日期">
+    <span class="help-inline">日期格式：20120406</span>
+  <button id='num-2' type="submit" class="btn">OK</button>
+</form>
+
+<div id='num-4' class="alert alert-info">
+  运行结果：
+  {% for x in r%}
+  <li>{{x}}</li>
+  {% endfor%}
+
+
+</div>
+{% endblock %}

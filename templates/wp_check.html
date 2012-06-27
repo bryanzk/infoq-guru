@@ -1,10 +1,29 @@
-{% extends 'base.html' %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
+
 {% block tips%}
+    <ol id="joyRideTipContent">
+      
+      <li data-id='num-2' date-text='Next'>
+        <h2>获取数据</h2>
+        <p>点击将会手动更新数据。</p>
+      </li>
+      <li data-id='num-4' date-text='Next'>
+        <h2>部分数据</h2>
+        <p>这里展示的是获得部分数据。</p>
+      </li>
+      <li data-id='num-5' date-text='Close'>
+        <h2>结果</h2>
+        <p>运行结果。</p>
+      </li>
+    </ol>
 {% endblock%}
 {% block body %}
 <form class="well form-inline" action="wpcheck" method="POST" >
   <button id='num-2' type="submit" class="btn">获取新的数据</button>
 </form>
+
 <table id='num=4' class="table table-striped">
   <thead>
     <tr>
@@ -32,7 +51,7 @@
     {% endfor %}
   </tbody>
 </table>
-<div id='num-4' class="alert alert-info">
+<div id='num-5' class="alert alert-info">
   运行结果：{{r}}
 </div>
 {% endblock %}

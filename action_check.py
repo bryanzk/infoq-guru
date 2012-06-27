@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# 获取每天的微博数据，过滤以后发送给编辑群组
 from config import *
 from action_mail import *
 class WPHelper():
@@ -35,7 +34,6 @@ class WPHelper():
 class WPAddView(MethodView):
 	"""docstring for WPCheckView"""
 	def get(self):
-		
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
 		res=dbSession.query(WPList).all()
@@ -62,11 +60,10 @@ class WPAddView(MethodView):
 
 class WPSend(MethodView):
 	def get(self):
-		
-		token()
+        	token()
 		return render_template('wp_mail.html')
 	def post(self):
-		token()
+        	token()
 		m=MailMethod()
 		content=''
 		db_session=sessionmaker(bind=DB)
@@ -94,7 +91,6 @@ class WPSend(MethodView):
 		return render_template('wp_mail.html',r='ok')
 class WPConfigView(MethodView):
 	def get(self):
-		
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
 		r=dbSession.query(WPConfig).first()
@@ -117,16 +113,15 @@ class WPConfigView(MethodView):
 		return redirect('wpconfig')
 class WPCheckView(MethodView):
 	def get(self):
-		
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
 		res=dbSession.query(WPCheckList).order_by(desc(WPCheckList.time)).limit(20)
 		return render_template('wp_check.html',res=res)
 	def post(self):
-		db_session=sessionmaker(bind=DB)
+        	db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
-		res=dbSession.query(TokenListInfo).order_by(desc(TokenListInfo.time)).all()
-
+                res=dbSession.query(TokenListInfo).order_by(desc(TokenListInfo.time)).all()
+                
 		client = APIClient(app_key=APP_KEY, app_secret=APP_SECRET, redirect_uri=CALLBACK_URL)
 		_token = res[0].token
 		_expires_in = res[0].expire
@@ -136,16 +131,20 @@ class WPCheckView(MethodView):
 		helper=WPHelper()
 		check_list=dbSession.query(WPList).all()
 		for p in check_list:
-			result=client.get.statuses__user_timeline(feature=0,uid=p.uid,count=200,page=1)
-			for mm in result.statuses:
-				print mm.reposts_count
-				m=WPCheckList(
-				url="http://api.t.sina.com.cn/"+p.uid+"/statuses/"+str(mm.id)+"?source="+APP_KEY,
-				time=datetime.strptime(mm.created_at,'%a %b %d %H:%M:%S +0800 %Y'),
-				screen_name=p.screen_name,
-				text=mm.text,
-				retweet=mm.reposts_count,
-				comment=mm.comments_count)
+                	try:
+                        
+				result=client.get.statuses__user_timeline(feature=0,uid=p.uid,count=200,page=1)
+				for mm in result.statuses:
+					print mm.reposts_count
+					m=WPCheckList(
+					url="http://api.t.sina.com.cn/"+p.uid+"/statuses/"+str(mm.id)+"?source="+APP_KEY,
+					time=datetime.strptime(mm.created_at,'%a %b %d %H:%M:%S +0800 %Y'),
+					screen_name=p.screen_name,
+					text=mm.text,
+					retweet=mm.reposts_count,
+					comment=mm.comments_count)
 				
-				helper.add_to_database(m)
+					helper.add_to_database(m)
+                	except:
+                         	print 'error'
 		return  redirect('wpcheck')

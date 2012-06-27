@@ -17,7 +17,6 @@ from config import *
 from helper_data import *
 class GotoOauth(MethodView):
     def get(self):
-        
         client  = APIClient(app_key = APP_KEY,app_secret=APP_SECRET,
                     redirect_uri=CALLBACK_URL)
         url = client.get_authorize_url()
@@ -25,7 +24,6 @@ class GotoOauth(MethodView):
 
 class ComebackOauth(MethodView):
     def get(self):
-        
         code = request.args.get('code')
         client = APIClient(app_key=APP_KEY, app_secret=APP_SECRET, redirect_uri=CALLBACK_URL)
         r = client.request_access_token(code)
@@ -45,7 +43,6 @@ class ComebackOauth(MethodView):
 class WeiboRefresh(MethodView):
 
     def get(self):
-        
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
         res=dbSession.query(WeiboM).order_by(desc(WeiboM.time)).limit(6).all()
@@ -53,6 +50,7 @@ class WeiboRefresh(MethodView):
         dbSession.close()
         return render_template('weibo_get.html',r=res,count=count)
     def post(self):
+    	token()
         page=request.form['page']
         helper=WeiboHelper()
         helper_data=Helper_Data()
@@ -60,7 +58,7 @@ class WeiboRefresh(MethodView):
         dbSession=db_session()
         res=helper._get_data_with_page(page)
         for x in res:
-            if not helper_data.is_weibo_exists(x.org_url):
+            if  helper_data.is_weibo_exists(x.org_url):
                 dbSession.add(x)
                 dbSession.commit()
                 dbSession.close()
@@ -68,7 +66,6 @@ class WeiboRefresh(MethodView):
         return redirect('weibor')
 class WeiboSend(MethodView):
     def get(self):
-        
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
         res=dbSession.query(RssNewInfo).filter(RssNewInfo.country=='ch').all()
@@ -89,18 +86,14 @@ class WeiboSend(MethodView):
         client.set_access_token(_token,_expires_in)
         x=res[0]
         status=((u"【%s】By %s %s ：%s")%(x.title,'nobody',x.guid,x.description))[0:178]
-        try:
-            result=client.post.statuses__update(status=status)
-            if result.id:
+        result=client.post.statuses__update(status=status)
+        if result.id:
                 dbSession.delete(x)
-                dbSession.commit()
-                return redirect('weibos')
-        except:
-            return redirect('weibos')
+                dbSession.commit()        
+        return redirect('weibos')
 
 class WeiboResult(MethodView):
     def get(self):
-        
         return render_template('weibo.html',r=[])
     def post(self):
         end=datetime.strptime((request.form['end'])+" 23:59:59",'%Y-%m-%d %H:%M:%S')

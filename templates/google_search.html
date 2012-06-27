@@ -1,0 +1,18 @@
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
+{%block body%}
+<div id="cse" style="width: 100%;">Loading</div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript"> 
+  google.load('search', '1', {style : google.loader.themes.SHINY});
+  google.setOnLoadCallback(function() {
+    var customSearchOptions = {};  var customSearchControl = new google.search.CustomSearchControl(
+      '001086229372628009779:zoopbm9cxea', customSearchOptions);
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    customSearchControl.draw('cse');
+  }, true);
+</script>
+
+      
+{% endblock%}

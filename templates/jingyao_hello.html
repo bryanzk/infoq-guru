@@ -1,10 +1,14 @@
-{% extends 'base.html' %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
 
 {% block body %}
+<div class='well'>
+  <p>首先确保所有的深度内容都已经设置了工作量和图片地址。</p>
+</div>
 <form class="well form-inline" action="jingyao" method="POST" >
- <input id='num-0'type="text" name='end'class="input-small" placeholder="输入日期">
-  <br/>
-   <input id='num-0'type="text" name='count'class="input-small" placeholder="输入期刊数">
+ 日期：<input id='num-0'type="text" name='end'class='date-picker' placeholder="输入日期">
+   序号：<input id='num-0'type="text" name='count' placeholder="输入期刊数">
 
   <button id='num-2' type="submit" class="btn">确认</button>
 </form>

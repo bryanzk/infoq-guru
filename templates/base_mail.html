@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>InfoQ China Helper---beta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="InfoQ China的信息管理工具">
+    <meta name="author" content="magicshiu">
+    <script src='static/js/jquery-1.7.2.min.js'></script>
+    <!-- Le styles -->
+ 
+
+     <link href="static/css/bootstrap.css" rel="stylesheet">
+       <style type="text/css">
+
+path.line {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+path.area {
+  fill: lightblue;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.x.axis line {
+  stroke: #fff;
+}
+
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.y.axis line, .y.axis path {
+  fill: none;
+  stroke: #000;
+}
+
+    </style>
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="static/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="static/css/joyride-1.0.3.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="static/fav.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="static/ico/apple-touch-icon-57-precomposed.png">
+        <link href="static/css/timeline.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+<div marginwidth="0" marginheight="0" style="min-width:600px;margin:0 auto;padding:39px;font-family:'Helvetica Neue',Helvetica,Arial,Sans-serif;font-size:13px;line-height:22px;background-color:#f5f5f5"><div class="adM">
+	</div><table width="552" cellspacing="0" cellpadding="0" border="0" style="border:1px solid #dedede;border-bottom:2px solid #dedede;margin:0 auto;background-color:#ffffff">
+	<tbody>
+		
+		<tr>
+			<td align="center" style="padding:30px 25px 30px">
+				<div style="font-size:13px">
+					<a target="_blank" href="http://zhi.hu/BAAC?m=edm.37.19039590023205" style="float:left;color:#bbb;text-decoration:none;border:none;outline:none">InfoQ</a>					
+					<span style="float:right;color:#bbb">for core-editors</span>
+					<div style="font-size:25px;text-indent:3px">Dashboard</div>
+				</div>
+			</td>
+		</tr>
+                	<tr>
+			<td style="padding:0 25px 25px">
+    
+          {% block body %}
+          {% endblock %}
+
+    {% block tips %}
+    {% endblock%}
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+        <script src='static/js/jquery.joyride-1.0.3.js'></script>
+
+
+    <script src="static/js/bootstrap-modal.js"></script>
+        <script src="static/js/bootstrap-alert.js"></script>
+     <script src="static/js/d3.v2.min.js"></script>
+          <script src="static/js/show_trends.js"></script>
+ 
+  <script src="static/js/bootstrap-tab.js"></script>
+
+
+    <script src="static/js/bootstrap-dropdown.js"></script>
+
+
+
+    <script>
+    $(document).ready(function(){
+  
+   
+                        
+
+      {% block script %}
+      {% endblock%}
+    
+    });
+    </script>
+    
+    
+	</td>
+		</tr>
+			</tbody>
+</table>
+<div style="text-align:center;padding-top:10px;margin:0 auto;width:500px;color:#aaa;font-size:12px;line-height:20px">由 <a target="_blank" style="text-decoration:none;border:none;outline:none;color:#aaa!important" href="mailto:arthur@infoq.com">Arthur维护，意见或者建议请反馈给他！</a><br>InfoQ &copy; 2012<img width="0" height="0"><div class="yj6qo"></div><div class="adL">
+</div></div><div class="adL">
+
+</div></div></body>

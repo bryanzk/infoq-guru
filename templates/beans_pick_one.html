@@ -1,0 +1,18 @@
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
+
+{% block body %}
+<form class="well" method='post' action='pickabean'>
+    <label>{{x.RssInfo.title}}</label>
+    
+    <span class="help-block">{{x.RssInfo.description|safe}}</span>
+    <input type="hidden" name='id' value='{{x.BeanList.id}}'> 
+        <input type="text" name='due' value='' placeholder='格式：2012-02-02'> 
+
+    <button type="submit" class="btn">Submit</button>
+    </form>
+
+              
+	
+{% endblock %}

@@ -1,22 +1,6 @@
-{% extends "base.html" %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
 
-{% block belowscript %}
-function save_set_maincat(guid,id){
-var request = $.ajax({
-  url: "setmaincat",
-  type: "POST",
-  data: 'guid='+guid+'&main_cat='+$('.main_cat-'+id+' option:selected').val(),
-});
-
-request.done(function(msg) {
-$('#guid-'+id).remove();
-});
-
-request.fail(function(jqXHR, textStatus) {
-  alert( "Request failed: " + textStatus );
-});
-};
-{% endblock%}
 {% block script %}
 
 
@@ -24,38 +8,85 @@ request.fail(function(jqXHR, textStatus) {
 {% endblock%}
 
 {% block body %}
+<script>
+function save_set_maincat(guid,id){
+var request = $.ajax({
+  url: "setmaincat",
+  type: "POST",
+  data: 'guid='+guid+'&main_cat='+$('.main_cat-'+id+' option:selected').val()+"&content="+$('#content-'+id).val(),
+});
 
-<table id='num=4' class="table table-striped sortable">
-  <thead>
-    <tr>
-       <th>时间</th>
-      <th>标题</th>
-  <th>类别</th>
-  <th>参考</th>
-  <th>设置社区</th>
- 	<th>设置</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for x in res%}
-    <tr class='guid' id='guid-{{x.guid.replace(':','').replace('/','').replace('.','')}}'>
-        <td>{{x.pubdate}}</td>
-      
-      <td><a href="{{x.guid}}">{{x.title}}</a></td>
-      <td>{{x.small_cat}}</td>
-            <td>{{x.category}}</td>
+request.done(function(msg) {
+$('.alertvalue').text(msg);
+$('.alert2').show();
 
-      <td><select class='main_cat-{{x.guid.replace(':','').replace('/','').replace('.','')}}' name='main_cat'>
-  <option value='语言 & 开发'>语言&开发</opion>
-  <option value='架构 & 设计'>架构&设计</opion>
-  <option value='过程 & 实践'>过程&实践</opion>
-  <option value='运维 & 基础架构'>运维&基础架构</opion>
-  <option value='企业架构'>企业架构</opion>
+$('#cell-'+id).remove();
+});
 
- </select></td>
-      <td><a href='javascript:save_set_maincat("{{x.guid}}","{{x.guid.replace(':','').replace('/','').replace('.','')}}");'>设置</a></td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+request.fail(function(jqXHR, textStatus) {
+  alert( "Request failed: " + textStatus );
+});
+};
+</script>
+<div id="accordion2" class="accordion  box">
+
+
+ {% for x in res%}
+  <div class="cell" id='cell-{{x.guid.replace(':','').replace('/','').replace('.','')}}'>
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+              <tr>
+                <td width="36" valign="top" align="center">
+                  
+                      <select width='48px'  class=' span2 main_cat-{{x.guid.replace(':','').replace('/','').replace('.','')}}' name='main_cat'>
+                  <option value='语言 & 开发'>语言&开发</opion>
+                  <option value='架构 & 设计'>架构&设计</opion>
+                  <option value='过程 & 实践'>过程&实践</opion>
+                  <option value='运维 & 基础架构'>运维&基础架构</opion>
+                  <option value='企业架构'>企业架构</opion>
+                </select>
+
+
+                </td>
+                <td width="10"></td>
+                <td width="auto" href="#{{x.guid.replace(':','').replace('/','').replace('.','')}}" valign="middle" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle"><span class="item_title">{{x.title}}</span>
+                <div class="sep5"></div>
+                <span class="small "><strong>参考:</strong> &nbsp;•&nbsp; {{x.pubdate}} &nbsp;•&nbsp; {{x.category}}</span>
+                </td>
+                <td width="50" valign="middle" align="right">
+                    
+                    
+                </td>
+            </tr>
+           
+             <tr >
+
+               <td width="48px">
+                
+              </td>
+              <td></td>
+<td>
+              <div class="accordion-body  collapse" id="{{x.guid.replace(':','').replace('/','').replace('.','')}}" >
+                
+                 <textarea class='span7' id="content-{{x.guid.replace(':','').replace('/','').replace('.','')}}">{{x.content or x.description }}</textarea>
+
+                 <div class="btn-group">
+    <a class="btn btn-primary"  href='javascript:save_set_maincat("{{x.guid}}","{{x.guid.replace(':','').replace('/','').replace('.','')}}");'>设置</a>
+    <a class='badage btn' href="{{x.guid}}">查看</a>
+    </div>
+               
+                </div>
+              </td>
+
+
+             
+            </tr>
+            
+        </tbody></table>
+    </div>
+          
+       
+         {% endfor %}
+</div>
+
 {% endblock%}

@@ -6,9 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="InfoQ China的信息管理工具">
     <meta name="author" content="magicshiu">
-
+    <script src='static/js/jquery-1.7.2.min.js'></script>
     <!-- Le styles -->
-    <link href="static/css/bootstrap.css" rel="stylesheet">
+ 
+    <link href="static/css/datepicker.css" rel="stylesheet">
+        <link href="static/css/humane.css" rel="stylesheet">
+
+     <link href="static/css/bootstrap.css" rel="stylesheet">
+       <style type="text/css">
+
+path.line {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+path.area {
+  fill: lightblue;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.x.axis line {
+  stroke: #fff;
+}
+
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.y.axis line, .y.axis path {
+  fill: none;
+  stroke: #000;
+}
+
+    </style>
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -20,8 +58,8 @@
     </style>
     <link href="static/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="static/css/joyride-1.0.3.css" rel="stylesheet">
-    <link href="static/css/timeline.css" rel="stylesheet">
-   
+        <link href="static/css/humane.css" rel="stylesheet">
+
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -29,28 +67,11 @@
     <![endif]-->
 
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="static/ico/favicon.ico">
+    <link rel="shortcut icon" href="static/fav.ico">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="static/ico/apple-touch-icon-57-precomposed.png">
-    <!--[if (!IE)|(gte IE 8)]><!-->
-  <link href="static/css/visualsearch-datauri.css" media="screen" rel="stylesheet" type="text/css" />
-<!--<![endif]-->
-<!--[if lte IE 7]><!-->
-  <link href="static/css/visualsearch.css" media="screen" rel="stylesheet" type="text/css" />
-<!--<![endif]-->
-<style type="text/css">#timeline{
-margin:0px !important;
-border:0px solid #CCC !important;
-padding:0px !important;
--webkit-border-radius:0px !important;
--moz-border-radius:0px !important;
-border-radius:0px !important;
--moz-box-shadow:0 0px 0px rgba(0, 0, 0, 0.25) !important;
--webkit-box-shadow:0 0px 0px rgba(0, 0, 0, 0.25) !important;
-box-shadow:0px 0px 0px rgba(0, 0, 0, 0.25) !important;
-}</style>
-
+        <link href="static/css/timeline.css" rel="stylesheet">
 
   </head>
 
@@ -64,17 +85,19 @@ box-shadow:0px 0px 0px rgba(0, 0, 0, 0.25) !important;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">InfoQ Helper : beta</a>
+          <a class="brand" href="/">InfoQ Helper : beta</a>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
               <li><a href="about">About</a></li>
               <li><a id='show-guide' class='label label-info'>帮助</a></li>
                             <li><a id='show-feedback' class='label label-important' data-toggle='modal' href="#feedbackModal" class=''>Feedback</a></li>
-                                  </ul>
+
+            </ul>
             
-            <p class="navbar-text pull-right"  id='num-login'>Logged in as <a data-toggle='modal' href="#loginModal"></a></p>
+            <p class="navbar-text pull-right"  id='num-login'>Logged in as <a data-toggle='modal' href="#loginModal">User</a></p>
            
+          
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -90,57 +113,94 @@ box-shadow:0px 0px 0px rgba(0, 0, 0, 0.25) !important;
               <li ><a id='num-go' href="go">认证授权</a></li>
               <li><a  id='num-weibor' href="weibor">获取微博数据</a></li>
               <li><a id='num-weiboresult' href="weiboresult">时间段内数据</a></li>
-
+              <li><a id='num-weiboresult' href="weibos">发送更新内容为微博（alpha）</a></li>
+              
+                <li class='nav-header'><h4><i  class="icon-star icon-black"></i>微博热点监控</h4></li>
+              <li><a id='num-taskadd' href="wpadd">添加人物</a></li>
+              <li><a id='num-statstep' href="wpcheck">获取数据</a></li>
+              <li><a id='num-wpconfig' href='wpconfig'>参数设置</a><li>
+              <li><a id='num-taskstep2' href='wpmail'>发送邮件</a><li>
+              
               <li class="nav-header"><h4><i  class="icon-tags icon-black"></i>站点数据</h4></li>
               <li><a id='num-rss' href="rss">获取中英文站数据</a></li>
                 <li><a id='num-mailadd' href="mailadd">添加邮件接收地址</a></li>
               <li><a id='num-maildel' href="maildel">删除邮件接收地址</a></li>
-              <li><a id='num-mail' href="mail">发送昨日更新列表邮件</a></li>
+            <li><a id='num-mail' href="mail">发送昨日更新列表邮件</a></li>
               <li><a id='num-rsssearch' href="rsssearch">RSS数据查询</a></li>
+
+ <li class='nav-header'><h4><i  class="icon-home icon-black"></i>OD</h4></li>
+              <li><a id='num-taskadd' href="od">Arthur's OD</a></li>
+
+
+ <li class='nav-header'><h4><i  class="icon-star icon-black"></i>内容管理</h4></li>
+              <li><a id='num-taskadd' href="setmaincatall">设置领域</a></li>
+                <li><a href="changemaincatall">查看并修改</a></li>
+                            
+
+
+                            <li class='nav-header'><h4><i  class="icon-star icon-black"></i>翻译新闻</h4></li>
+              <li><a id='num-taskadd' href="beannewspick">领取新闻</a></li>
+               <li><a id='num-taskadd' href="beannewstodone">提交新闻</a></li>
+
+                            
+
+ <li class='nav-header'><h4><i  class="icon-star icon-black"></i>工作量</h4></li>
+              <li><a id='num-taskadd' href="editorcountall">工作量录入以及分享</a></li>
+                            <li><a id='num-taskadd' href="contentdashboard">概览</a></li>
+                <li><a href='countwall'>编辑总览</a></li>
+                                          <li><a id='num-taskadd' href="countsearch">时间段工作量查询</a></li>
+                            <li><a id='num-taskadd' href="countauthor">编辑工作量查询</a></li>
+              <li><a id='num-statstep' href="editorweibo">作者微博</a></li>
 
               <li class='nav-header'><h4><i  class="icon-star icon-black"></i>统计</h4></li>
               <li><a id='num-staticrss' href="staticrss">文章深度内容微博</a></li>
+               <li class='nav-header'><h4><i  class="icon-home icon-black"></i>架构师</h4></li>
+              <li><a id='num-staticrss' href="urltop">url转为可读数据</a></li>
+                            <li><a id='num-staticrss' href="search">In-Site Search</a></li>
+                         
+                         
+   <li class="nav-header"><h4><i  class="icon-user  icon-black"></i>专家信息管理</h4></li>
+              <li><a id='num-rss' href="eadd">添加</a></li>
+                <li><a id='num-mailadd' href="es">信息搜索</a></li>
 
+<li class='nav-header'><h4><i  class="icon-home icon-black"></i>新闻线索</h4></li>
+              <li><a id='num-staticrss' href="trellosend">发送测试邮件</a></li>
+              
+       <li class='nav-header'><h4><i  class="icon-home icon-black"></i>每周精要</h4></li>
+              <li><a id='num-staticrss' href="jyi">添加广告等链接</a></li>
+
+              <li><a id='num-staticrss' href="jingyao">生成</a></li>
+                         
+                         
+<!--              <li><a id='num-staticrss' href="urltop">url转为可读数据</a></li>
               <li class="nav-header"><h4><i class="icon-home icon-black"></i>发布文章编辑</h4></li>
               <li><a id='num-editor' href="editor">编辑器</a></li>
               <li class="nav-header"><h4><i class="icon-star icon-black"></i>编辑关系管理</h4></li>
               <li><a href="edone">编辑</a></li>
               <li><a href='edall'>编辑汇总</a></li>
-
-              <li class='nav-header'><h4><i  class="icon-star icon-black"></i>统计</h4></li>
-              <li><a id='num-taskadd' href="taskadd">添加新任务</a></li>
-              <li><a id='num-statstep' href="taskstep">指派任务</a></li>
-              <li><a id='num-stepsubmit' href='tasksubmit'>提交任务</a></li>
-              <li><a id='num-taskstep2' href='task'>任务列表</a><li>
-
-
-
- <li class='nav-header'><h4><i  class="icon-star icon-black"></i>工作量</h4></li>
-              <li><a id='num-taskadd' href="editorcountall">所有的文章</a></li>
-              <li><a id='num-statstep' href="editorweibo">作者微博</a></li>
-         
-
-
-
-
-
-                <li class='nav-header'><h4><i  class="icon-star icon-black"></i>监控</h4></li>
-              <li><a id='num-taskadd' href="wpadd">添加人物</a></li>
-              <li><a id='num-statstep' href="wpcheck">获取数据</a></li>
-              <li><a id='num-taskstep2' href='wpmail'>发送邮件</a><li>
+              -->
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          {% with messages = get_flashed_messages() %}
+
+        <div class="alert2 fade in alert">
+        
+            <button data-dismiss="alert" class="close" type="button">×</button>
+            <strong><p class='alertvalue'></p></strong> 
+          </div>
+                  {% with messages = get_flashed_messages() %}
   {% if messages %}
-    <ul class=flashes>
+
     {% for message in messages %}
-      <li>{{ message |safe}}</li>
+     <div class="alert alert-info">
+       {{message}}
+</div>
     {% endfor %}
-    </ul>
   {% endif %}
 {% endwith %}
+
+
           {% block body %}
           {% endblock %}
         </div><!--/span-->
@@ -150,7 +210,7 @@ box-shadow:0px 0px 0px rgba(0, 0, 0, 0.25) !important;
 
       <footer>
         <p>&copy; InfoQ China 2012 </p>
-        <p>Coded by <a href="http://weibo.com/magicshui">麦可思哲</a> | Hosted by <a href="http://sae.sina.com.cn">SAE</a></p>
+        <p>Coded by <a href="http://weibo.com/magicshui">麦可思哲</a> using sublimet text 2 & python | Theme power by <a href="http://twitter.github.com/bootstrap"> bootstrap</a> | Hosted by <a href="http://sae.sina.com.cn">SAE</a></p>
       </footer>
 
     </div><!--/.fluid-container-->
@@ -159,51 +219,77 @@ box-shadow:0px 0px 0px rgba(0, 0, 0, 0.25) !important;
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src='static/js/jquery-1.7.2.min.js'></script>
+
         <script src='static/js/jquery.joyride-1.0.3.js'></script>
-    <script src="static/js/bootstrap-transition.js"></script>
-    <script src="static/js/bootstrap-alert.js"></script>
+
+
     <script src="static/js/bootstrap-modal.js"></script>
+        <script src="static/js/bootstrap-alert.js"></script>
+     <script src="static/js/d3.v2.min.js"></script>
+          <script src="static/js/show_trends.js"></script>
+           <script src="static/js/humane.js"></script>
+           <script src="static/js/bootstrap-collapse.js"></script>
+
+  <script src="static/js/bootstrap-tab.js"></script>
+    <script src="static/js/bootstrap-typehead.js"></script>
+  <script src="static/js/bootstrap-datepicker.js"></script>
     <script src="static/js/bootstrap-dropdown.js"></script>
-    <script src="static/js/bootstrap-scrollspy.js"></script>
-    <script src="static/js/bootstrap-tab.js"></script>
-    <script src="static/js/bootstrap-tooltip.js"></script>
-    <script src="static/js/bootstrap-popover.js"></script>
-    <script src="static/js/bootstrap-button.js"></script>
-    <script src="static/js/bootstrap-collapse.js"></script>
-    <script src="static/js/bootstrap-carousel.js"></script>
-    <script src="static/js/bootstrap-typeahead.js"></script>
-    <script src="static/js/md5-min.js"></script>
-    <script src="static/js/timeline.js"></script>
+              <script src="static/js/sortable.js"></script>
+                  <script src="static/js/timeline.js"></script>
     <script src="static/js/timeline-embed.js"></script>
-    <script type="text/javascript" src="static/js/dependencies.js"></script>
-    <script type="text/javascript" src="static/js/visualsearch.js"></script>
-    <!--<script src="http://code.highcharts.com/stock/highstock.js"></script>
-    <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
--->
     <script>
     $(document).ready(function(){
+
+      $('.alert2').hide();
+                           $('.alert2').bind('closed', function () {
+                                         $('.alertvalue').text('');
+   
+    });
+            waitForMsg();
+
       $("#joyRideTipContent").hide();
       $("#show-guide").click(function(){
         <!-- fix the error when click help comes two or more guides-->
         $(".joyride-tip-guide").remove();
         
         $(this).joyride();
-         $(".collapse").collapse();
 
       });
-
       
+      $('a').tooltip({animation:true});
+      
+     $('.date-picker').datepicker({
+				format: 'yyyy-mm-dd'
+			});
+                        
+                       
+      $("#feedback-btn").click(function(){
+      	$.ajax({
+		type: "post",
+		url: "feedback",
+		data: 'title='+$("#feedback-title").val()+"&content="+$('#feedback-content').val(),
+		beforeSend: function(XMLHttpRequest){
+			//ShowLoading();
+		},
+		success: function(data, textStatus){
+			alert(data);
+                  //$("#feedbackModal").modal('toggle')；
+		},
+		complete: function(XMLHttpRequest, textStatus){
+			//HideLoading();
+		},
+		error: function(){
+			//请求出错处理
+		}
+                
+});
+      });
       {% block script %}
       {% endblock%}
     
     });
     </script>
-
-  <script>
-  {% block belowscript%}
-  {%endblock%}
-  </script>
+    
     
 <div class="modal hide fade" id="feedbackModal" style="display:none;">
   <div class="modal-header">
@@ -228,17 +314,14 @@ box-shadow:0px 0px 0px rgba(0, 0, 0, 0.25) !important;
   </div>
   <div class="modal-body">
     <form class="well form-inline" action='login' method='post'>
-      <input type="text" name='user' class="input-small" placeholder="Email">
-      <input type="password" name='pwd' class="input-small" placeholder="Password">
-      <label class="checkbox">
-        <input type="checkbox"> Remember me
-      </label>
+      <input type="text" name='user' class="input-small span2" placeholder="用户名">
+      <input type="password" name='pwd' class="input-small span2" placeholder="密码">
+      
       <button type="submit" class="btn">登录</button>
   </form>
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn">Close</a>
-    <a href="#" class="btn btn-primary">忘记密码？</a>
+    <p><span class="label label-success">tips</span>忘记密码?申请账号!请联系Arthur</p>
   </div>
 </div>
   </body>

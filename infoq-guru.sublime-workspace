@@ -4,10 +4,117 @@
 		"selected_items":
 		[
 			[
+<<<<<<< HEAD
 				"res",
 				"results"
 			],
 			[
+=======
+				"fina",
+				"final_guid"
+			],
+			[
+				"fin",
+				"final_guid"
+			],
+			[
+				"res",
+				"results"
+			],
+			[
+				"bea",
+				"BeanList"
+			],
+			[
+				"or",
+				"org_guid"
+			],
+			[
+				"B",
+				"BeanList"
+			],
+			[
+				"st",
+				"status"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"lo",
+				"loadfile"
+			],
+			[
+				"click",
+				"clicks"
+			],
+			[
+				"re",
+				"requests"
+			],
+			[
+				"APP",
+				"APP_KEY"
+			],
+			[
+				"all_co",
+				"all_count_share"
+			],
+			[
+				"all",
+				"all_count_comment"
+			],
+			[
+				"clic",
+				"clicks"
+			],
+			[
+				"C",
+				"CountWeibo_List"
+			],
+			[
+				"count",
+				"CountWeibo_List"
+			],
+			[
+				"ur",
+				"url"
+			],
+			[
+				"shor",
+				"short_url"
+			],
+			[
+				"coun",
+				"count_weibo_list"
+			],
+			[
+				"cout",
+				"count_share"
+			],
+			[
+				"cou",
+				"count_share"
+			],
+			[
+				"cl",
+				"click"
+			],
+			[
+				"date",
+				"date"
+			],
+			[
+				"Not",
+				"NotifyMessage"
+			],
+			[
+				"get",
+				"get_count_of_cat_week"
+			],
+			[
+>>>>>>> backbone-editor
 				"db",
 				"dbSession"
 			],
@@ -32,10 +139,13 @@
 				"render_template"
 			],
 			[
+<<<<<<< HEAD
 				"C",
 				"ClueList"
 			],
 			[
+=======
+>>>>>>> backbone-editor
 				"sess",
 				"session"
 			],
@@ -64,10 +174,13 @@
 				"count_month_news"
 			],
 			[
+<<<<<<< HEAD
 				"cou",
 				"count_week"
 			],
 			[
+=======
+>>>>>>> backbone-editor
 				"dte",
 				"datetime"
 			],
@@ -96,10 +209,13 @@
 				"Integer"
 			],
 			[
+<<<<<<< HEAD
 				"re",
 				"request"
 			],
 			[
+=======
+>>>>>>> backbone-editor
 				"el",
 				"elif"
 			],
@@ -200,10 +316,6 @@
 				"TrelloConn"
 			],
 			[
-				"get",
-				"get_board"
-			],
-			[
 				"Trel",
 				"trellosend"
 			],
@@ -212,10 +324,13 @@
 				"def	Function"
 			],
 			[
+<<<<<<< HEAD
 				"cl",
 				"client"
 			],
 			[
+=======
+>>>>>>> backbone-editor
 				"da",
 				"datetime"
 			],
@@ -256,10 +371,13 @@
 				"title"
 			],
 			[
+<<<<<<< HEAD
 				"count",
 				"count_base"
 			],
 			[
+=======
+>>>>>>> backbone-editor
 				"c1",
 				"c1author"
 			],
@@ -330,10 +448,6 @@
 			[
 				"Exper",
 				"ExpertList"
-			],
-			[
-				"st",
-				"String"
 			],
 			[
 				"S",
@@ -442,6 +556,7 @@
 			[
 				"task_i",
 				"task_init"
+<<<<<<< HEAD
 			],
 			[
 				"crea",
@@ -514,6 +629,8 @@
 			[
 				"for",
 				"form"
+=======
+>>>>>>> backbone-editor
 			]
 		]
 	},
@@ -521,11 +638,75 @@
 	[
 		{
 			"file": "myapp.py",
+<<<<<<< HEAD
 			"settings":
 			{
 				"buffer_size": 7113,
 				"line_ending": "Unix"
 			}
+=======
+			"settings":
+			{
+				"buffer_size": 6612,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/base_editor.html",
+			"settings":
+			{
+				"buffer_size": 8792,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/base.html",
+			"settings":
+			{
+				"buffer_size": 11299,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/beans_pick_one.html",
+			"settings":
+			{
+				"buffer_size": 452,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "action_bean.py",
+			"settings":
+			{
+				"buffer_size": 3838,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/beans_news_to_pick.html",
+			"settings":
+			{
+				"buffer_size": 2978,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "static/css/humane.css",
+			"settings":
+			{
+				"buffer_size": 20756,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config.py",
+			"settings":
+			{
+				"buffer_size": 20637,
+				"line_ending": "Unix"
+			}
+>>>>>>> backbone-editor
 		}
 	],
 	"build_system": "",
@@ -576,6 +757,7 @@
 	},
 	"file_history":
 	[
+<<<<<<< HEAD
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/myapp.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_task.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_expert.py",
@@ -588,10 +770,66 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_change_maincat_all.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_set_maincat_all.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_rss.py",
+=======
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/config.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_user.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/show_trends.js",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_notify.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_index.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/beans_news_to_pick.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/beans_pick_one.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_bean.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/css/humane.css",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base_e.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/humane.js",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base_editor.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/bootstrap-collapse.js",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/user_login.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_index.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/sortable.js",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base_not.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_countweibo.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_index_editor.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/bean_news_pick.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/backbone_pickbean_news.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_backbone_rss.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_statics.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_statics 副本 2.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_statics_mail.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_author.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_od.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_aboutus.py",
+		"/Users/Arthur/Dropbox/工作/每周精要/nl20120625.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_clue.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/weibo.py",
+		"/Users/Arthur/Documents/Test/a.txt",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/_ok_dont_update_it.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/helper_data.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_static.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/myapp.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/_init.sql",
+		"/Users/Arthur/Desktop/he.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_content.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor2.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_count.py",
+		"/Users/Arthur/Desktop/article.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_rss.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_weibo.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_top.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_task.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_expert.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_mail.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_check.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_change_maincat_all.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_set_maincat_all.html",
+>>>>>>> backbone-editor
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_count_all.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_charts.py",
 		"/Users/Arthur/Library/Application Support/Sublime Text 2/Packages/Alignment/Default (OSX).sublime-keymap",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/static_rss.html",
+<<<<<<< HEAD
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_static.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/config.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_count_show.html",
@@ -599,11 +837,17 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_search.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_set_maincat.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base.html",
+=======
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_count_show.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_search.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_set_maincat.html",
+>>>>>>> backbone-editor
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor_clue.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_mine_done.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_review.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_mine_pending.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_pick.html",
+<<<<<<< HEAD
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_user.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_all.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_clue.py",
@@ -612,16 +856,27 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor_translate.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_week.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_author.html",
+=======
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_all.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_security.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor_translate.py",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_week.html",
+>>>>>>> backbone-editor
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_wall.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/d3.time.js",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/d3.format.js",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/d3.min.js",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_count_show2.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/worktype",
+<<<<<<< HEAD
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_weibo.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/clear_html.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_clear.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_top.py",
+=======
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/clear_html.html",
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_clear.py",
+>>>>>>> backbone-editor
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/trollop/lib.py",
 		"/Users/Arthur/Desktop/hello.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_weibo_share.html",
@@ -636,7 +891,6 @@
 		"/Users/Arthur/Downloads/516563876@qq.com - 转发：我弄的 能用不？ 2/kaoqin_edit.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/trollop/__init__.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_jingyao.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/weibo.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/trello/__init__.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/mytrello/__init__.py",
 		"/Users/Arthur/Dropbox/工作/每周精要/每周精要20120508-242.html",
@@ -657,7 +911,6 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/400.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/expert_search.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/expert_add.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_aboutus.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_share.py",
 		"/Users/Arthur/Dropbox/工作/Aboutus/20120416/about.xxx",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/expert_update.html",
@@ -674,6 +927,7 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/wp_add.html",
 		"/Users/Arthur/Desktop/with_login.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/lab.html",
+<<<<<<< HEAD
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/aboutus.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_mag.py",
 		"/Users/Arthur/Downloads/blasten-turn.js-8b0e272/demos/magazine/index.html",
@@ -704,6 +958,9 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/maildel.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/wp_config.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/modles.py"
+=======
+		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/aboutus.html"
+>>>>>>> backbone-editor
 	],
 	"find":
 	{
@@ -714,6 +971,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/",
 			"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static"
 		]
 	},
@@ -722,6 +980,23 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+<<<<<<< HEAD
+=======
+			"UserList",
+			"id_gen",
+			"id_getn",
+			"gen_id",
+			"krygen",
+			"_obj_hook",
+			"JsonObject",
+			"WebiboHelper",
+			"WeiboChart",
+			"WeiboM",
+			"WeiboR",
+			"Sub",
+			"1 Comment",
+			"1 Com",
+>>>>>>> backbone-editor
 			"StaticWeekContent",
 			"StaticWeekContentsJson",
 			"onfig.RssInfo",
@@ -844,7 +1119,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -852,15 +1127,24 @@
 					"file": "myapp.py",
 					"settings":
 					{
+<<<<<<< HEAD
 						"buffer_size": 7113,
+=======
+						"buffer_size": 6612,
+>>>>>>> backbone-editor
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								0,
 								0
+=======
+								34,
+								34
+>>>>>>> backbone-editor
 							]
 						],
 						"settings":
@@ -868,7 +1152,206 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
+<<<<<<< HEAD
 						"translation.y": 10.0,
+=======
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "templates/base_editor.html",
+					"settings":
+					{
+						"buffer_size": 8792,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6445,
+								6465
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2819.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "templates/base.html",
+					"settings":
+					{
+						"buffer_size": 11299,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1220,
+								1220
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 645.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "templates/beans_pick_one.html",
+					"settings":
+					{
+						"buffer_size": 452,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								420,
+								420
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "action_bean.py",
+					"settings":
+					{
+						"buffer_size": 3838,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3828,
+								3828
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 882.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "templates/beans_news_to_pick.html",
+					"settings":
+					{
+						"buffer_size": 2978,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								59,
+								69
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+>>>>>>> backbone-editor
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "static/css/humane.css",
+					"settings":
+					{
+						"buffer_size": 20756,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6983,
+								6983
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2776.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "config.py",
+					"settings":
+					{
+						"buffer_size": 20637,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								830,
+								830
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 181.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -944,6 +1427,10 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
+<<<<<<< HEAD
 	"side_bar_width": 306.0,
+=======
+	"side_bar_width": 222.0,
+>>>>>>> backbone-editor
 	"status_bar_visible": true
 }

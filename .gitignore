@@ -1,3 +1,7 @@
 *.pyc
+<<<<<<< HEAD
 *.svn.*
+=======
+*.svn-base
+>>>>>>> backbone-editor
 *.svn*

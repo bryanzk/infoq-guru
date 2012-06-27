@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
 {% block body %}
 <p><a href='{{res.guid}}' target='_blank'>{{res.title}}</a></p>
 <hr/><p>所属专题：{{res.category}}</p>

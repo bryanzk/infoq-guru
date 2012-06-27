@@ -1,7 +1,10 @@
-{% extends 'base.html' %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
+
 {% block body %}
 <form class="well form-inline" action="wpmail" method="POST" >
-  <button id='num-1' type="submit" class="btw">发送</button>
+  <button id='num-1' type="submit" class="btn">发送</button>
 </form>
 <div id='num-4' class="alert alert-info">
   运行结果：{{r}}

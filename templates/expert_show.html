@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
-
 {% block body %}
 <div class="row-fluid">
   <div class="">
     <div class="well">
-        <table  width="100%" cellspacing="0" cellpadding="0" border="0">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
             <tbody><tr>
                 <td width="73px" valign="top" align="center"><img width="73px" border="0" align="default"  src="{{x.img}}"><div class="sep10"></div><strong class="online"></strong></td>
                 <td width="10"></td>
@@ -40,5 +39,5 @@
     
 </div>
   </div>
-   <p><a href="eupdate?id={{x.id}}" class="btn btn-primary">此信息有问题</a> <a href="mailto:arthur@infoq.com?subject=我想获取专家：{{x.name}} 的详细（包括银行账号、手机联系方式）" class="btn">获取详细信息</a></p>
+   <p><a href="eupdate?id={{x.id}}" class="btn btn-primary">修改</a> <a href="mailto:arthur@infoq.com?subject=我想获取专家：{{x.name}} 的详细（包括银行账号、身份证）" class="btn">获取详细信息</a></p>
 {% endblock%}

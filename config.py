@@ -1,10 +1,14 @@
-# -*- coding: utf-8 -*-
+#coding: utf-8
+import os
 from bs4 import BeautifulSoup
-import md5
+if  'SERVER_SOFTWARE' in os.environ:
+    from sae.mail import send_mail
+    from sae.mail import EmailMessage
+    import sae.const
+
 import urllib2
-import flask
-from urllib2 import *
-from modles import *
+from bs4 import BeautifulSoup
+import urllib2
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import *
 from sqlalchemy import Column, Integer, String
@@ -12,17 +16,30 @@ from flask import *
 from flask import request,render_template,session,redirect
 from flask.views import MethodView
 from sqlalchemy.orm import sessionmaker
+import md5
+import json
+from bs4 import BeautifulSoup
+from sqlalchemy import Column, Integer, String
+from datetime import *
+from datetime import timedelta
+import requests as httprequest
+
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import *
+from sqlalchemy import Column, Integer, String
+from flask import *
+from flask import request,render_template,session,redirect,flash
+from flask.views import MethodView
+from sqlalchemy.orm import sessionmaker
 import re
-from helper_data import *
 import string
+
+from sqlalchemy.sql.expression import *
 import datetime
-import helper_data
-from functools import wraps
-from helper_data import *
+
 import urllib2
 import json
-from sqlalchemy.sql.expression import *
-from sqlalchemy import and_, or_
+from functools import wraps
 from bs4 import BeautifulSoup
 from sqlalchemy import Column, Integer, String
 from datetime import *
@@ -31,42 +48,145 @@ import logging
 from logging.handlers import SMTPHandler
 import string
 import sys
-from flask import g, request, redirect, url_for
-
+from sqlalchemy.pool import NullPool 
 
 reload(sys)
 sys.setdefaultencoding('utf8') 
 
-APP_KEY = '570026225'
-APP_SECRET = '45ea1cae01eecda0e07a2b88a256d7a2'
-CALLBACK_URL = 'http://127.0.0.1:5000/oauth'
+if 'SERVER_SOFTWARE' in os.environ:
 
-DATABASE_USER = 'root'
-DATABASE_PWD =''
-DATABASE_NAME= 'test'
-DATABASE_HOST='127.0.0.1'
-DATABASE_PORT='3306'
-DB = create_engine('mysql://%s:%s@%s:%s/%s'% (DATABASE_USER,DATABASE_PWD,DATABASE_HOST,DATABASE_PORT,DATABASE_NAME),connect_args={'charset':'utf8'},echo=True,pool_recycle=3,pool_size=0)
+    SAE_MYSQL_HOST_M = 'w.rdc.sae.sina.com.cn'
+    SAE_MYSQL_HOST_S = 'r.rdc.sae.sina.com.cn'
+    SAE_MYSQL_PORT = '3307'
+
+    APP_KEY = '1770272819'
+    APP_SECRET = '3f043a8adfb74c6ef2f47d64305c80ec'
+    CALLBACK_URL = 'http://infoqhelp.sinaapp.com/oauth'
+
+    mysql_db = 'app_%s' % 'infoqhelp'
+    mysql_user = APP_KEY
+    mysql_pass = APP_SECRET
+    '''sae.const.MYSQL_DB
+    sae.const.MYSQL_USER
+    sae.const.MYSQL_PASS
+    sae.const.MYSQL_HOST
+    sae.const.MYSQL_PORT   #请根据框架要求自行转换为int
+    sae.const.MYSQL_HOST_S
+    '''
+    DATABASE_USER = sae.const.MYSQL_USER
+    DATABASE_PWD =sae.const.MYSQL_PASS
+    DATABASE_NAME= sae.const.MYSQL_DB
+    DATABASE_HOST=sae.const.MYSQL_HOST
+    DATABASE_PORT=sae.const.MYSQL_PORT
+    DB = create_engine('mysql://%s:%s@%s:%s/%s'% (DATABASE_USER,DATABASE_PWD,DATABASE_HOST,DATABASE_PORT,DATABASE_NAME),connect_args={'charset':'utf8'},echo=False,poolclass=NullPool)
+    Base = declarative_base()
+    RSS_SIGN_HOME='http://www.infoq.com/rss/rss.action?token=v94n6E2kapoNhNXc9EWTYRXoOoLLHX5S'
+    RSS_NOT_SIGN_EN='http://www.infoq.com/rss/rss.action?token=3Pkt2g0ELdPI6FKsXWnlhEytktoyTtAB'
+    RSS_NOT_SIGN_CH='http://www.infoq.com/cn/rss/rss.action?token=mgnOPySplnVRGBQQHToikUWoAGFEqtDo'
+else:
+    APP_KEY = '570026225'
+    APP_SECRET = '45ea1cae01eecda0e07a2b88a256d7a2'
+    CALLBACK_URL = 'http://127.0.0.1:5000/oauth'
+
+    DATABASE_USER = 'root'
+    DATABASE_PWD =''
+    DATABASE_NAME= 'test'
+    DATABASE_HOST='127.0.0.1'
+    DATABASE_PORT='3306'
+    DB = create_engine('mysql://%s:%s@%s:%s/%s'% (DATABASE_USER,DATABASE_PWD,DATABASE_HOST,DATABASE_PORT,DATABASE_NAME),connect_args={'charset':'utf8'},echo=True,poolclass=NullPool)
 
 Base = declarative_base()
-#RSS_SIGN_HOME='http://www.infoq.com/rss/rss.action?token=v94n6E2kapoNhNXc9EWTYRXoOoLLHX5S'
+
+RSS_SIGN_HOME='http://www.infoq.com/rss/rss.action?token=3Pkt2g0ELdPI6FKsXWnlhEytktoyTtAB'
 RSS_NOT_SIGN_EN='http://www.infoq.com/rss/rss.action?token=3Pkt2g0ELdPI6FKsXWnlhEytktoyTtAB'
 RSS_NOT_SIGN_CH='http://www.infoq.com/cn/rss/rss.action?token=mgnOPySplnVRGBQQHToikUWoAGFEqtDo'
 
-WEIBO_MAIL_SUBJECT=u'%s微博热点追踪'
+Base = declarative_base()
 
 WEIBO_MAIL_SUBJECT=u'【%s】InfoQ微博热报线索'
-WEIBO_MAIL_LIST='arthur@infoq.com'
+WEIBO_MAIL_LIST='arthur@infoq.com;frank.jia@infoq.com;kevin@infoq.com;core-editors@googlegroups.com'
 
-STATUS_STEP_LIST={"664":"737","737":"780","780":"800"}
+SMILE_MAIL_SUBJECT=''
+SMILE_MAIL_LIST=''
+
+RSS_EN_MAIL_SUBJECT=''
+RSS_CH_MAIL_SUBJECT=''
 MAIL_SMTP='smtp.exmail.qq.com'
-MAIL_TO='arthur@infoq.com;hello.shuiyaya@gmail.com'
-MAIL_FROM=u'notice@magicshui.com'
+MAIL_TO='arthur@infoq.com;'
+MAIL_FROM='notice@magicshui.com'
 MAIL_PWD='shuishui123'
 MAIL_SUBJECT=u"%s：InfoQ更新--%d篇新闻，%d篇文章，%d篇采访"
+
 CATEGORY_LIST=['Development','Architecture & Design','Process & Practices','Enterprise Architecture','Operations & Infrastructure']
 CATEGORY_LIST_CN=['']
 
+def striptime(t):
+    return datetime.strptime(t+" 00:00:00",'%Y-%m-%d %H:%M:%S')
+def _notify(cat):
+    db_session=sessionmaker(bind=DB)
+    dbSession=db_session()
+    to_=[]
+    _li=cat.split(',')
+    for x in _li:
+        its=dbSession.query(UserListInfo.user).filter(or_(UserListInfo.cat==x,UserListInfo.user==x)).all()
+        for y in its:
+            to_.append(y)
+
+    return to_
+
+
+class NotificationList(Base):
+    __tablename__='notification_list'
+    id=Column(String(100),primary_key=True)
+    content=Column(String(100))
+    hey=Column(String(200))
+    status=Column(Integer)
+    to=Column(String(100))
+    pubdate=Column(DateTime)
+    def __init__(self,hey,content,to):
+        self.id=gen_id()
+        self.hey=hey
+        self.content=content
+        self.status=0
+        self.to=to
+        self.pubdate=datetime.now()
+def notify(content='',hey='',to='admin'):
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+                if hey=='':
+                    hey=session['user'].user
+                db_session=sessionmaker(bind=DB)
+                dbSession=db_session()
+                _all=_notify(to)
+                for x in _all:
+                    n=NotificationList(hey=hey,to=x[0],content=content)
+                    dbSession.add(n)
+                    dbSession.commit()
+                return f(*args, **kwargs)
+        return decorated_function
+    return decorator
+def notify_m(content='',hey='',to='admin'):
+                if hey=='':
+                    hey=session['user'].user
+                db_session=sessionmaker(bind=DB)
+                dbSession=db_session()
+                _all=_notify(to)
+                for x in _all:
+                    n=NotificationList(hey=hey,to=x[0],content=content)
+                    dbSession.add(n)
+                    dbSession.commit()
+
+
+def gen_id():
+    import md5
+    return (md5.md5(str(datetime.now()))).hexdigest() 
+def md5(id):
+    import md5
+    return (md5.md5(id)).hexdigest()
+
+def get_user():
+    return session['user'] or redirect('login')
 
 def login(wtype='admin'):
     def decorator(f):
@@ -74,11 +194,14 @@ def login(wtype='admin'):
         def decorated_function(*args, **kwargs):
                 if 'user'  not in session:
                     return redirect(url_for('login', next=request.url))
-                if session['user'].wtype!=wtype:
-                    flash('auth not enough!')
+                else:
+                    user=session['user']
+                    if user.cat not in  wtype.split(','):
+                        return redirect(url_for('error',next=request.url))
                 return f(*args, **kwargs)
         return decorated_function
     return decorator
+
 
 
 def token():
@@ -99,19 +222,18 @@ def token():
         except :
             return redirect('go?msg=error')
 
-
 class UserListInfo(Base):
     __tablename__='user_list'
     user=Column(String(100),primary_key=True)
     pwd=Column(String(45))
-    wtype=Column(String(45))
+    cat=Column(String(100))
     """docstring for UserListInfo"""
-    def __init__(self, user,pwd,wtype):
+    def __init__(self, user,pwd,cat):
         self.user=user
+        self.cat=cat
         self.pwd=pwd
-        self.wtype=wtype
         
-        D
+            
 class TokenListInfo(Base):
     __tablename__='token_list'
     time=Column(DateTime,primary_key=True)
@@ -161,7 +283,8 @@ class RssInfo(Base):
     small_cat=Column(String(100))
     author=Column(String(100))
     main_cat=Column(String(100))
-    def __init__(self,title,pubdate,description,guid,country,category,small_cat='',author='',main_cat=''):
+    content=Column(String(300))
+    def __init__(self,title,pubdate,description,guid,country,category,small_cat='',author='',main_cat='',content=''):
         self.title=title
         self.pubdate=pubdate
         self.category=category
@@ -170,6 +293,7 @@ class RssInfo(Base):
         self.guid=guid
         self.small_cat=small_cat
         self.author=author
+        self.content=content
         self.main_cat=main_cat
 
 '''
@@ -194,7 +318,7 @@ class RssNewInfo(Base):
         self.guid=guid
         self.small_cat=small_cat
         self.author=author
-
+        
 class MailListInfo(Base):
     __tablename__='mail_list'
     id=Column(String(100),primary_key=True)
@@ -225,49 +349,6 @@ class WeiboM(Base):
         self.comment=comment
         self.text=text
         self.org_url=org_url
-class TaskList(Base):
-    __tablename__='task_list'
-    id=Column(String(100),primary_key=True)
-    bigcat=Column(String(100))
-    smallcat=Column(String(100))
-    title=Column(String(100))
-    link=Column(String(200))
-    editor=Column(String(100))
-    duty=Column(String(100))
-    count=Column(Integer)
-    def __init__(self,id,bigcat,smallcat,title,link,
-        editor,duty,count):
-        self.id=id
-        self.bigcat=bigcat
-        self.smallcat=smallcat
-        self.title=title
-        self.link=link
-        self.editor=editor
-        self.duty=duty
-        self.count=count
-class StatusList(Base):
-    __tablename__='status_list'
-    id=Column(String(100),primary_key=True)
-    task_id=Column(String(100))
-    code=Column(Integer)
-    description=Column(String(200))
-    begin=Column(DateTime)
-    end=Column(DateTime)
-    contrast=Column(DateTime)
-    editor=Column(String(100))
-    duty=Column(String(100))
-    count=Column(Integer)
-    def __init__(self,id,task_id,code,description,begin,end,contrast,editor,duty,count):
-        self.id=id
-        self.count=count
-        self.task_id=task_id
-        self.code=code
-        self.description=description
-        self.begin=begin
-        self.end=end
-        self.contrast=contrast
-        self.editor=editor
-        self.duty=duty
 class WPList(Base):
     __tablename__='wp_list'
     uid=Column(String(100),primary_key=True)
@@ -292,17 +373,8 @@ class WPCheckList(Base):
         self.url=url
         self.text=text
         self.comment=comment
-        self.retweet=comment
-        self.screen_name=screen_name
-class WPUserList(Base):
-    __tablename__='wpuser_list'
-    email=Column(String(100),primary_key=True)
-    comment=Column(Integer)
-    retweet=Column(Integer)
-    def __init__(self,email,comment,retweet):
-        self.email=email
-        self.comment=comment
         self.retweet=retweet
+        self.screen_name=screen_name
 class WPConfig(Base):
     __tablename__='wp_config'
     retweet=Column(Integer,primary_key=True)
@@ -314,7 +386,7 @@ class WPConfig(Base):
         self.relation=relation
         self.comment=comment
         self.order=order
-
+        
 class FeedBackList(Base):
     __tablename__='feedback_list'
     time=Column(DateTime,primary_key=True)
@@ -324,73 +396,8 @@ class FeedBackList(Base):
           self.time=time
           self.title=title
           self.content=content 
-
-
-
-
-class AboutusList(Base):
-    __tablename__='about_list'
-    id=Column(Integer,primary_key=True)
-    name=Column(String(100))
-    ename=Column(String(100))
-    email=Column(String(100))
-    desc=Column(String(1000))
-    minidesc=Column(String(200))
-    area=Column(String(20))
-    team=Column(String(20))
-    img=Column(String(50))
-    pinyin=Column(String(100))
-    def __init__(self,id,name,ename,email,desc,minidesc,area,pinyin,team,img):
-        self.id=id
-        self.name=name
-        self.ename=ename
-        self.email=email
-        self.desc=desc
-        self.minidesc=minidesc
-        self.area=area
-        self.team=team
-        self.img=img
-        self.pinyin=pinyin
-class InfoqList(Base):
-    __tablename__='infoq_list'
-    id=Column(Integer,primary_key=True)
-    name=Column(String(100))
-    ename=Column(String(100))
-    email=Column(String(100))
-    desc=Column(String(500))
-    title=Column(String(100))
-    img=Column(String(100))
-    pinyin=Column(String(100))
-    def __init__(self,id,name,ename,email,desc,title,img,pinyin):
-        self.id=id
-        self.name=name
-        self.ename=ename
-        self.email=email
-        self.pinyin=pinyin
-        self.desc=desc
-        self.title=title
-        self.img=img
-
-'''
-  `id` VARCHAR(30) NOT NULL ,
-  `name` VARCHAR(45) NULL ,
-  `ename` VARCHAR(45) NULL ,
-  `email` VARCHAR(200) NULL ,
-  `address` VARCHAR(200) NULL ,
-  `location` VARCHAR(200) NULL ,
-  `company` VARCHAR(200) NULL ,
-  `phone` VARCHAR(45) NULL ,
-  `im` VARCHAR(45) NULL ,
-  `bank` VARCHAR(100) NULL ,
-  `bio` VARCHAR(200) NULL ,
-  `img` VARCHAR(200) NULL ,
-  `weibo` VARCHAR(200) NULL ,
-  `blog` VARCHAR(200) NULL ,
-  `area` VARCHAR(200) NULL ,
-  `birth` VARCHAR(45) NULL ,
-  `bid` VARCHAR(45) NULL ,
-  PRIMARY KEY (`id`) );
-'''
+          
+          
 class ExpertList(Base):
     __tablename__="expert_list"
     id = Column(String(30),primary_key=True)
@@ -429,6 +436,7 @@ class ExpertList(Base):
         self.area=area
         self.birth=birth
         self.bid=bid
+
 class JingyaoList(Base):
     __tablename__='jingyao_list'
     count=Column(String(10))
@@ -448,7 +456,7 @@ class JingyaoList(Base):
         self.img_url=img_url
         self.cat=cat
         self.img=img
-
+                
 class EditorWeiboList(Base):
     __tablename__='editorweibo_list'
     name=Column(String(100),primary_key=True)
@@ -468,11 +476,8 @@ class EditorCountWeiboList(Base):
     sname=Column(String(100))
     scount=Column(Integer)
     scomment=Column(String(100))
-    tname=Column(String(100))
-    tcount=Column(Integer)
-    tcomment=Column(String(100))
     img=Column(String(200))
-    def __init__(self,guid,fname,fcount,fcomment,sname,scount,scomment='',img='',tname='',tcount=0,tcomment=''):
+    def __init__(self,guid,fname,fcount,fcomment,sname,scount,scomment,img):
         self.guid=guid
         self.fname=fname
         self.fcount=fcount
@@ -481,9 +486,6 @@ class EditorCountWeiboList(Base):
         self.scount=scount
         self.scomment=scomment
         self.img=img
-        self.tname=tname
-        self.tcount=tcount
-        self.tcomment=tcomment
 class EditorCount2List(Base):
     __tablename__='editorcount2_list'
     id=Column(String(20),primary_key=True)
@@ -501,28 +503,64 @@ class EditorCount2List(Base):
         self.count=count
         self.comment=comment
         self.img=img
-class ClueList(Base):
-    __tablename__='clue_list'
-    id=Column(String(50),primary_key=True)
-    createddate=Column(DateTime)
-    chief_editor=Column(String(100))
-    duty_editor=Column(String(100))
-    staus=Column(String(100))
-    duedate=Column(DateTime)
-    title=Column(String(800))
-    cat=Column(String(20))
-    description=Column(String(500))
-    def __init__(self,id,cat,title,description,chief_editor='',duty_editor='',duedate='',staus='fresh'):
-        self.createddate=datetime.today()
-        self.id=id
-        self.cat=cat
-        self.chief_editor=chief_editor
-        self.duty_editor=duty_editor
-        self.title=title
-        self.description=description
-        self.staus=staus
-        self.duedate=duedate
+Clue_Pre="""
+    <html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </head>
+    <body>
+<div marginwidth="0" marginheight="0" style="min-width:600px;margin:0 auto;padding:39px;font-family:'Helvetica Neue',Helvetica,Arial,Sans-serif;font-size:13px;line-height:22px;background-color:#f5f5f5"><div class="adM">
+    </div><table width="552" cellspacing="0" cellpadding="0" border="0" style="border:1px solid #dedede;border-bottom:2px solid #dedede;margin:0 auto;background-color:#ffffff">
+    <tbody>
+        
+        <tr>
+            <td align="center" style="padding:30px 25px 30px">
+                <div style="font-size:13px">
+                    <a target="_blank" href="http://zhi.hu/BAAC?m=edm.37.19039590023205" style="float:left;color:#bbb;text-decoration:none;border:none;outline:none">InfoQ</a>                  
+                    <span style="float:right;color:#bbb">%s</span>
+                    <div style="font-size:25px;text-indent:3px">%s</div>
+                </div>
+            </td>
+        </tr>
+                    <tr>
+            <td style="padding:0 25px 25px">
+                
+        """
+Clue_Body="""<div style="margin-bottom:10px;border-bottom:1px dotted #dedede">
+                    <div style="margin-bottom:3px">
+                        <a target="_blank" href="%s" style="font-size:14px;line-height:22px;text-decoration:none;color:#259;border:none;outline:none">%s</a>
+                    </div>
+                    <div style="margin-bottom:3px;font-size:13px;line-height:22px">
+                        <span style="float:right;color:#bbb">%s</span>
+                        
+                        <span style="color:#bbb">%s  %s</span>
+                    </div>
+                    <div style="margin-bottom:10px">
+                        <span style="word-break:break-all;word-wrap:break-word;font-size:11px;line-height:22px;text-decoration:none;color:#333;display:block">%s</span>
+                    </div>
+                </div>
+"""
+Clue_End2="""       
+                            </td>
+        </tr>
+            </tbody>
+</table>
+<div style="text-align:center;padding-top:10px;margin:0 auto;width:500px;color:#aaa;font-size:12px;line-height:20px">由 <a target="_blank" style="text-decoration:none;border:none;outline:none;color:#aaa!important" href="mailto:arthur@infoq.com">Arthur维护，意见或者建议请反馈给他！</a><br>InfoQ &copy; 2012<img width="0" height="0"><div class="yj6qo"></div><div class="adL">
+</div></div><div class="adL">
 
+</div></div></body>"""
+Clue_End="""<div style="display:block;"><a target="_blank" href="http://gege.baihui.com/open.do?docid=95416000000003001" style="margin-left:40px;display:inline-block;padding:7px 15px;background-color:#d44b38;color:#fff;font-size:13px;font-weight:bold;border-radius:2px;border:solid 1px #c43b28;white-space:nowrap;text-decoration:none">新闻</a>
+<a target="_blank" href="http://gege.baihui.com/docview.do?docid=95416000000004001" style="margin-right:40px;float:right;display:inline-block;padding:7px 15px;background-color:lightblue;color:#fff;font-size:13px;font-weight:bold;border-radius:2px;border:solid 1px lightblue;white-space:nowrap;text-decoration:none">文章</a><div style="float:right;color:#bbb;font-size:13px">
+                    </div><div style="margin-top:10px;margin-bottom:10px;border-bottom:1px dotted #dedede"><p style="float:right;color:#333;font-size:11px;">Raven</p></div>
+                                                
+                            </td>
+        </tr>
+            </tbody>
+</table>
+<div style="text-align:center;padding-top:10px;margin:0 auto;width:500px;color:#aaa;font-size:12px;line-height:20px">由 <a target="_blank" style="text-decoration:none;border:none;outline:none;color:#aaa!important" href="mailto:arthur@infoq.com">Arthur维护，意见或者建议请反馈给他！</a><br>InfoQ &copy; 2012<img width="0" height="0"><div class="yj6qo"></div><div class="adL">
+</div></div><div class="adL">
+
+</div></div></body>"""
 WEIBO_MAIL_CONTENT_BASE1="""
 
 

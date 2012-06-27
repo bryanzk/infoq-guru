@@ -1,35 +1,29 @@
 # -*- coding: utf-8 -*-
-from bs4 import BeautifulSoup
-import urllib2
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import *
-from sqlalchemy import Column, Integer, String
-from flask import *
-from flask import request,render_template,session,redirect
-from flask.views import MethodView
-from sqlalchemy.orm import sessionmaker
-from helper_data import *
-import json
-from bs4 import BeautifulSoup
-from sqlalchemy import Column, Integer, String
-from datetime import *
-from datetime import timedelta
+
 from config import *
+from helper_data import *
 #res = urllib2.urlopen('http://www.infoq.com/rss/rss.action?token=v94n6E2kapoNhNXc9EWTYRXoOoLLHX5S')
 #rss = BeautifulSoup(res.read())
 class RssChangeMainCatAll(MethodView):
     def get(self):
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
-        results=dbSession.query(RssInfo).filter(RssInfo.country=='ch').filter(and_(RssInfo.main_cat!= None,RssInfo.main_cat!='')).order_by(RssInfo.pubdate).limit(30)
+        results=dbSession.query(RssInfo).filter(RssInfo.country=='ch').filter(and_(RssInfo.main_cat!= None,RssInfo.main_cat!='')).order_by(desc(RssInfo.pubdate)).limit(30)
         
         return render_template('rss_change_maincat_all.html',res=results)
+    def post(self):
+    	db_session=sessionmaker(bind=DB)
+        dbSession=db_session()
+        guid=request.form['url']
+        results=dbSession.query(RssInfo).filter(RssInfo.country=='ch').filter(RssInfo.guid.like("%"+guid+"%")).filter(and_(RssInfo.main_cat!= None,RssInfo.main_cat!='')).order_by(desc(RssInfo.pubdate)).limit(30)
+        
+        return render_template('rss_change_maincat_all.html',res=results)
+
 class RssSetMainCatAll(MethodView):
     def get(self):
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
-        results=dbSession.query(RssInfo).filter(RssInfo.country=='ch').filter(or_(RssInfo.main_cat== None,RssInfo.main_cat=='')).order_by(RssInfo.pubdate).limit(30)
-        
+        results=dbSession.query(RssInfo).filter(RssInfo.country=='ch').filter(or_(RssInfo.main_cat== None,RssInfo.main_cat=='')).order_by(desc(RssInfo.pubdate)).limit(30)
         return render_template('rss_set_maincat_all.html',res=results)
 class RssSetMainCat(MethodView):
     def get(self):
@@ -42,21 +36,25 @@ class RssSetMainCat(MethodView):
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
         results=dbSession.query(RssInfo).filter(RssInfo.guid==request.form['guid']).first()
+        description=request.form['content']
         CATS={'语言 ':"语言 & 开发",'架构 ':'架构 & 设计','过程 ':"过程 & 实践","运维 ":'运维 & 基础架构',"企业架构":"企业架构"}
         if request.form['main_cat']=='语言 ':
-            results.main_cat='语言　＆　开发'
+            results.main_cat='语言 & 开发'
         elif request.form['main_cat']=='架构 ':
-            results.main_cat='架构 &　设计'
+            results.main_cat='架构 & 设计'
         elif request.form['main_cat']=='过程 ':
             results.main_cat='过程 & 实践'
         elif request.form['main_cat']=='运维 ':
             results.main_cat='运维 & 基础架构'
         elif request.form['main_cat']=='企业架构':
             results.main_cat='企业架构'
-
+        results.content=description
         
         dbSession.commit()
         return 'ok'
+        
+        
+        
 class RssNew(MethodView):
     def post(self):
         begin=datetime.strptime((request.form['begin'])+" 00:00:00",'%Y-%m-%d %H:%M:%S')
@@ -74,15 +72,13 @@ class RssNew(MethodView):
 
         return render_template('rssnew.html',r=rr,count=count)
     def get(self):
-        
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
         count=dbSession.query(func.count(RssInfo.guid)).scalar()
-
+	dbSession.close()
         return render_template('rssnew.html',r=[],count=count)
 class RssFetchRefresh(MethodView):
     def get(self):
-        
         return  render_template('result.html',r='')
     def post(self):
         country=request.form['country']
@@ -156,6 +152,7 @@ class RssRefresh():
             return u'翻译'
         else:
             return u'原创'
+    
                 
                  
     '''
@@ -172,8 +169,8 @@ class RssRefresh():
         if it:
             if it[0].main_cat!='':
                 return True
-        db_session.delete(it[0])
-        db_session.commit()
+            db_session.delete(it[0])
+            db_session.commit()
         return False
     '''
         clear the new_list table before the new data is merged into it
@@ -186,6 +183,7 @@ class RssRefresh():
 
             db_session.delete(x)
         db_session.commit()
+        db_session.close()
 #for x in rss.find_all('item'):
 #   print  x.title.string
 #   print '--------------'

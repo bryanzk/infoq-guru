@@ -1,10 +1,14 @@
-{% extends "base.html" %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
 {% block script%}
-show_trends(800,400,"http://infoqhelp.sinaapp.com/countweekauthor?author={{author}}", "#trends");
+show_trends(850,200,"countweekauthor?author={{author}}", "#trends");
+$('.typehead').typeahead();
 {% endblock%}
 {% block body %}
+
 <form class="well form-inline" action="countauthor" method="POST" >
-  <input id='num-0'type="text"  name='author'class="span6" placeholder="作者姓名">
+  <input id='num-0'type="text"data-provide="typeahead" class='typehead' data-source="[{% for x in aus%}"{{x[0]}}",{% endfor%}'']" data-items="6" data-provide="typeahead" name='author'class="span6" placeholder="作者姓名">
 <!--<select name='author'>
   {% for x in aus %}
     
@@ -15,9 +19,11 @@ show_trends(800,400,"http://infoqhelp.sinaapp.com/countweekauthor?author={{autho
 
   <button id='num-2' type="submit" class="btn">确认</button>
 </form>
+<div class='well'><h3>{{author}}的工作历史数据</h3></div>
 <div id="trends">
 
 </div>
+<hr/>
 <table id='num=4' class="table table-striped">
   <thead>
     <tr>

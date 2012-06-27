@@ -131,7 +131,7 @@ class ExpertAdd(MethodView):
 			area=area,birth=birth,bid=bid)
 		helper.add_user(u)
 		flash('修改成功')
-		return redirect('eshow?id='+str(id))
+		return redirect('eshow?id='+str(u.id))
 
 class ExpertSearch(MethodView):
 	def get(self):

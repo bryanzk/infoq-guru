@@ -1,10 +1,8 @@
-{% extends 'base.html' %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
 
-{% block script%}
-$("#addtable").validate();
-{%endblock%}
 {% block body %}
-   <form  id='addtable'class="form-horizontal" method='post' action='eadd'>
+   <form class="form-horizontal" method='post' action='eadd'>
         <fieldset>
           <legend>添加新的专家</legend>
           <table>
@@ -14,9 +12,9 @@ $("#addtable").validate();
             <label for="input01" class="control-label">姓名</label>
             <div class="controls">
              <div class="input-prepend">
-              <span class="add-on"><i class="icon-user"></i></span><input name='name' class='required' type="text" id="inputIcon" class="span2">
+              <span class="add-on"><i class="icon-user"></i></span><input name='name' type="text" id="inputIcon" class="span2">
             </div>
-              <p class="help-block ">输入专家姓名</p>
+              <p class="help-block">输入专家姓名</p>
             </div>
               </td>
               <td>
