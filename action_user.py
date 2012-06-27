@@ -10,7 +10,7 @@ class UserLogin(MethodView):
 		pwd=request.form['pwd']
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
-		res=dbSession.query(UserListInfo).filter(UserListInfo.user==user).filter(UserListInfo.pwd==pwd).all()
+		res=dbSession.query(UserListInfo).filter(UserListInfo.user==user).filter(UserListInfo.pwd==md5(pwd)).all()
 		if res:
 			g.user=res[0]
 			session['user']=res[0]

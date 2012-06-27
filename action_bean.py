@@ -55,12 +55,14 @@ class ArticleBeanToPick(MethodView):
 		results=dbSession.query(BeanList,RssInfo).filter(RssInfo.guid==BeanList.org_guid).filter(BeanList.status==0).filter(BeanList.org_guid.like("%article%")).order_by(desc(BeanList.pubdate)).all()
 		return render_template('beans_article_to_pick.html',res=results)
 class PickABean(MethodView):
+	@login(wtype='admin,core,editor,gof')
 	def get(self):
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
 		id=request.args.get('id')
 		result=dbSession.query(BeanList,RssInfo).filter(RssInfo.guid==BeanList.org_guid).filter(BeanList.id==id).filter(BeanList.status!=1).first()
 		return render_template('beans_pick_one.html',x=result)
+	@login(wtype='admin,core,editor,gof')
 	def post(self):
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
@@ -76,6 +78,8 @@ class PickABean(MethodView):
 
 			notify_m(content='领取新闻')
 			return 'ok'
+		else:
+			return 'picked'
 class NewsBeanToDone(MethodView):
 	@login(wtype='admin,core,editor,gof')
 	def get(self):
@@ -84,6 +88,7 @@ class NewsBeanToDone(MethodView):
 		results=dbSession.query(BeanList,RssInfo).filter(RssInfo.guid==BeanList.org_guid).filter(BeanList.status==1).filter(BeanList.org_guid.like('%news%')).order_by(desc(BeanList.indate)).all()
 		return render_template('beans_news_to_done.html',res=results)
 class DoneABean(MethodView):
+	@login(wtype='admin,core,editor,gof')
 	def post(self):
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
@@ -98,10 +103,9 @@ class DoneABean(MethodView):
 			one_bean.count=count
 			one_bean.outdate=datetime.now()
 			dbSession.commit()
-
 			notify_m(content='完成新闻')
 			return 'ok'
-class GOF(MethodView):
+class GOFSee(MethodView):
 	def get(self):
 		pass
 

@@ -22,9 +22,13 @@ var request = $.ajax({
 request.done(function(msg) {
 if(msg=='ok'){
   $('#cell-'+id).remove();
-  humane.log('ok');
+  humane.log('领取成功');
 
 };
+if(msg=='picked'){
+  $('#cell-'+id).remove();
+  humane.log('下手晚了，已经被人领取过了！')
+}
 
 $('#pickModal-'+id).modal('toggle').remove();
 

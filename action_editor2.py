@@ -69,7 +69,7 @@ class RssWeiboShare2(MethodView):
 			author=_weibo[0].wname
 		else:
 			author=_img.name
-		content=_rss.description.replace(" ","").replace('\r','').replace('\n','')
+		content=_rss.content or _rss.description.replace(" ","").replace('\r','').replace('\n','')
 		img=_img.img
 		ctype=helper._get_cats(guid)
                 author2=_img.name

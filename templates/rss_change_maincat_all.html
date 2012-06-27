@@ -8,7 +8,7 @@ function save_set_maincat(guid,id){
 var request = $.ajax({
   url: "setmaincat",
   type: "POST",
-  data: 'guid='+guid+'&main_cat='+$('.main_cat-'+id+' option:selected').val(),
+  data: 'guid='+guid+'&main_cat='+$('.main_cat-'+id+' option:selected').val()+"&content="+$('#content-'+id).val(),
 });
 
 request.done(function(msg) {
@@ -26,37 +26,65 @@ request.fail(function(jqXHR, textStatus) {
   <button id='num-1' type="submit" class="btn">Search</button>
   </form>
 </div>
-<table id='num=4' class="table table-striped sortable">
-  <thead>
-    <tr>
-       <th>时间</th>
-      <th>标题</th>
-  <th>类别</th>
-  <th>参考</th>
-  <th>设置社区</th>
- 	<th>设置</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for x in res%}
-    <tr class='guid' id='guid-{{x.guid.replace(':','').replace('/','').replace('.','')}}'>
-        <td>{{x.pubdate}}</td>
-      
-      <td><a href="{{x.guid}}">{{x.title}}</a></td>
-      <td>{{x.small_cat}}</td>
-            <td>{{x.category}}</td>
+<div id="accordion2" class="accordion  box">
 
-      <td><select class='main_cat-{{x.guid.replace(':','').replace('/','').replace('.','')}}' name='main_cat'>
-  <option value='语言 & 开发' {% if x.main_cat=='语言 & 开发'%} selected{% endif%}>语言&开发</opion>
+
+ {% for x in res%}
+  <div class="cell" id='cell-{{x.guid.replace(':','').replace('/','').replace('.','')}}'>
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+              <tr>
+                <td width="36" valign="top" align="center">
+                  
+                      <select width='48px'  class=' span2 main_cat-{{x.guid.replace(':','').replace('/','').replace('.','')}}' name='main_cat'>
+                  <option value='语言 & 开发' {% if x.main_cat=='语言 & 开发'%} selected{% endif%}>语言&开发</opion>
   <option value='架构 & 设计' {% if x.main_cat=='架构 & 设计'%} selected{% endif%}>架构&设计</opion>
   <option value='过程 & 实践' {% if x.main_cat=='过程 & 实践'%} selected{% endif%}>过程&实践</opion>
   <option value='运维 & 基础架构' {% if x.main_cat=='运维 & 基础架构'%} selected{% endif%}>运维&基础架构</opion>
   <option value='企业架构' {% if x.main_cat=='企业架构'%} selected{% endif%}>企业架构</opion>
+                </select>
 
- </select></td>
-      <td><a href='javascript:save_set_maincat("{{x.guid}}","{{x.guid.replace(':','').replace('/','').replace('.','')}}");'>设置</a></td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+
+                </td>
+                <td width="10"></td>
+                <td width="auto" href="#{{x.guid.replace(':','').replace('/','').replace('.','')}}" valign="middle" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle"><span class="item_title">{{x.title}}</span>
+                <div class="sep5"></div>
+                <span class="small "><strong>参考:</strong> &nbsp;•&nbsp; {{x.pubdate}} &nbsp;•&nbsp; {{x.category}}</span>
+                </td>
+                <td width="50" valign="middle" align="right">
+                    
+                    
+                </td>
+            </tr>
+           
+            <tr >
+
+               <td width="48px">
+                
+              </td>
+              <td></td>
+<td>
+              <div class="accordion-body  collapse" id="{{x.guid.replace(':','').replace('/','').replace('.','')}}" >
+                
+                 <textarea class='span7' id="content-{{x.guid.replace(':','').replace('/','').replace('.','')}}">{{x.content or x.description }}</textarea>
+
+                 <div class="btn-group">
+    <a class="btn btn-primary"  href='javascript:save_set_maincat("{{x.guid}}","{{x.guid.replace(':','').replace('/','').replace('.','')}}");'>设置</a>
+    <a class='badage btn' href="{{x.guid}}">查看</a>
+    </div>
+               
+                </div>
+              </td>
+
+
+             
+            </tr>
+            
+        </tbody></table>
+    </div>
+          
+       
+         {% endfor %}
+</div>
+
 {% endblock%}

@@ -134,6 +134,9 @@ def notify_m(content='',hey='',to='admin'):
 def gen_id():
     import md5
     return (md5.md5(str(datetime.now()))).hexdigest() 
+def md5(id):
+    return (md5.md5(id)).hexdigest()
+
 def get_user():
     return session['user'] or redirect('login')
 
@@ -232,7 +235,8 @@ class RssInfo(Base):
     small_cat=Column(String(100))
     author=Column(String(100))
     main_cat=Column(String(100))
-    def __init__(self,title,pubdate,description,guid,country,category,small_cat='',author='',main_cat=''):
+    content=Column(String(300))
+    def __init__(self,title,pubdate,description,guid,country,category,small_cat='',author='',main_cat='',content=''):
         self.title=title
         self.pubdate=pubdate
         self.category=category
@@ -241,6 +245,7 @@ class RssInfo(Base):
         self.guid=guid
         self.small_cat=small_cat
         self.author=author
+        self.content=content
         self.main_cat=main_cat
 
 '''

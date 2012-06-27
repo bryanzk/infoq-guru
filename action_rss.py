@@ -18,6 +18,7 @@ class RssChangeMainCatAll(MethodView):
         results=dbSession.query(RssInfo).filter(RssInfo.country=='ch').filter(RssInfo.guid.like("%"+guid+"%")).filter(and_(RssInfo.main_cat!= None,RssInfo.main_cat!='')).order_by(desc(RssInfo.pubdate)).limit(30)
         
         return render_template('rss_change_maincat_all.html',res=results)
+
 class RssSetMainCatAll(MethodView):
     def get(self):
         db_session=sessionmaker(bind=DB)
@@ -35,6 +36,7 @@ class RssSetMainCat(MethodView):
         db_session=sessionmaker(bind=DB)
         dbSession=db_session()
         results=dbSession.query(RssInfo).filter(RssInfo.guid==request.form['guid']).first()
+        description=request.form['content']
         CATS={'语言 ':"语言 & 开发",'架构 ':'架构 & 设计','过程 ':"过程 & 实践","运维 ":'运维 & 基础架构',"企业架构":"企业架构"}
         if request.form['main_cat']=='语言 ':
             results.main_cat='语言 & 开发'
@@ -46,7 +48,7 @@ class RssSetMainCat(MethodView):
             results.main_cat='运维 & 基础架构'
         elif request.form['main_cat']=='企业架构':
             results.main_cat='企业架构'
-
+        results.content=description
         
         dbSession.commit()
         return 'ok'
