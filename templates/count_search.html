@@ -1,4 +1,6 @@
-{% extends "base.html" %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
 {% block body %}
 <form class="well form-inline" action="countsearch" method="POST" >
  <input id='num-0'type="text" class='date-picker' name='begin'class="span6" data-date="2012-02-21" placeholder="开始时间，格式：2012-04-01">

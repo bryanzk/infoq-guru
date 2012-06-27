@@ -10,8 +10,8 @@
     <!-- Le styles -->
  
     <link href="static/css/datepicker.css" rel="stylesheet">
-        <link href="static/css/humane.css" rel="stylesheet">
 
+    <link href="static/css/humane.css" rel="stylesheet">
      <link href="static/css/bootstrap.css" rel="stylesheet">
        <style type="text/css">
 
@@ -58,8 +58,6 @@ path.area {
     </style>
     <link href="static/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="static/css/joyride-1.0.3.css" rel="stylesheet">
-        <link href="static/css/humane.css" rel="stylesheet">
-
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -71,7 +69,6 @@ path.area {
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="static/ico/apple-touch-icon-57-precomposed.png">
-        <link href="static/css/timeline.css" rel="stylesheet">
 
   </head>
 
@@ -89,13 +86,12 @@ path.area {
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
-              <li><a href="about">About</a></li>
               <li><a id='show-guide' class='label label-info'>帮助</a></li>
-                            <li><a id='show-feedback' class='label label-important' data-toggle='modal' href="#feedbackModal" class=''>Feedback</a></li>
+                            <li><a  href="mailto:arthur@infoq.com&subject=QA" class=''>Feedback</a></li>
 
             </ul>
             
-            <p class="navbar-text pull-right"  id='num-login'>Logged in as <a data-toggle='modal' href="#loginModal">User</a></p>
+            <p class="navbar-text pull-right"  id='num-login'>Logged in as <a href="#">{{session['user'].user}}</a></p>
            
           
           </div><!--/.nav-collapse -->
@@ -109,23 +105,8 @@ path.area {
 
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header"><h4><i   class="icon-home icon-black"></i>微博数据</h4></li>
-              <li ><a id='num-go' href="go">认证授权</a></li>
-              <li><a  id='num-weibor' href="weibor">获取微博数据</a></li>
-              <li><a id='num-weiboresult' href="weiboresult">时间段内数据</a></li>
-              <li><a id='num-weiboresult' href="weibos">发送更新内容为微博（alpha）</a></li>
-              
-                <li class='nav-header'><h4><i  class="icon-star icon-black"></i>微博热点监控</h4></li>
-              <li><a id='num-taskadd' href="wpadd">添加人物</a></li>
-              <li><a id='num-statstep' href="wpcheck">获取数据</a></li>
-              <li><a id='num-wpconfig' href='wpconfig'>参数设置</a><li>
-              <li><a id='num-taskstep2' href='wpmail'>发送邮件</a><li>
-              
-              <li class="nav-header"><h4><i  class="icon-tags icon-black"></i>站点数据</h4></li>
-              <li><a id='num-rss' href="rss">获取中英文站数据</a></li>
-                <li><a id='num-mailadd' href="mailadd">添加邮件接收地址</a></li>
-              <li><a id='num-maildel' href="maildel">删除邮件接收地址</a></li>
-            <li><a id='num-mail' href="mail">发送昨日更新列表邮件</a></li>
+                
+ <li class="nav-header"><h4><i  class="icon-tags icon-black"></i>站点数据</h4></li>
               <li><a id='num-rsssearch' href="rsssearch">RSS数据查询</a></li>
 
  <li class='nav-header'><h4><i  class="icon-home icon-black"></i>OD</h4></li>
@@ -145,31 +126,21 @@ path.area {
                             
 
  <li class='nav-header'><h4><i  class="icon-star icon-black"></i>工作量</h4></li>
-              <li><a id='num-taskadd' href="editorcountall">工作量录入以及分享</a></li>
                             <li><a id='num-taskadd' href="contentdashboard">概览</a></li>
                 <li><a href='countwall'>编辑总览</a></li>
                                           <li><a id='num-taskadd' href="countsearch">时间段工作量查询</a></li>
                             <li><a id='num-taskadd' href="countauthor">编辑工作量查询</a></li>
               <li><a id='num-statstep' href="editorweibo">作者微博</a></li>
 
-              <li class='nav-header'><h4><i  class="icon-star icon-black"></i>统计</h4></li>
-              <li><a id='num-staticrss' href="staticrss">文章深度内容微博</a></li>
-               <li class='nav-header'><h4><i  class="icon-home icon-black"></i>架构师</h4></li>
-              <li><a id='num-staticrss' href="urltop">url转为可读数据</a></li>
-                            <li><a id='num-staticrss' href="search">In-Site Search</a></li>
-                         
-                         
-   <li class="nav-header"><h4><i  class="icon-user  icon-black"></i>专家信息管理</h4></li>
-              <li><a id='num-rss' href="eadd">添加</a></li>
-                <li><a id='num-mailadd' href="es">信息搜索</a></li>
 
-<li class='nav-header'><h4><i  class="icon-home icon-black"></i>新闻线索</h4></li>
-              <li><a id='num-staticrss' href="trellosend">发送测试邮件</a></li>
-              
-       <li class='nav-header'><h4><i  class="icon-home icon-black"></i>每周精要</h4></li>
-              <li><a id='num-staticrss' href="jyi">添加广告等链接</a></li>
 
-              <li><a id='num-staticrss' href="jingyao">生成</a></li>
+
+ <li class='nav-header'><h4><i  class="icon-fire icon-black"></i>GOF</h4></li>
+              <li><a id='num-taskadd' href="gof36notpick">36小时未领取线索</a></li>
+                            <li><a id='num-taskadd' href="gof36notdone">已领取超期</a></li>
+                <li class='nav-header'><h4><i  class="icon-envelope icon-black"></i>通知中心</h4></li>
+              <li><a id='num-taskadd' href="notifycenter">查看</a></li>
+
                          
                          
 <!--              <li><a id='num-staticrss' href="urltop">url转为可读数据</a></li>
@@ -227,25 +198,21 @@ path.area {
         <script src="static/js/bootstrap-alert.js"></script>
      <script src="static/js/d3.v2.min.js"></script>
           <script src="static/js/show_trends.js"></script>
-           <script src="static/js/humane.js"></script>
-           <script src="static/js/bootstrap-collapse.js"></script>
-
+ 
   <script src="static/js/bootstrap-tab.js"></script>
     <script src="static/js/bootstrap-typehead.js"></script>
   <script src="static/js/bootstrap-datepicker.js"></script>
     <script src="static/js/bootstrap-dropdown.js"></script>
+    <script src="static/js/humane.js"></script>
+    <script src="static/js/mustache.js"></script>
+    <script src="static/js/handlebars.js"></script>
+
+    <script src="static/js/bootstrap-collapse.js"></script>
               <script src="static/js/sortable.js"></script>
-                  <script src="static/js/timeline.js"></script>
-    <script src="static/js/timeline-embed.js"></script>
+     
     <script>
     $(document).ready(function(){
-
-      $('.alert2').hide();
-                           $('.alert2').bind('closed', function () {
-                                         $('.alertvalue').text('');
-   
-    });
-            waitForMsg();
+      waitForMsg();
 
       $("#joyRideTipContent").hide();
       $("#show-guide").click(function(){
@@ -256,13 +223,17 @@ path.area {
 
       });
       
-      $('a').tooltip({animation:true});
       
      $('.date-picker').datepicker({
 				format: 'yyyy-mm-dd'
 			});
                         
-                       
+                        $('.alert2').hide();
+                           $('.alert2').bind('closed', function () {
+                                         $('.alertvalue').text('');
+   
+    });
+                        
       $("#feedback-btn").click(function(){
       	$.ajax({
 		type: "post",
@@ -290,7 +261,8 @@ path.area {
     });
     </script>
     
-    
+    {% block blewscript %}
+    {% endblock%}
 <div class="modal hide fade" id="feedbackModal" style="display:none;">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>

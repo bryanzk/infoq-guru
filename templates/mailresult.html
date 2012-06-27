@@ -1,4 +1,6 @@
-{% extends 'base.html' %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
 {% block body %}
 <form class="well form-inline" action="mail" method="POST" >
  <select id='num-0'name="country">

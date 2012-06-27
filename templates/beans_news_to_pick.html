@@ -1,4 +1,5 @@
-{% extends 'base_editor.html'%}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
 
 {% block blewscript %}
 <script>
@@ -16,7 +17,7 @@ function pickDone(id){
 var request = $.ajax({
   url: "pickabean",
   type: "POST",
-  data: 'id='+id+'&due='+$('.due-'+id).val(),
+  data: 'id='+id+'&due='+$('#due-'+id).val(),
 });
 
 request.done(function(msg) {
@@ -65,8 +66,8 @@ request.fail(function(jqXHR, textStatus) {
 
 
 {% endraw%}
-<div id="accordion2" class="accordion  ">
-	<div class="header"><div style="float: left; display: inline-block; margin-right: 10px; margin-bottom: 10px;"></div><div class="fr f12"><span class="snow"></span> <strong class="gray">Raven</strong> <span class="snow">&nbsp;•&nbsp;</span> <a href=""></a></div><a href="/">InfoQ</a> <span class="chevron">&nbsp;›&nbsp;</span> Pick a news
+<div id="accordion2" class="accordion well ">
+	<div class="header"><div style="float: left; display: inline-block; margin-right: 10px; margin-bottom: 10px;"></div><div class="fr f12"><span class="snow"></span> <strong class="gray">Raven</strong> <span class="snow">&nbsp;•&nbsp;</span> <a href=""></a></div><a href="/">翻译新闻</a> <span class="chevron">&nbsp;›&nbsp;</span> 领取翻译新闻
     
     <div class="sep10"></div>
     <span class="f12 gray">点击Pick，填写预计的完成时间，认领新闻。</span>

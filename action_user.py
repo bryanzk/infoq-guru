@@ -1,10 +1,14 @@
 #coding: utf-8
 from config import *
 class UserLogin(MethodView):
-
 	def  get(self):
-		session['next']=request.args.get('next')
-		return render_template('user_login.html')
+		try:
+			user=session['user']
+			check_list={'admin':'go',"core":"core-index",'gof':'gof-index','editor':'editor-index'}			
+			return redirect(session['next'] or check_list[user.cat])
+		except:
+			session['next']=request.args.get('next')
+			return render_template('user_login.html')
 	def post(self):
 		user=request.form['user']
 		pwd=request.form['pwd']
@@ -17,6 +21,7 @@ class UserLogin(MethodView):
 			flash('login ok')
 			check_list={'admin':'go',"core":"core-index",'gof':'gof-index','editor':'editor-index'}
 			notify_m(hey='',content='登陆系统')
+			
 			return redirect(session['next'] or check_list[g.user.cat])
 		else:
 			return redirect('error?msg="login error"&next=/login')

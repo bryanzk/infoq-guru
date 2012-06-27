@@ -120,7 +120,8 @@ MAIL_SUBJECT=u"%s：InfoQ更新--%d篇新闻，%d篇文章，%d篇采访"
 CATEGORY_LIST=['Development','Architecture & Design','Process & Practices','Enterprise Architecture','Operations & Infrastructure']
 CATEGORY_LIST_CN=['']
 
-
+def striptime(t):
+    return datetime.strptime(t+" 00:00:00",'%Y-%m-%d %H:%M:%S')
 def _notify(cat):
     db_session=sessionmaker(bind=DB)
     dbSession=db_session()

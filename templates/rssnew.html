@@ -1,4 +1,6 @@
-{% extends "base.html" %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
 {% block body%}
 	<form class="well form-inline" action="rsssearch" method="POST" >
   <input type="text" name='begin'class="input-small" placeholder="begin">

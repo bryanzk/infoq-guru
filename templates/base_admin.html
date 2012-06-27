@@ -132,17 +132,33 @@ path.area {
               <li><a id='num-taskadd' href="od">Arthur's OD</a></li>
 
 
- <li class='nav-header'><h4><i  class="icon-star icon-black"></i>内容管理</h4></li>
-              <li><a id='num-taskadd' href="setmaincatall">设置领域</a></li>
-                <li><a href="changemaincatall">查看并修改</a></li>
-                            
-
-
-                            <li class='nav-header'><h4><i  class="icon-star icon-black"></i>翻译新闻</h4></li>
+       <li class='nav-header'><h4><i  class="icon-star icon-black"></i>翻译新闻</h4></li>
               <li><a id='num-taskadd' href="beannewspick">领取新闻</a></li>
                <li><a id='num-taskadd' href="beannewstodone">提交新闻</a></li>
 
                             
+
+
+
+
+ <li class='nav-header'><h4><i  class="icon-fire icon-black"></i>GOF</h4></li>
+              <li><a id='num-taskadd' href="gof36notpick">36小时未领取线索</a></li>
+                            <li><a id='num-taskadd' href="gof36notdone">已领取超期</a></li>
+                <li class='nav-header'><h4><i  class="icon-envelope icon-black"></i>通知中心</h4></li>
+              <li><a id='num-taskadd' href="notifycenter">查看</a></li>
+
+
+
+
+ <li class='nav-header'><h4><i  class="icon-star icon-black"></i>内容管理</h4></li>
+              <li><a id='num-taskadd' href="setmaincatall">设置领域</a></li>
+                <li><a href="changemaincatall">查看并修改</a></li>
+                            
+                 
+                            <li class='nav-header'><h4><i  class="icon-star icon-black"></i>翻译新闻</h4></li>
+              <li><a id='num-taskadd' href="beannewspick">领取新闻</a></li>
+               <li><a id='num-taskadd' href="beannewstodone">提交新闻</a></li>
+           
 
  <li class='nav-header'><h4><i  class="icon-star icon-black"></i>工作量</h4></li>
               <li><a id='num-taskadd' href="editorcountall">工作量录入以及分享</a></li>
@@ -239,7 +255,6 @@ path.area {
     <script src="static/js/timeline-embed.js"></script>
     <script>
     $(document).ready(function(){
-
       $('.alert2').hide();
                            $('.alert2').bind('closed', function () {
                                          $('.alertvalue').text('');
@@ -262,7 +277,8 @@ path.area {
 				format: 'yyyy-mm-dd'
 			});
                         
-                       
+                        
+                        
       $("#feedback-btn").click(function(){
       	$.ajax({
 		type: "post",

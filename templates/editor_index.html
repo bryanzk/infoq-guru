@@ -1,4 +1,4 @@
-{% extends 'base_editor.html' %}
-{% block body %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}{% block body %}
 <h2>Welcome !</h2>
 {% endblock%}

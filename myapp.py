@@ -129,6 +129,9 @@ app.add_url_rule('/maildb',view_func=DashboardMail.as_view('dashboardmail'))
 
 
 app.add_url_rule('/notifyget',view_func=NotifyGet.as_view('getnotify'))
+app.add_url_rule('/notifycenter',view_func=NotifyCenter.as_view('notifycenter'))
+
+
 
 app.add_url_rule('/editor-index',view_func=EditorIndex.as_view('editorindex'))
 app.add_url_rule('/beannewspick',view_func=NewsBeanToPick.as_view('beannewspick'))
@@ -136,6 +139,13 @@ app.add_url_rule('/pickabean',view_func=PickABean.as_view('pickabean'))
 app.add_url_rule('/_beans',view_func=Convet_Beans.as_view('convetbeans'))
 app.add_url_rule('/beannewstodone',view_func=NewsBeanToDone.as_view('beannewstodone'))
 app.add_url_rule('/doneabean',view_func=DoneABean.as_view('doneabean'))
+
+app.add_url_rule('/core-index',view_func=GofIndex.as_view('coreindex'))
+app.add_url_rule('/admin-index',view_func=GofIndex.as_view('adminindex'))
+
+app.add_url_rule('/gof-index',view_func=GofIndex.as_view('gofindex'))
+app.add_url_rule('/gof36notpick',view_func=GOF36NotPickNews.as_view('gof36notpick'))
+app.add_url_rule('/gof36notdone',view_func=GOF36NotDoneNews.as_view('gof36notdone'))
 
 if __name__=='__main__':
 	app.run()

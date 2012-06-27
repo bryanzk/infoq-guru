@@ -1,4 +1,6 @@
-{% extends 'base_editor.html'%}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
 
 {% block blewscript %}
 <script>

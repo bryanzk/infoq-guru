@@ -1,4 +1,6 @@
-{% extends "base.html" %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
 {% block tips %}
 <!-- Tip Content -->
     <ol id="joyRideTipContent">

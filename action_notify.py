@@ -16,3 +16,10 @@ class NotifyGet(MethodView):
 		return  ''
 
 
+class NotifyCenter(MethodView):
+	def get(self):
+		user=session['user'].user
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		result=dbSession.query(NotificationList).filter(NotificationList.to==user).order_by(desc(NotificationList.pubdate)).limit(30)
+		return render_template('notify_center.html',res=result)
