@@ -19,6 +19,7 @@ from action_count import *
 from action_index import *
 from action_bean import *
 from action_notify import *
+
 from config import *
 
 app = Flask(__name__)
@@ -134,6 +135,8 @@ app.add_url_rule('/editor-index',view_func=EditorIndex.as_view('editorindex'))
 app.add_url_rule('/beannewspick',view_func=NewsBeanToPick.as_view('beannewspick'))
 app.add_url_rule('/pickabean',view_func=PickABean.as_view('pickabean'))
 app.add_url_rule('/_beans',view_func=Convet_Beans.as_view('convetbeans'))
+app.add_url_rule('/beannewstodone',view_func=NewsBeanToDone.as_view('beannewstodone'))
+app.add_url_rule('/doneabean',view_func=DoneABean.as_view('doneabean'))
 
 if __name__=='__main__':
 	app.run()

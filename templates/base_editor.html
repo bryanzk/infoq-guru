@@ -70,7 +70,6 @@ path.area {
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="static/ico/apple-touch-icon-57-precomposed.png">
-        <link href="static/css/timeline.css" rel="stylesheet">
 
   </head>
 
@@ -111,6 +110,8 @@ path.area {
                 
  <li class='nav-header'><h4><i  class="icon-star icon-black"></i>翻译新闻</h4></li>
               <li><a id='num-taskadd' href="beannewspick">领取新闻</a></li>
+               <li><a id='num-taskadd' href="beannewstodone">提交新闻</a></li>
+
  <li class='nav-header'><h4><i  class="icon-star icon-black"></i>工作量</h4></li>
               <li><a id='num-taskadd' href="editorcountall">工作量录入以及分享</a></li>
                             <li><a id='num-taskadd' href="contentdashboard">概览</a></li>
@@ -182,11 +183,12 @@ path.area {
   <script src="static/js/bootstrap-datepicker.js"></script>
     <script src="static/js/bootstrap-dropdown.js"></script>
     <script src="static/js/humane.js"></script>
+    <script src="static/js/mustache.js"></script>
+    <script src="static/js/handlebars.js"></script>
 
     <script src="static/js/bootstrap-collapse.js"></script>
               <script src="static/js/sortable.js"></script>
-                  <script src="static/js/timeline.js"></script>
-    <script src="static/js/timeline-embed.js"></script>
+     
     <script>
     $(document).ready(function(){
       waitForMsg();
@@ -200,7 +202,6 @@ path.area {
 
       });
       
-      $('a').tooltip({animation:true});
       
      $('.date-picker').datepicker({
 				format: 'yyyy-mm-dd'
@@ -239,7 +240,8 @@ path.area {
     });
     </script>
     
-    
+    {% block blewscript %}
+    {% endblock%}
 <div class="modal hide fade" id="feedbackModal" style="display:none;">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
