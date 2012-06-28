@@ -115,6 +115,14 @@ class DoneABean(MethodView):
 			dbSession.commit()
 			notify_m(content='完成新闻')
 			return 'ok'
+class BeanPendingNews(MethodView):
+	@login(wtype='admin,core,editor,gof')
+	def get(self):
+		db_session=sessionmaker(bind=DB)
+		dbSession=db_session()
+		results=dbSession.query(BeanList,RssInfo).filter(RssInfo.guid==BeanList.org_guid).filter(BeanList.status==1).filter(BeanList.org_guid.like('%news%')).order_by(desc(BeanList.pubdate)).all()
+		return render_template('beans_news_pending.html',res=results)
+
 class GOF36NotPickNews(MethodView):
 	def get(self):
 		db_session=sessionmaker(bind=DB)

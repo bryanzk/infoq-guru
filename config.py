@@ -197,6 +197,7 @@ def login(wtype='admin'):
                 else:
                     user=session['user']
                     if user.cat not in  wtype.split(','):
+                        notify_m(content='试图越权：'+str(request.url)+"地址："+str(request.remote_addr),to='admin,'+get_user().user)
                         return redirect(url_for('error',next=request.url))
                 return f(*args, **kwargs)
         return decorated_function

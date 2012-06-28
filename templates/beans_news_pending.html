@@ -15,21 +15,17 @@ function pickOneModal(id){
 };
 function pickDone(id){
 var request = $.ajax({
-  url: "pickabean",
+  url: "doneabean",
   type: "POST",
-  data: 'id='+id+'&due='+$('#due-'+id).val(),
+  data: 'id='+id+'&guid='+$('#guid-'+id).val()+'&count='+$('#count-'+id).val(),
 });
 
 request.done(function(msg) {
 if(msg=='ok'){
   $('#cell-'+id).remove();
-  humane.log('领取成功');
+  humane.log('ok');
 
 };
-if(msg=='picked'){
-  $('#cell-'+id).remove();
-  humane.log('下手晚了，已经被人领取过了！')
-}
 
 $('#pickModal-'+id).modal('toggle').remove();
 
@@ -50,27 +46,27 @@ request.fail(function(jqXHR, textStatus) {
 <div class="modal hide" id="pickModal-{{id}}">
     <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>领取线索</h3>
+    <h3>完成新闻</h3>
     </div>
     <div class="modal-body">
     <p> 
       <input type="hidden" id='id-{{id}}' value='{{id}}'> 
-        <input type="text" id='due-{{id}}' value='' placeholder='格式：2012-02-02'> </p>
+        <input type="text" id='guid-{{id}}' value='' placeholder='格式：http://www.infoq.com/cn/xxx'>  <input type="text" id='count-{{id}}' value='' placeholder='工作量：字数'>  </p>
     </div>
     <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="javascript:pickDone('{{id}}');" class="btn btn-primary">Pick</a>
+    <a href="javascript:pickDone('{{id}}');" class="btn btn-primary">完成</a>
     </div>
     </div>
 </script>
 
 
 {% endraw%}
-<div id="accordion2" class="accordion well ">
-	<div class="header"><div style="float: left; display: inline-block; margin-right: 10px; margin-bottom: 10px;"></div><div class="fr f12"><span class="snow"></span> <strong class="gray">Raven</strong> <span class="snow">&nbsp;•&nbsp;</span> <a href=""></a></div><a href="/">InfoQ</a> <span class="chevron">&nbsp;›&nbsp;</span> Pick a news
+<div id="accordion2" class="accordion  well">
+	<div class="header"><div style="float: left; display: inline-block; margin-right: 10px; margin-bottom: 10px;"></div><div class="fr f12"><span class="snow"></span> <strong class="gray">Raven</strong> <span class="snow">&nbsp;•&nbsp;</span> <a href=""></a></div><a href="/">翻译新闻</a> <span class="chevron">&nbsp;›&nbsp;</span> 提交领取的新闻
     
     <div class="sep10"></div>
-    <span class="f12 gray">点击Pick，填写预计的完成时间，认领新闻。</span>
+    <span class="f12 gray">点击Done，填写新闻地址，必须按照格式、字数，完成新闻。</span>
     
     
     <div class="sep10"></div>
@@ -89,7 +85,7 @@ request.fail(function(jqXHR, textStatus) {
                 </td>
                 <td width="50" valign="middle" align="right">
                     
-                    <a class=" btn" href="javascript:pickOneModal('{{x.BeanList.id}}');">Pick</a>
+                   <!-- <a class=" btn" href="javascript:pickOneModal('{{x.BeanList.id}}');">完成</a>-->
                     
                 </td>
             </tr>

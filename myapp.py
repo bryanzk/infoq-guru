@@ -139,7 +139,7 @@ app.add_url_rule('/pickabean',view_func=PickABean.as_view('pickabean'))
 app.add_url_rule('/_beans',view_func=Convet_Beans.as_view('convetbeans'))
 app.add_url_rule('/beannewstodone',view_func=NewsBeanToDone.as_view('beannewstodone'))
 app.add_url_rule('/doneabean',view_func=DoneABean.as_view('doneabean'))
-
+app.add_url_rule('/beanpending',view_func=BeanPendingNews.as_view('pendingbeans'))
 app.add_url_rule('/core-index',view_func=GofIndex.as_view('coreindex'))
 app.add_url_rule('/admin-index',view_func=GofIndex.as_view('adminindex'))
 
@@ -149,11 +149,18 @@ app.add_url_rule('/gof36notdone',view_func=GOF36NotDoneNews.as_view('gof36notdon
 
 if __name__=='__main__':
 	app.run()
+@app.teardown_request
+def logit():
+	if not request.url.findall('notifyget')>0:
+		notify_m(content='动作：'+str(request.url)+"地址："+str(request.remote_addr))
 
 @app.errorhandler(404)
 def page_not_found(e):
+    notify_m(content='出现错误：'+str(request.url)+"地址："+str(request.remote_addr))
     return render_template('404.html'), 404
 @app.errorhandler(500)
 def interal_error(e):
+	notify_m(content='出现错误：'+str(request.url)+"地址："+str(request.remote_addr)+"输入："+str(request.form))
 	return render_template('500.html',msg=str(e)),500
+ 
  
