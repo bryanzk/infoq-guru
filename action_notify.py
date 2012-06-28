@@ -15,6 +15,14 @@ class NotifyGet(MethodView):
 			return result[0].hey+result[0].content
 		return  ''
 
+class NotifyThem(MethodView):
+	def post(self):
+        	try:
+        		notify_m(content=request.form['content'],to=request.form['to'],status=0)
+                	return 'ok'
+                except:
+                	return 'error'
+
 
 class NotifyCenter(MethodView):
 	def get(self):

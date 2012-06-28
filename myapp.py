@@ -19,7 +19,7 @@ from action_count import *
 from action_index import *
 from action_bean import *
 from action_notify import *
-
+from action_sesame import *
 from config import *
 
 app = Flask(__name__)
@@ -130,7 +130,7 @@ app.add_url_rule('/maildb',view_func=DashboardMail.as_view('dashboardmail'))
 
 app.add_url_rule('/notifyget',view_func=NotifyGet.as_view('getnotify'))
 app.add_url_rule('/notifycenter',view_func=NotifyCenter.as_view('notifycenter'))
-
+app.add_url_rule('/notifythem',view_func=NotifyThem.as_view('notifythem'))
 
 
 app.add_url_rule('/editor-index',view_func=EditorIndex.as_view('editorindex'))
@@ -140,6 +140,8 @@ app.add_url_rule('/_beans',view_func=Convet_Beans.as_view('convetbeans'))
 app.add_url_rule('/beannewstodone',view_func=NewsBeanToDone.as_view('beannewstodone'))
 app.add_url_rule('/doneabean',view_func=DoneABean.as_view('doneabean'))
 app.add_url_rule('/beanpending',view_func=BeanPendingNews.as_view('pendingbeans'))
+
+
 app.add_url_rule('/core-index',view_func=GofIndex.as_view('coreindex'))
 app.add_url_rule('/admin-index',view_func=GofIndex.as_view('adminindex'))
 
@@ -147,11 +149,22 @@ app.add_url_rule('/gof-index',view_func=GofIndex.as_view('gofindex'))
 app.add_url_rule('/gof36notpick',view_func=GOF36NotPickNews.as_view('gof36notpick'))
 app.add_url_rule('/gof36notdone',view_func=GOF36NotDoneNews.as_view('gof36notdone'))
 
+
+app.add_url_rule('/sesametopick',view_func=SesameToPick.as_view('sesamepick'))
+app.add_url_rule('/sesametodone',view_func=SesameToDone.as_view('sesametodon'))
+app.add_url_rule('/pickasesame',view_func=PickASesame.as_view('pickasesame'))
+app.add_url_rule('/doneasesame',view_func=DoneASesame.as_view('doneasesame'))
+app.add_url_rule('/addasesame',view_func=AddASesame.as_view('addasesame'))
+app.add_url_rule('/deleteasesame',view_func=DeleteASesame.as_view('deleteasesame'))
+
+
+
+
 if __name__=='__main__':
 	app.run()
 @app.teardown_request
 def logit():
-	if not request.url.findall('notifyget')>0:
+	if not request.url.find_all('notifyget')>0:
 		notify_m(content='动作：'+str(request.url)+"地址："+str(request.remote_addr))
 
 @app.errorhandler(404)

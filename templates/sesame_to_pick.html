@@ -1,0 +1,116 @@
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}
+
+{% block blewscript %}
+<script>
+function pickSesameModal(id){
+  var source   = $("#picksesame-template").html();
+  var template = Handlebars.compile(source);
+  var context = {id: id};
+ var html    = template(context);
+  $('body').append(html);
+  $('#pickSesameModal').modal('show');
+
+
+};
+function pickAsesame(id){
+  var id=id;
+var request = $.ajax({
+  url: "pickasesame",
+  type: "POST",
+  data: 'id='+id+'&due='+$('#due').val(),
+});
+
+request.done(function(msg) {
+if(msg=='ok'){
+  $('#cell-'+id).remove();
+  humane.log('领取成功');
+
+};
+if(msg=='picked'){
+  $('#cell-sesame').remove();
+  humane.log('下手晚了，已经被人领取过了！')
+}
+
+$('#pickSesameModal').modal('toggle').remove();
+
+
+});
+
+request.fail(function(jqXHR, textStatus) {
+ humane.log('error');
+});
+};
+</script>
+{% endblock %}
+
+{% block body %}
+{% raw %}
+<script id="picksesame-template" type="text/x-handlebars-template">
+
+<div class="modal hide" id="pickSesameModal">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>领取线索</h3>
+    </div>
+    <div class="modal-body">
+    <p> 
+      <input type="hidden" id='id' value='{{id}}'> 
+        <input type="text" id='due' value='' placeholder='格式：2012-02-02'> </p>
+    </div>
+    <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a href="javascript:pickAsesame('{{id}}');" class="btn btn-primary">Pick</a>
+    </div>
+    </div>
+</script>
+
+
+{% endraw%}
+<div id="accordion2" class="accordion well ">
+	<div class="header"><div style="float: left; display: inline-block; margin-right: 10px; margin-bottom: 10px;"></div><div class="fr f12"><span class="snow"></span> <strong class="gray">Raven</strong> <span class="snow">&nbsp;•&nbsp;</span> <a href=""></a></div><a href="/">原创线索</a> <span class="chevron">&nbsp;›&nbsp;</span> 领取原创线索
+    
+    <div class="sep10"></div>
+    <span class="f12 gray">点击Pick，填写预计的完成时间。</span>
+    
+    
+    <div class="sep10"></div>
+    
+    </div>
+  {% for x in res%}
+  <div class="cell" id='cell-{{x.id}}'>
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+              <tr>
+                <td width="48" valign="top" align="center"><img border="0" align="default" auto="" src="static/img/article.png"></td>
+                <td width="10"></td>
+                <td width="auto" href="#{{x.id}}" valign="middle" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle"><span class="item_title">{{x.title}}</span>
+                <div class="sep5"></div>
+                <span class="small "><strong>About:</strong> &nbsp;•&nbsp; {{x.indate}} &nbsp;•&nbsp; {{x.cat}}</span>
+                </td>
+                <td width="50" valign="middle" align="right">
+                    
+                    <a class=" btn" href="javascript:pickSesameModal('{{x.id}}');">Pick</a>
+                    
+                </td>
+            </tr>
+           
+            <tr >
+              <td>
+              </td>
+              <td></td>
+<td>
+              <div class="accordion-body  collapse" id="{{x.id}}" >
+                
+                  {{x.content|safe}}
+
+                </div>
+              </td>
+            </tr>
+        </tbody></table>
+    </div>
+          
+       
+         {% endfor %}
+          </div>
+{% endblock %}

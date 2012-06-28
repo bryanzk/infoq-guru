@@ -3,19 +3,20 @@
 
 {% block blewscript %}
 <script>
-function pickOneModal(id){
-  var source   = $("#pickbean-template").html();
+function doneSesameModal(id){
+  var source   = $("#doneSesame-template").html();
   var template = Handlebars.compile(source);
   var context = {id: id};
  var html    = template(context);
   $('body').append(html);
-  $('#pickModal-'+id).modal('show');
+  $('#sesameModal-'+id).modal('show');
 
 
 };
-function pickDone(id){
+function sesameDone(id){
+  var id=id;
 var request = $.ajax({
-  url: "doneabean",
+  url: "doneasesame",
   type: "POST",
   data: 'id='+id+'&guid='+$('#guid-'+id).val()+'&count='+$('#count-'+id).val(),
 });
@@ -27,7 +28,7 @@ if(msg=='ok'){
 
 };
 
-$('#pickModal-'+id).modal('toggle').remove();
+$('#sesameModal-'+id).modal('toggle').remove();
 
 
 });
@@ -41,12 +42,12 @@ request.fail(function(jqXHR, textStatus) {
 
 {% block body %}
 {% raw %}
-<script id="pickbean-template" type="text/x-handlebars-template">
+<script id="doneSesame-template" type="text/x-handlebars-template">
 
-<div class="modal hide" id="pickModal-{{id}}">
+<div class="modal hide" id="sesameModal-{{id}}">
     <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>完成新闻</h3>
+    <h3>完成线索</h3>
     </div>
     <div class="modal-body">
     <p> 
@@ -55,7 +56,7 @@ request.fail(function(jqXHR, textStatus) {
     </div>
     <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="javascript:pickDone('{{id}}');" class="btn btn-primary">完成</a>
+    <a href="javascript:sesameDone('{{id}}');" class="btn btn-primary">完成</a>
     </div>
     </div>
 </script>
@@ -63,10 +64,10 @@ request.fail(function(jqXHR, textStatus) {
 
 {% endraw%}
 <div id="accordion2" class="accordion  well">
-	<div class="header"><div style="float: left; display: inline-block; margin-right: 10px; margin-bottom: 10px;"></div><div class="fr f12"><span class="snow"></span> <strong class="gray">Raven</strong> <span class="snow">&nbsp;•&nbsp;</span> <a href=""></a></div><a href="/">翻译新闻</a> <span class="chevron">&nbsp;›&nbsp;</span> 提交领取的新闻
+	<div class="header"><div style="float: left; display: inline-block; margin-right: 10px; margin-bottom: 10px;"></div><div class="fr f12"><span class="snow"></span> <strong class="gray">Raven</strong> <span class="snow">&nbsp;•&nbsp;</span> <a href=""></a></div><a href="/">原创线索</a> <span class="chevron">&nbsp;›&nbsp;</span> 提交领取的线索
     
     <div class="sep10"></div>
-    <span class="f12 gray">点击Done，填写新闻地址，必须按照格式、字数，完成新闻。</span>
+    <span class="f12 gray">点击Done，填写文章发布的地址，必须按照格式、字数，提交。</span>
     
     
     <div class="sep10"></div>
@@ -77,15 +78,15 @@ request.fail(function(jqXHR, textStatus) {
         <table width="100%" cellspacing="0" cellpadding="0" border="0">
             <tbody>
               <tr>
-                <td width="48" valign="top" align="center"><img border="0" align="default" auto="" src="static/img/news.png"></td>
+                <td width="48" valign="top" align="center"><img border="0" align="default" auto="" src="static/img/article.png"></td>
                 <td width="10"></td>
-                <td width="auto" href="#{{x.BeanList.id}}" valign="middle" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle"><span class="item_title">【{{x.BeanList.jack}}】{{x.RssInfo.title}}</span>
+                <td width="auto" href="#{{x.id}}" valign="middle" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle"><span class="item_title">{{x.title}}</span>
                 <div class="sep5"></div>
-                <span class="small "><strong>About:</strong> &nbsp;•&nbsp; {{x.RssInfo.pubdate}} &nbsp;•&nbsp; {{x.RssInfo.category}}</span>
+                <span class="small "><strong>About:</strong> &nbsp;•&nbsp; {{x.indate}} &nbsp;•&nbsp; {{x.cat}}</span>
                 </td>
                 <td width="50" valign="middle" align="right">
                     
-                   <!-- <a class=" btn" href="javascript:pickOneModal('{{x.BeanList.id}}');">完成</a>-->
+                    <a class=" btn" href="javascript:doneSesameModal('{{x.id}}');">完成</a>
                     
                 </td>
             </tr>
@@ -95,9 +96,9 @@ request.fail(function(jqXHR, textStatus) {
               </td>
               <td></td>
 <td>
-              <div class="accordion-body  collapse" id="{{x.BeanList.id}}" >
+              <div class="accordion-body  collapse" id="{{x.id}}" >
                 
-                  {{x.RssInfo.description|safe}}
+                  {{x.content|safe}}
 
                 </div>
               </td>

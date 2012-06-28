@@ -160,6 +160,12 @@ path.area {
                <li><a id='num-taskadd' href="beannewstodone">提交新闻</a></li>
            
 
+                            <li class='nav-header'><h4><i  class="icon-star icon-black"></i>原创线索</h4></li>
+              <li><a id='num-taskadd' href="sesametopick">领取线索</a></li>
+               <li><a id='num-taskadd' href="sesametodone">提交完成</a></li>
+           
+
+
  <li class='nav-header'><h4><i  class="icon-star icon-black"></i>工作量</h4></li>
               <li><a id='num-taskadd' href="editorcountall">工作量录入以及分享</a></li>
                             <li><a id='num-taskadd' href="contentdashboard">概览</a></li>
@@ -245,6 +251,8 @@ path.area {
           <script src="static/js/show_trends.js"></script>
            <script src="static/js/humane.js"></script>
            <script src="static/js/bootstrap-collapse.js"></script>
+           <script src="static/js/shortcuts.js"></script>
+           <script src="static/js/handlebars.js"></script>
 
   <script src="static/js/bootstrap-tab.js"></script>
     <script src="static/js/bootstrap-typehead.js"></script>
@@ -261,7 +269,8 @@ path.area {
    
     });
             waitForMsg();
-
+key('ctrl+m', function(){ showNotify();});
+key('ctrl+c', function(){ showClue();});
       $("#joyRideTipContent").hide();
       $("#show-guide").click(function(){
         <!-- fix the error when click help comes two or more guides-->
@@ -305,40 +314,127 @@ path.area {
     
     });
     </script>
+    <script type="text/javascript">
+      function showNotify(){
+  var source   = $("#notify-template").html();
+  var template = Handlebars.compile(source);
+  var context = {id: ''};
+ var html    = template(context);
+  $('body').append(html);
+  $('#notifyModal').modal('show');
+
+};
+
+     function showClue(){
+  var source   = $("#clue-template").html();
+  var template = Handlebars.compile(source);
+  var context = {id: ''};
+ var html    = template(context);
+  $('body').append(html);
+  $('#clueModal').modal('show');
+
+};
+
+
+ function addAClue(){
+var request = $.ajax({
+  url: "addasesame",
+  type: "POST",
+  data: 'title='+$('#clue-title').val()+'&content='+$('#clue-content').val()+"&cat="+$('#clue-cat option:selected').val(),
+});
+
+request.done(function(msg) {
+if(msg=='ok'){
+ 
+  humane.log('ok');
+
+};
+
+$('#clueModal').modal('toggle').remove();
+
+
+});
+
+request.fail(function(jqXHR, textStatus) {
+ humane.log('error');
+});
+};
+
+      function notifyThem(){
+var request = $.ajax({
+  url: "notifythem",
+  type: "POST",
+  data: 'to='+$('#clue-to').val()+'&content='+$('#notify-content').val(),
+});
+
+request.done(function(msg) {
+if(msg=='ok'){
+ 
+  humane.log('ok');
+
+};
+
+$('#notifyModal').modal('toggle').remove();
+
+
+});
+
+request.fail(function(jqXHR, textStatus) {
+ humane.log('error');
+});
+};
+
+    </script>
     
-    
-<div class="modal hide fade" id="feedbackModal" style="display:none;">
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">×</a>
-    <h3>Feedback</h3>
-  </div>
-  <div class="modal-body">
+<script id="notify-template" type="text/x-handlebars-template">
 
-      <input type="text" id='feedback-title' name='title' class="input-small span5" placeholder="title">
-      <br/>
-      <textarea id='feedback-content' name='content' class='span5'></textarea>
-      <br/>
-      <button  id='feedback-btn' class="btn">提交</button>
+<div class="modal hide" id="notifyModal">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>发送信息</h3>
+    </div>
+    <div class="modal-body">
+    <p> 
+      <input type="text" id='notify-to' value='' > 
+      <hr/>
+        <textarea  id='notify-content' value=''  placeholder=''>   </textarea>
+         </p>
+    </div>
+    <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a href="javascript:notifyThem();" class="btn btn-primary">发送</a>
+    </div>
+    </div>
+</script>
 
-  </div>
-</div>
+<script id="clue-template" type="text/x-handlebars-template">
 
-<div class="modal hide fade" id="loginModal" style="display:none;">
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">×</a>
-    <h3>登录</h3>
-  </div>
-  <div class="modal-body">
-    <form class="well form-inline" action='login' method='post'>
-      <input type="text" name='user' class="input-small span2" placeholder="用户名">
-      <input type="password" name='pwd' class="input-small span2" placeholder="密码">
-      
-      <button type="submit" class="btn">登录</button>
-  </form>
-  </div>
-  <div class="modal-footer">
-    <p><span class="label label-success">tips</span>忘记密码?申请账号!请联系Arthur</p>
-  </div>
-</div>
+<div class="modal hide" id="clueModal">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>添加线索</h3>
+    </div>
+    <div class="modal-body">
+    <p> 
+      <input type="text" id='clue-title' value='' > 
+      <select width='48px'  class=' span2 ' id='clue-cat' name='main_cat'>
+                  <option value='yy'>语言&开发</opion>
+                  <option value='jg'>架构&设计</opion>
+                  <option value='gc'>过程&实践</opion>
+                  <option value='yw'>运维&基础架构</opion>
+                  <option value='qy'>企业架构</opion>
+                </select>
+      <hr/>
+        <textarea  id='clue-content' value=''  placeholder=''>   </textarea>
+         </p>
+    </div>
+    <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a href="javascript:addAClue();" class="btn btn-primary">发送</a>
+    </div>
+    </div>
+</script>
+{% block blewscript%}
+{% endblock%}
   </body>
 </html>
