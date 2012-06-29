@@ -14,6 +14,7 @@ function pickOneModal(id){
 
 };
 function pickDone(id){
+var id=id;
 var request = $.ajax({
   url: "doneabean",
   type: "POST",
@@ -73,7 +74,7 @@ request.fail(function(jqXHR, textStatus) {
     
     </div>
   {% for x in res%}
-  <div class="cell" id='cell-{{id}}'>
+  <div class="cell" id='cell-{{x.BeanList.id}}'>
         <table width="100%" cellspacing="0" cellpadding="0" border="0">
             <tbody>
               <tr>

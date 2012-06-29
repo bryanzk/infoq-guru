@@ -1,0 +1,51 @@
+name: infoqhelp
+version: 2
+cron:
+    - description: rssen
+	  url: rssen
+	  schedule: every 1 hours
+	  timezone: Beijing
+    - description: rssch
+	  url: rssch
+	  schedule: every 1 hours
+	  timezone: Beijing
+    - description: mailen
+	  url: mailen
+	  schedule: every day of month 09:20
+	  timezone: Beijing
+    - description: mailweibo
+	  url: wpmail
+	  schedule: every day of month 18:00
+	  timezone: Beijing
+    - description: mailch
+	  url: mailch
+	  schedule: every day of month 06:25
+	  timezone: Beijing
+    - description: checkget
+	  url: wpcheck
+	  schedule: every 1 hours
+	  timezone: Beijing
+     - description: send simlemail
+   	  url: /
+          schedule: 0 17 * *  4
+          timezone: Beijing
+    - description: send invoice mail
+          url: invoicemail
+          schedule: 0 17 21,22,23,24,25  *  1,2,3,4,5,6,0
+          timezone: Beijing
+      - description: send bryan mail
+          url: mailbryan
+          schedule: every monday of month 11:30
+          timezone: Beijing
+      - description: send duty mail
+          url: dutymail
+          schedule: every monday of month 14:00
+          timezone: Beijing
+      - description: send db mail
+          url: maildb
+          schedule: every day of month 16:00
+          timezone: Beijing
+      - description: send clue mail
+          url: trellosend
+          schedule: every day of month 10:30
+          timezone: Beijing

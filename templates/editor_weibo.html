@@ -1,5 +1,6 @@
-{% extends 'base.html' %}
-{% block body %}
+{% set base_cat = 'base_'+session['user'].cat+'.html' %}
+{% extends base_cat %}{% block body %}
+
 <div class="row-fluid">
    
  <form  id='addtable'class="form-horizontal" method='post' action='editorweibo'>

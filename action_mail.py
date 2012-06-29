@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-import os
-if 'SERVER_SOFTWARE' in os.environ:
+if if 'SERVER_SOFTWARE' in os.environ:
     # Local
 	from config import *
 	from sae.mail import send_mail

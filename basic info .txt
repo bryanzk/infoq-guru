@@ -1,0 +1,3 @@
+'''
+rss 获取地址 http://www.infoq.com/rss/rss.action?token=v94n6E2kapoNhNXc9EWTYRXoOoLLHX5S
+'''

@@ -6,14 +6,23 @@
 function pickOneModal(id){
   var source   = $("#pickbean-template").html();
   var template = Handlebars.compile(source);
-  var context = {id: id};
+  var myDate = new Date();
+ var da=myDate.getFullYear()+'-'+myDate.getMonth()+'-'+myDate.getDate();
+  var context = {id: id,date:da};
  var html    = template(context);
   $('body').append(html);
   $('#pickModal-'+id).modal('show');
-
+  $('#due').val(da);
+ $('.date-picker').datepicker({
+   format: 'yyyy-mm-dd'
+ }).on('show',function(){
+ 	$('#due-'+id).val(da);
+ });
+                        
 
 };
 function pickDone(id){
+var id=id;
 var request = $.ajax({
   url: "pickabean",
   type: "POST",
@@ -22,8 +31,9 @@ var request = $.ajax({
 
 request.done(function(msg) {
 if(msg=='ok'){
-  $('#cell-'+id).remove();
+
   humane.log('领取成功');
+    $('#cell-'+id).remove();
 
 };
 if(msg=='picked'){
@@ -55,7 +65,7 @@ request.fail(function(jqXHR, textStatus) {
     <div class="modal-body">
     <p> 
       <input type="hidden" id='id-{{id}}' value='{{id}}'> 
-        <input type="text" id='due-{{id}}' value='' placeholder='格式：2012-02-02'> </p>
+        <input type="text" id='due-{{id}}' value='' class='date-picker' data-date="{{date}}"> </p>
     </div>
     <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
@@ -77,7 +87,7 @@ request.fail(function(jqXHR, textStatus) {
     
     </div>
   {% for x in res%}
-  <div class="cell" id='cell-{{id}}'>
+  <div class="cell" id='cell-{{x.BeanList.id}}'>
         <table width="100%" cellspacing="0" cellpadding="0" border="0">
             <tbody>
               <tr>
@@ -87,9 +97,10 @@ request.fail(function(jqXHR, textStatus) {
                 <div class="sep5"></div>
                 <span class="small "><strong>About:</strong> &nbsp;•&nbsp; {{x.RssInfo.pubdate}} &nbsp;•&nbsp; {{x.RssInfo.category}}</span>
                 </td>
-                <td width="50" valign="middle" align="right">
-                    
-                    <a class=" btn" href="javascript:pickOneModal('{{x.BeanList.id}}');">Pick</a>
+                <td width="100" valign="middle" align="right">
+                    <div class="btn-group">
+                    <a class=" btn btn-primary" href="javascript:pickOneModal('{{x.BeanList.id}}');">领取</a>
+                      <a class=" btn " href="{{x.RssInfo.guid}}" target='_blank'>查看</a></div>
                     
                 </td>
             </tr>
@@ -99,6 +110,7 @@ request.fail(function(jqXHR, textStatus) {
               </td>
               <td></td>
 <td>
+  <hr/>
               <div class="accordion-body  collapse" id="{{x.BeanList.id}}" >
                 
                   {{x.RssInfo.description|safe}}

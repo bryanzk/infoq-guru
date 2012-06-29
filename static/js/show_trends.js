@@ -1,3 +1,41 @@
+     function showClue(){
+  var source   = $("#clue-template").html();
+  var template = Handlebars.compile(source);
+  var context = {id: ''};
+ var html    = template(context);
+  $('body').append(html);
+  $('#clueModal').modal('show');
+
+};
+
+
+ function addAClue(){
+var request = $.ajax({
+  url: "addasesame",
+  type: "POST",
+  data: 'title='+$('#clue-title').val()+'&content='+$('#clue-content').val()+"&cat="+$('#clue-cat option:selected').val(),
+});
+
+request.done(function(msg) {
+if(msg=='ok'){
+ 
+  humane.log('ok');
+
+};
+
+$('#clueModal').modal('toggle').remove();
+
+
+});
+
+request.fail(function(jqXHR, textStatus) {
+ humane.log('error');
+});
+};
+
+
+
+
 function waitForMsg(){
         /* This requests the url "msgsrv.php"
         When it complete (or errors)*/
@@ -6,23 +44,24 @@ function waitForMsg(){
             url: "notifyget",
             async: true, /* If set to non-async, browser shows page as "Loading.."*/
             cache: false,
-            timeout:50000, /* Timeout in ms */
+            timeout:3000, /* Timeout in ms */
             success: function(data){ /* called when request to barge.php completes */
               if(data!=''){
+              humane.timeout = 5000 ;
                 humane.log(data);
               }
                 setTimeout(
                     'waitForMsg()', /* Request next message */
-                    5000 /* ..after 1 seconds */
+                    10000 /* ..after 1 seconds */
                 );
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
 
               humane.clickToClose = true // default: false
-                humane.log('error');
+                //humane.log('error');
                 setTimeout(
                     'waitForMsg()', /* Try again after.. */
-                    "15000"); /* milliseconds (15seconds) */
+                    "150000"); /* milliseconds (15seconds) */
             }
         });
     };

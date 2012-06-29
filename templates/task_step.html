@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block script %}
+var this_status;
+$("tr").click(function(){
+  $('#status-id').val($(this).attr('status'));
+  $("#task-id").val($(this).attr('id'));
+  $("#code").val($(this).attr('code'));
+	$.ajax({
+		type: "post",
+		url: "taskstepinfo",
+		data: 'task_id='+$(this).attr('id'),
+		beforeSend: function(XMLHttpRequest){
+			//ShowLoading();
+		},
+		success: function(data, textStatus){
+			$("#task-info").html("<p>title:"+data.title+"<br>link:"+data.link+"</p>");
+      $("#input-duty").val(data.duty);
+		},
+		complete: function(XMLHttpRequest, textStatus){
+			//HideLoading();
+		},
+		error: function(){
+			//请求出错处理
+		}
+});
+})
+{% endblock%}
+{% block body %}
+<form class="form-horizontal" method='post' action='taskstep'>
+        <fieldset>
+          <legend>Step task</legend>
+          <input type='hidden' name='status_id' id='status-id' value=''>
+          <input type='hidden' name='task_id'id='task-id' value=''>
+          <input type='hidden' id='code' name='code' value=''>
+          <div class="control-group well" id='task-info'>
+          </div>
+          <div class="control-group">
+            <label for="input05" class="control-label">约定时间</label>
+            <div class="controls">
+              <input type="text" id="input05" name='contrast' >
+              <p class="help-block">输入文章的标题</p>
+            </div>
+          </div>
+          <div class="control-group">
+            <label for="input05" class="control-label">负责编辑</label>
+            <div class="controls">
+              <input type="text" id="input-duty" name='duty' >
+              <p class="help-block">输入文章的标题</p>
+            </div>
+          </div>
+          <div class="control-group">
+            <label for="input06" class="control-label">领取人</label>
+            <div class="controls">
+              <input type="text" id="input-editor" name='editor' >
+              <p class="help-block">输入文章的标题</p>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>code</th>
+      <th>开始时间</th>
+      <th>结束时间</th>
+      <th>负责人</th>
+      <th>领取人</th>
+    </tr>
+  </thead>
+  <!--
+max_1 0
+id 1
+task_id 2
+code 3
+desc 4
+begin 5
+end 6
+contrast 7
+editor 8
+duty
+-->
+  <tbody>
+  	{%for x in use_list%}
+    <tr id='{{x[2]}}' status='{{x[1]}}' code='{{x[3]}}'>
+
+      <td class='status-code'>
+        {% if x[3]==664 %}
+        已创建
+      {% elif x[3]==737 %}
+      已领取
+      {% elif x[3]==780 %}
+      已审核
+      {% else %}
+      {{x[3]}}
+      {% endif %}</td>
+      <td >{{x[4]}}</td>
+      <td>{{x[5]}}</td>
+      <td>{{x[7]}}</td>
+      <td>{{x[6]}}</td>
+    </tr>
+    {% endfor%}
+  </tbody>
+</table>
+{% endblock %}

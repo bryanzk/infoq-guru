@@ -10,16 +10,15 @@ from action_check import *
 from action_top import *
 from action_smile import *
 from action_feedback import *
+from action_meiju import *
 from action_timeline import *
+from action_mag import *
 from action_jingyao import *
 from action_expert import *
 from action_clue import *
 from action_editor2 import *
 from action_count import *
-from action_index import *
-from action_bean import *
-from action_notify import *
-from action_sesame import *
+
 from config import *
 
 app = Flask(__name__)
@@ -38,12 +37,8 @@ app.add_url_rule('/edone',view_func=EditorAbout.as_view('adone'))
 app.add_url_rule('/mail',view_func=MailView.as_view('mail'))
 app.add_url_rule('/mailen',view_func=MailEnView.as_view('mailen'))
 app.add_url_rule('/mailch',view_func=MailChView.as_view('maailch'))
-
 app.add_url_rule('/login',view_func=UserLogin.as_view('login'))
 app.add_url_rule('/error',view_func=ErrorView.as_view('error'))
-
-
-
 app.add_url_rule('/mailadd',view_func=MailAddView.as_view('madiladd'))
 app.add_url_rule('/maildel',view_func=MailDeleteView.as_view('maildel'))
 app.add_url_rule('/editor',view_func=EditorView.as_view('editor'))
@@ -66,7 +61,9 @@ app.add_url_rule('/smilemail',view_func=SmileMail.as_view('smilemail'))
 app.add_url_rule('/invoicemail',view_func=InvoiceMail.as_view('invoicemail'))
 app.add_url_rule('/urltop',view_func=TopView2.as_view('topviewurl'))
 app.add_url_rule('/feedback',view_func=FeedbackView.as_view('feedbackview'))
+app.add_url_rule('/meiju',view_func=MeijuView.as_view('meiju'))
 
+app.add_url_rule('/mag',view_func=MagView.as_view('mag'))
 
 app.add_url_rule('/timeline',view_func=TimeLine.as_view('timeline'))
 app.add_url_rule('/timelinedata',view_func=TimeLineData.as_view('timelinedata'))
@@ -128,52 +125,10 @@ app.add_url_rule('/maildb',view_func=DashboardMail.as_view('dashboardmail'))
 
 
 
-app.add_url_rule('/notifyget',view_func=NotifyGet.as_view('getnotify'))
-app.add_url_rule('/notifycenter',view_func=NotifyCenter.as_view('notifycenter'))
-app.add_url_rule('/notifythem',view_func=NotifyThem.as_view('notifythem'))
-
-
-app.add_url_rule('/editor-index',view_func=EditorIndex.as_view('editorindex'))
-app.add_url_rule('/beannewspick',view_func=NewsBeanToPick.as_view('beannewspick'))
-app.add_url_rule('/pickabean',view_func=PickABean.as_view('pickabean'))
-app.add_url_rule('/_beans',view_func=Convet_Beans.as_view('convetbeans'))
-app.add_url_rule('/beannewstodone',view_func=NewsBeanToDone.as_view('beannewstodone'))
-app.add_url_rule('/doneabean',view_func=DoneABean.as_view('doneabean'))
-app.add_url_rule('/beanpending',view_func=BeanPendingNews.as_view('pendingbeans'))
-
-
-app.add_url_rule('/core-index',view_func=GofIndex.as_view('coreindex'))
-app.add_url_rule('/admin-index',view_func=GofIndex.as_view('adminindex'))
-
-app.add_url_rule('/gof-index',view_func=GofIndex.as_view('gofindex'))
-app.add_url_rule('/gof36notpick',view_func=GOF36NotPickNews.as_view('gof36notpick'))
-app.add_url_rule('/gof36notdone',view_func=GOF36NotDoneNews.as_view('gof36notdone'))
-
-
-app.add_url_rule('/sesametopick',view_func=SesameToPick.as_view('sesamepick'))
-app.add_url_rule('/sesametodone',view_func=SesameToDone.as_view('sesametodon'))
-app.add_url_rule('/pickasesame',view_func=PickASesame.as_view('pickasesame'))
-app.add_url_rule('/doneasesame',view_func=DoneASesame.as_view('doneasesame'))
-app.add_url_rule('/addasesame',view_func=AddASesame.as_view('addasesame'))
-app.add_url_rule('/deleteasesame',view_func=DeleteASesame.as_view('deleteasesame'))
-
-
-
-
-if __name__=='__main__':
-	app.run()
-@app.teardown_request
-def logit():
-	if not request.url.find_all('notifyget')>0:
-		notify_m(content='动作：'+str(request.url)+"地址："+str(request.remote_addr))
-
 @app.errorhandler(404)
 def page_not_found(e):
-    notify_m(content='出现错误：'+str(request.url)+"地址："+str(request.remote_addr))
     return render_template('404.html'), 404
 @app.errorhandler(500)
 def interal_error(e):
-	notify_m(content='出现错误：'+str(request.url)+"地址："+str(request.remote_addr)+"输入："+str(request.form))
 	return render_template('500.html',msg=str(e)),500
- 
  

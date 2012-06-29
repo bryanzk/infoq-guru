@@ -2,7 +2,7 @@
 {% extends base_cat %}
 
 {% block script%}
-show_trends(850,200,"countweekauthor?author={{author}}", "#trends");
+show_trends(850,200,"http://127.0.0.1:5000/countweekauthor?author={{author}}", "#trends");
 $('.typehead').typeahead();
 {% endblock%}
 {% block body %}
