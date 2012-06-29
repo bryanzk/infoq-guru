@@ -6,10 +6,21 @@
 function pickSesameModal(id){
   var source   = $("#picksesame-template").html();
   var template = Handlebars.compile(source);
-  var context = {id: id};
+var myDate = new Date();
+ var da=myDate.getFullYear()+'-'+myDate.getMonth()+'-'+myDate.getDate();
+  var context = {id: id,date:da};
+  
  var html    = template(context);
   $('body').append(html);
   $('#pickSesameModal').modal('show');
+$('#due').val(da);
+
+ $('.date-picker').datepicker({
+   format: 'yyyy-mm-dd'
+ }).on('show',function(){
+ 	$('#due').val(da);
+ });
+                        
 
 
 };
@@ -56,7 +67,7 @@ request.fail(function(jqXHR, textStatus) {
     <div class="modal-body">
     <p> 
       <input type="hidden" id='id' value='{{id}}'> 
-        <input type="text" id='due' value='' placeholder='格式：2012-02-02'> </p>
+        <input type="text" id='due' value=''class='date-picker' > </p>
     </div>
     <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>

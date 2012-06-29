@@ -82,17 +82,28 @@ path.area {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">InfoQ Helper : beta</a>
+          <a class="brand" href="/core-index">InfoQ Raven : beta</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a id='show-guide' class='label label-info'>帮助</a></li>
+              <li class="active"><a href="/core-index">Home</a></li>
+
                             <li><a  href="mailto:arthur@infoq.com&subject=QA" class=''>Feedback</a></li>
 
             </ul>
             
-            <p class="navbar-text pull-right"  id='num-login'>Logged in as <a href="#">{{session['user'].user}}</a></p>
-           
+            <ul class="nav pull-right">
+             <li><a href="#">{{session['user'].cat}}</a></li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">{{session['user'].user}} <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="logout">退出</a></li>
+                
+                <li class="divider"></li>
+                <li><a href="http://infoq.com/cn">InfoQ</a></li>
+              </ul>
+            </li>
+          </ul>
           
           </div><!--/.nav-collapse -->
         </div>
@@ -110,33 +121,38 @@ path.area {
               <li><a id='num-rsssearch' href="rsssearch">RSS数据查询</a></li>
 
  <li class='nav-header'><h4><i  class="icon-home icon-black"></i>OD</h4></li>
+                             <li><a id='num-taskadd' href="contentdashboard">概览</a></li>
               <li><a id='num-taskadd' href="od">Arthur's OD</a></li>
 
 
  <li class='nav-header'><h4><i  class="icon-star icon-black"></i>内容管理</h4></li>
               <li><a id='num-taskadd' href="setmaincatall">设置领域</a></li>
                 <li><a href="changemaincatall">查看并修改</a></li>
-                            
+
 
 
                             <li class='nav-header'><h4><i  class="icon-star icon-black"></i>翻译新闻</h4></li>
               <li><a id='num-taskadd' href="beannewspick">领取新闻</a></li>
                <li><a id='num-taskadd' href="beannewstodone">提交新闻</a></li>
-
+              <li><a href="beanpending">翻译中</a></li>
                             
+         <li class='nav-header'><h4><i  class="icon-star icon-black"></i>原创线索</h4></li>
+              <li><a id='num-taskadd' href="sesametopick">领取线索</a></li>
+               <li><a id='num-taskadd' href="sesametodone">提交完成</a></li>
+           
 
  <li class='nav-header'><h4><i  class="icon-star icon-black"></i>工作量</h4></li>
-                            <li><a id='num-taskadd' href="contentdashboard">概览</a></li>
+
                 <li><a href='countwall'>编辑总览</a></li>
                                           <li><a id='num-taskadd' href="countsearch">时间段工作量查询</a></li>
                             <li><a id='num-taskadd' href="countauthor">编辑工作量查询</a></li>
-              <li><a id='num-statstep' href="editorweibo">作者微博</a></li>
+
 
 
 
 
  <li class='nav-header'><h4><i  class="icon-fire icon-black"></i>GOF</h4></li>
-              <li><a id='num-taskadd' href="gof36notpick">36小时未领取线索</a></li>
+              <li><a id='num-taskadd' href="gof36notpick">36小时未领取</a></li>
                             <li><a id='num-taskadd' href="gof36notdone">已领取超期</a></li>
                 <li class='nav-header'><h4><i  class="icon-envelope icon-black"></i>通知中心</h4></li>
               <li><a id='num-taskadd' href="notifycenter">查看</a></li>
@@ -157,7 +173,7 @@ path.area {
 
         <div class="alert2 fade in alert">
         
-            <button data-dismiss="alert" class="close" type="button">×</button>
+            <button data-dismiss="alert" class="close fade" type="button">×</button>
             <strong><p class='alertvalue'></p></strong> 
           </div>
                   {% with messages = get_flashed_messages() %}
@@ -206,12 +222,18 @@ path.area {
     <script src="static/js/humane.js"></script>
     <script src="static/js/mustache.js"></script>
     <script src="static/js/handlebars.js"></script>
-
+      <script src='static/js/shortcuts.js'></script>
     <script src="static/js/bootstrap-collapse.js"></script>
               <script src="static/js/sortable.js"></script>
      
     <script>
     $(document).ready(function(){
+    humane.timeout = 5000 ;
+     $('.alert2').hide();
+                           $('.alert2').bind('closed', function () {
+                                         $('.alertvalue').text('');
+   
+    });
       waitForMsg();
 
       $("#joyRideTipContent").hide();
@@ -228,11 +250,7 @@ path.area {
 				format: 'yyyy-mm-dd'
 			});
                         
-                        $('.alert2').hide();
-                           $('.alert2').bind('closed', function () {
-                                         $('.alertvalue').text('');
-   
-    });
+                   
                         
       $("#feedback-btn").click(function(){
       	$.ajax({
@@ -263,38 +281,73 @@ path.area {
     
     {% block blewscript %}
     {% endblock%}
-<div class="modal hide fade" id="feedbackModal" style="display:none;">
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">×</a>
-    <h3>Feedback</h3>
-  </div>
-  <div class="modal-body">
 
-      <input type="text" id='feedback-title' name='title' class="input-small span5" placeholder="title">
-      <br/>
-      <textarea id='feedback-content' name='content' class='span5'></textarea>
-      <br/>
-      <button  id='feedback-btn' class="btn">提交</button>
+<script type="text/javascript">
+  key('ctrl+c', function(){ showClue();});
 
-  </div>
-</div>
 
-<div class="modal hide fade" id="loginModal" style="display:none;">
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">×</a>
-    <h3>登录</h3>
-  </div>
-  <div class="modal-body">
-    <form class="well form-inline" action='login' method='post'>
-      <input type="text" name='user' class="input-small span2" placeholder="用户名">
-      <input type="password" name='pwd' class="input-small span2" placeholder="密码">
-      
-      <button type="submit" class="btn">登录</button>
-  </form>
-  </div>
-  <div class="modal-footer">
-    <p><span class="label label-success">tips</span>忘记密码?申请账号!请联系Arthur</p>
-  </div>
-</div>
+     function showClue(){
+  var source   = $("#clue-template").html();
+  var template = Handlebars.compile(source);
+  var context = {id: ''};
+ var html    = template(context);
+  $('body').append(html);
+  $('#clueModal').modal('show');
+
+};
+
+
+ function addAClue(){
+var request = $.ajax({
+  url: "addasesame",
+  type: "POST",
+  data: 'title='+$('#clue-title').val()+'&content='+$('#clue-content').val()+"&cat="+$('#clue-cat option:selected').val(),
+});
+
+request.done(function(msg) {
+if(msg=='ok'){
+ 
+  humane.log('ok');
+
+};
+
+$('#clueModal').modal('toggle').remove();
+
+
+});
+
+request.fail(function(jqXHR, textStatus) {
+ humane.log('error');
+});
+};
+
+</script>
+<script id="clue-template" type="text/x-handlebars-template">
+
+<div class="modal hide" id="clueModal">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>添加线索</h3>
+    </div>
+    <div class="modal-body">
+    <p> 
+      <input type="text" id='clue-title' value='' > 
+      <select width='48px'  class=' span2 ' id='clue-cat' name='main_cat'>
+                  <option value='yy'>语言&开发</opion>
+                  <option value='jg'>架构&设计</opion>
+                  <option value='gc'>过程&实践</opion>
+                  <option value='yw'>运维&基础架构</opion>
+                  <option value='qy'>企业架构</opion>
+                </select>
+      <hr/>
+        <textarea  id='clue-content' value='' class='span5' placeholder=''>   </textarea>
+         </p>
+    </div>
+    <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a href="javascript:addAClue();" class="btn btn-primary">发送</a>
+    </div>
+    </div>
+</script>
   </body>
 </html>

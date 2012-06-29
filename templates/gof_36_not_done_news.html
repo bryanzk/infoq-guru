@@ -82,7 +82,7 @@ request.fail(function(jqXHR, textStatus) {
                 <td width="10"></td>
                 <td width="auto" href="#{{x.BeanList.id}}" valign="middle" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle"><span class="item_title">【{{x.BeanList.jack}}】{{x.RssInfo.title}}</span>
                 <div class="sep5"></div>
-                <span class="small "><span class="label">发布时间：</span>{{x.RssInfo.pubdate}}<span class="label label-warning">领取时间  </span>{{x.BeanList.pickdate}}<span class="label label-success">承诺时间</span><hr/>领域： {{x.RssInfo.category}}</span>
+                  <span class="small "><span class="label">发布时间&nbsp;</span>{{x.RssInfo.pubdate}}&nbsp;&nbsp;<span class="label label-warning">领取时间 &nbsp; </span>{{x.BeanList.pickdate}}&nbsp;&nbsp;<span class="label label-success">承诺时间&nbsp;</span>{{x.BeanList.duedate}}<br/><br/><strong>领域：</strong> {{x.RssInfo.category}}</span>
                 </td>
                 <td width="150" valign="middle" style="padding-bottom:30px;"align="right">
                     <div class="btn-group">
@@ -98,7 +98,7 @@ request.fail(function(jqXHR, textStatus) {
               </td>
               <td></td>
 <td>
-              <div class="accordion-body  collapse" id="{{x.BeanList.id}}" >
+  <div class="accordion-body  collapse" id="{{x.BeanList.id}}" style="background-color:white;margin-top:5px;padding-left:5px;">
                 
                   {{x.RssInfo.description|safe}}
                   

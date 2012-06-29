@@ -82,7 +82,7 @@ path.area {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">InfoQ Helper : beta</a>
+          <a class="brand" href="/">InfoQ Raven : beta</a>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
@@ -91,8 +91,19 @@ path.area {
 
             </ul>
             
-            <p class="navbar-text pull-right"  id='num-login'>Logged in as <a href="#">{{session['user'].user}}</a></p>
-           
+               <ul class="nav pull-right">
+             <li><a href="#">{{session['user'].cat}}</a></li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">{{session['user'].user}} <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="logout">退出</a></li>
+                
+                <li class="divider"></li>
+                <li><a href="http://infoq.com/cn">InfoQ</a></li>
+              </ul>
+            </li>
+          </ul>
           
           </div><!--/.nav-collapse -->
         </div>
@@ -111,20 +122,17 @@ path.area {
                <li><a id='num-taskadd' href="beannewstodone">提交新闻</a></li>
 
  <li class='nav-header'><h4><i  class="icon-fire icon-black"></i>GOF</h4></li>
-              <li><a id='num-taskadd' href="gof36notpick">36小时未领取线索</a></li>
+              <li><a id='num-taskadd' href="gof36notpick">36小时未领取</a></li>
                             <li><a id='num-taskadd' href="gof36notdone">已领取超期</a></li>
                 <li class='nav-header'><h4><i  class="icon-envelope icon-black"></i>通知中心</h4></li>
               <li><a id='num-taskadd' href="notifycenter">查看</a></li>
 
                          
-                         
-<!--              <li><a id='num-staticrss' href="urltop">url转为可读数据</a></li>
-              <li class="nav-header"><h4><i class="icon-home icon-black"></i>发布文章编辑</h4></li>
-              <li><a id='num-editor' href="editor">编辑器</a></li>
-              <li class="nav-header"><h4><i class="icon-star icon-black"></i>编辑关系管理</h4></li>
-              <li><a href="edone">编辑</a></li>
-              <li><a href='edall'>编辑汇总</a></li>
-              -->
+         <li class='nav-header'><h4><i  class="icon-star icon-black"></i>原创线索</h4></li>
+              <li><a id='num-taskadd' href="sesametopick">领取线索</a></li>
+               <li><a id='num-taskadd' href="sesametodone">提交完成</a></li>
+           
+
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -187,6 +195,11 @@ path.area {
      
     <script>
     $(document).ready(function(){
+      $('.alert2').hide();
+                           $('.alert2').bind('closed', function () {
+                                         $('.alertvalue').text('');
+   
+    });
       waitForMsg();
 
       $("#joyRideTipContent").hide();
@@ -203,11 +216,7 @@ path.area {
 				format: 'yyyy-mm-dd'
 			});
                         
-                        $('.alert2').hide();
-                           $('.alert2').bind('closed', function () {
-                                         $('.alertvalue').text('');
-   
-    });
+                      
                         
       $("#feedback-btn").click(function(){
       	$.ajax({

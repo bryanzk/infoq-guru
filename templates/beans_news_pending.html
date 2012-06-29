@@ -63,10 +63,10 @@ request.fail(function(jqXHR, textStatus) {
 
 {% endraw%}
 <div id="accordion2" class="accordion  well">
-	<div class="header"><div style="float: left; display: inline-block; margin-right: 10px; margin-bottom: 10px;"></div><div class="fr f12"><span class="snow"></span> <strong class="gray">Raven</strong> <span class="snow">&nbsp;•&nbsp;</span> <a href=""></a></div><a href="/">翻译新闻</a> <span class="chevron">&nbsp;›&nbsp;</span> 提交领取的新闻
+	<div class="header"><div style="float: left; display: inline-block; margin-right: 10px; margin-bottom: 10px;"></div><div class="fr f12"><span class="snow"></span> <strong class="gray">Raven</strong> <span class="snow">&nbsp;•&nbsp;</span> <a href=""></a></div><a href="/">翻译新闻</a> <span class="chevron">&nbsp;›&nbsp;</span>翻译中
     
     <div class="sep10"></div>
-    <span class="f12 gray">点击Done，填写新闻地址，必须按照格式、字数，完成新闻。</span>
+    <span class="f12 gray">查看</span>
     
     
     <div class="sep10"></div>
@@ -81,7 +81,7 @@ request.fail(function(jqXHR, textStatus) {
                 <td width="10"></td>
                 <td width="auto" href="#{{x.BeanList.id}}" valign="middle" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle"><span class="item_title">【{{x.BeanList.jack}}】{{x.RssInfo.title}}</span>
                 <div class="sep5"></div>
-                <span class="small "><strong>About:</strong> &nbsp;•&nbsp; {{x.RssInfo.pubdate}} &nbsp;•&nbsp; {{x.RssInfo.category}}</span>
+                <span class="small "><strong>发布时间:</strong> &nbsp;•&nbsp; {{x.RssInfo.pubdate}} &nbsp;•&nbsp; <strong>预计时间:</strong> &nbsp;•&nbsp; {{x.BeanList.duedate}} </span>
                 </td>
                 <td width="50" valign="middle" align="right">
                     
