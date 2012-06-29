@@ -4,12 +4,6 @@
 		"selected_items":
 		[
 			[
-<<<<<<< HEAD
-				"res",
-				"results"
-			],
-			[
-=======
 				"fina",
 				"final_guid"
 			],
@@ -114,7 +108,6 @@
 				"get_count_of_cat_week"
 			],
 			[
->>>>>>> backbone-editor
 				"db",
 				"dbSession"
 			],
@@ -139,13 +132,6 @@
 				"render_template"
 			],
 			[
-<<<<<<< HEAD
-				"C",
-				"ClueList"
-			],
-			[
-=======
->>>>>>> backbone-editor
 				"sess",
 				"session"
 			],
@@ -174,13 +160,6 @@
 				"count_month_news"
 			],
 			[
-<<<<<<< HEAD
-				"cou",
-				"count_week"
-			],
-			[
-=======
->>>>>>> backbone-editor
 				"dte",
 				"datetime"
 			],
@@ -209,13 +188,6 @@
 				"Integer"
 			],
 			[
-<<<<<<< HEAD
-				"re",
-				"request"
-			],
-			[
-=======
->>>>>>> backbone-editor
 				"el",
 				"elif"
 			],
@@ -324,13 +296,6 @@
 				"def	Function"
 			],
 			[
-<<<<<<< HEAD
-				"cl",
-				"client"
-			],
-			[
-=======
->>>>>>> backbone-editor
 				"da",
 				"datetime"
 			],
@@ -371,13 +336,6 @@
 				"title"
 			],
 			[
-<<<<<<< HEAD
-				"count",
-				"count_base"
-			],
-			[
-=======
->>>>>>> backbone-editor
 				"c1",
 				"c1author"
 			],
@@ -556,81 +514,6 @@
 			[
 				"task_i",
 				"task_init"
-<<<<<<< HEAD
-			],
-			[
-				"crea",
-				"create_id"
-			],
-			[
-				"str",
-				"String"
-			],
-			[
-				"sesion",
-				"sessionmaker"
-			],
-			[
-				"act",
-				"action_rss"
-			],
-			[
-				"user",
-				"user"
-			],
-			[
-				"USer",
-				"UserListInfo"
-			],
-			[
-				"__",
-				"__tablename__"
-			],
-			[
-				"to",
-				"token"
-			],
-			[
-				"mail",
-				"mail_to"
-			],
-			[
-				"mai",
-				"MailListInfo"
-			],
-			[
-				"MAIL",
-				"MAIL_TO"
-			],
-			[
-				"date",
-				"datetime"
-			],
-			[
-				"MA",
-				"MAIL_TO"
-			],
-			[
-				"ses",
-				"session"
-			],
-			[
-				"_get_data",
-				"_get_data_with_page"
-			],
-			[
-				"_get_t",
-				"_get_time"
-			],
-			[
-				"th",
-				"thead	Tag"
-			],
-			[
-				"for",
-				"form"
-=======
->>>>>>> backbone-editor
 			]
 		]
 	},
@@ -638,13 +521,6 @@
 	[
 		{
 			"file": "myapp.py",
-<<<<<<< HEAD
-			"settings":
-			{
-				"buffer_size": 7113,
-				"line_ending": "Unix"
-			}
-=======
 			"settings":
 			{
 				"buffer_size": 6612,
@@ -706,7 +582,6 @@
 				"buffer_size": 20637,
 				"line_ending": "Unix"
 			}
->>>>>>> backbone-editor
 		}
 	],
 	"build_system": "",
@@ -757,20 +632,6 @@
 	},
 	"file_history":
 	[
-<<<<<<< HEAD
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/myapp.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_task.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_expert.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor2.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/helper_data.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_mail.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_check.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_count.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_change_maincat_all.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_set_maincat_all.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_rss.py",
-=======
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/config.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_user.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/show_trends.js",
@@ -824,59 +685,30 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_check.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_change_maincat_all.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_set_maincat_all.html",
->>>>>>> backbone-editor
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_count_all.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_charts.py",
 		"/Users/Arthur/Library/Application Support/Sublime Text 2/Packages/Alignment/Default (OSX).sublime-keymap",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/static_rss.html",
-<<<<<<< HEAD
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_static.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/config.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_count_show.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_statics.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_search.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_set_maincat.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base.html",
-=======
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_count_show.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_search.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/rss_set_maincat.html",
->>>>>>> backbone-editor
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor_clue.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_mine_done.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_review.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_mine_pending.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_pick.html",
-<<<<<<< HEAD
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_user.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_all.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_clue.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/base_e.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_security.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor_translate.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_week.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_author.html",
-=======
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_clue_all.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_security.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_editor_translate.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_week.html",
->>>>>>> backbone-editor
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/count_wall.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/d3.time.js",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/d3.format.js",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/d3.min.js",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_count_show2.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/worktype",
-<<<<<<< HEAD
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_weibo.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/clear_html.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_clear.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_top.py",
-=======
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/clear_html.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_clear.py",
->>>>>>> backbone-editor
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/trollop/lib.py",
 		"/Users/Arthur/Desktop/hello.html",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/editor_weibo_share.html",
@@ -927,40 +759,7 @@
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/wp_add.html",
 		"/Users/Arthur/Desktop/with_login.py",
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/lab.html",
-<<<<<<< HEAD
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/aboutus.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_mag.py",
-		"/Users/Arthur/Downloads/blasten-turn.js-8b0e272/demos/magazine/index.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/mag_index.html",
-		"/Users/Arthur/Downloads/blasten-turn.js-8b0e272/demos/bible/index.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/js/timeline-embed.js",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/static/data/data.json",
-		"/Users/Arthur/Desktop/VeriteCo-Timeline-18e347a/timeline.js",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/action_aboutus.py",
-		"/Users/Arthur/Documents/GITReps/wenzi/README.markdown",
-		"/Users/Arthur/Downloads/2维码/名片信息(付实）.txt",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/video_timeline.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_video.py",
-		"/Users/Arthur/Desktop/名片信息(1).txt",
-		"/Users/Arthur/Desktop/工作/工作量和稿费统计/以前的/infoqdb.sql",
-		"/Users/Arthur/Desktop/CMS内容发布.txt",
-		"/Users/Arthur/Library/Application Support/Sublime Text 2/Packages/Pylinter/Pylinter.sublime-settings",
-		"/Users/Arthur/Desktop/uninstall-mono.sh",
-		"/Users/Arthur/Desktop/流程",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/action_feedback.py",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/top_urls.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/task_submit.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/task_step.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/charts_weibo.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/error.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/user_login.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/task_add.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/maildel.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/wp_config.html",
-		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/modles.py"
-=======
 		"/Users/Arthur/Documents/GITReps/INFOQHELP/infoq-guru/templates/aboutus.html"
->>>>>>> backbone-editor
 	],
 	"find":
 	{
@@ -980,8 +779,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-<<<<<<< HEAD
-=======
 			"UserList",
 			"id_gen",
 			"id_getn",
@@ -996,7 +793,6 @@
 			"Sub",
 			"1 Comment",
 			"1 Com",
->>>>>>> backbone-editor
 			"StaticWeekContent",
 			"StaticWeekContentsJson",
 			"onfig.RssInfo",
@@ -1043,6 +839,385 @@
 			"崔康",
 			"沙晓兰",
 			"崇桦",
+			">",
+			"data/data",
+			"taylor",
+			"spot",
+			"appspot",
+			"in hyp",
+			":",
+			"</pre>",
+			"<pre>",
+			"getattr",
+			"login()",
+			"url",
+			"dbSession.close()",
+			"）",
+			"（",
+			"dbSession.close()",
+			"(",
+			")",
+			"dbSesion",
+			"热点",
+			"Helper_Data",
+			"WeiboHelper",
+			"_clear_new_list",
+			" );",
+			"wraps",
+			"    ",
+			"1",
+			"joyride()",
+			"royride()",
+			"royride",
+			")",
+			"(",
+			")",
+			"(",
+			"form",
+			"raise",
+			"../assets",
+			"unicode_literals",
+			"Datetime",
+			";width:98pt",
+			" <col width=98 style='mso-width-source:userset;mso-width-alt:10453;width:245pt'>\n <col width=98 style='mso-width-source:userset;mso-width-alt:10453;width:245pt'>",
+			"<col width=98 style='mso-width-source:userset;mso-width-alt:4181;width:98pt'>",
+			"mysql_config.path ",
+			"descendants",
+			"json",
+			"_r"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"<a",
+			"}}",
+			"x.description",
+			"x.guid",
+			"and_",
+			"RssInfo",
+			"like",
+			"：",
+			"",
+			"dbSession",
+			"static",
+			" <col style='mso-width-source:userset;'>\n <col style='mso-width-source:userset;'>\n <col style='mso-width-source:userset;'>\n",
+			" <col style='mso-width-source:userset;'>\n <col style='mso-width-source:userset;'>\n <col style='mso-width-source:userset;'>\n<col style='mso-width-source:userset;'>"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "myapp.py",
+					"settings":
+					{
+						"buffer_size": 6612,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								34,
+								34
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "templates/base_editor.html",
+					"settings":
+					{
+						"buffer_size": 8792,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6445,
+								6465
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2819.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "templates/base.html",
+					"settings":
+					{
+						"buffer_size": 11299,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1220,
+								1220
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 645.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "templates/beans_pick_one.html",
+					"settings":
+					{
+						"buffer_size": 452,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								420,
+								420
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "action_bean.py",
+					"settings":
+					{
+						"buffer_size": 3838,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3828,
+								3828
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 882.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "templates/beans_news_to_pick.html",
+					"settings":
+					{
+						"buffer_size": 2978,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								59,
+								69
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "static/css/humane.css",
+					"settings":
+					{
+						"buffer_size": 20756,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6983,
+								6983
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2776.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "config.py",
+					"settings":
+					{
+						"buffer_size": 20637,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								830,
+								830
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 181.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"action_jingyao.py"
+			],
+			[
+				"hello",
+				"/Users/Arthur/Desktop/in/hello.sh"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/Arthur/Documents/GITReps/INFOQHELP/infoqhelp/infoqhelp.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 222.0,
+	"status_bar_visible": true
+}
+��",
 			">",
 			"data/data",
 			"taylor",

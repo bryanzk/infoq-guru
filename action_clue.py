@@ -7,7 +7,7 @@ TrelloConn = TrelloConnection("47285d38ecf695f600ddabd7978a7355","02a2c4c83e0e47
 Labels={u"\u8bed\u8a00 ":"green",u"\u67b6\u6784 ":"yellow",u"\u8fc7\u7a0b ":"orange",u"\u8fd0\u7ef4 ":"red",u"企业架构":"purple","Done":"blue"}
 CreateDate="https://api.trello.com/1/cards/%s/actions?fileds=date&filter=createCard&key=47285d38ecf695f600ddabd7978a7355&token=02a2c4c83e0e47b6b4d6cc3337d85547fdb9b56d65102188862308aaefec1e49"
 def is_clue_time_ok(id):
-
+	return True
 	import requests
 	d=requests.get(CreateDate%id)
 	tt=json.loads(d.content)
@@ -73,18 +73,16 @@ class TrelloSend(MethodView):
 		for x in lists:
 			i=0
 			if x.name!='Done' and x.name!='Doing' and len(x.cards)>0:
-                        	zz=""
-				zz+=('''<div style="margin-bottom:12px;padding-bottom:11px">
+				hello+=('''<div style="margin-bottom:12px;padding-bottom:11px">
 					<span style="border-bottom:1px solid #dedede;padding-bottom:12px;color:#555;font-size:15px">%s</span>
 				</div>''')%x.name
 				x.cards.reverse()
 				for y in x.cards:
 					if not y.labels and is_clue_time_ok(y.id) :
 						i+=1
-						zz+=(Clue_Body%(("http://infoqhelp.sinaapp.com/trellodone?id=%s&cat=%s")%(y.id,x.name),y.name,'''<a target="_blank" href="http://infoqhelp.sinaapp.com/trellodone?id=%s&cat=%s" style="margin-left:0px;display:inline-block;padding:2px 2px;background-color:#d44b38;color:#fff;font-size:13px;font-weight:bold;border-radius:2px;border:solid 1px #c43b28;white-space:nowrap;text-decoration:none">领取</a>'''%(y.id,x.name),"","<br/>",y.desc))
+						hello+=(Clue_Body%(("http://infoqhelp.sinaapp.com/trellodone?id=%s&cat=%s")%(y.id,x.name),y.name,'''<a target="_blank" href="http://infoqhelp.sinaapp.com/trellodone?id=%s&cat=%s" style="margin-left:10px;display:inline-block;padding:2px 5px;background-color:#d44b38;color:#fff;font-size:13px;font-weight:bold;border-radius:2px;border:solid 1px #c43b28;white-space:nowrap;text-decoration:none">领取</a>'''%(y.id,x.name),"","<br/>",y.desc))
 						#hello+='%d:<a href="http://infoqhelp.sinaapp.com/trellodone?id=%s&cat=%s">【认领】</a> %s<br/> %s<br/><br/>'%(i,y.id,x.name,y.name,y.desc)
 						hello+="<br/><br/>"
-                                                hello+=zz
                                                 break
 		hello+=Clue_End2
 		mail=MailMethod()
@@ -100,20 +98,17 @@ class TrelloSend(MethodView):
 		for x in lists:
 			i=0
 			if x.name!='Done' and x.name!='Doing' and len(x.cards)>0:
-                        	zz=""
-				zz+=('''<div style="margin-bottom:12px;padding-bottom:11px">
+				hello+=('''<div style="margin-bottom:12px;padding-bottom:11px">
 					<span style="border-bottom:1px solid #dedede;padding-bottom:12px;color:#555;font-size:15px">%s</span>
 				</div>''')%x.name
 				x.cards.reverse()
 				for y in x.cards:
 					if not y.labels and is_clue_time_ok(y.id) :
 						i+=1
-						zz+=(Clue_Body%(("http://infoqhelp.sinaapp.com/trellodone?id=%s&cat=%s")%(y.id,x.name),y.name,'''<a target="_blank" href="http://infoqhelp.sinaapp.com/trellodone?id=%s&cat=%s" style="margin-left:0px;display:inline-block;padding:2px 2px;background-color:#d44b38;color:#fff;font-size:13px;font-weight:bold;border-radius:2px;border:solid 1px #c43b28;white-space:nowrap;text-decoration:none">领取</a>'''%(y.id,x.name),"","<br/>",y.desc))
+						hello+=(Clue_Body%(("http://infoqhelp.sinaapp.com/trellodone?id=%s&cat=%s")%(y.id,x.name),y.name,'''<a target="_blank" href="http://infoqhelp.sinaapp.com/trellodone?id=%s&cat=%s" style="margin-left:0px;display:inline-block;padding:2px 2px;background-color:#d44b38;color:#fff;font-size:13px;font-weight:bold;border-radius:2px;border:solid 1px #c43b28;white-space:nowrap;text-decoration:none">领取</a>'''%(y.id,x.name),"","<br/>",y.desc))
 						#hello+='%d:<a href="http://infoqhelp.sinaapp.com/trellodone?id=%s&cat=%s">【认领】</a> %s<br/> %s<br/><br/>'%(i,y.id,x.name,y.name,y.desc)
 						hello+="<br/><br/>"
-                                                hello+=zz
                                                 break
-
 		hello+=Clue_End2
 		mail=MailMethod()
 		mail._send_default(to='core-editors@googlegroups.com',subject="InfoQ新闻线索：%s"%str(datetime.today())[0:10],content=hello)

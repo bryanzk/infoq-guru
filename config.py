@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+#coding: utf-8
+import os
 from bs4 import BeautifulSoup
 if  'SERVER_SOFTWARE' in os.environ:
     from sae.mail import send_mail
@@ -52,7 +53,6 @@ from sqlalchemy.pool import NullPool
 reload(sys)
 sys.setdefaultencoding('utf8') 
 
-
 if 'SERVER_SOFTWARE' in os.environ:
 
     SAE_MYSQL_HOST_M = 'w.rdc.sae.sina.com.cn'
@@ -100,10 +100,11 @@ Base = declarative_base()
 RSS_SIGN_HOME='http://www.infoq.com/rss/rss.action?token=3Pkt2g0ELdPI6FKsXWnlhEytktoyTtAB'
 RSS_NOT_SIGN_EN='http://www.infoq.com/rss/rss.action?token=3Pkt2g0ELdPI6FKsXWnlhEytktoyTtAB'
 RSS_NOT_SIGN_CH='http://www.infoq.com/cn/rss/rss.action?token=mgnOPySplnVRGBQQHToikUWoAGFEqtDo'
+
 Base = declarative_base()
 
 WEIBO_MAIL_SUBJECT=u'【%s】InfoQ微博热报线索'
-WEIBO_MAIL_LIST='arthur@infoq.com;frank.jia@infoq.com;kevin@infoq.com;core-editors@googlegroups.com'
+WEIBO_MAIL_LIST='core-editors@googlegroups.com'
 
 SMILE_MAIL_SUBJECT=''
 SMILE_MAIL_LIST=''
@@ -119,6 +120,76 @@ MAIL_SUBJECT=u"%s：InfoQ更新--%d篇新闻，%d篇文章，%d篇采访"
 CATEGORY_LIST=['Development','Architecture & Design','Process & Practices','Enterprise Architecture','Operations & Infrastructure']
 CATEGORY_LIST_CN=['']
 
+def striptime(t):
+    return datetime.strptime(t+" 00:00:00",'%Y-%m-%d %H:%M:%S')
+def _notify(cat):
+    db_session=sessionmaker(bind=DB)
+    dbSession=db_session()
+    to_=[]
+    _li=cat.split(',')
+    for x in _li:
+        its=dbSession.query(UserListInfo.user).filter(or_(UserListInfo.cat==x,UserListInfo.user==x)).all()
+        for y in its:
+            to_.append(y)
+
+    return to_
+
+
+class NotificationList(Base):
+    __tablename__='notification_list'
+    id=Column(String(100),primary_key=True)
+    content=Column(String(100))
+    hey=Column(String(200))
+    status=Column(Integer)
+    to=Column(String(100))
+    pubdate=Column(DateTime)
+    def __init__(self,hey,content,to,status=0):
+        self.id=gen_id()
+        self.hey=hey
+        self.content=content
+        self.status=status
+        self.to=to
+        self.pubdate=datetime.now()
+def notify(content='',hey='',to='admin',status=0):
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+                if hey=='':
+                    hey=session['user'].user
+                db_session=sessionmaker(bind=DB)
+                dbSession=db_session()
+                _all=_notify(to)
+                for x in _all:
+                    n=NotificationList(hey=hey,to=x[0],content=content,status=status)
+                    dbSession.add(n)
+                    dbSession.commit()
+                return f(*args, **kwargs)
+        return decorated_function
+    return decorator
+def notify_m(content='',hey='',to='admin',status=0):
+                if hey=='':
+                    try:
+                    	hey=session['user'].user
+                    except:
+                        hey='退出'
+                db_session=sessionmaker(bind=DB)
+                dbSession=db_session()
+                _all=_notify(to)
+                for x in _all:
+                    n=NotificationList(hey=hey,to=x[0],content=content,status=status)
+                    dbSession.add(n)
+                    dbSession.commit()
+
+
+def gen_id():
+    import md5
+    return (md5.md5(str(datetime.now()))).hexdigest() 
+def md5(id):
+    import md5
+    return (md5.md5(id)).hexdigest()
+
+def get_user():
+    return session['user'] or redirect('login')
 
 def login(wtype='admin'):
     def decorator(f):
@@ -126,6 +197,12 @@ def login(wtype='admin'):
         def decorated_function(*args, **kwargs):
                 if 'user'  not in session:
                     return redirect(url_for('login', next=request.url))
+                else:
+                    user=session['user']
+                    if user.cat not in  wtype.split(','):
+                    	notify_m(content='试图越权：'+str(request.url)+"地址："+str(request.remote_addr),to='admin')
+                        notify_m(content='试图越权：'+str(request.url)+"地址："+str(request.remote_addr)+'已通知管理员',to=get_user().user)
+                        return redirect(url_for('error',next=request.url))
                 return f(*args, **kwargs)
         return decorated_function
     return decorator
@@ -154,9 +231,11 @@ class UserListInfo(Base):
     __tablename__='user_list'
     user=Column(String(100),primary_key=True)
     pwd=Column(String(45))
+    cat=Column(String(100))
     """docstring for UserListInfo"""
-    def __init__(self, user,pwd):
+    def __init__(self, user,pwd,cat):
         self.user=user
+        self.cat=cat
         self.pwd=pwd
         
             
@@ -255,26 +334,26 @@ class MailListInfo(Base):
         self.id=id
         self.country=country
 class WeiboM(Base):
-	__tablename__='weibo_list'
-	title=Column(String(100))
-	url=Column(String(100))
-	retweet=Column(Integer)
-	comment=Column(Integer)
-	athur=Column(String(100))
-	cat=Column(String(100))
-	time=Column(DateTime)
-	text=Column(String(400))
-	org_url=Column(String(400),primary_key=True)
-	def __init__(self,title,url,retweet,comment,text,org_url,athur,cat,time):
-		self.title=title
-		self.url=url
-		self.athur=athur
-		self.cat=cat
-		self.retweet=retweet
-		self.time=time
-		self.comment=comment
-		self.text=text
-		self.org_url=org_url
+    __tablename__='weibo_list'
+    title=Column(String(100))
+    url=Column(String(100))
+    retweet=Column(Integer)
+    comment=Column(Integer)
+    athur=Column(String(100))
+    cat=Column(String(100))
+    time=Column(DateTime)
+    text=Column(String(400))
+    org_url=Column(String(400),primary_key=True)
+    def __init__(self,title,url,retweet,comment,text,org_url,athur,cat,time):
+        self.title=title
+        self.url=url
+        self.athur=athur
+        self.cat=cat
+        self.retweet=retweet
+        self.time=time
+        self.comment=comment
+        self.text=text
+        self.org_url=org_url
 class WPList(Base):
     __tablename__='wp_list'
     uid=Column(String(100),primary_key=True)
@@ -364,24 +443,24 @@ class ExpertList(Base):
         self.bid=bid
 
 class JingyaoList(Base):
-	__tablename__='jingyao_list'
-	count=Column(String(10))
-	id=Column(String(20),primary_key=True)
-	img=Column(String(100))
-	content=Column(String(1000))
-	title=Column(String(30))
-	head_url=Column(String(100))
-	img_url=Column(String(100))
-	cat=Column(String(10))
-	def  __init__(self,count,content,title,head_url,cat,img_url='',img=''):
-		self.count=count
-		self.id=str(datetime.now())
-		self.content=content
-		self.title=title
-		self.head_url=head_url
-		self.img_url=img_url
-		self.cat=cat
-		self.img=img
+    __tablename__='jingyao_list'
+    count=Column(String(10))
+    id=Column(String(20),primary_key=True)
+    img=Column(String(100))
+    content=Column(String(1000))
+    title=Column(String(30))
+    head_url=Column(String(100))
+    img_url=Column(String(100))
+    cat=Column(String(10))
+    def  __init__(self,count,content,title,head_url,cat,img_url='',img=''):
+        self.count=count
+        self.id=str(datetime.now())
+        self.content=content
+        self.title=title
+        self.head_url=head_url
+        self.img_url=img_url
+        self.cat=cat
+        self.img=img
                 
 class EditorWeiboList(Base):
     __tablename__='editorweibo_list'
@@ -422,7 +501,7 @@ class EditorCount2List(Base):
     comment=Column(String(100))
     img=Column(String(200))
     def __init__(self,version,guid='',name='',comment='',img='',count=0):
-        self.id=md5.new(str(datetime.now())).hexdigest()
+        self.id=gen_id()
         self.guid=guid
         self.version=version
         self.name=name
@@ -436,40 +515,40 @@ Clue_Pre="""
     </head>
     <body>
 <div marginwidth="0" marginheight="0" style="min-width:600px;margin:0 auto;padding:39px;font-family:'Helvetica Neue',Helvetica,Arial,Sans-serif;font-size:13px;line-height:22px;background-color:#f5f5f5"><div class="adM">
-	</div><table width="552" cellspacing="0" cellpadding="0" border="0" style="border:1px solid #dedede;border-bottom:2px solid #dedede;margin:0 auto;background-color:#ffffff">
-	<tbody>
-		
-		<tr>
-			<td align="center" style="padding:30px 25px 30px">
-				<div style="font-size:13px">
-					<a target="_blank" href="http://zhi.hu/BAAC?m=edm.37.19039590023205" style="float:left;color:#bbb;text-decoration:none;border:none;outline:none">InfoQ</a>					
-					<span style="float:right;color:#bbb">%s</span>
-					<div style="font-size:25px;text-indent:3px">%s</div>
-				</div>
-			</td>
-		</tr>
-                	<tr>
-			<td style="padding:0 25px 25px">
-				
-		"""
+    </div><table width="552" cellspacing="0" cellpadding="0" border="0" style="border:1px solid #dedede;border-bottom:2px solid #dedede;margin:0 auto;background-color:#ffffff">
+    <tbody>
+        
+        <tr>
+            <td align="center" style="padding:30px 25px 30px">
+                <div style="font-size:13px">
+                    <a target="_blank" href="http://zhi.hu/BAAC?m=edm.37.19039590023205" style="float:left;color:#bbb;text-decoration:none;border:none;outline:none">InfoQ</a>                  
+                    <span style="float:right;color:#bbb">%s</span>
+                    <div style="font-size:25px;text-indent:3px">%s</div>
+                </div>
+            </td>
+        </tr>
+                    <tr>
+            <td style="padding:0 25px 25px">
+                
+        """
 Clue_Body="""<div style="margin-bottom:10px;border-bottom:1px dotted #dedede">
-					<div style="margin-bottom:3px">
-						<a target="_blank" href="%s" style="font-size:14px;line-height:22px;text-decoration:none;color:#259;border:none;outline:none">%s</a>
-					</div>
-					<div style="margin-bottom:3px;font-size:13px;line-height:22px">
-						<span style="float:right;color:#bbb">%s</span>
-						
-						<span style="color:#bbb">%s  %s</span>
-					</div>
-					<div style="margin-bottom:10px">
-						<span style="word-break:break-all;word-wrap:break-word;font-size:11px;line-height:22px;text-decoration:none;color:#333;display:block">%s</span>
-					</div>
-				</div>
+                    <div style="margin-bottom:3px">
+                        <a target="_blank" href="%s" style="font-size:14px;line-height:22px;text-decoration:none;color:#259;border:none;outline:none">%s</a>
+                    </div>
+                    <div style="margin-bottom:3px;font-size:13px;line-height:22px">
+                        <span style="float:right;color:#bbb">%s</span>
+                        
+                        <span style="color:#bbb">%s  %s</span>
+                    </div>
+                    <div style="margin-bottom:10px">
+                        <span style="word-break:break-all;word-wrap:break-word;font-size:11px;line-height:22px;text-decoration:none;color:#333;display:block">%s</span>
+                    </div>
+                </div>
 """
-Clue_End2="""		
-							</td>
-		</tr>
-			</tbody>
+Clue_End2="""       
+                            </td>
+        </tr>
+            </tbody>
 </table>
 <div style="text-align:center;padding-top:10px;margin:0 auto;width:500px;color:#aaa;font-size:12px;line-height:20px">由 <a target="_blank" style="text-decoration:none;border:none;outline:none;color:#aaa!important" href="mailto:arthur@infoq.com">Arthur维护，意见或者建议请反馈给他！</a><br>InfoQ &copy; 2012<img width="0" height="0"><div class="yj6qo"></div><div class="adL">
 </div></div><div class="adL">
@@ -477,11 +556,11 @@ Clue_End2="""
 </div></div></body>"""
 Clue_End="""<div style="display:block;"><a target="_blank" href="http://gege.baihui.com/open.do?docid=95416000000003001" style="margin-left:40px;display:inline-block;padding:7px 15px;background-color:#d44b38;color:#fff;font-size:13px;font-weight:bold;border-radius:2px;border:solid 1px #c43b28;white-space:nowrap;text-decoration:none">新闻</a>
 <a target="_blank" href="http://gege.baihui.com/docview.do?docid=95416000000004001" style="margin-right:40px;float:right;display:inline-block;padding:7px 15px;background-color:lightblue;color:#fff;font-size:13px;font-weight:bold;border-radius:2px;border:solid 1px lightblue;white-space:nowrap;text-decoration:none">文章</a><div style="float:right;color:#bbb;font-size:13px">
-					</div><div style="margin-top:10px;margin-bottom:10px;border-bottom:1px dotted #dedede"><p style="float:right;color:#333;font-size:11px;">Raven</p></div>
-												
-							</td>
-		</tr>
-			</tbody>
+                    </div><div style="margin-top:10px;margin-bottom:10px;border-bottom:1px dotted #dedede"><p style="float:right;color:#333;font-size:11px;">Raven</p></div>
+                                                
+                            </td>
+        </tr>
+            </tbody>
 </table>
 <div style="text-align:center;padding-top:10px;margin:0 auto;width:500px;color:#aaa;font-size:12px;line-height:20px">由 <a target="_blank" style="text-decoration:none;border:none;outline:none;color:#aaa!important" href="mailto:arthur@infoq.com">Arthur维护，意见或者建议请反馈给他！</a><br>InfoQ &copy; 2012<img width="0" height="0"><div class="yj6qo"></div><div class="adL">
 </div></div><div class="adL">

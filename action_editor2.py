@@ -9,6 +9,7 @@ WorkComments_3=['虚拟采访策划','提供新闻线索','专家专栏策划','
 Convert_list={'翻译审校':'文章翻译审校',"新闻审评":"新闻翻译审校",'原创新闻审评':'希望嫩原创审校','原创新闻':'新闻原创','文章审校':'文章原创审校'}
 
 class EditorCountShow2(MethodView):
+	@login(wtype='admin,core')
 	def get(self):
 		guid=request.args.get('guid')
 		version=request.args.get('version')
@@ -51,6 +52,7 @@ class EditorCountShow2(MethodView):
 		for x in _empty:
 			dbSession.delete(x)
 		dbSession.commit()
+                notify_m(content='修改工作量信息：'+guid,status=0)
 		return redirect('editorcountall2')
 # share the weibo of one
 class RssWeiboShare2(MethodView):

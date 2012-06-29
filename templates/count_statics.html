@@ -24,7 +24,10 @@ show_trends(900,400,"countweek", "#trends");
 
     request.done(function(msg) {
           it.text(msg);
-
+if(msg!='0'){
+          loadit(it);
+        
+}
         });
 
       request.fail(function(jqXHR, textStatus) {
@@ -67,7 +70,40 @@ show_trends(900,400,"countweek", "#trends");
 
 {% endblock%}
 {% block body %}
+<script type="text/javascript">
+  function loadit(it){
+          
 
+            var main_cat=it.attr('data-main');
+    var cat=it.attr('data-cat');
+   var small_cat=it.attr('data-small');
+
+    var request = $.ajax({
+      url: "countstaticdetail",
+      type: "POST",
+      data: 'cat='+cat+'&main_cat='+main_cat+'&small_cat='+small_cat
+        });
+
+    request.done(function(msg) {
+          
+          $(it).attr("data-content",msg);
+          $(it).attr('rel','popover');
+          $(it).attr('data-original-title','发布的内容');
+          $(it).attr('popover','show');
+      $('p[popover="show"]').popover({placement:'left'});
+        });
+
+      request.fail(function(jqXHR, textStatus) {
+         
+      });
+
+
+
+
+
+
+  }
+</script>
     <script type="text/javascript">
 
 

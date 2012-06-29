@@ -33,7 +33,7 @@ class Convet_Beans(MethodView):
 		dbSession=db_session()
 		begin=date.today()-timedelta(days=1)
 		end=date.today()			
-		results=dbSession.query(RssInfo).filter(RssInfo.pubdate>=begin).order_by(desc(RssInfo.pubdate)).filter(RssInfo.country=='en').filter(RssInfo.pubdate<end).limit(20)
+		results=dbSession.query(RssInfo).order_by(desc(RssInfo.pubdate)).filter(RssInfo.country=='en').limit(80)
 		for x in results:
 			if not dbSession.query(BeanList).filter(BeanList.org_guid==x.guid).all():
 				b=BeanList(org_guid=x.guid,pubdate=x.pubdate)
@@ -86,8 +86,8 @@ class PickABean(MethodView):
 			one_bean.pickdate=datetime.now()
 			dbSession.commit()
 
-			notify_m(content='领取新闻')
-			return str(duedate)
+			notify_m(content='领取新闻',to='admin,core,gof',status=0)
+			return str('ok')
 		else:
 			return 'picked'
 class NewsBeanToDone(MethodView):
@@ -95,7 +95,7 @@ class NewsBeanToDone(MethodView):
 	def get(self):
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
-		results=dbSession.query(BeanList,RssInfo).filter(RssInfo.guid==BeanList.org_guid).filter(BeanList.status==1).filter(BeanList.org_guid.like('%news%')).order_by(desc(BeanList.indate)).all()
+		results=dbSession.query(BeanList,RssInfo).filter(BeanList.jack==get_user().user).filter(RssInfo.guid==BeanList.org_guid).filter(BeanList.status==1).filter(BeanList.org_guid.like('%news%')).order_by(desc(BeanList.indate)).all()
 		return render_template('beans_news_to_done.html',res=results)
 class DoneABean(MethodView):
 	@login(wtype='admin,core,editor,gof')
@@ -113,8 +113,9 @@ class DoneABean(MethodView):
 			one_bean.count=count
 			one_bean.outdate=datetime.now()
 			dbSession.commit()
-			notify_m(content='完成新闻')
+			notify_m(content='完成新闻',to='admin,core,gof',status=0)
 			return 'ok'
+
 class BeanPendingNews(MethodView):
 	@login(wtype='admin,core,editor,gof')
 	def get(self):
@@ -122,6 +123,8 @@ class BeanPendingNews(MethodView):
 		dbSession=db_session()
 		results=dbSession.query(BeanList,RssInfo).filter(RssInfo.guid==BeanList.org_guid).filter(BeanList.status==1).filter(BeanList.org_guid.like('%news%')).order_by(desc(BeanList.pubdate)).all()
 		return render_template('beans_news_pending.html',res=results)
+
+
 
 class GOF36NotPickNews(MethodView):
 	def get(self):

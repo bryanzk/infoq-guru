@@ -4,16 +4,36 @@ from config import *
 import helper_data
 from helper_data import *
 WorkComments_1={'文章翻译':0.08,'文章原创':0.15,'视频演讲':0,'新闻原创':0.2,'专家专栏':0.15,'视频采访':0,'迷你书':0.15,'新闻翻译':0.08,'新闻翻译审校':0.080,'新闻原创审校':0.03,'文章原创审校':0.06,'迷你书审校':0.3,'文章翻译审校':0.04,'虚拟采访策划':0.300,'提供新闻线索':0,'专家专栏策划':0.120,'采访策划':0.300,'迷你书策划':0.3,'文章策划':120}
+def get_detail_of_cat_week(cat,small_cat,main_cat):
+	db_session=sessionmaker(bind=DB)
+	dbSession=db_session()
+	begin,end=week_begin_end()
+	count_week_news=dbSession.query(RssInfo).filter(RssInfo.main_cat.like('%'+main_cat+'%')).filter(RssInfo.small_cat.like('%'+small_cat+'%')).filter(RssInfo.guid.op('regexp')('\\/cn\\/'+cat)).filter(and_(RssInfo.pubdate>=begin,RssInfo.pubdate<end)).all()
+	one_line='<br/>'
+        if count_week_news:
+		xa=(one_line.join('%s'%x.title for x in count_week_news))
+                return xa
+        else:
+        	return ''
+
+class CountStaticWeekDetail(MethodView):
+	def post(self):
+		cat=request.form['cat']
+		main_cat=request.form['main_cat']
+		small_cat=request.form['small_cat']
+
+		return get_detail_of_cat_week(cat.encode('utf-8'),small_cat.encode('utf-8'),main_cat.encode('utf-8'))
 
 class CountOD(MethodView):
+	@login(wtype='admin,core')
 	def get(self):
         	db_session=sessionmaker(bind=DB)
                 dbSession=db_session()
         	begin,end=week_begin_end()
                 b2=begin-timedelta(days=7)
                 e2=end-timedelta(days=7)
-        	t_no=dbSession.query(func.count(RssInfo)).filter(RssInfo.country=='ch').filter(RssInfo.small_cat==u'翻译').filter(and_(RssInfo.pubdate>=b2,RssInfo.pubdate<e2)).scalar()
-                _t_no=dbSession.query(RssInfo).filter(RssInfo.small_cat==u'翻译').filter(RssInfo.country=='ch').filter(and_(RssInfo.pubdate>=b2,RssInfo.pubdate<e2)).all()
+        	t_no=dbSession.query(func.count(RssInfo)).filter(RssInfo.country=='ch').filter(RssInfo.guid.like('%news%')).filter(RssInfo.small_cat==u'翻译').filter(and_(RssInfo.pubdate>=b2,RssInfo.pubdate<e2)).scalar()
+                _t_no=dbSession.query(RssInfo).filter(RssInfo.small_cat==u'翻译').filter(RssInfo.guid.like('%news%')).filter(RssInfo.country=='ch').filter(and_(RssInfo.pubdate>=b2,RssInfo.pubdate<e2)).all()
                 t_no_current=0
                 for x in _t_no:
                 	if dbSession.query(RssInfo).filter(RssInfo.country=='en').filter(and_(RssInfo.pubdate>=b2,RssInfo.pubdate<e2)).filter(RssInfo.guid.like('%'+x.guid.split('/')[-1]+'%')).all():
@@ -46,6 +66,7 @@ class CountOD(MethodView):
                         Org Articles %d
                 """%(str(b2),str(e2),t_no,t_no_current,n_no_en,t_a,a_en,t_i,v_en,o_n,o_a)
 class CountSearch(MethodView):
+	@login(wtype='admin,core,editor,gof')
 	def get(self):
 		return render_template('count_search.html',res='')
 	def post(self):
@@ -61,6 +82,7 @@ class CountSearch(MethodView):
 		return render_template('count_search.html',res=results,count=count,fee=WorkComments_1)
 
 class CountAuthor(MethodView):
+	@login(wtype='admin,core,editor,gof')
 	def get(self):
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
@@ -82,7 +104,7 @@ class CountAuthor(MethodView):
 def week_begin_end():
 	now=date.today()
 	now_int=date.today().weekday()
-	if now_int<3:
+	if now_int<4:
 		begin=date.today()-timedelta(days=(now_int+3))
 		end=begin+timedelta(days=7)
 		return begin,end
@@ -184,6 +206,7 @@ class CountStaticsMail(MethodView):
 			,begin=begin,end=end-timedelta(days=1),lbegin=lbegin,lend=lend-timedelta(days=1))
         
 class CountStatics(MethodView):
+	@login(wtype='admin,core,editor,gof')
 	def get(self):
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
@@ -229,6 +252,7 @@ class CountStatics(MethodView):
 			,begin=begin,end=end-timedelta(days=1),lbegin=lbegin,lend=lend-timedelta(days=1))
 
 class CountContents(MethodView):
+	@login(wtype='admin,core,editor,gof')
 	def get(self):
 		db_session=sessionmaker(bind=DB)
 		dbSession=db_session()
@@ -256,7 +280,7 @@ class CountWall(MethodView):
 		dbSession=db_session()	
 		authors=dbSession.query(func.distinct(EditorCount2List.name)).order_by(func.count(EditorCount2List.guid)).group_by(EditorCount2List.name).all()
 		authors.reverse()
-                return render_template('count_wall.html',res=authors)
+                return render_template('count_wall.html',res=authors[:29])
 class CountWeekAuthor(MethodView):
 	def get(self):
 		db_session=sessionmaker(bind=DB)

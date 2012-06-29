@@ -45,6 +45,7 @@ class ExpertHelper():
 		return (md5.md5(str(datetime.now()))).hexdigest() 
 
 class ExpertShow(MethodView):
+	@login(wtype='admin,core')
 	def get(self):
 		id=request.args.get('id')
 		helper=ExpertHelper()
@@ -54,15 +55,18 @@ class ExpertShow(MethodView):
 		return render_template('expert_show.html',x=u,r='')
 
 class ExpertUpdate(MethodView):
+	@login(wtype='admin,core')
 	def get(self):
+        	notify_m(content='查看专家信息',status=0,to='admin')
 		id=request.args.get('id')
 		helper=ExpertHelper()
 		u=helper.get_user(id)
 		db_session=sessionmaker(bind=DB)
 		dbSessin=db_session()
 		return render_template('expert_update.html',x=u,r='')
-		
+	@login(wtype='admin,core')	
 	def post(self):
+        	notify_m(content='更新专家信息',status=0,to='admin')
 		id=request.form['id']
 		name=request.form['name']
 		ename=request.form['ename']
@@ -97,9 +101,10 @@ class ExpertUpdate(MethodView):
 		return redirect('eshow?id='+id)
 
 class ExpertAdd(MethodView):
+	@login(wtype='admin,core')
 	def get(self):
 		return render_template('expert_add.html')
-		
+	@login(wtype='admin,core')	
 	def post(self):
 		name=request.form['name']
 		ename=request.form['ename']
@@ -134,9 +139,12 @@ class ExpertAdd(MethodView):
 		return redirect('eshow?id='+str(u.id))
 
 class ExpertSearch(MethodView):
+	@login(wtype='admin,core')
 	def get(self):
 		return render_template('expert_search.html')
+        @login(wtype='admin,core')
 	def post(self):
+        	notify_m(content='查询专家',status=0,to='admin')
 		cat=request.form['cat']
 		query=request.form['query']
 		helper=ExpertHelper()

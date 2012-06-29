@@ -12,7 +12,7 @@ class RssChangeMainCatAll(MethodView):
         
         return render_template('rss_change_maincat_all.html',res=results)
     def post(self):
-    	db_session=sessionmaker(bind=DB)
+        db_session=sessionmaker(bind=DB)
         dbSession=db_session()
         guid=request.form['url']
         results=dbSession.query(RssInfo).filter(RssInfo.country=='ch').filter(RssInfo.guid.like("%"+guid+"%")).filter(and_(RssInfo.main_cat!= None,RssInfo.main_cat!='')).order_by(desc(RssInfo.pubdate)).limit(30)
@@ -98,8 +98,7 @@ class RssFetchRefresh(MethodView):
 class EnRssRefresh(MethodView):
     def post(self):
         enrss=RssRefresh()
-        return render_template('result.html',
-            r=enrss._get(RSS_NOT_SIGN_EN,'en'))
+        return str(enrss._get(RSS_NOT_SIGN_EN,'en'))
 class ChRssRefresh(MethodView):
     def post(self):
         rss=RssRefresh()
@@ -108,8 +107,7 @@ class ChRssRefresh(MethodView):
         for x in r:
             x.pubdate= x.pubdate - timedelta(hours=5)
             u.append(x)  
-        return render_template('result.html',
-            r=rss._save(u))
+        return    str(rss._save(u))
 class RssRefresh():
     def _save(self,data):
         for r in data:
@@ -184,7 +182,3 @@ class RssRefresh():
             db_session.delete(x)
         db_session.commit()
         db_session.close()
-#for x in rss.find_all('item'):
-#   print  x.title.string
-#   print '--------------'
-#print rss.channel.item.title.string

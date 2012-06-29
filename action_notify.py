@@ -14,7 +14,6 @@ class NotifyGet(MethodView):
 			dbSession.commit()
 			return result[0].hey+result[0].content
 		return  ''
-
 class NotifyThem(MethodView):
 	def post(self):
         	try:
@@ -22,7 +21,6 @@ class NotifyThem(MethodView):
                 	return 'ok'
                 except:
                 	return 'error'
-
 
 class NotifyCenter(MethodView):
 	def get(self):
